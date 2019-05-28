@@ -1,5 +1,4 @@
-// Place this script in the root of C:\Users\%username%\WindowsPowerShell
-copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitcheck.ps1 C:\scripts\Windows
+﻿copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitcheck.ps1 C:\scripts\Windows
 copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitpush.ps1 C:\scripts\Windows
 copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitsetup.ps1 C:\scripts\Windows
 copy -Force C:\Users\TECH-W99a\WindowsPowerShell\test.ps1 C:\scripts\Windows
@@ -37,12 +36,6 @@ echo ""
 echo ""
 echo vue
 cd c:\vue
-git pull
-git status
-echo ""
-echo ""
-echo scripts
-cd c:\scripts
 git pull
 git status
 echo ""
