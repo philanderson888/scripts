@@ -55,12 +55,6 @@ git status >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
-echo c:\c-sharp-tasks-app\kids-holiday-tasks >> c:/data/output.txt
-cd c:\c-sharp-tasks-app\kids-holiday-tasks >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
 
 echo closed-source-sparta-notes >> c:/data/output.txt
 cd 'C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes' >> c:/data/output.txt
