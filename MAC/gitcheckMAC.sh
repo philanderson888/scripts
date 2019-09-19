@@ -9,5 +9,5 @@ echo "Showcase"
 cd /Users/Shared/showcase
 git status
 git pull
-gid add .
+git add .
 git commit -m "Updating Showcase"
