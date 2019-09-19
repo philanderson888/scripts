@@ -5,3 +5,9 @@ git pull
 git add .
 git commit -m "Updating scripts"
 git push
+echo "Showcase"
+cd /Users/Shared/showcase
+git status
+git pull
+gid add .
+git commit -m "Updating Showcase"
