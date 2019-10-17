@@ -15,7 +15,6 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
-
 echo 2019-06-c-sharp-labs >> c:/data/output.txt
 cd C:\2019-06-c-sharp-labs >> c:/data/output.txt
 git pull >> c:/data/output.txt
