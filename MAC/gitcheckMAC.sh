@@ -28,6 +28,15 @@ echo "";
 
 
 
+echo "Updating course-notes"
+cd /Users/Shared/course-notes
+git status
+git pull
+git add .
+git commit -m "Updating course-notes"
+git push
+echo "";
+
 echo "learn-graph-ql"
 cd /Users/Shared/learn-graph-ql
 git status
