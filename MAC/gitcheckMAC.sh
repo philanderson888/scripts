@@ -29,7 +29,7 @@ echo "";
 
 
 echo "Updating course-notes"
-cd /Users/Shared/course-notes
+cd "/Users/apple/Google Drive/Notes/course-notes"
 git status
 git pull
 git add .
