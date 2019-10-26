@@ -28,7 +28,7 @@ echo "";
 
 
 
-echo "Updating course-notes"
+echo "Updating /Users/apple/Google Drive/Notes/course-notes"
 cd "/Users/apple/Google Drive/Notes/course-notes"
 git status
 git pull
