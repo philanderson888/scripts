@@ -18,7 +18,7 @@ echo "";
 
 
 echo "Updating bootstrap"
-cd /Users/Shared/blog
+cd /Users/Shared/bootstrap
 git status
 git pull
 git add .
