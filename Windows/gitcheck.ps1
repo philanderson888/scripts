@@ -152,15 +152,8 @@ echo "" >> c:/data/output.txt
 
 
 
-echo "Updating vue-with-paypal-payment"
-cd C:\vue-with-paypal-payment >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-git add . >> c:/data/output.txt
-git commit -m "Updating Vue With Paypal Payment" >> c:/data/output.txt
-git push >> c:/data/output.txt
-echo ""; >> c:/data/output.txt
-echo ""; >> c:/data/output.txt
+echo "Not doing - C:\vue-with-paypal-payment - Updating vue-with-paypal-payment"
+
 
 
 
