@@ -28,6 +28,15 @@ echo "";
 
 
 
+echo "Updating /Users/apple/Google Drive/Notes/course-notes"
+cd "/Users/apple/Google Drive/Notes/course-notes"
+git status
+git pull
+git add .
+git commit -m "Updating course-notes"
+git push
+echo "";
+
 echo "learn-graph-ql"
 cd /Users/Shared/learn-graph-ql
 git status
