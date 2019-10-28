@@ -4,10 +4,18 @@ copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitsetup.ps1 C:\scripts\Windows
 copy -Force C:\Users\TECH-W99a\WindowsPowerShell\git-setup-ssh-keys.ps1 C:\scripts\Windows
 copy -Force C:\Users\TECH-W99a\WindowsPowerShell\globalFunction.ps1 C:\scripts\Windows
 
+
+
+
 echo "" > c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
+
+
+
+
+echo 2019-04-c-sharp-labs
 echo 2019-04-c-sharp-labs >> c:/data/output.txt
 cd C:\2019-04-c-sharp-labs >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -19,6 +27,9 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
+
+
+echo 2019-06-c-sharp-labs
 echo 2019-06-c-sharp-labs >> c:/data/output.txt
 cd C:\2019-06-c-sharp-labs >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -30,6 +41,12 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
+
+
+
+
+
+echo 2019-09-c-sharp-labs
 echo 2019-09-c-sharp-labs >> c:/data/output.txt
 cd C:\2019-09-c-sharp-labs >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -42,6 +59,10 @@ echo "" >> c:/data/output.txt
 
 
 
+
+
+
+echo bootstrap
 echo bootstrap >> c:/data/output.txt
 cd C:\bootstrap >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -54,7 +75,7 @@ echo "" >> c:/data/output.txt
 
 
 
-
+echo c-sharp
 echo c-sharp >> c:/data/output.txt
 cd C:\c-sharp >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -66,6 +87,8 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
+
+echo course-notes
 echo course-notes >> c:/data/output.txt
 cd C:\GDrive\Notes\course-notes >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -78,7 +101,7 @@ echo "" >> c:/data/output.txt
 
 
 
-
+echo cyber 
 echo cyber >> c:/data/output.txt
 cd C:\cyber >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -91,7 +114,7 @@ echo "" >> c:/data/output.txt
 
 
 
-
+echo gatsby-coffee
 echo gatsby-coffee >> c:/data/output.txt
 cd C:\gatsby-coffee >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -103,6 +126,8 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
+
+echo learn-graph-ql
 echo learn-graph-ql >> c:/data/output.txt
 cd C:\learn-graph-ql >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -113,7 +138,7 @@ git push >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
-
+echo scripts 
 echo scripts >> c:/data/output.txt
 cd C:\scripts >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -125,7 +150,7 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
-
+echo showcase
 echo showcase >> c:/data/output.txt
 cd C:\showcase >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -137,7 +162,7 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
-
+echo vue
 echo vue >> c:/data/output.txt
 cd c:\vue >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -172,7 +197,7 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
-
+echo open-source-notes
 echo open-source-notes >> c:/data/output.txt
 cd 'C:\GDrive\Notes\course-notes' >> c:/data/output.txt
 git pull >> c:/data/output.txt
