@@ -25,9 +25,9 @@ echo 2019-04-c-sharp-labs >> c:/data/output.txt
 cd C:\2019-04-c-sharp-labs >> c:/data/output.txt
 git pull >> c:/data/output.txt
 git status >> c:/data/output.txt
-git add .
-git commit -m "Updating 2019-04-labs"
-git push
+git add . >> c:/data/output.txt
+git commit -m "Updating 2019-04-labs" >> c:/data/output.txt
+git push >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
@@ -43,9 +43,9 @@ echo 2019-06-c-sharp-labs >> c:/data/output.txt
 cd C:\2019-06-c-sharp-labs >> c:/data/output.txt
 git pull >> c:/data/output.txt
 git status >> c:/data/output.txt
-git add .
-git commit -m "Updating 2019-06-labs"
-git push
+git add . >> c:/data/output.txt
+git commit -m "Updating 2019-06-labs" >> c:/data/output.txt
+git push >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
