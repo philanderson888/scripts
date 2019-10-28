@@ -15,7 +15,11 @@ echo "" >> c:/data/output.txt
 
 
 
-echo " " " " 2019-04-c-sharp-labs 
+
+
+echo ""
+echo ""
+echo 2019-04-c-sharp-labs 
 echo 2019-04-c-sharp-labs >> c:/data/output.txt
 cd C:\2019-04-c-sharp-labs >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -29,7 +33,11 @@ echo "" >> c:/data/output.txt
 
 
 
-echo " " " " 2019-06-c-sharp-labs
+
+
+echo ""
+echo ""
+echo 2019-06-c-sharp-labs
 echo 2019-06-c-sharp-labs >> c:/data/output.txt
 cd C:\2019-06-c-sharp-labs >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -46,7 +54,11 @@ echo "" >> c:/data/output.txt
 
 
 
-echo " " " " 2019-09-c-sharp-labs 
+
+
+echo ""
+echo ""
+echo 2019-09-c-sharp-labs 
 echo 2019-09-c-sharp-labs >> c:/data/output.txt
 cd C:\2019-09-c-sharp-labs >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -62,7 +74,10 @@ echo "" >> c:/data/output.txt
 
 
 
-echo " " " " bootstrap
+
+echo ""
+echo ""
+echo bootstrap 
 echo bootstrap >> c:/data/output.txt
 cd C:\bootstrap >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -75,7 +90,11 @@ echo "" >> c:/data/output.txt
 
 
 
-echo " " " " c-sharp
+
+
+echo ""
+echo ""
+echo c-sharp 
 echo c-sharp >> c:/data/output.txt
 cd C:\c-sharp >> c:/data/output.txt" " " " 
 git pull >> c:/data/output.txt
@@ -101,6 +120,9 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
+
+
+
 echo ""
 echo ""
 echo cyber  c:/data/output.txt 
@@ -113,6 +135,10 @@ git commit -m "Updating cyber notes" >> c:/data/output.txt
 git push >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
+
+
+
+
 
 
 echo ""
@@ -129,6 +155,10 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
+
+
+
+
 echo ""
 echo ""
 echo learn-graph-ql c:/data/output.txt 
@@ -143,6 +173,10 @@ echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
 
+
+
+
+
 echo ""
 echo ""
 echo scripts  c:/data/output.txt 
@@ -155,6 +189,9 @@ git commit -m "Updating scripts" >> c:/data/output.txt
 git push >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
+
+
+
 
 
 
@@ -173,6 +210,9 @@ echo "" >> c:/data/output.txt
 
 
 
+
+
+
 echo ""
 echo ""
 echo vue c:/data/output.txt 
@@ -185,6 +225,8 @@ git commit -m "Updating vue" >> c:/data/output.txt
 git push >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
+
+
 
 
 
