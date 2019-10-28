@@ -161,7 +161,7 @@ echo "Not doing - C:\vue-with-paypal-payment - Updating vue-with-paypal-payment"
 
 
 echo closed-source-sparta-notes >> c:/data/output.txt
-cd 'C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes' >> c:/data/output.txt
+cd "C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes" >> c:/data/output.txt
 git pull >> c:/data/output.txt
 git status >> c:/data/output.txt
 git add . >> c:/data/output.txt
