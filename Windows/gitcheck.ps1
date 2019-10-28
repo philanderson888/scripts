@@ -1,4 +1,5 @@
-﻿copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitcheck.ps1 C:\scripts\Windows
+﻿cls
+copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitcheck.ps1 C:\scripts\Windows
 copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitpush.ps1 C:\scripts\Windows
 copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitsetup.ps1 C:\scripts\Windows
 copy -Force C:\Users\TECH-W99a\WindowsPowerShell\git-setup-ssh-keys.ps1 C:\scripts\Windows
@@ -131,7 +132,7 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
-echo cyber  c:/data/output.txt 
+echo cyber 
 echo cyber >> c:/data/output.txt
 cd C:\cyber >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -149,7 +150,7 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
-echo gatsby-coffee c:/data/output.txt 
+echo gatsby-coffee 
 echo gatsby-coffee >> c:/data/output.txt
 cd C:\gatsby-coffee >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -167,7 +168,7 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
-echo learn-graph-ql c:/data/output.txt 
+echo learn-graph-ql 
 echo learn-graph-ql >> c:/data/output.txt
 cd C:\learn-graph-ql >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -185,7 +186,7 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
-echo scripts  c:/data/output.txt 
+echo scripts 
 echo scripts >> c:/data/output.txt
 cd C:\scripts >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -203,7 +204,7 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
-echo showcase c:/data/output.txt 
+echo showcase 
 echo showcase >> c:/data/output.txt
 cd C:\showcase >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -221,7 +222,7 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
-echo vue c:/data/output.txt 
+echo vue 
 echo vue >> c:/data/output.txt
 cd c:\vue >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -248,7 +249,7 @@ echo "Not doing - C:\vue-with-paypal-payment - Updating vue-with-paypal-payment"
 
 echo ""
 echo ""
-echo closed-source-sparta-notes  c:/data/output.txt 
+echo closed-source-sparta-notes 
 echo closed-source-sparta-notes >> c:/data/output.txt
 cd "C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes" >> c:/data/output.txt
 git pull >> c:/data/output.txt
@@ -265,7 +266,7 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
-echo open-source-notes c:/data/output.txt 
+echo open-source-notes 
 echo open-source-notes >> c:/data/output.txt
 cd 'C:\GDrive\Notes\course-notes' >> c:/data/output.txt
 git pull >> c:/data/output.txt
