@@ -148,22 +148,6 @@ echo "" >> c:/data/output.txt
 
 
 
-echo ""
-echo ""
-echo gatsby-coffee 
-echo gatsby-coffee >> c:/data/output.txt
-cd C:\gatsby-coffee >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-git add . >> c:/data/output.txt
-git commit -m "Updating gatsby-coffee" >> c:/data/output.txt
-git push >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-
-
-
-
 
 
 echo ""
