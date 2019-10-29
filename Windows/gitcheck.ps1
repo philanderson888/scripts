@@ -240,6 +240,26 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
+echo vue-live 
+echo vue-live >> c:/data/output.txt
+cd c:\vue-live >> c:/data/output.txt
+git pull >> c:/data/output.txt
+git status >> c:/data/output.txt
+git add . >> c:/data/output.txt
+git commit -m "Updating vue-live" >> c:/data/output.txt
+git push >> c:/data/output.txt
+echo "" >> c:/data/output.txt
+echo "" >> c:/data/output.txt
+
+
+
+
+
+
+
+
+echo ""
+echo ""
 echo "Not doing - C:\vue-with-paypal-payment - Updating vue-with-paypal-payment"
 
 
