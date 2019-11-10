@@ -28,8 +28,8 @@ echo "";
 
 
 
-echo "Updating /Users/apple/Google Drive/Notes/course-notes"
-cd "/Users/apple/Google Drive/Notes/course-notes"
+echo "Updating open source course-notes on Google Drive"
+cd "/Users/apple/Google Drive/course-notes"
 git status
 git pull
 git add .
@@ -37,23 +37,6 @@ git commit -m "Updating course-notes"
 git push
 echo "";
 
-echo "learn-graph-ql"
-cd /Users/Shared/learn-graph-ql
-git status
-git pull
-git add .
-git commit -m "Updating learn-graph-ql"
-git push
-echo "";
-
-echo "react"
-cd /Users/Shared/react
-git status
-git pull
-git add .
-git commit -m "Updating React"
-git push
-echo "";
 
 
 
