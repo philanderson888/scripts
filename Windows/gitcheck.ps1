@@ -116,7 +116,7 @@ echo ""
 echo ""
 echo open-source-notes 
 echo open-source-notes >> c:/data/output.txt
-cd 'C:\GDrive\Notes\course-notes' >> c:/data/output.txt
+cd 'C:\GDrive\course-notes' >> c:/data/output.txt
 git pull >> c:/data/output.txt
 git status >> c:/data/output.txt
 git add . >> c:/data/output.txt
