@@ -40,6 +40,17 @@ echo "";
 
 
 
+echo "Updating notes"
+cd /Users/Shared/notes
+git status
+git pull
+git add .
+git commit -m "Updating notes"
+git push
+echo "";
+
+
+
 echo "Showcase"
 cd /Users/Shared/showcase
 git status
