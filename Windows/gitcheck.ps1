@@ -78,6 +78,22 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
+echo 2019-11-c-sharp-labs 
+echo 2019-11-c-sharp-labs >> c:/data/output.txt
+cd C:\2019-11-c-sharp-labs >> c:/data/output.txt
+git pull >> c:/data/output.txt
+git status >> c:/data/output.txt
+git add . >> c:/data/output.txt
+git commit -m "Updating 2019-11-labs" >> c:/data/output.txt
+git push >> c:/data/output.txt
+echo "" >> c:/data/output.txt
+echo "" >> c:/data/output.txt
+
+
+
+
+echo ""
+echo ""
 echo bootstrap 
 echo bootstrap >> c:/data/output.txt
 cd C:\bootstrap >> c:/data/output.txt
