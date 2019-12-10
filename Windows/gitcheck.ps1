@@ -133,13 +133,13 @@ echo "" >> c:/data/output.txt
 
 echo ""
 echo ""
-echo c-sharp-labs 
-echo c-sharp-labs >> c:/data/output.txt
-cd C:\c-sharp-labs >> c:/data/output.txt
+echo c-sharp-tests
+echo c-sharp-tests >> c:/data/output.txt
+cd C:\c-sharp-tests >> c:/data/output.txt
 git pull >> c:/data/output.txt
 git status >> c:/data/output.txt
 git add . >> c:/data/output.txt
-git commit -m "Updating c-sharp-labs" >> c:/data/output.txt
+git commit -m "Updating c-sharp-tests" >> c:/data/output.txt
 git push >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
