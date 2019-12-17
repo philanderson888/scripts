@@ -1,7 +1,7 @@
 
 
-echo "";
-echo "Updating scripts"
+
+echo "==Updating scripts"
 cd /Users/Shared/scripts
 git status
 git pull
@@ -14,8 +14,8 @@ echo "";
 
 
 
-echo "";
-echo "updating c-sharp"
+
+echo "\n\n\n\n\n==updating c-sharp"
 cd /Users/Shared/c-sharp
 git status
 git pull
@@ -29,8 +29,8 @@ echo "";
 
 
 
-echo "";
-echo "updating c-sharp-tests"
+
+echo "==updating c-sharp-tests"
 cd /Users/Shared/c-sharp-tests
 git status
 git pull
@@ -44,8 +44,8 @@ echo "";
 
 
 
-echo "";
-echo "updating 2019-04-c-sharp-labs"
+
+echo "==updating 2019-04-c-sharp-labs"
 cd /Users/Shared/2019-04-c-sharp-labs
 git status
 git pull
@@ -58,8 +58,8 @@ echo "";
 
 
 
-echo "";
-echo "updating 2019-06-c-sharp-labs"
+
+echo "==updating 2019-06-c-sharp-labs"
 cd /Users/Shared/2019-06-c-sharp-labs
 git status
 git pull
@@ -72,8 +72,8 @@ echo "";
 
 
 
-echo "";
-echo "updating 2019-09-c-sharp-labs"
+
+echo "==updating 2019-09-c-sharp-labs"
 cd /Users/Shared/2019-09-c-sharp-labs
 git status
 git pull
@@ -88,8 +88,8 @@ echo "";
 
 
 
-echo "";
-echo "updating 2019-11-c-sharp-labs"
+
+echo "==updating 2019-11-c-sharp-labs"
 cd /Users/Shared/2019-11-c-sharp-labs
 git status
 git pull
@@ -103,10 +103,10 @@ echo "";
 
 
 
-echo before-course-notes
 
 
-echo "Updating /Users/apple/Google Drive/Notes/course-notes"
+
+echo "==Updating /Users/apple/Google Drive/Notes/course-notes"
 cd "/Users/apple/Google Drive/course-notes"
 git status
 git pull
@@ -123,10 +123,9 @@ echo "";
 
 
 
-echo before-vue
 
 
-echo "Updating vue"
+echo "==Updating vue"
 cd /Users/Shared/vue
 git status
 git pull
@@ -138,10 +137,10 @@ echo "";
 
 
 
-echo before-vue-paypal
 
 
-echo "Updating vue-with-paypal-payment"
+
+echo "==Updating vue-with-paypal-payment"
 cd /Users/Shared/vue-with-paypal-payment
 git status
 git pull
