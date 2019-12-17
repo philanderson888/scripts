@@ -1,14 +1,13 @@
 
 
 
-echo "==Updating scripts"
+printf "\n\n\n\n\n==Updating scripts"
 cd /Users/Shared/scripts
 git status
 git pull
 git add .
 git commit -m "Updating scripts"
 git push
-echo "";
 
 
 
@@ -22,7 +21,6 @@ git pull
 git add .
 git commit -m "Updating c-sharp"
 git push
-echo "";
 
 
 
@@ -30,14 +28,13 @@ echo "";
 
 
 
-echo "==updating c-sharp-tests"
+printf "\n\n\n\n\n==updating c-sharp-tests"
 cd /Users/Shared/c-sharp-tests
 git status
 git pull
 git add .
 git commit -m "Updating c-sharp-tests"
 git push
-echo "";
 
 
 
@@ -45,42 +42,39 @@ echo "";
 
 
 
-echo "==updating 2019-04-c-sharp-labs"
+printf "\n\n\n\n\n==updating 2019-04-c-sharp-labs"
 cd /Users/Shared/2019-04-c-sharp-labs
 git status
 git pull
 git add .
 git commit -m "Updating 2019-04-c-sharp-labs"
 git push
-echo "";
 
 
 
 
 
 
-echo "==updating 2019-06-c-sharp-labs"
+printf "\n\n\n\n\n==updating 2019-06-c-sharp-labs"
 cd /Users/Shared/2019-06-c-sharp-labs
 git status
 git pull
 git add .
 git commit -m "Updating 2019-06-c-sharp-labs"
 git push
-echo "";
 
 
 
 
 
 
-echo "==updating 2019-09-c-sharp-labs"
+printf "\n\n\n\n\n==updating 2019-09-c-sharp-labs"
 cd /Users/Shared/2019-09-c-sharp-labs
 git status
 git pull
 git add .
 git commit -m "Updating 2019-09-c-sharp-labs"
 git push
-echo "";
 
 
 
@@ -89,14 +83,13 @@ echo "";
 
 
 
-echo "==updating 2019-11-c-sharp-labs"
+printf "\n\n\n\n\n==updating 2019-11-c-sharp-labs"
 cd /Users/Shared/2019-11-c-sharp-labs
 git status
 git pull
 git add .
 git commit -m "Updating 2019-11-c-sharp-labs"
 git push
-echo "";
 
 
 
@@ -106,14 +99,13 @@ echo "";
 
 
 
-echo "==Updating /Users/apple/Google Drive/Notes/course-notes"
+printf "\n\n\n\n\n==Updating /Users/apple/Google Drive/Notes/course-notes"
 cd "/Users/apple/Google Drive/course-notes"
 git status
 git pull
 git add .
 git commit -m "Updating course-notes"
 git push
-echo "";
 
 
 
@@ -125,14 +117,13 @@ echo "";
 
 
 
-echo "==Updating vue"
+printf "\n\n\n\n\n==Updating vue"
 cd /Users/Shared/vue
 git status
 git pull
 git add .
 git commit -m "Updating Vue"
 git push
-echo "";
 
 
 
@@ -140,14 +131,13 @@ echo "";
 
 
 
-echo "==Updating vue-with-paypal-payment"
+printf "\n\n\n\n\n==Updating vue-with-paypal-payment"
 cd /Users/Shared/vue-with-paypal-payment
 git status
 git pull
 git add .
 git commit -m "Updating Vue With Paypal Payment"
 git push
-echo "";
 
 
 
@@ -158,19 +148,18 @@ echo "";
 
 
 
-echo before-showcase
 
 
 
 
-echo "Showcase"
+
+printf "\n\n\n\n\n==Showcase"
 cd /Users/Shared/showcase
 git status
 git pull
 git add .
 git commit -m "Updating Showcase"
 git push
-echo "";
 
 
 
