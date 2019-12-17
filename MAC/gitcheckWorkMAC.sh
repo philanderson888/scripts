@@ -100,7 +100,7 @@ git push
 
 
 printf "\n\n\n\n\n==Updating /Users/Shared/GoogleDrive/course-notes\n"
-cd "/Users/Shared/Google Drive/course-notes"
+cd "/Users/Shared/GoogleDrive/course-notes"
 git status
 git pull
 git add .
