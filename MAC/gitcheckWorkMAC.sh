@@ -15,7 +15,7 @@ echo "";
 
 
 
-echo "\n\n\n\n\n==updating c-sharp"
+printf "\n\n\n\n\n==updating c-sharp"
 cd /Users/Shared/c-sharp
 git status
 git pull
