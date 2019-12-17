@@ -99,8 +99,8 @@ git push
 
 
 
-printf "\n\n\n\n\n==Updating /Users/apple/Google Drive/Notes/course-notes\n"
-cd "/Users/apple/Google Drive/course-notes"
+printf "\n\n\n\n\n==Updating /Users/Shared/Google Drive/course-notes\n"
+cd "/Users/Shared/Google Drive/course-notes"
 git status
 git pull
 git add .
@@ -138,19 +138,6 @@ git add .
 git commit -m "Updating Vue"
 git push
 
-
-
-
-
-
-
-printf "\n\n\n\n\n==Updating vue-with-paypal-payment\n"
-cd /Users/Shared/vue-with-paypal-payment
-git status
-git pull
-git add .
-git commit -m "Updating Vue With Paypal Payment"
-git push
 
 
 
