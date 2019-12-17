@@ -115,6 +115,7 @@ echo "";
 
 
 
+echo before-bootstrap
 
 
 echo "";
@@ -130,7 +131,7 @@ echo "";
 
 
 
-
+echo before-showcase
 
 
 
@@ -147,6 +148,7 @@ echo "";
 
 
 
+echo before-vue
 
 
 echo "Updating vue"
