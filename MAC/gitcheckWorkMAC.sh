@@ -163,18 +163,6 @@ echo "";
 
 
 
-echo before-bootstrap
-
-
-echo "";
-echo "Updating bootstrap"
-cd /Users/Shared/bootstrap
-git status
-git pull
-git add .
-git commit -m "Updating bootstrap"
-git push
-echo "";
 
 
 
@@ -194,3 +182,18 @@ git push
 echo "";
 
 
+
+
+
+echo before-bootstrap
+
+
+echo "";
+echo "Updating bootstrap"
+cd /Users/Shared/bootstrap
+git status
+git pull
+git add .
+git commit -m "Updating bootstrap"
+git push
+echo "";
