@@ -99,7 +99,7 @@ git push
 
 
 
-printf "\n\n\n\n\n==Updating /Users/Shared/Google Drive/course-notes\n"
+printf "\n\n\n\n\n==Updating /Users/Shared/GoogleDrive/course-notes\n"
 cd "/Users/Shared/Google Drive/course-notes"
 git status
 git pull
