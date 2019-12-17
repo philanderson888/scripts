@@ -137,7 +137,7 @@ git pull
 git add .
 git commit -m "Updating Vue"
 git push
-
+printf "\n\n\n\n\nGit Push And Pull Complete For All Repos\n\n\n\n"
 
 
 
