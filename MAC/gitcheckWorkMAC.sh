@@ -103,16 +103,6 @@ echo "";
 
 
 
-echo "";
-echo "Updating blog"
-cd /Users/Shared/blog
-git status
-git pull
-git add .
-git commit -m "Updating contentful blog"
-git push
-echo "";
-
 
 
 
@@ -150,7 +140,7 @@ echo before-course-notes
 
 
 echo "Updating /Users/apple/Google Drive/Notes/course-notes"
-cd "/Users/apple/Google Drive/Notes/course-notes"
+cd "/Users/apple/Google Drive/course-notes"
 git status
 git pull
 git add .
