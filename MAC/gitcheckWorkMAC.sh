@@ -133,36 +133,6 @@ echo "";
 
 
 
-echo "Updating bootstrap"
-cd /Users/Shared/bootstrap
-git status
-git pull
-git add .
-git commit -m "Updating bootstrap"
-git push
-echo "";
-
-
-
-
-
-
-
-echo "Updating /Users/apple/Google Drive/Notes/course-notes"
-cd "/Users/apple/Google Drive/Notes/course-notes"
-git status
-git pull
-git add .
-git commit -m "Updating course-notes"
-git push
-echo "";
-
-
-
-
-
-
-
 
 
 echo "Showcase"
@@ -204,3 +174,16 @@ git push
 echo "";
 
 
+
+
+
+
+
+echo "Updating /Users/apple/Google Drive/Notes/course-notes"
+cd "/Users/apple/Google Drive/Notes/course-notes"
+git status
+git pull
+git add .
+git commit -m "Updating course-notes"
+git push
+echo "";
