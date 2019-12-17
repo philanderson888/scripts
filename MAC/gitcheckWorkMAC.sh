@@ -115,6 +115,54 @@ echo "";
 
 
 
+
+echo before-vue
+
+
+echo "Updating vue"
+cd /Users/Shared/vue
+git status
+git pull
+git add .
+git commit -m "Updating Vue"
+git push
+echo "";
+
+
+
+
+echo before-vue-paypal
+
+
+echo "Updating vue-with-paypal-payment"
+cd /Users/Shared/vue-with-paypal-payment
+git status
+git pull
+git add .
+git commit -m "Updating Vue With Paypal Payment"
+git push
+echo "";
+
+
+
+
+echo before-course-notes
+
+
+echo "Updating /Users/apple/Google Drive/Notes/course-notes"
+cd "/Users/apple/Google Drive/Notes/course-notes"
+git status
+git pull
+git add .
+git commit -m "Updating course-notes"
+git push
+echo "";
+
+
+
+
+
+
 echo before-bootstrap
 
 
@@ -146,46 +194,3 @@ git push
 echo "";
 
 
-
-
-echo before-vue
-
-
-echo "Updating vue"
-cd /Users/Shared/vue
-git status
-git pull
-git add .
-git commit -m "Updating Vue"
-git push
-echo "";
-
-
-
-
-
-
-
-echo "Updating vue-with-paypal-payment"
-cd /Users/Shared/vue-with-paypal-payment
-git status
-git pull
-git add .
-git commit -m "Updating Vue With Paypal Payment"
-git push
-echo "";
-
-
-
-
-
-
-
-echo "Updating /Users/apple/Google Drive/Notes/course-notes"
-cd "/Users/apple/Google Drive/Notes/course-notes"
-git status
-git pull
-git add .
-git commit -m "Updating course-notes"
-git push
-echo "";
