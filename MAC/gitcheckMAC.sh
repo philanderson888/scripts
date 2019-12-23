@@ -28,6 +28,19 @@ echo "";
 
 
 
+echo "Updating c-sharp-console-core"
+cd /Users/Shared/c-sharp-console-core
+git status
+git pull
+git add .
+git commit -m "Updating c-sharp-console-core"
+git push
+echo "";
+
+
+
+
+
 echo "Updating open source course-notes on Google Drive"
 cd "/Users/apple/Google Drive/course-notes"
 git status
