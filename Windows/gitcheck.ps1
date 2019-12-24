@@ -126,6 +126,21 @@ echo "" >> c:/data/output.txt
 
 
 
+echo ""
+echo ""
+echo c-sharp-console-core
+echo c-sharp-console-core >> c:/data/output.txt
+cd C:\c-sharp-console-core >> c:/data/output.txt
+git pull >> c:/data/output.txt
+git status >> c:/data/output.txt
+git add . >> c:/data/output.txt
+git commit -m "Updating c-sharp-console-core" >> c:/data/output.txt
+git push >> c:/data/output.txt
+echo "" >> c:/data/output.txt
+echo "" >> c:/data/output.txt
+
+
+
 
 
 
@@ -168,6 +183,10 @@ git commit -m "Updating open source notes" >> c:/data/output.txt
 git push >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
+
+
+
+
 
 
 
