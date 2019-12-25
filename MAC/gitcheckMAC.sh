@@ -1,3 +1,5 @@
+clear && printf '\e[3J'
+
 printf "\n\nChecking First All GitHub Repos For Potential Changes To Push"
 
 printf "\n\n\n\n\n==checking scripts\n"
