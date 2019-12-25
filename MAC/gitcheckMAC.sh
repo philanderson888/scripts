@@ -64,6 +64,23 @@ echo "";
 
 
 
+
+echo "Updating python"
+cd /Users/Shared/python
+git status
+git pull
+git add .
+git commit -m "Updating python"
+git push
+echo "";
+
+
+
+
+
+
+
+
 echo "Showcase"
 cd /Users/Shared/showcase
 git status
