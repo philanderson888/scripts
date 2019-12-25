@@ -48,7 +48,7 @@ git status
 
 
 
-printf "\n\n\n\n Press Escape To Abort Or Space To Continue . . . \n\n"
+printf "\n\n\n\n Press Escape To Abort Or Enter To Continue . . . \n\n"
 read -n1 -r -p "" key
     
 
