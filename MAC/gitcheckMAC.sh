@@ -1,17 +1,57 @@
+printf "\n\nChecking First All GitHub Repos For Potential Changes To Push"
+
 printf "\n\n\n\n\n==checking scripts\n"
 cd /Users/Shared/scripts
 git status
 
+printf "\n\n\n\n\nchecking blog\n"
+cd /Users/Shared/blog
+git status
+
+printf "\n\n\n\n\nchecking bootstrap\n"
+cd /Users/Shared/bootstrap
+git status
+
+printf "\n\n\n\n\n==checking c-sharp-console-core\n"
+cd /Users/Shared/c-sharp-console-core
+git status
+
+printf "\n\n\n\n\nchecking open source course-notes on Google Drive\n"
+cd "/Users/apple/Google Drive/course-notes"
+git status
+
+printf "\n\n\n\n\nchecking notes\n"
+cd /Users/Shared/notes
+git status
+
+printf "\n\n\n\n\nchecking python\n"
+cd /Users/Shared/python
+git status
+
+printf "\n\n\n\n\nchecking shells\n"
+cd /Users/Shared/shells
+git status
+
+printf "\n\n\n\n\nchecking Showcase\n"
+cd /Users/Shared/showcase
+git status
+
+printf "\n\n\n\n\nchecking vue\n"
+cd /Users/Shared/vue
+git status
+
+printf "\n\n\n\n\nchecking vue-with-paypal-payment\n"
+cd /Users/Shared/vue-with-paypal-payment
+git status
 
 
-read -n1 -r -p "Press ENTER or SPACE to PUSH CHANGES, or ESCAPE to ABORT ..." key
 
-
-echo [$key] is empty when SPACE is pressed # uncomment to trace
+printf "\n\n\n\n Press Escape To Abort Or Space To Continue . . . \n\n"
+read -n1 -r -p "" key
     
 
 if [ "$key" = '' ]; then
-    # Space pressed, do something
+    # Continue with PUSH to GITHUB
     printf "\n\n\n\n\n==updating scripts\n"
 	cd /Users/Shared/scripts
 	git pull
@@ -22,7 +62,6 @@ if [ "$key" = '' ]; then
 
 	echo "Updating blog"
 	cd /Users/Shared/blog
-	git status
 	git pull
 	git add .
 	git commit -m "Updating contentful blog"
@@ -32,7 +71,6 @@ if [ "$key" = '' ]; then
 
 	echo "Updating bootstrap"
 	cd /Users/Shared/bootstrap
-	git status
 	git pull
 	git add .
 	git commit -m "Updating bootstrap"
@@ -44,7 +82,6 @@ if [ "$key" = '' ]; then
 
 	printf "\n\n\n\n\n==updating c-sharp-console-core\n"
 	cd /Users/Shared/c-sharp-console-core
-	git status
 	git pull
 	git add .
 	git commit -m "Updating c-sharp-console-core"
@@ -55,7 +92,6 @@ if [ "$key" = '' ]; then
 
 	echo "Updating open source course-notes on Google Drive"
 	cd "/Users/apple/Google Drive/course-notes"
-	git status
 	git pull
 	git add .
 	git commit -m "Updating course-notes"
@@ -67,7 +103,6 @@ if [ "$key" = '' ]; then
 
 	echo "Updating notes"
 	cd /Users/Shared/notes
-	git status
 	git pull
 	git add .
 	git commit -m "Updating notes"
@@ -79,7 +114,6 @@ if [ "$key" = '' ]; then
 
 	echo "Updating python"
 	cd /Users/Shared/python
-	git status
 	git pull
 	git add .
 	git commit -m "Updating python"
@@ -93,7 +127,6 @@ if [ "$key" = '' ]; then
 
 	echo "shells"
 	cd /Users/Shared/shells
-	git status
 	git pull
 	git add .
 	git commit -m "Updating Shells"
@@ -103,7 +136,6 @@ if [ "$key" = '' ]; then
 
 	echo "Showcase"
 	cd /Users/Shared/showcase
-	git status
 	git pull
 	git add .
 	git commit -m "Updating Showcase"
@@ -114,7 +146,6 @@ if [ "$key" = '' ]; then
 
 	echo "Updating vue"
 	cd /Users/Shared/vue
-	git status
 	git pull
 	git add .
 	git commit -m "Updating Vue"
@@ -124,7 +155,6 @@ if [ "$key" = '' ]; then
 
 	echo "Updating vue-with-paypal-payment"
 	cd /Users/Shared/vue-with-paypal-payment
-	git status
 	git pull
 	git add .
 	git commit -m "Updating Vue With Paypal Payment"
@@ -132,13 +162,6 @@ if [ "$key" = '' ]; then
 	echo "";
 
 else
-    # Anything else pressed, do whatever else.
-    # echo [$key] not empty
+    # ABORT UPDATE
     printf "\n\n= = update aborted = = \n\n\n"
 fi
-
-
-
-
-
-
