@@ -134,7 +134,7 @@ if [ "$key" = '' ]; then
 else
     # Anything else pressed, do whatever else.
     # echo [$key] not empty
-    echo "not sure what's happening here";
+    printf "\n\n= = update aborted = = \n\n\n"
 fi
 
 
