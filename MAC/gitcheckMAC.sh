@@ -79,6 +79,14 @@ echo "";
 
 
 
+echo "shells"
+cd /Users/Shared/shells
+git status
+git pull
+git add .
+git commit -m "Updating Shells"
+git push
+echo ""
 
 
 echo "Showcase"
