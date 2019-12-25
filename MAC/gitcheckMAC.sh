@@ -1,11 +1,17 @@
-echo "Updating scripts"
+printf "\n\n\n\n\n==checking scripts\n"
 cd /Users/Shared/scripts
 git status
+
+pause
+
+
+printf "\n\n\n\n\n==updating scripts\n"
+cd /Users/Shared/scripts
 git pull
 git add .
 git commit -m "Updating scripts"
 git push
-echo "";
+
 
 echo "Updating blog"
 cd /Users/Shared/blog
@@ -28,15 +34,14 @@ echo "";
 
 
 
-echo "Updating c-sharp-console-core"
+
+printf "\n\n\n\n\n==updating c-sharp-console-core\n"
 cd /Users/Shared/c-sharp-console-core
 git status
 git pull
 git add .
 git commit -m "Updating c-sharp-console-core"
 git push
-echo "";
-
 
 
 
