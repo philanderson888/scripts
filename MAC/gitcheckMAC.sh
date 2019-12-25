@@ -4,7 +4,7 @@ git status
 
 
 
-read -n1 -r -p "Press space to continue..." key
+read -n1 -r -p "Press ENTER or SPACE to PUSH CHANGES, or ESCAPE to ABORT ..." key
 
 
 echo [$key] is empty when SPACE is pressed # uncomment to trace
