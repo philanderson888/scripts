@@ -35,7 +35,12 @@ echo "" >> c:/data/output.txt
 
 
 
+echo "" >> c:/data/output.txt
+echo "" >> c:/data/output.txt
+echo "" >> c:/data/output.txt
+echo "" >> c:/data/output.txt
 echo "All finished updating - now double checking there are no more changes to push through" >> c:/data/output.txt
+echo "=====================================================================================" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
 
