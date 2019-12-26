@@ -1,3 +1,7 @@
+clear && printf '\e[3J'
+
+printf "\n\nChecking First All GitHub Repos For Potential Changes To Push"
+
 printf "\n\n\n\n\n==checking scripts\n"
 cd /Users/Shared/scripts
 git status
@@ -21,7 +25,6 @@ git status
 printf "\n\n\n\n\n==checking 2019-09-c-sharp-labs\n"
 cd /Users/Shared/2019-09-c-sharp-labs
 git status
-
 
 printf "\n\n\n\n\n==checking 2019-11-c-sharp-labs\n"
 cd /Users/Shared/2019-11-c-sharp-labs
