@@ -10,6 +10,10 @@ printf "\n\n\n\n\n==checking c-sharp\n"
 cd /Users/Shared/c-sharp
 git status
 
+printf "\n\n\n\n\n==checking c-sharp-console-core\n"
+cd /Users/Shared/c-sharp-console-core
+git status
+
 printf "\n\n\n\n\n==checking c-sharp-tests\n"
 cd /Users/Shared/c-sharp-tests
 git status
@@ -82,6 +86,12 @@ if [ "$key" = '' ]; then
 
 
 
+	printf "\n\n\n\n\n==updating c-sharp-console-core\n"
+	cd /Users/Shared/c-sharp-console-core
+	git pull
+	git add .
+	git commit -m "Updating c-sharp-console-core"
+	git push
 
 
 
