@@ -14,7 +14,7 @@ cd C:\c-sharp >> c:/data/output.txt
 git pull >> c:/data/output.txt
 git status >> c:/data/output.txt
 git add .
-git commit - m "Updating c-sharp"
+git commit -m "Updating c-sharp"
 git push
 echo "" >> c:/data/output.txt
 echo "" >> c:/data/output.txt
