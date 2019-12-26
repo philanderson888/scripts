@@ -30,12 +30,6 @@ printf "\n\n\n\n\nchecking python\n"
 cd /Users/Shared/python
 git status
 
-
-printf "\n\n\n\n\nchecking notes\n"
-cd /Users/Shared/notes
-git status
-
-
 printf "\n\n\n\n\nchecking personal (which is a private repo)\n"
 cd /Users/Shared/personal
 git status
@@ -179,6 +173,9 @@ if [ "$key" = '' ]; then
 	git commit -m "Updating Vue With Paypal Payment"
 	git push
 	echo "";
+
+
+	printf "\n\n\n\n\nGit Push And Pull Complete For All Repos\n\n\n\n"
 
 else
     # ABORT UPDATE
