@@ -30,6 +30,16 @@ printf "\n\n\n\n\nchecking python\n"
 cd /Users/Shared/python
 git status
 
+
+printf "\n\n\n\n\nchecking notes\n"
+cd /Users/Shared/notes
+git status
+
+
+printf "\n\n\n\n\nchecking personal (which is a private repo)\n"
+cd /Users/Shared/personal
+git status
+
 printf "\n\n\n\n\nchecking shells\n"
 cd /Users/Shared/shells
 git status
@@ -112,6 +122,13 @@ if [ "$key" = '' ]; then
 	echo "";
 
 
+        echo "Updating personal"
+        cd /Users/Shared/personal
+        git pull
+        git add .
+        git commit -m "Updating personal"
+        git push
+        echo "";
 
 
 	echo "Updating python"
