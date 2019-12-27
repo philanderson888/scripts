@@ -5,6 +5,7 @@ printf "\n\nChecking First All GitHub Repos For Potential Changes To Push"
 printf "\n\n\n\n\n==checking scripts\n"
 cd /Users/Shared/scripts
 git status
+git diff
 
 printf "\n\n\n\n\n==checking c-sharp\n"
 cd /Users/Shared/c-sharp
@@ -14,38 +15,47 @@ git diff
 printf "\n\n\n\n\n==checking c-sharp-console-core\n"
 cd /Users/Shared/c-sharp-console-core
 git status
+git diff
 
 printf "\n\n\n\n\n==checking c-sharp-tests\n"
 cd /Users/Shared/c-sharp-tests
 git status
+git diff
 
 printf "\n\n\n\n\n==checking 2019-04-c-sharp-labs\n"
 cd /Users/Shared/2019-04-c-sharp-labs
 git status
+git diff
 
 printf "\n\n\n\n\n==checking 2019-06-c-sharp-labs\n"
 cd /Users/Shared/2019-06-c-sharp-labs
 git status
+git diff
 
 printf "\n\n\n\n\n==checking 2019-09-c-sharp-labs\n"
 cd /Users/Shared/2019-09-c-sharp-labs
 git status
+git diff
 
 printf "\n\n\n\n\n==checking 2019-11-c-sharp-labs\n"
 cd /Users/Shared/2019-11-c-sharp-labs
 git status
+git diff
 
 printf "\n\n\n\n\n==checking /Users/Shared/GoogleDrive/course-notes\n"
 cd "/Users/Shared/GoogleDrive/course-notes"
 git status
+git diff
 
 printf "\n\n\n\n\n==checking Showcase\n"
 cd /Users/Shared/showcase
 git status
+git diff
 
 printf "\n\n\n\n\n==checking vue\n"
 cd /Users/Shared/vue
 git status
+git diff
 
 
 
