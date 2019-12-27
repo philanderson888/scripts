@@ -9,6 +9,7 @@ git status
 printf "\n\n\n\n\n==checking c-sharp\n"
 cd /Users/Shared/c-sharp
 git status
+git diff 
 
 printf "\n\n\n\n\n==checking c-sharp-console-core\n"
 cd /Users/Shared/c-sharp-console-core
