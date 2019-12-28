@@ -19,7 +19,7 @@ cd /Users/Shared/c-sharp-console-core
 git status
 
 printf "\n\n\n\n\nchecking course-notes\n"
-cd "/Users/Shared/course-notes"
+cd "/Users/apple/Google Drive/course-notes"
 git status
 
 printf "\n\n\n\n\nchecking notes\n"
