@@ -88,19 +88,12 @@ if [ "$key" = '' ]; then
 	git commit -m "Updating c-sharp-console-core"
 	git push
 
-
-
-
 	printf "\n\n\n\n\n==Updating course-notes\n"
-	cd "/Users/Shared/course-notes"
+	cd "/Users/apple/Google Drive/course-notes"
 	git pull
 	git add .
 	git commit -m "Updating course-notes"
 	git push
-	
-
-
-
 
 	printf "\n\n\n\n\n==Updating notes\n"
 	cd /Users/Shared/notes
