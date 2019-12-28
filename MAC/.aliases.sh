@@ -9,3 +9,6 @@ function gitpush(){
 	git commit -m "$@" &&
 	git push
 }
+alias chrome="open -a 'Google Chrome'"
+alias subl="open -a 'Sublime Text'"
+alias gitcheck=/Users/Shared/scripts/MAC/gitcheckMAC.sh
