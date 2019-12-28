@@ -18,8 +18,8 @@ printf "\n\n\n\n\n==checking c-sharp-console-core\n"
 cd /Users/Shared/c-sharp-console-core
 git status
 
-printf "\n\n\n\n\nchecking open source course-notes on Google Drive\n"
-cd "/Users/apple/Google Drive/course-notes"
+printf "\n\n\n\n\nchecking course-notes\n"
+cd "/Users/Shared/course-notes"
 git status
 
 printf "\n\n\n\n\nchecking notes\n"
@@ -66,25 +66,20 @@ if [ "$key" = '' ]; then
 	git push
 
 
-	echo "Updating blog"
+	printf "\n\n\n\n\n==Updating contentful blog\n"
 	cd /Users/Shared/blog
 	git pull
 	git add .
 	git commit -m "Updating contentful blog"
 	git push
-	echo "";
 
 
-	echo "Updating bootstrap"
+	printf "\n\n\n\n\n==Updating bootstrap\n"
 	cd /Users/Shared/bootstrap
 	git pull
 	git add .
 	git commit -m "Updating bootstrap"
 	git push
-	echo "";
-
-
-
 
 	printf "\n\n\n\n\n==updating c-sharp-console-core\n"
 	cd /Users/Shared/c-sharp-console-core
@@ -96,84 +91,66 @@ if [ "$key" = '' ]; then
 
 
 
-	echo "Updating open source course-notes on Google Drive"
-	cd "/Users/apple/Google Drive/course-notes"
+	printf "\n\n\n\n\n==Updating course-notes\n"
+	cd "/Users/Shared/course-notes"
 	git pull
 	git add .
 	git commit -m "Updating course-notes"
 	git push
-	echo "";
+	
 
 
 
 
-	echo "Updating notes"
+	printf "\n\n\n\n\n==Updating notes\n"
 	cd /Users/Shared/notes
 	git pull
 	git add .
 	git commit -m "Updating notes"
 	git push
-	echo "";
+	
 
+	printf "\n\n\n\n\n==Updating personal\n"
+    cd /Users/Shared/personal
+    git pull
+    git add .
+    git commit -m "Updating personal"
+    git push
 
-        echo "Updating personal"
-        cd /Users/Shared/personal
-        git pull
-        git add .
-        git commit -m "Updating personal"
-        git push
-        echo "";
-
-
-	echo "Updating python"
+	printf "\n\n\n\n\n==Updating python\n"
 	cd /Users/Shared/python
 	git pull
 	git add .
 	git commit -m "Updating python"
 	git push
-	echo "";
 
-
-
-
-
-
-	echo "shells"
+	printf "\n\n\n\n\n==Updating shells\n"
 	cd /Users/Shared/shells
 	git pull
 	git add .
 	git commit -m "Updating Shells"
 	git push
-	echo ""
 
-
-	echo "Showcase"
+	printf "\n\n\n\n\n==Updating showcase\n"
 	cd /Users/Shared/showcase
 	git pull
 	git add .
 	git commit -m "Updating Showcase"
 	git push
-	echo "";
 
-
-
-	echo "Updating vue"
+	printf "\n\n\n\n\n==Updating vue\n"
 	cd /Users/Shared/vue
 	git pull
 	git add .
 	git commit -m "Updating Vue"
 	git push
-	echo "";
 
-
-	echo "Updating vue-with-paypal-payment"
+	printf "\n\n\n\n\n==Updating vue-with-paypal-payment\n"
 	cd /Users/Shared/vue-with-paypal-payment
 	git pull
 	git add .
 	git commit -m "Updating Vue With Paypal Payment"
 	git push
-	echo "";
-
 
 	printf "\n\n\n\n\nGit Push And Pull Complete For All Repos\n\n\n\n"
 
