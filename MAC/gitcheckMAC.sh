@@ -14,6 +14,10 @@ printf "\n\n\n\n\nchecking bootstrap\n"
 cd /Users/Shared/bootstrap
 git status
 
+printf "\n\n\n\n\n==checking c-sharp\n"
+cd /Users/Shared/c-sharp
+git status
+
 printf "\n\n\n\n\n==checking c-sharp-console-core\n"
 cd /Users/Shared/c-sharp-console-core
 git status
@@ -79,6 +83,13 @@ if [ "$key" = '' ]; then
 	git pull
 	git add .
 	git commit -m "Updating bootstrap"
+	git push
+
+	printf "\n\n\n\n\n==updating c-sharp\n"
+	cd /Users/Shared/c-sharp
+	git pull
+	git add .
+	git commit -m "Updating c-sharp"
 	git push
 
 	printf "\n\n\n\n\n==updating c-sharp-console-core\n"
