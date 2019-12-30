@@ -22,9 +22,10 @@ printf "\n\n\n\n\n==checking c-sharp-console-core\n"
 cd /Users/Shared/c-sharp-console-core
 git status
 
-printf "\n\n\n\n\nchecking course-notes\n"
-cd "/Users/apple/Google Drive/course-notes"
+printf "\n\n\n\n\n==checking course-notes\n"
+cd "/Users/Shared/course-notes"
 git status
+git diff
 
 printf "\n\n\n\n\nchecking notes\n"
 cd /Users/Shared/notes
@@ -100,7 +101,7 @@ if [ "$key" = '' ]; then
 	git push
 
 	printf "\n\n\n\n\n==Updating course-notes\n"
-	cd "/Users/apple/Google Drive/course-notes"
+    cd "/Users/Shared/course-notes"
 	git pull
 	git add .
 	git commit -m "Updating course-notes"

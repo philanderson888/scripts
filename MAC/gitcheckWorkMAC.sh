@@ -42,8 +42,8 @@ cd /Users/Shared/2019-11-c-sharp-labs
 git status
 git diff
 
-printf "\n\n\n\n\n==checking /Users/Shared/GoogleDrive/course-notes\n"
-cd "/Users/Shared/GoogleDrive/course-notes"
+printf "\n\n\n\n\n==checking course-notes\n"
+cd "/Users/Shared/course-notes"
 git status
 git diff
 
@@ -178,8 +178,8 @@ if [ "$key" = '' ]; then
 
 
 
-	printf "\n\n\n\n\n==Updating /Users/Shared/GoogleDrive/course-notes\n"
-	cd "/Users/Shared/GoogleDrive/course-notes"
+	printf "\n\n\n\n\n==Updating course-notes\n"
+    cd "/Users/Shared/course-notes"
 	git status
 	git pull
 	git add .
