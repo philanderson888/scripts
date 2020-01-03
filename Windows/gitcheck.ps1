@@ -1,114 +1,376 @@
-﻿copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitcheck.ps1 C:\scripts\Windows
-copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitpush.ps1 C:\scripts\Windows
-copy -Force C:\Users\TECH-W99a\WindowsPowerShell\gitsetup.ps1 C:\scripts\Windows
-copy -Force C:\Users\TECH-W99a\WindowsPowerShell\test.ps1 C:\scripts\Windows
+﻿cls
 
-echo "" > c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo "checking all GitHub repositories with a push and pull on my HP laptop"
 
+rm -Force c:\users\tech-w99a\WindowsPowerShell\*
+copy-item -Path c:\scripts\Windows\* -Destination c:\users\tech-w99a\WindowsPowerShell
 
-echo 2019-04-c-sharp-labs >> c:/data/output.txt
-cd C:\2019-04-c-sharp-labs >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo ""
+echo ""
 
+echo "checking status first"
 
-echo 2019-06-c-sharp-labs >> c:/data/output.txt
-cd C:\2019-06-c-sharp-labs >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo C:\scripts 
+cd C:\scripts 
+git status
+git diff
 
+echo C:\2019-04-c-sharp-labs 
+cd C:\2019-04-c-sharp-labs 
+git status
+git diff
 
-echo 2019-09-c-sharp-labs >> c:/data/output.txt
-cd C:\2019-09-c-sharp-labs >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo C:\2019-06-c-sharp-labs 
+cd C:\2019-06-c-sharp-labs 
+git status
 
+echo C:\2019-09-c-sharp-labs 
+cd C:\2019-09-c-sharp-labs 
+git status
+git diff
 
+echo C:\2019-11-c-sharp-labs 
+cd C:\2019-11-c-sharp-labs 
+git status
+git diff
 
-echo bootstrap >> c:/data/output.txt
-cd C:\bootstrap >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo C:\2019-12_CSharpWalkthrough 
+cd C:\2019-12_CSharpWalkthrough 
+git status
+git diff
 
-echo c-sharp >> c:/data/output.txt
-cd C:\c-sharp >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo C:\bootstrap
+cd C:\bootstrap
+git status
+git diff
 
-echo cyber >> c:/data/output.txt
-cd C:\cyber >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo C:\c-sharp 
+cd C:\c-sharp 
+git status
+git diff
 
+echo C:\c-sharp-tests 
+cd C:\c-sharp-tests 
+git status
+git diff
 
+echo C:\showcase 
+cd C:\showcase 
+git status
+git diff
 
+echo c:\vue 
+cd c:\vue 
+git status
+git diff
 
-echo gatsby-coffee >> c:/data/output.txt
-cd C:\gatsby-coffee >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo c:\vue-live 
+cd c:\vue-live 
+git status
+git diff
 
+echo "C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes" 
+cd "C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes" 
+git status
+git diff
 
-echo learn-graph-ql >> c:/data/output.txt
-cd C:\learn-graph-ql >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-
-
-echo scripts >> c:/data/output.txt
-cd C:\scripts >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+cd "c:\"
 
 
-
-echo showcase >> c:/data/output.txt
-cd C:\showcase >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+pause
 
 
 
-echo vue >> c:/data/output.txt
-cd c:\vue >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-
-
-echo closed-source-sparta-notes >> c:/data/output.txt
-cd 'C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes' >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
 
 
 
-echo open-source-notes >> c:/data/output.txt
-cd 'C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\open-source-notes' >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-subl c:/data/output.txt
+
+
+
+echo ""
+echo ""
+echo 2019-04-c-sharp-labs 
+echo 2019-04-c-sharp-labs 
+cd C:\2019-04-c-sharp-labs 
+git pull 
+git add . 
+git commit -m "Updating 2019-04-labs" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+echo ""
+echo ""
+echo 2019-06-c-sharp-labs
+echo 2019-06-c-sharp-labs 
+cd C:\2019-06-c-sharp-labs 
+git pull 
+git add . 
+git commit -m "Updating 2019-06-labs" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+
+
+
+echo ""
+echo ""
+echo 2019-09-c-sharp-labs 
+echo 2019-09-c-sharp-labs 
+cd C:\2019-09-c-sharp-labs 
+git pull 
+git add . 
+git commit -m "Updating 2019-09-labs" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+
+echo ""
+echo ""
+echo 2019-11-c-sharp-labs 
+echo 2019-11-c-sharp-labs 
+cd C:\2019-11-c-sharp-labs 
+git pull 
+git add . 
+git commit -m "Updating 2019-11-labs" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+echo ""
+echo ""
+echo 2019-12_CSharpWalkthrough 
+echo 2019-12_CSharpWalkthrough 
+cd C:\2019-12_CSharpWalkthrough 
+git pull 
+git add . 
+git commit -m "Updating CSharpWalkthrough" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+echo ""
+echo ""
+echo bootstrap 
+echo bootstrap 
+cd C:\bootstrap 
+git pull 
+git add . 
+git commit -m "Updating bootstrap" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+echo ""
+echo ""
+echo c-sharp 
+echo c-sharp 
+cd C:\c-sharp 
+git pull 
+git add . 
+git commit -m "Updating c-sharp" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+
+
+
+
+echo ""
+echo ""
+echo c-sharp-tests
+echo c-sharp-tests 
+cd C:\c-sharp-tests 
+git pull 
+git add . 
+git commit -m "Updating c-sharp-tests" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo ""
+echo ""
+echo open-source-notes 
+cd 'C:\GDrive\course-notes' 
+git add . 
+git commit -m "Updating open source notes" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+
+
+
+
+echo ""
+echo ""
+echo learn-graph-ql 
+echo learn-graph-ql 
+cd C:\learn-graph-ql 
+git pull 
+git add . 
+git commit -m "Updating learn-graph-ql" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+echo ""
+echo ""
+echo scripts 
+echo scripts 
+cd C:\scripts 
+git pull 
+git add . 
+git commit -m "Updating scripts" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+echo ""
+echo ""
+echo showcase 
+echo showcase 
+cd C:\showcase 
+git pull 
+git add . 
+git commit -m "Updating showcase" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+echo ""
+echo ""
+echo vue 
+echo vue 
+cd c:\vue 
+git pull 
+git add . 
+git commit -m "Updating vue" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+echo ""
+echo ""
+echo vue-live 
+echo vue-live 
+cd c:\vue-live 
+git pull 
+git add . 
+git commit -m "Updating vue-live" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+
+
+echo ""
+echo ""
+echo "Not doing - C:\vue-with-paypal-payment - Updating vue-with-paypal-payment"
+
+
+
+
+
+
+echo ""
+echo ""
+echo closed-source-sparta-notes 
+echo closed-source-sparta-notes 
+cd "C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes" 
+git status 
+git add . 
+git commit -m "Updating closed source sparta notes" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+
+
+
+
+
+subl c:/data/output.txt 
+
