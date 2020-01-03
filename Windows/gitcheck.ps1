@@ -1,6 +1,6 @@
 ﻿cls
 
-echo "checking all GitHub repositories with a push and pull on my HP laptop"
+echo "checking all repos"
 
 rm -Force c:\users\tech-w99a\WindowsPowerShell\*
 copy-item -Path c:\scripts\Windows\* -Destination c:\users\tech-w99a\WindowsPowerShell
@@ -54,6 +54,11 @@ cd C:\c-sharp-tests
 git status
 git diff
 
+echo c:\course-notes
+cd c:\course-notes
+git status
+git diff
+
 echo C:\showcase 
 cd C:\showcase 
 git status
@@ -83,7 +88,9 @@ pause
 
 
 
+cls
 
+echo "Pushing and pulling all repos"
 
 
 
@@ -231,9 +238,9 @@ echo ""
 echo ""
 echo ""
 echo course-notes 
-cd 'course-notes' 
+cd c:\course-notes
 git add . 
-git commit -m "course-notes" 
+git commit -m "updating course-notes" 
 git push 
 echo "" 
 echo "" 
