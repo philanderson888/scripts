@@ -230,10 +230,10 @@ echo ""
 
 echo ""
 echo ""
-echo open-source-notes 
-cd 'C:\GDrive\course-notes' 
+echo course-notes 
+cd 'course-notes' 
 git add . 
-git commit -m "Updating open source notes" 
+git commit -m "course-notes" 
 git push 
 echo "" 
 echo "" 
