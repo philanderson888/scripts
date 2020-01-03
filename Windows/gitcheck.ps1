@@ -90,7 +90,6 @@ pause
 echo ""
 echo ""
 echo 2019-04-c-sharp-labs 
-echo 2019-04-c-sharp-labs 
 cd C:\2019-04-c-sharp-labs 
 git pull 
 git add . 
@@ -106,7 +105,6 @@ echo ""
 
 echo ""
 echo ""
-echo 2019-06-c-sharp-labs
 echo 2019-06-c-sharp-labs 
 cd C:\2019-06-c-sharp-labs 
 git pull 
@@ -127,7 +125,6 @@ echo ""
 echo ""
 echo ""
 echo 2019-09-c-sharp-labs 
-echo 2019-09-c-sharp-labs 
 cd C:\2019-09-c-sharp-labs 
 git pull 
 git add . 
@@ -145,7 +142,6 @@ echo ""
 echo ""
 echo ""
 echo 2019-11-c-sharp-labs 
-echo 2019-11-c-sharp-labs 
 cd C:\2019-11-c-sharp-labs 
 git pull 
 git add . 
@@ -160,7 +156,6 @@ echo ""
 
 echo ""
 echo ""
-echo 2019-12_CSharpWalkthrough 
 echo 2019-12_CSharpWalkthrough 
 cd C:\2019-12_CSharpWalkthrough 
 git pull 
@@ -178,7 +173,6 @@ echo ""
 echo ""
 echo ""
 echo bootstrap 
-echo bootstrap 
 cd C:\bootstrap 
 git pull 
 git add . 
@@ -193,7 +187,6 @@ echo ""
 
 echo ""
 echo ""
-echo c-sharp 
 echo c-sharp 
 cd C:\c-sharp 
 git pull 
@@ -214,7 +207,6 @@ echo ""
 
 echo ""
 echo ""
-echo c-sharp-tests
 echo c-sharp-tests 
 cd C:\c-sharp-tests 
 git pull 
@@ -254,27 +246,8 @@ echo ""
 
 
 
-
 echo ""
 echo ""
-echo learn-graph-ql 
-echo learn-graph-ql 
-cd C:\learn-graph-ql 
-git pull 
-git add . 
-git commit -m "Updating learn-graph-ql" 
-git push 
-echo "" 
-echo "" 
-
-
-
-
-
-
-echo ""
-echo ""
-echo scripts 
 echo scripts 
 cd C:\scripts 
 git pull 
@@ -292,7 +265,6 @@ echo ""
 echo ""
 echo ""
 echo showcase 
-echo showcase 
 cd C:\showcase 
 git pull 
 git add . 
@@ -309,7 +281,6 @@ echo ""
 echo ""
 echo ""
 echo vue 
-echo vue 
 cd c:\vue 
 git pull 
 git add . 
@@ -325,7 +296,6 @@ echo ""
 
 echo ""
 echo ""
-echo vue-live 
 echo vue-live 
 cd c:\vue-live 
 git pull 
@@ -354,7 +324,6 @@ echo "Not doing - C:\vue-with-paypal-payment - Updating vue-with-paypal-payment"
 echo ""
 echo ""
 echo closed-source-sparta-notes 
-echo closed-source-sparta-notes 
 cd "C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes" 
 git status 
 git add . 
@@ -369,8 +338,5 @@ echo ""
 
 
 
-
-
-
-subl c:/data/output.txt 
+cd c:\
 
