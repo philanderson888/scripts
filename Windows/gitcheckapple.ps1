@@ -12,65 +12,64 @@ echo "checking status first"
 
 
 
-echo c-sharp >> c:/data/output.txt
-cd C:\c-sharp >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-git add .
-git commit -m "Updating c-sharp"
-git push
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo C:\scripts 
+cd C:\scripts 
+git status
+git diff
 
 
 
 
-echo scripts >> c:/data/output.txt
-cd C:\scripts >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-git add .
-git commit -m "updating scripts"
-git push
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo C:\c-sharp 
+cd C:\c-sharp 
+git status
+git diff
+
+
+
+cd "c:\"
+
+
+pause
 
 
 
 
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "All finished updating - now double checking there are no more changes to push through" >> c:/data/output.txt
-echo "=====================================================================================" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+cls
 
-
-echo c-sharp >> c:/data/output.txt
-cd C:\c-sharp >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-git add .
-git commit -m "Updating c-sharp"
-git push
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo "Pushing and pulling all repos"
 
 
 
 
-echo scripts >> c:/data/output.txt
-cd C:\scripts >> c:/data/output.txt
-git pull >> c:/data/output.txt
-git status >> c:/data/output.txt
-git add .
-git commit -m "updating scripts"
-git push
-echo "" >> c:/data/output.txt
-echo "" >> c:/data/output.txt
 
 
 
-notepad C:\data\output.txt
+echo ""
+echo ""
+echo scripts 
+cd C:\scripts 
+git pull 
+git add . 
+git commit -m "Updating scripts" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+
+echo ""
+echo ""
+echo c-sharp 
+cd C:\c-sharp 
+git pull 
+git add . 
+git commit -m "Updating c-sharp" 
+git push 
+echo "" 
+echo "" 
+
+
+
