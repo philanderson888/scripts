@@ -1,11 +1,14 @@
-﻿copy -Force C:\Users\apple\WindowsPowerShell\gitcheck.ps1 C:\scripts\Windows
-copy -Force C:\Users\apple\WindowsPowerShell\gitcheckapple.ps1 C:\scripts\Windows
-copy -Force C:\Users\apple\WindowsPowerShell\gitpush.ps1 C:\scripts\Windows
-copy -Force C:\Users\apple\WindowsPowerShell\gitsetup.ps1 C:\scripts\Windows
-copy -Force C:\Users\apple\WindowsPowerShell\test.ps1 C:\scripts\Windows
+﻿cls
 
-echo "" > c:/data/output.txt
-echo "" >> c:/data/output.txt
+echo "checking all repos"
+
+rm -Force c:\users\tech-w99a\WindowsPowerShell\*
+copy-item -Path c:\scripts\Windows\* -Destination c:\users\tech-w99a\WindowsPowerShell
+
+echo ""
+echo ""
+
+echo "checking status first"
 
 
 
