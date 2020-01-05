@@ -2,8 +2,8 @@
 
 echo "checking all repos"
 
-rm -Force c:\users\tech-w99a\WindowsPowerShell\*
-copy-item -Path c:\scripts\Windows\* -Destination c:\users\tech-w99a\WindowsPowerShell
+rm -Force c:\users\apple\WindowsPowerShell\*
+copy-item -Path c:\scripts\Windows\* -Destination c:\users\apple\WindowsPowerShell
 
 echo ""
 echo ""
