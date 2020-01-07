@@ -1,6 +1,6 @@
 ﻿cls
 
-echo "checking all repos"
+echo "checking 16 repos"
 
 rm -Force c:\users\tech-w99a\WindowsPowerShell\*
 copy-item -Path c:\scripts\Windows\* -Destination c:\users\tech-w99a\WindowsPowerShell
@@ -23,6 +23,7 @@ git diff
 echo C:\2019-06-c-sharp-labs 
 cd C:\2019-06-c-sharp-labs 
 git status
+git diff
 
 echo C:\2019-09-c-sharp-labs 
 cd C:\2019-09-c-sharp-labs 
@@ -59,6 +60,17 @@ cd c:\course-notes
 git status
 git diff
 
+echo C:\cyber
+cd C:\cyber 
+git status
+git diff
+
+echo C:\shells
+cd C:\shells 
+git status
+git diff
+
+
 echo C:\showcase 
 cd C:\showcase 
 git status
@@ -90,7 +102,21 @@ pause
 
 cls
 
-echo "Pushing and pulling all repos"
+echo "Pushing and pulling to 16 repos"
+
+
+echo ""
+echo ""
+echo scripts 
+cd C:\scripts 
+git pull 
+git add . 
+git commit -m "Updating scripts" 
+git push 
+echo "" 
+echo "" 
+
+
 
 
 
@@ -247,19 +273,25 @@ echo ""
 
 
 
-
-
-
-
-
-
 echo ""
 echo ""
-echo scripts 
-cd C:\scripts 
-git pull 
+echo cyber
+cd c:\cyber
 git add . 
-git commit -m "Updating scripts" 
+git commit -m "updating cyber" 
+git push 
+echo "" 
+echo "" 
+
+
+
+
+echo ""
+echo ""
+echo shells
+cd c:\shells
+git add . 
+git commit -m "updating shells" 
 git push 
 echo "" 
 echo "" 
@@ -315,13 +347,6 @@ echo ""
 
 
 
-
-
-
-
-echo ""
-echo ""
-echo "Not doing - C:\vue-with-paypal-payment - Updating vue-with-paypal-payment"
 
 
 
