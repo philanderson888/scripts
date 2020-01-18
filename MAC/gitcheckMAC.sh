@@ -39,6 +39,11 @@ printf "\n\n\n\n\nchecking personal (which is a private repo)\n"
 cd /Users/Shared/personal
 git status
 
+printf "\n\n\n\n\nchecking revival-direct-coaches\n"
+cd /Users/Shared/revival-direct-coaches
+git status
+
+
 printf "\n\n\n\n\nchecking shells\n"
 cd /Users/Shared/shells
 git status
@@ -128,6 +133,16 @@ if [ "$key" = '' ]; then
 	git add .
 	git commit -m "Updating python"
 	git push
+
+
+        printf "\n\n\n\n\n==Updating revival-direct-coaches\n"
+        cd /Users/Shared/revival-direct-coaches
+        git pull
+        git add .
+        git commit -m "Updating revival-direct-coaches"
+        git push
+
+
 
 	printf "\n\n\n\n\n==Updating shells\n"
 	cd /Users/Shared/shells
