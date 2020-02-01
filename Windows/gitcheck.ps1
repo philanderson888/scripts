@@ -1,6 +1,6 @@
 ﻿cls
 
-echo "checking 16 repos"
+echo "checking 17 repos"
 
 rm -Force c:\users\tech-w99a\WindowsPowerShell\*
 copy-item -Path c:\scripts\Windows\* -Destination c:\users\tech-w99a\WindowsPowerShell
@@ -37,6 +37,11 @@ git diff
 
 echo C:\2019-12_CSharpWalkthrough 
 cd C:\2019-12_CSharpWalkthrough 
+git status
+git diff
+
+echo C:\2020-01-c-sharp-labs 
+cd C:\2020-01-c-sharp-labs
 git status
 git diff
 
@@ -102,7 +107,7 @@ pause
 
 cls
 
-echo "Pushing and pulling to 16 repos"
+echo "Pushing and pulling to 17 repos"
 
 
 echo ""
@@ -198,6 +203,18 @@ git push
 echo "" 
 echo "" 
 
+
+
+echo ""
+echo ""
+echo 2020-01-c-sharp-labs 
+cd C:\2020-01-c-sharp-labs 
+git pull 
+git add . 
+git commit -m "Updating 2020-01-c-sharp-labs" 
+git push 
+echo "" 
+echo "" 
 
 
 
