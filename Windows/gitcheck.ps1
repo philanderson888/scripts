@@ -1,6 +1,6 @@
 ﻿cls
 
-echo "checking 17 repos"
+echo "checking 18 repos"
 
 rm -Force c:\users\tech-w99a\WindowsPowerShell\*
 copy-item -Path c:\scripts\Windows\* -Destination c:\users\tech-w99a\WindowsPowerShell
@@ -67,6 +67,12 @@ git diff
 
 echo C:\cyber
 cd C:\cyber 
+git status
+git diff
+
+
+echo C:\family-app
+cd C:\family-app
 git status
 git diff
 
@@ -299,6 +305,22 @@ git commit -m "updating cyber"
 git push 
 echo "" 
 echo "" 
+
+
+
+
+
+
+echo ""
+echo ""
+echo fmly-pp
+cd c:\family-app
+git add . 
+git commit -m "updating family app" 
+git push 
+echo "" 
+echo "" 
+
 
 
 
