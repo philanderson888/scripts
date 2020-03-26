@@ -1,0 +1,6 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.hostsupdater.aliases = ["development.local"]
+  config.vm.synced_folder "c:/app", "/app"
+  config.vm.provision "shell", path: "environment/provision.sh"
+end
