@@ -2,6 +2,8 @@
 #z::Run https://www.autohotkey.com  ; Win+Z
 #F2::Run https://docs.google.com/spreadsheets/d/1vy0A_Gu8u_Ba5tQbCcEbjuly0BTb6QVW7CKOIl47LJQ/edit#gid=449944160  ; Win+F2
 
+#SingleInstance
+
 ^!n::  ; Ctrl+Alt+N
 if WinExist("Untitled - Notepad")
     WinActivate
@@ -10,8 +12,19 @@ else
 return
 
 ::btw::by the way
+::btd::by the ditch
 
 :*:]d::  ; This hotstring replaces "]d" with the current date and time via the commands below.
 FormatTime, CurrentDateTime,, dddd d MMM yyyy h:mm tt  ; 
 SendInput %CurrentDateTime%
+return
+
+:*:]e::  ; This hotstring replaces "]e" with the current date and time via the commands below.
+FormatTime, CurrentDateTime,, dddd d MMM yyyy h:mm tt  ; 
+SendInput {Raw}### %CurrentDateTime%
+return
+
+
+^!m::  ; Ctrl+Alt+F5
+    ExitApp
 return
