@@ -1,104 +1,127 @@
-﻿cls
+﻿Clear-Host
 
-echo "checking 18 repos"
+$output = "About to sync GitHub repos for user " + $env:USERNAME + " on machine " + $env:COMPUTERNAME
+Write-Output $output
 
-rm -Force c:\users\tech-w99a\WindowsPowerShell\*
-copy-item -Path c:\scripts\Windows\* -Destination c:\users\tech-w99a\WindowsPowerShell
+$output = "The machine we are working on is " + $env:COMPUTERNAME
+Write-Output $output
 
-echo ""
-echo ""
+if ($env:COMPUTERNAME -eq "PHILIP-DESKTOP") {
+    $output = "About to sync repos for machine " + $env:COMPUTERNAME
+    Write-Output $output
+    $repositoryRootPath = "C:\github"
+}
+else{
+    $repositoryRootPath = "C:\"
+}
 
-echo "checking status first"
+$output = "Repository Root Path Is " + $repositoryRootPath
+Write-Host $output
 
-echo C:\scripts 
-cd C:\scripts 
+Remove-Item -Force c:\users\$env:USERNAME\WindowsPowerShell\*
+copy-item -Path c:\scripts\Windows\* -Destination c:\users\$env:USERNAME\WindowsPowerShell
+
+Write-Host ""
+Write-Host ""
+
+Write-Host "checking git diff for all repos first "
+
+Write-Host C:\scripts 
+Set-Location C:\scripts 
 git status
 git diff
 
-echo C:\2019-04-c-sharp-labs 
+$workingPath = $repositoryRootPath + "\c-sharp"
+Write-Host $workingPath
+Set-Location $workingPath
+git status
+git diff
+
+$workingPath = $repositoryRootPath + "\2020-01-c-sharp-labs"
+Write-Host $workingPath
+Set-Location $workingPath
+git status
+git diff
+
+
+
+Pause
+
+
+
+Write-Host C:\2019-04-c-sharp-labs 
 cd C:\2019-04-c-sharp-labs 
 git status
 git diff
 
-echo C:\2019-06-c-sharp-labs 
+Write-Host C:\2019-06-c-sharp-labs 
 cd C:\2019-06-c-sharp-labs 
 git status
 git diff
 
-echo C:\2019-09-c-sharp-labs 
+Write-Host C:\2019-09-c-sharp-labs 
 cd C:\2019-09-c-sharp-labs 
 git status
 git diff
 
-echo C:\2019-11-c-sharp-labs 
+Write-Host C:\2019-11-c-sharp-labs 
 cd C:\2019-11-c-sharp-labs 
 git status
 git diff
 
-echo C:\2019-12_CSharpWalkthrough 
+Write-Host C:\2019-12_CSharpWalkthrough 
 cd C:\2019-12_CSharpWalkthrough 
 git status
 git diff
 
-echo C:\2020-01-c-sharp-labs 
-cd C:\2020-01-c-sharp-labs
-git status
-git diff
 
-echo C:\bootstrap
+
+Write-Host C:\bootstrap
 cd C:\bootstrap
 git status
 git diff
 
-echo C:\c-sharp 
-cd C:\c-sharp 
-git status
-git diff
 
-echo C:\c-sharp-tests 
+
+Write-Host C:\c-sharp-tests 
 cd C:\c-sharp-tests 
 git status
 git diff
 
-echo c:\course-notes
+Write-Host c:\course-notes
 cd c:\course-notes
 git status
 git diff
 
-echo C:\cyber
+Write-Host C:\cyber
 cd C:\cyber 
 git status
 git diff
 
 
-echo C:\family-app
+Write-Host C:\family-app
 cd C:\family-app
 git status
 git diff
 
-echo C:\shells
+Write-Host C:\shells
 cd C:\shells 
 git status
 git diff
 
 
-echo C:\showcase 
+Write-Host C:\showcase 
 cd C:\showcase 
 git status
 git diff
 
-echo c:\vue 
+Write-Host c:\vue 
 cd c:\vue 
 git status
 git diff
 
-echo c:\vue-live 
+Write-Host c:\vue-live 
 cd c:\vue-live 
-git status
-git diff
-
-echo "C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes" 
-cd "C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes" 
 git status
 git diff
 
@@ -113,50 +136,50 @@ pause
 
 cls
 
-echo "Pushing and pulling to 17 repos"
+Write-Host "Pushing and pulling to 17 repos"
 
 
-echo ""
-echo ""
-echo scripts 
+Write-Host ""
+Write-Host ""
+Write-Host scripts 
 cd C:\scripts 
 git pull 
 git add . 
 git commit -m "Updating scripts" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
-echo ""
-echo ""
-echo 2019-04-c-sharp-labs 
+Write-Host ""
+Write-Host ""
+Write-Host 2019-04-c-sharp-labs 
 cd C:\2019-04-c-sharp-labs 
 git pull 
 git add . 
 git commit -m "Updating 2019-04-labs" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
 
-echo ""
-echo ""
-echo 2019-06-c-sharp-labs 
+Write-Host ""
+Write-Host ""
+Write-Host 2019-06-c-sharp-labs 
 cd C:\2019-06-c-sharp-labs 
 git pull 
 git add . 
 git commit -m "Updating 2019-06-labs" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
@@ -166,16 +189,16 @@ echo ""
 
 
 
-echo ""
-echo ""
-echo 2019-09-c-sharp-labs 
+Write-Host ""
+Write-Host ""
+Write-Host 2019-09-c-sharp-labs 
 cd C:\2019-09-c-sharp-labs 
 git pull 
 git add . 
 git commit -m "Updating 2019-09-labs" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
@@ -183,74 +206,74 @@ echo ""
 
 
 
-echo ""
-echo ""
-echo 2019-11-c-sharp-labs 
+Write-Host ""
+Write-Host ""
+Write-Host 2019-11-c-sharp-labs 
 cd C:\2019-11-c-sharp-labs 
 git pull 
 git add . 
 git commit -m "Updating 2019-11-labs" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
-echo ""
-echo ""
-echo 2019-12_CSharpWalkthrough 
+Write-Host ""
+Write-Host ""
+Write-Host 2019-12_CSharpWalkthrough 
 cd C:\2019-12_CSharpWalkthrough 
 git pull 
 git add . 
 git commit -m "Updating CSharpWalkthrough" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
-echo ""
-echo ""
-echo 2020-01-c-sharp-labs 
+Write-Host ""
+Write-Host ""
+Write-Host 2020-01-c-sharp-labs 
 cd C:\2020-01-c-sharp-labs 
 git pull 
 git add . 
 git commit -m "Updating 2020-01-c-sharp-labs" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
-echo ""
-echo ""
-echo bootstrap 
+Write-Host ""
+Write-Host ""
+Write-Host bootstrap 
 cd C:\bootstrap 
 git pull 
 git add . 
 git commit -m "Updating bootstrap" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
-echo ""
-echo ""
-echo c-sharp 
+Write-Host ""
+Write-Host ""
+Write-Host c-sharp 
 cd C:\c-sharp 
 git pull 
 git add . 
 git commit -m "Updating c-sharp" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
@@ -261,16 +284,16 @@ echo ""
 
 
 
-echo ""
-echo ""
-echo c-sharp-tests 
+Write-Host ""
+Write-Host ""
+Write-Host c-sharp-tests 
 cd C:\c-sharp-tests 
 git pull 
 git add . 
 git commit -m "Updating c-sharp-tests" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
@@ -284,124 +307,110 @@ echo ""
 
 
 
-echo ""
-echo ""
-echo course-notes 
+Write-Host ""
+Write-Host ""
+Write-Host course-notes 
 cd c:\course-notes
 git add . 
 git commit -m "updating course-notes" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
-echo ""
-echo ""
-echo cyber
+Write-Host ""
+Write-Host ""
+Write-Host cyber
 cd c:\cyber
 git add . 
 git commit -m "updating cyber" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
 
-echo ""
-echo ""
-echo fmly-pp
+Write-Host ""
+Write-Host ""
+Write-Host fmly-pp
 cd c:\family-app
 git add . 
 git commit -m "updating family app" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
-echo ""
-echo ""
-echo shells
+Write-Host ""
+Write-Host ""
+Write-Host shells
 cd c:\shells
 git add . 
 git commit -m "updating shells" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
 
-echo ""
-echo ""
-echo showcase 
+Write-Host ""
+Write-Host ""
+Write-Host showcase 
 cd C:\showcase 
 git pull 
 git add . 
 git commit -m "Updating showcase" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
 
-echo ""
-echo ""
-echo vue 
+Write-Host ""
+Write-Host ""
+Write-Host vue 
 cd c:\vue 
 git pull 
 git add . 
 git commit -m "Updating vue" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
 
-echo ""
-echo ""
-echo vue-live 
+Write-Host ""
+Write-Host ""
+Write-Host vue-live 
 cd c:\vue-live 
 git pull 
 git add . 
 git commit -m "Updating vue-live" 
 git push 
-echo "" 
-echo "" 
+Write-Host "" 
+Write-Host "" 
 
 
 
 
 
 
-
-
-
-
-echo ""
-echo ""
-echo closed-source-sparta-notes 
-cd "C:\OneDriveSparta\OneDrive - Sparta Global Limited\notes\closed-source-sparta-notes" 
-git status 
-git add . 
-git commit -m "Updating closed source sparta notes" 
-git push 
-echo "" 
-echo "" 
 
 
 
