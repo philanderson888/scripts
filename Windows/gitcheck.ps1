@@ -462,5 +462,4 @@ if ($env:COMPUTERNAME -eq "") {
 
 
 
-cd c:\
-
+Set-Location $repositoryRootPath
