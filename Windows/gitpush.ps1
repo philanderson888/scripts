@@ -1,7 +1,7 @@
 function global:gitpush{
-    pwd
+    Get-Location
     git pull
-    echo git commit -m $args[0]
+    Write-Output git commit -m $args[0]
     git add .
     git commit -m $args[0]
     git push
