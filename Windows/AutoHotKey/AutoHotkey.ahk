@@ -25,6 +25,14 @@ SendInput {Raw}### %CurrentDateTime%
 return
 
 
+:*:]f::  ; This hotstring replaces "]f" with the current time
+FormatTime, CurrentDateTime,, h:mm tt  ; 
+SendInput {Raw} %CurrentDateTime%
+return
+
+
+
+
 ^!m::  ; Ctrl+Alt+F5
     ExitApp
 return

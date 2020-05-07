@@ -5,5 +5,7 @@ function global:gitpush{
     git add .
     git commit -m $args[0]
     git push
+    git checkout master 
+    git branch
 }
 gitpush $args[0]
