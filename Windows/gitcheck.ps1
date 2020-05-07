@@ -57,12 +57,6 @@ git status
 git diff
 
 
-$workingPath = $repositoryRootPath + "\sparta-handouts"
-Write-Host $workingPath
-Set-Location $workingPath
-git status
-git diff
-
 $workingPath = $repositoryRootPath + "\vue"
 Write-Host $workingPath
 Set-Location $workingPath
