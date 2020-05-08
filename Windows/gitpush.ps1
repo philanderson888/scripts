@@ -7,5 +7,6 @@ function global:gitpush{
     git push
     git checkout master 
     git branch
+    Set-Location /github
 }
 gitpush $args[0]
