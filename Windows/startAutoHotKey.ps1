@@ -1,0 +1,1 @@
+/scripts/Windows/AutoHotKey/AutoHotKey.exe
