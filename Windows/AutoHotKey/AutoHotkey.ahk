@@ -13,7 +13,7 @@ return
 
 ::btw::by the way
 ::btd::by the ditch
-::mdi::<div style="text-align:center;"><em></em></div><img src="" />
+::mdimg::<div style="text-align:center;"><em></em></div><img src="" />
 
 :*:]d::  ; This hotstring replaces "]d" with the current date and time via the commands below.
 FormatTime, CurrentDateTime,, dddd d MMM yyyy h:mm tt  ; 
