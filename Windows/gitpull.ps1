@@ -36,7 +36,7 @@ git pull
 foreach($repository in $ListOfGithubRepositories){
     Write-Host $repository
     Write-Host '================='
-    Set-Location ($repositoryRootPath + $repository)
+    Set-Location $repository
     git pull
     Write-Host ""
     Write-Host ""
@@ -51,3 +51,5 @@ Write-Host ""
 Write-Host ""
 
 Set-Location $repositoryRootPath
+
+Pause

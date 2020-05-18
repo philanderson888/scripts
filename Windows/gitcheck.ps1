@@ -40,10 +40,11 @@ Set-Location C:\scripts
 git status
 git diff
 
+
 foreach($repository in $ListOfGithubRepositories){
     Write-Host $repository
     Write-Host '================='
-    Set-Location ($repositoryRootPath + $repository)
+    Set-Location $repository
     git status
     git diff
     Write-Host ""
@@ -87,7 +88,7 @@ Write-Host ""
 foreach($repository in $ListOfGithubRepositories){
     Write-Host $repository
     Write-Host '================='
-    Set-Location ($repositoryRootPath + $repository)
+    Set-Location $repository
     git pull 
     git add . 
     $commitMessage = "Updating " + $workingPath
