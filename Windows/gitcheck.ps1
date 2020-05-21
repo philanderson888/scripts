@@ -39,6 +39,12 @@ Write-Host C:\scripts
 Set-Location C:\scripts 
 git status
 git diff
+Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host ""
 
 Set-Location $repositoryRootPath
 foreach($repository in $ListOfGithubRepositories){
