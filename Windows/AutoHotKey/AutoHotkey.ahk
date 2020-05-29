@@ -15,6 +15,7 @@ return
 ::btd::by the ditch
 ::mdimg::<div style="text-align:center;"><em></em></div><img src="" />
 
+
 :*:]d::  ; This hotstring replaces "]d" with the current date and time via the commands below.
 FormatTime, CurrentDateTime,, dddd d MMM yyyy h:mm tt  ; 
 SendInput %CurrentDateTime%
@@ -30,6 +31,12 @@ return
 FormatTime, CurrentDateTime,, h:mm tt  ; 
 SendInput {Raw} %CurrentDateTime%
 return
+
+:*:]p::  ; This hotstring replaces "]p"
+SendInput {Raw} [philanderson888](https://github.com/philanderson888)
+return
+
+
 
 
 
