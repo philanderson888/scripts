@@ -4,7 +4,7 @@ function global:gitpushevery20minutes{
     git add . 
     git commit -m "updating notes" 
     git push 
-    Set-Location /github/course-notes 
+    Set-Location f:/GDrive/github/course-notes 
     git pull 
     git add . 
     git commit -m "updating notes" 
