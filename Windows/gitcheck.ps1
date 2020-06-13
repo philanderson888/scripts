@@ -46,6 +46,30 @@ Write-Host ""
 Write-Host ""
 Write-Host ""
 
+
+Write-Host F:\gdrive\github\personal 
+Set-Location F:\gdrive\github\personal
+git status
+git diff
+Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host ""
+
+Write-Host F:\gdrive\github\course-notes
+Set-Location F:\gdrive\github\course-notes
+git status
+git diff
+Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host ""
+
+
 Set-Location $repositoryRootPath
 foreach($repository in $ListOfGithubRepositories){
     Write-Host $repository
