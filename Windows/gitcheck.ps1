@@ -6,15 +6,7 @@ Write-Output $output
 $output = "The machine we are working on is " + $env:COMPUTERNAME
 Write-Output $output
 
-if ($env:COMPUTERNAME -eq "PHILIP-DESKTOP") {
-    $output = "About to sync repos for machine " + $env:COMPUTERNAME
-    Write-Output $output
-    $repositoryRootPath = "C:\github\"
-}
-else{
-    $repositoryRootPath = "C:\"
-}
-
+$repositoryRootPath = "C:\github"
 $output = "Repository Root Path Is " + $repositoryRootPath
 Write-Host $output
 
