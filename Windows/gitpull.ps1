@@ -6,14 +6,9 @@ Write-Output $output
 $output = "About to run git pull on the following repos for user " + $env:USERNAME
 Write-Output $output
 
-if ($env:COMPUTERNAME -eq "PHILIP-DESKTOP") {
-    $output = "About to sync repos for machine " + $env:COMPUTERNAME
-    Write-Output $output
-    $repositoryRootPath = "C:\github\"
-}
-else{
-    $repositoryRootPath = "C:\"
-}
+$output = "About to sync repos for machine " + $env:COMPUTERNAME
+Write-Output $output
+$repositoryRootPath = "C:\github\"
 
 $output = "Repository Root Path Is " + $repositoryRootPath
 Write-Host $output
