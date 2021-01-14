@@ -12,11 +12,7 @@
 #F2::Run https://www.notion.so/philanderson888/GTD-dashboard-780542770dc64c9cb50062f3c0885d9c  ; Win+F2
 #!E::Run https://outlook.live.com/mail/inbox ; Win+Alt+E
 !+E::Run https://outlook.live.com/mail/inbox ; Alt+Shift+E
-
-
-
 ; run notepad with Control-Alt-N
-
 ^!n::  ; Ctrl+Alt+N
 if WinExist("Untitled - Notepad")
     WinActivate
@@ -24,17 +20,11 @@ else
     Run Notepad
 return
 
-
-
 ; text abbreviations
-
 ::btw::by the way
 ::mdimg::<div style="text-align:center;"><em></em></div><img src="" />
 
-
-
 ; date and time
-
 :*:]d::  ; This hotstring replaces "]d" with the current date and time via the commands below.
 FormatTime, CurrentDateTime,, dddd d MMM yyyy h:mm tt  ; 
 SendInput %CurrentDateTime%
