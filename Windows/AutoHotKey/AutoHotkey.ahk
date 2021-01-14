@@ -1,10 +1,22 @@
-# urls
+; # urls
+; # win+c opens Cortana!
+; # win+e opens File Explorer
+; hotkeys at https://www.autohotkey.com/docs/Hotkeys.htm 
+; # is windows 
+; ! is Alt 
+; ^ is Control 
+; + is Shift 
+#J::Run https://www.notion.so/philanderson888/2894534c22a44c1c903aa47f75bb4842?v=06febe16330543b7a9f14ed0b8c4697b  ; Win+J ;  Win J opens Daily Journal
+#w::Run https://web.whatsapp.com/  ; Win+w
 #z::Run https://www.autohotkey.com  ; Win+Z
-#F2::Run https://docs.google.com/spreadsheets/d/1vy0A_Gu8u_Ba5tQbCcEbjuly0BTb6QVW7CKOIl47LJQ/edit#gid=449944160  ; Win+F2
+#F2::Run https://www.notion.so/philanderson888/GTD-dashboard-780542770dc64c9cb50062f3c0885d9c  ; Win+F2
+#!E::Run https://outlook.live.com/mail/inbox ; Win+Alt+E
+!+E::Run https://outlook.live.com/mail/inbox ; Alt+Shift+E
 
 
 
-# run notepad with Control-Alt-N
+; run notepad with Control-Alt-N
+
 ^!n::  ; Ctrl+Alt+N
 if WinExist("Untitled - Notepad")
     WinActivate
@@ -14,13 +26,15 @@ return
 
 
 
-# text abbreviations
+; text abbreviations
+
 ::btw::by the way
 ::mdimg::<div style="text-align:center;"><em></em></div><img src="" />
 
 
 
-# date and time
+; date and time
+
 :*:]d::  ; This hotstring replaces "]d" with the current date and time via the commands below.
 FormatTime, CurrentDateTime,, dddd d MMM yyyy h:mm tt  ; 
 SendInput %CurrentDateTime%
@@ -41,7 +55,7 @@ SendInput {Raw} [philanderson888](https://github.com/philanderson888)
 return
 
 
-# stop this app running
+; stop AutoHotKey from running
 ^!m::  ; Ctrl+Alt+F5
     ExitApp
 return
