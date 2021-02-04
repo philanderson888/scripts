@@ -23,6 +23,7 @@ return
 ; text abbreviations
 ::btw::by the way
 ::mdimg::<div style="text-align:center;"><em></em></div><img src="" />
+::clg::console.log(`
 
 ; date and time
 :*:]d::  ; This hotstring replaces "]d" with the current date and time via the commands below.
