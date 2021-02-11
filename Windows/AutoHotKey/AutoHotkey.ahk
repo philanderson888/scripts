@@ -23,7 +23,7 @@ return
 ; text abbreviations
 ::btw::by the way
 ::mdimg::<div style="text-align:center;"><em></em></div><img src="" />
-::clg::console.log(`
+::conlog::console.log(
 
 ; date and time
 :*:]d::  ; This hotstring replaces "]d" with the current date and time via the commands below.
@@ -45,6 +45,9 @@ return
 SendInput {Raw} [philanderson888](https://github.com/philanderson888)
 return
 
+:*:]l::  ; This hotstring replaces "]l"
+SendInput {Raw} console.log()
+return
 
 ; stop AutoHotKey from running
 ^!m::  ; Ctrl+Alt+F5
