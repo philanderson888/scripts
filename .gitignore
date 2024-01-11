@@ -1,1 +1,7 @@
 *.exe
+
+# aws linux cli installer
+AWSCLIV2.pkg
+
+# aws config with keys
+config
