@@ -1,5 +1,8 @@
 *.exe
 
+# keys
+alpine.pem
+
 # aws linux cli installer
 AWSCLIV2.pkg
 
