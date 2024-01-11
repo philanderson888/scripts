@@ -1,0 +1,595 @@
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-079db87dc4c10ac91",
+            "InstanceId": "i-059e80328d08bac0a",
+            "InstanceType": "t2.micro",
+            "KeyName": "alpine",
+            "LaunchTime": "2024-01-06T19:31:42+00:00",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "us-east-1a",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-172-31-18-47.ec2.internal",
+            "PrivateIpAddress": "172.31.18.47",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-20242b54",
+            "VpcId": "vpc-b3c037d6",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "53dc635b-b2f4-42b8-8ac5-8aac4a27f28e",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2024-01-06T19:31:42+00:00",
+                        "AttachmentId": "eni-attach-0a10c1e03f907db1d",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching",
+                        "NetworkCardIndex": 0
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                            "GroupId": "sg-05cf4c88da30ba1a2"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "0a:cb:d2:1e:94:ad",
+                    "NetworkInterfaceId": "eni-04cf4abc33aa35b80",
+                    "OwnerId": "359268167005",
+                    "PrivateDnsName": "ip-172-31-18-47.ec2.internal",
+                    "PrivateIpAddress": "172.31.18.47",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-18-47.ec2.internal",
+                            "PrivateIpAddress": "172.31.18.47"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-20242b54",
+                    "VpcId": "vpc-b3c037d6",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                    "GroupId": "sg-05cf4c88da30ba1a2"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "required",
+                "HttpPutResponseHopLimit": 2,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "BootMode": "uefi-preferred",
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": true,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "CurrentInstanceBootMode": "legacy-bios"
+        }
+    ],
+    "OwnerId": "359268167005",
+    "ReservationId": "r-05ed0e6dee011ba95"
+}
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-079db87dc4c10ac91",
+            "InstanceId": "i-025fb4ede6a826812",
+            "InstanceType": "t2.micro",
+            "KeyName": "alpine",
+            "LaunchTime": "2024-01-06T19:49:18+00:00",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "us-east-1a",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-172-31-29-148.ec2.internal",
+            "PrivateIpAddress": "172.31.29.148",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-20242b54",
+            "VpcId": "vpc-b3c037d6",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "3aef39a5-a0b0-439d-90b8-f9a3297fd3d6",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2024-01-06T19:49:18+00:00",
+                        "AttachmentId": "eni-attach-0df31e59123d5431e",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching",
+                        "NetworkCardIndex": 0
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                            "GroupId": "sg-05cf4c88da30ba1a2"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "0a:06:6d:e0:06:55",
+                    "NetworkInterfaceId": "eni-02ec93fb55aa46e2f",
+                    "OwnerId": "359268167005",
+                    "PrivateDnsName": "ip-172-31-29-148.ec2.internal",
+                    "PrivateIpAddress": "172.31.29.148",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-29-148.ec2.internal",
+                            "PrivateIpAddress": "172.31.29.148"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-20242b54",
+                    "VpcId": "vpc-b3c037d6",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                    "GroupId": "sg-05cf4c88da30ba1a2"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "required",
+                "HttpPutResponseHopLimit": 2,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "BootMode": "uefi-preferred",
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": true,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "CurrentInstanceBootMode": "legacy-bios"
+        }
+    ],
+    "OwnerId": "359268167005",
+    "ReservationId": "r-05887fcb62ff2872b"
+}
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-079db87dc4c10ac91",
+            "InstanceId": "i-0ac6a62a7529f932d",
+            "InstanceType": "t2.micro",
+            "KeyName": "alpine",
+            "LaunchTime": "2024-01-06T19:55:08+00:00",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "us-east-1a",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-172-31-19-64.ec2.internal",
+            "PrivateIpAddress": "172.31.19.64",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-20242b54",
+            "VpcId": "vpc-b3c037d6",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "6abb55cf-cced-4b90-af76-007677c21434",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2024-01-06T19:55:08+00:00",
+                        "AttachmentId": "eni-attach-0f2f5375cc51144db",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching",
+                        "NetworkCardIndex": 0
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                            "GroupId": "sg-05cf4c88da30ba1a2"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "0a:fa:a6:3b:92:97",
+                    "NetworkInterfaceId": "eni-0672937947096188e",
+                    "OwnerId": "359268167005",
+                    "PrivateDnsName": "ip-172-31-19-64.ec2.internal",
+                    "PrivateIpAddress": "172.31.19.64",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-19-64.ec2.internal",
+                            "PrivateIpAddress": "172.31.19.64"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-20242b54",
+                    "VpcId": "vpc-b3c037d6",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                    "GroupId": "sg-05cf4c88da30ba1a2"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "required",
+                "HttpPutResponseHopLimit": 2,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "BootMode": "uefi-preferred",
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": true,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "CurrentInstanceBootMode": "legacy-bios"
+        }
+    ],
+    "OwnerId": "359268167005",
+    "ReservationId": "r-0f0e414c364a3a807"
+}
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-079db87dc4c10ac91",
+            "InstanceId": "i-0f00409c0ce720f43",
+            "InstanceType": "t2.micro",
+            "KeyName": "alpine",
+            "LaunchTime": "2024-01-06T20:00:49+00:00",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "us-east-1a",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-172-31-20-245.ec2.internal",
+            "PrivateIpAddress": "172.31.20.245",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-20242b54",
+            "VpcId": "vpc-b3c037d6",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "86873d8c-b018-446a-a808-7910d9e25dea",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2024-01-06T20:00:49+00:00",
+                        "AttachmentId": "eni-attach-05ff4af610d89db6b",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching",
+                        "NetworkCardIndex": 0
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                            "GroupId": "sg-05cf4c88da30ba1a2"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "0a:91:66:c2:8c:83",
+                    "NetworkInterfaceId": "eni-01fa0dd4ee73698bd",
+                    "OwnerId": "359268167005",
+                    "PrivateDnsName": "ip-172-31-20-245.ec2.internal",
+                    "PrivateIpAddress": "172.31.20.245",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-20-245.ec2.internal",
+                            "PrivateIpAddress": "172.31.20.245"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-20242b54",
+                    "VpcId": "vpc-b3c037d6",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                    "GroupId": "sg-05cf4c88da30ba1a2"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "required",
+                "HttpPutResponseHopLimit": 2,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "BootMode": "uefi-preferred",
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": true,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "CurrentInstanceBootMode": "legacy-bios"
+        }
+    ],
+    "OwnerId": "359268167005",
+    "ReservationId": "r-0bd700672afe433e7"
+}
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-079db87dc4c10ac91",
+            "InstanceId": "i-0b81e6361c43692a2",
+            "InstanceType": "t2.micro",
+            "KeyName": "alpine",
+            "LaunchTime": "2024-01-06T20:04:41+00:00",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "us-east-1a",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-172-31-25-175.ec2.internal",
+            "PrivateIpAddress": "172.31.25.175",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-20242b54",
+            "VpcId": "vpc-b3c037d6",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "d73001fb-2ef7-4863-b48d-c211b82bded6",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2024-01-06T20:04:41+00:00",
+                        "AttachmentId": "eni-attach-06d611ae777e299e6",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching",
+                        "NetworkCardIndex": 0
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                            "GroupId": "sg-05cf4c88da30ba1a2"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "0a:47:62:2c:bc:eb",
+                    "NetworkInterfaceId": "eni-0d1f9bc2fc4146fca",
+                    "OwnerId": "359268167005",
+                    "PrivateDnsName": "ip-172-31-25-175.ec2.internal",
+                    "PrivateIpAddress": "172.31.25.175",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-25-175.ec2.internal",
+                            "PrivateIpAddress": "172.31.25.175"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-20242b54",
+                    "VpcId": "vpc-b3c037d6",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupName": "NGINX Plus with NGINX App Protect Developer - Amazon Linux 2-v1.7-AutogenByAWSMP--1",
+                    "GroupId": "sg-05cf4c88da30ba1a2"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "required",
+                "HttpPutResponseHopLimit": 2,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "BootMode": "uefi-preferred",
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": true,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "CurrentInstanceBootMode": "legacy-bios"
+        }
+    ],
+    "OwnerId": "359268167005",
+    "ReservationId": "r-079c243544f39d478"
+}
