@@ -1,0 +1,11 @@
+{
+  "name": "nodeExpressServer",
+  "version": "0.0.1",
+  "main":"nodeExpressServer.js",
+  "author":"Phil Anderson",
+  "description": "Node express web server",
+  "dependencies": {
+    "express": "latest",
+    "mongoose": "latest"
+  }
+}
