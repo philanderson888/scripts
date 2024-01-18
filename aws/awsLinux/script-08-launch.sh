@@ -19,6 +19,6 @@ echo
 echo 
 echo
 endTime=$(date +%s)
-scriptDuration=$($endTime-$startTime)
+scriptDuration=$(($endTime-$startTime))
 echo "server 05 apache web server finished after $scriptDuration"
 echo "server 08 apache web server finished after ${$scriptDuration}"
