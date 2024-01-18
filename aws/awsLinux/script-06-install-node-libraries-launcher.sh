@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo =======================================================
-echo ============ installing all node libraries ============
+echo ============== installing node libraries ==============
 echo =======================================================
 
 startTime=$(date +%s)
