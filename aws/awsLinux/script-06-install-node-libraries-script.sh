@@ -11,6 +11,17 @@ ls
 echo lets go for nodejs with basic to start
 
 
+
+
+echo ===================================================================
+echo ================= install npm latest libraries ====================
+echo ===================================================================
+
+
+
+npm install -g npm@latest
+
+
 echo ===================================================================
 echo ================= install node version manager ====================
 echo ===================================================================
@@ -67,4 +78,45 @@ sudo dnf install git -y
 git --version
 
 
-echo end of script 06 install node libraries
+
+
+
+echo =========================================================================
+echo =========================   install vue   ===============================
+echo =========================================================================
+
+
+library=vue
+projectName="${library}WebServer"
+port=3010
+
+echo
+echo installing $library web server
+
+startTime="$(date +%s)"
+
+echo installing create-vue
+npm install -g create-vue
+npm install create-vue
+git clone https://github.com/BootstrapDash/StarAdmin-Free-Vue-Admin-Template.git
+cd StarAdmin-Free-Vue-Admin-Template
+npm install
+
+
+
+
+
+
+echo
+echo
+echo
+echo
+echo
+echo
+endTime=$(date +%s)
+scriptDuration=$(($endTime-$startTime))
+echo installing vue took $scriptDuration seconds
+
+echo ==================================================================================
+echo ====================  install libraries complete   ===============================
+echo ==================================================================================
