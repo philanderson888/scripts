@@ -9,10 +9,6 @@ echo =============================================
 echo ====== apache set up os and libraries =======
 echo =============================================
 
-echo running updates to ensure all os software is up to date
-sudo yum update -y
-sudo dnf update -y
-sudo yum upgrade -y
 # install apache
 echo installing apache httpd libraries
 sudo yum install httpd -y
