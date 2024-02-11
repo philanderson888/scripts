@@ -1,16 +1,23 @@
 #!/bin/sh
 
-#echo installing aws
+# echo installing aws
 #./script-01-install-aws-linux-cli.sh 
 
-#echo logging in to aws
-# ./script-02-sign-in-to-aws.sh
+#echo script 2 ..
+#echo ... b ... prints out ssh confit
+#echo ... c ... logs in to aws
+#echo ... a ... prints out aws config
+#echo ... d ... prints out access token
+#./script-02-sign-in-to-aws.sh
+#sleep 10 
 
 clear
 
 
-workingDirectory='~/github/scripts/aws/awsLinux'
+workingDirectory=~/github/scripts/aws/awsLinux
 cd $workingDirectory
+
+
 
 
 terminating_old_instance=false
@@ -197,9 +204,11 @@ echo
 echo
 echo
 echo
-
-echo now test out the servers using local ip address
-ssh -i $certificatePath $sshLoginUsername 'bash -s' < test-web-servers-from-ec2-instance.sh
+echo ========================================================================
+echo ===============       testing - no testing done        =================
+echo ========================================================================
+#echo now test out the servers using local ip address
+#ssh -i $certificatePath $sshLoginUsername 'bash -s' < test-web-servers-from-ec2-instance.sh
 #echo now test out the servers using external ip address
 #./test-servers.sh
 
@@ -215,12 +224,8 @@ echo apache, node, git, express, bun, vue installed ✓
 echo react not installed - too big ✗
 echo apache running port 80 ✓
 echo node, express, bun, vue web servers now running ✓
-echo testing web servers using curl localhost ✓	
-echo testing web servers using curl public ip ✗	✘	✖	❌ ✕	
-read proceed
-
-
-
+echo testing web servers using curl localhost - not done ✗	✘	✖	❌ ✕	
+echo testing web servers using curl public ip - not done ✗	✘	✖	❌ ✕	
 echo
 echo
 echo
