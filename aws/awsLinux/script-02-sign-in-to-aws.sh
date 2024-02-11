@@ -93,6 +93,3 @@ echo
 echo printing out list of accounts
 aws sso list-accounts --access-token $accessToken
 aws sso list-accounts --access-token $accessTokenWithoutQuotes
-
-
-sleep 5
