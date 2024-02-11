@@ -1,5 +1,7 @@
 #!/bin/sh
 
+startTimeOnMasterScript=$(date +%s)
+
 # echo installing aws
 #./script-01-install-aws-linux-cli.sh 
 
@@ -35,6 +37,20 @@ fi
 
 
 
+currentTimeOnMasterScript=$(date +%s)
+timeToDeleteOldInstances=$(($currentTimeOnMasterScript-$startTimeOnMasterScript))
+echo "old instances finished terminating at master script elapsed time $timeToDeleteOldInstances"
+
+read -p " press any key to continue .."
+
+echo 
+echo 
+echo 
+echo 
+echo 
+echo 
+
+
 
 
 
@@ -58,9 +74,14 @@ fi
 
 
 
+currentTimeOnMasterScript=$(date +%s)
+timeToCreateNewInstance=$(($currentTimeOnMasterScript-$startTimeOnMasterScript))
+echo time to delete old instances ... $timeToDeleteOldInstances
+echo "new instances finished being created at master script elapsed time $timeToCreateNewInstance"
 
 
 
+read -p " press any key to continue .."
 
 
 echo ================================================
@@ -120,6 +141,17 @@ echo apache web server installed and running on port 80 ✓
 echo next : install node, express, vue, bun then run the web servers
 
 
+currentTimeOnMasterScript=$(date +%s)
+currentScriptDuration=$(($currentTimeOnMasterScript-$startTimeOnMasterScript))
+echo "apache web server install finished at elapsed time $currentScriptDuration"
+echo 
+echo 
+echo 
+echo 
+echo 
+echo 
+
+sleep 15
 
 
 echo ===========================================================
@@ -135,6 +167,15 @@ echo ===========================================================
 echo linux os updated to latest ✓
 echo apache, node, git, express, bun, vue installed ✓
 echo apache running port 80 ✓	
+currentTimeOnMasterScript=$(date +%s)
+currentScriptDuration=$(($currentTimeOnMasterScript-$startTimeOnMasterScript))
+echo "node libraries installation finished at elapsed time $currentScriptDuration"
+echo 
+echo 
+echo 
+echo 
+echo 
+echo 
 echo next ... run web servers ...
 echo
 echo
@@ -142,7 +183,7 @@ echo
 echo 
 
 
-
+sleep 15
 
 
 
