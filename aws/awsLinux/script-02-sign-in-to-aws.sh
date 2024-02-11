@@ -1,8 +1,11 @@
 # download and install aws cli
 # ./install-aws-linux-cli.sh
 
-# copy aws config file to ~/.aws
-echo 
+# echo install jq json parser
+# brew install jq
+
+echo
+echo copy aws config file to ~/.aws
 if cp -f aws/config ~/.aws/config; then
     echo copy aws/config to ~/.aws/config - success
 else
@@ -10,8 +13,8 @@ else
 fi
 
 
-# copy ssh config file to ~/.ssh
-echo 
+echo
+echo copy ssh config file to ~/.ssh
 if cp -f ssh/config ~/.ssh/config; then
     echo copy ssh/config to ~/.ssh/config - success
 else
@@ -19,19 +22,77 @@ else
 fi
 
 
-
+echo no need to sign in as already signed in 
 # sign in to aws cli
-aws sso login
+# aws sso login
+echo aws configure sso also signs user in ...
+# aws configure sso 
 
 
 
 echo
 echo
-echo printing out access token from aws sso cache
+echo printing out all data in all files in aws sso cache
 echo
 cat ~/.aws/sso/cache/*.*
 
+
+#Declaring variable
+main_string='"Welcome to "LinuxSimply" website!"'
+
+#Removing outermost quotes
+updated_string="${main_string#\"}"
+updated_string="${updated_string%\"}"
+
+#Displaying the output
+echo "Main string: $main_string"
+echo "Updated string: $updated_string"
+
+
+
+echo
+echo 
+echo 
+echo printing out contents of files in in ~/.aws/sso/cache
+awsCache=~/.aws/sso/cache/*
+for jsonFile in $awsCache
+  do 
+    echo 
+    echo 
+    echo "Processing $jsonFile"
+    echo 
+    cat $jsonFile | jq
+
+    if grep -q accessToken $jsonFile; then
+
+      echo $jsonFile contains the string accessToken
+      
+      cat $jsonFile | jq .accessToken
+
+      chmod 777 $jsonFile
+
+      accessToken=$(cat $jsonFile | jq .accessToken)
+
+      echo for some reason jq is returning the string including the double quotes ... just stripping them out here ... 
+      accessTokenWithoutQuotes="${accessToken#\"}"
+      accessTokenWithoutQuotes="${accessTokenWithoutQuotes%\"}"
+
+      echo access token is ...
+      echo $accessToken
+      echo $accessTokenWithoutQuotes
+
+    fi
+    
+done
+
+
+
+
 echo
 echo
-echo printing out list of accounts for given sign in token
-aws sso list-accounts --access-token "aoaAA..."
+echo printing out list of accounts
+aws sso list-accounts --access-token $accessToken
+aws sso list-accounts --access-token $accessTokenWithoutQuotes
+
+
+sleep 5
