@@ -175,7 +175,9 @@ echo apache web server installed and running on port 80 ✓
 currentTimeOnMasterScript=$(date +%s)
 currentScriptDuration=$(($currentTimeOnMasterScript-$startTimeOnMasterScript))
 echo "apache web server install finished and running on port 80 at elapsed time $currentScriptDuration"
-echo next : install node, express, vue, bun then run the web servers
+echo 
+echo 
+echo echo next : install node, express, vue, bun then run the web servers
 echo 
 echo 
 echo 
