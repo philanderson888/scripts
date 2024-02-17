@@ -1,14 +1,25 @@
-echo running script-07-install-and-run-bun-web-server.sh
-echo now lets try with a bun server
+echo script-07-install-and-run-bun-web-server.sh running
+serverType=bun
+echo script 7 ... build $serverType web server ...
+
+echo ... 7.0 ... before we start kill any existing bun services
+#ps -ef | grep 'bun'
+#ps aux | grep 'bun'
+#killall -I bun
 
 
-echo move bun server to fresh folder
-mkdir -p bun
-mv ./bunServer.tsx bun
-cd bun
+echo ... 7.1 ... new folder $serverType
+mkdir -p $serverType
+echo ... 7.2 ... move $serverType server new folder
+mv ./bunServer.tsx $serverType
+cd $serverType
+
+echo ... 7.3 ... allow permissions on the $serverType server
 chmod 777 bunServer.tsx
 
-echo starting bun web server
+echo ... 7.4 ... start $serverType web server
 bun bunServer.tsx
-echo curl bun web server to test it out
+
+echo ... 7.5 ... test $serverType with curl 
 curl localhost:3007 -s
+

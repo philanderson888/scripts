@@ -19,6 +19,4 @@ ssh -i $certificatePath $sshLoginUsername 'bash -s' < script-07-install-and-run-
 echo
 echo
 dt=$(date '+%d/%m/%Y %H:%M:%S');
-echo script 07 complete at 
-echo $dt 
-
+echo script 07 install and run bun web server - complete at timestamp $dt 

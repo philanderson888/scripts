@@ -1,24 +1,68 @@
 #!/bin/bash
 
-
+echo ====================================================================================
+echo =======     script 04 upgrade to latest and then query linux                  ======
+echo =======     ... note .. failing to run sudo / yum / dnf / apt commands ...    ======
+echo ====================================================================================
+echo
+echo
+echo
 upgrade_linux=false
 if [ "$upgrade_linux" = true ] ; then
     echo =====================================================
-    echo ===========    upgrade to latest linux    ===========
+    echo ===========  4.1  upgrade to latest linux    ===========
     echo =====================================================
-
     echo running updates to ensure all os software is up to date
-    sudo yum update -y
-    sudo dnf update -y
-    sudo yum upgrade -y
+    #sudo echo hello
+    echo hello
+    #sudo apt update -y
+    apt update -y
+    #sudo apt upgrade -y
+    apt upgrade -y
+    #sudo yum update -y
+    yum update -y
+    #sudo dnf update -y
+    dnf update -y
+    #sudo yum upgrade -y
+    yum upgrade -y
+    echo press any key to proceed ...
     read proceed
-    echo '\n\n\n\n\n\n\n\n\n\n'
+    echo
+    echo
+    echo
+else
+    echo ==============================================================================
+    echo ========    4.1  upgrade to latest linux ...                          ========
+    echo ========   ... skipped as apt / yum / dnf / sudo not recognised  ...  ========
+    echo ==============================================================================
 fi
-
-
-
+echo
+echo 
+echo
+upgrade_to_recommended_version=false
+if [ "$upgrade_to_recommended_version" = true ] ; then
+    echo ============================================================
+    echo ===========  4.2  upgrade to recommended version    ===========
+    echo ============================================================
+    echo
+    echo
+    echo
+else
+    echo ============================================================================
+    echo ===========  4.2  upgrade to recommended version ...                =========== 
+    echo ===========    ... skipped as sudo / yum / dnf not recognised    ===========
+    echo ============================================================================
+    echo
+    echo
+    echo
+fi
+#echo press any key to proceed
+#read proceed 
+echo
+echo
+echo
 echo =====================================================
-echo =========== script 04 query linux details ===========
+echo ===========    4.3 query linux details    ===========
 echo =====================================================
 echo
 echo
@@ -88,9 +132,7 @@ if [ "$amazon_linux" = true ] ; then
     # BUG_REPORT_URL="https://github.com/amazonlinux/amazon-linux-2023"
     # SUPPORT_END="2028-03-15"
 fi
-
-
-
-
+echo
+echo
 echo
 echo script 04 query linux complete .......

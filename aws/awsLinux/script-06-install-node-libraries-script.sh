@@ -3,120 +3,102 @@ echo ============ script 06 node web server ============
 echo ===================================================
 echo
 echo
-echo what is my path
+echo ... 6.1 ... what is my path
 pwd 
-echo what files are present
+echo ... 6.2 ... what files are present
 ls 
-
-echo lets go for nodejs with basic to start
-
-
-
-
 echo ===================================================================
-echo ================= install npm latest libraries ====================
+echo ================= 6.3 install npm latest libraries ====================
 echo ===================================================================
-
-
-
 npm install -g npm@latest
-
-
+echo
+echo
+echo
 echo ===================================================================
-echo ================= install node version manager ====================
+echo ================= 6.4 install node version manager ====================
 echo ===================================================================
-
-echo first install nvm node version manager
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh -s | bash
-
-# set the terminal so that npm is valid
+echo
+echo
+echo
+echo ... 6.5 ... now configure node version manager ... 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Activate nvm by typing the following at the command line.
-echo activating nvm node version manager
+echo ... 6.5 ... configuring node version manager complete ...
+echo ... 6.6 ... activate node version manager
 . ~/.nvm/nvm.sh
-
-
-
-
-echo ===================================================================
-echo =================        install node          ====================
-echo ===================================================================
-echo installing nodejs long term support version
+echo ... 6.6 ... node version manager has been activated ... 
+echo
+echo
+echo
+echo ================================================================================================
+echo =================    6.7 install node ... long term support version         ====================
+echo ================================================================================================
 nvm install --lts
-
-# check installation
-echo checking node is installed 
+echo ... 6.7 ... node has been installed ... 
+echo ... 6.8 ... checking node npm and nvm installed versions
 node -v 
 npm -v
 nvm -v
+echo ... 6.8 ... node version check complete ...
+echo
+echo
+echo
+echo ================================================================================================
+echo =================   6.9 ... run test nodejs command to check output ... ====================
+echo ================================================================================================
 node -e "console.log('Running Node.js ' + process.version)"
-
-echo node is now correctly installed
-
-
-
-
-
-
-echo ===================================================================
-echo =================        install bun           ====================
-echo ===================================================================
-
+echo ... 6.9 ... node test command complete
+echo
+echo
+echo
+echo ===============================================================================================================
+echo ============ script 06 node web server - installation of basic node libraries is now complete =================
+echo ===============================================================================================================
+echo
+echo
+echo
+echo ================================================================================================
+echo =================   6.10 ... install bun web server libraries ... ==============================
+echo ================================================================================================
 curl -fsSL https://bun.sh/install | bash
-
-
-
-
-
-echo ===================================================================
-echo =================        install git           ====================
-echo ===================================================================
+echo ... 6.10 ... bun web server libraries install complete
+echo
+echo
+echo
+echo ==========================================================================
+echo =================    6.11 ...   install git           ====================
+echo ==========================================================================
 sudo dnf install git -y
 git --version
-
-
-
-
-
+echo ... 6.11 ... git install complete
+echo
+echo
+echo
 echo =========================================================================
-echo =========================   install vue   ===============================
+echo =========================  6.12 install vue   ===============================
 echo =========================================================================
-
-
 library=vue
 projectName="${library}WebServer"
 port=3010
-
 echo
 echo installing $library web server
-
 startTime="$(date +%s)"
-
 echo installing create-vue
 npm install -g create-vue
 npm install create-vue
 git clone https://github.com/BootstrapDash/StarAdmin-Free-Vue-Admin-Template.git
 cd StarAdmin-Free-Vue-Admin-Template
 npm install
-
-
-
-
-
-
-echo
-echo
-echo
-echo
-echo
-echo
 endTime=$(date +%s)
 scriptDuration=$(($endTime-$startTime))
-echo installing vue took $scriptDuration seconds
-
+echo ... 6.12 ... $library web server install complete ... and took ... $scriptDuration seconds
+echo
+echo
+echo
 echo ==================================================================================
-echo ====================  install libraries complete   ===============================
+echo ================  script 06 complete ...                             ============= 
+echo ================  ... installed ... 1 node ... 2 bun ... 3 vue ...   ============= 
+echo ================  ... libraries and web servers                      =============
 echo ==================================================================================
