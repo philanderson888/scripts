@@ -250,13 +250,13 @@ open -a Terminal ./script-07-launch.sh
 echo =============================================================
 echo ================== run vue web server  ======================
 echo =============================================================
-
-./script-10-launch-run-vue-web-server.sh
-
-
-
+open -a Terminal ./script-10-launch.sh
 echo
 echo
+echo
+
+
+
 echo ===========================================================
 echo ===============       status update       =================
 echo ===========================================================
@@ -268,11 +268,15 @@ echo
 echo
 echo
 echo 
-
-
-
-
-
+echo =================================================================
+echo ===============       pause before testing      =================
+echo =================================================================
+echo pausing for seconds to allow all servers to fully come online before testing ...
+for timerCount in {1..60} 
+do
+    sleep 1
+    printf '.. '
+done
 echo
 echo
 echo
@@ -305,13 +309,25 @@ echo
 echo ===========================================================
 echo ===============       status update       =================
 echo ===========================================================
-echo linux os updated to latest ✓
-echo apache, node, git, express, bun, vue installed ✓
-echo react not installed - too big ✗
-echo apache running port 80 ✓
-echo node, express, bun, vue web servers now running ✓
-echo testing web servers using curl localhost - not done ✗	✘	✖	❌ ✕	
-echo testing web servers using curl public ip - not done ✗	✘	✖	❌ ✕	
+echo linux update - sudo/apt/yum/dnf not recognised      ✗
+echo apache, node, git, express, bun, vue installed            ✓
+echo node, express, bun, vue web servers installed             ✓
+echo testing web servers using curl localhost                  ✓
+echo testing web servers using curl public ip                  ✓
+echo localhost apache server : 80                              ✓
+echo public ip apache server : 80                              ✓
+echo public ip apache server : 8080                     ✗
+echo public ip apache server : https : 80               ✗
+echo public ip apache server : https : 8080             ✗
+echo localhost vue    server : 5173                     ✗
+echo public ip vue    server : 5173                     ✗
+echo localhost node   server : 3006                            ✓
+echo public ip node   server : 3006                     ✗
+echo localhost bun    server : 3007                            ✓
+echo public ip bun    server : 3007                            ✓
+echo localhost vue    server : 5173                     ✗
+echo public ip vue    server : 5173                     ✗
+echo react too slow ...                                 ✗
 echo
 echo ways to develop this script
 echo 1 install the above web servers on different flavours of linux
@@ -332,17 +348,27 @@ echo ...
 echo 
 echo 
 echo 
-echo after 1 minute the instance will be terminated
 
-for timerCount in {1..60}
-do
-sleep 1
-printf .
-done
 
-echo terminating instance now ...
-./script-99-terminate-aws-instances.sh
-echo instance has been terminated ...
+
+terminating_instances=true
+if [ "$terminating_instances" = true ] ; then
+    echo ==================================================================
+    echo ===============      terminating instances       =================
+    echo ==================================================================
+    echo after 1 minute the instance will be terminated
+    for timerCount in {1..60} 
+    do
+        sleep 1
+        printf .
+    done
+    ./script-99-terminate-aws-instances.sh
+    echo instance has been terminated ...
+else
+    echo ====================================================================
+    echo ===============    not terminating instances       =================
+    echo ====================================================================
+fi
 echo
 echo
 echo end of scriptMaster

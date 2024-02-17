@@ -15,13 +15,8 @@ echo tesing servers starting at time $dt
 echo
 echo
 echo
-echo web server on port 80
+echo apache web server on port 80
 curl $ip -s
-echo
-echo
-echo
-echo server 05 apache
-curl $ip:3005 -s
 echo
 echo
 echo
@@ -41,6 +36,11 @@ echo
 echo
 echo
 echo server 09 on react was too slow so not running it ...  
+echo
+echo
+echo
+echo server vue  
+curl $ip:3010 -s
 echo
 echo
 echo

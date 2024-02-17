@@ -13,11 +13,8 @@ ssh -i ~/.ssh/alpine.pem $sshLoginUsername
 
 echo check which web servers are running locally
 
-echo web server on port 80
+echo apache web server on port 80
 curl localhost -s
-
-echo server 05 apache
-curl localhost:3005 -s
 
 echo server 06 node     
 curl localhost:3006 -s
