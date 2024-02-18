@@ -1,0 +1,38 @@
+{
+  "MaxCount": 1,
+  "MinCount": 1,
+  "ImageId": "ami-0c7217cdde317cfec",
+  "InstanceType": "t2.micro",
+  "KeyName": "alpine",
+  "EbsOptimized": false,
+  "NetworkInterfaces": [
+    {
+      "AssociatePublicIpAddress": true,
+      "DeviceIndex": 0,
+      "Groups": [
+        "sg-0ddb4556ca943dfb8"
+      ]
+    }
+  ],
+  "TagSpecifications": [
+    {
+      "ResourceType": "instance",
+      "Tags": [
+        {
+          "Key": "UbuntuLinux",
+          "Value": "true"
+        }
+      ]
+    }
+  ],
+  "MetadataOptions": {
+    "HttpTokens": "required",
+    "HttpEndpoint": "enabled",
+    "HttpPutResponseHopLimit": 2
+  },
+  "PrivateDnsNameOptions": {
+    "HostnameType": "ip-name",
+    "EnableResourceNameDnsARecord": true,
+    "EnableResourceNameDnsAAAARecord": false
+  }
+}
