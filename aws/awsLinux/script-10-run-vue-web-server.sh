@@ -1,7 +1,7 @@
 #!/bin/sh
 library=vue
 projectName=$library' web server'
-port=5173
+port=3010
 startTime="$(date +%s)"
 echo
 echo
@@ -15,17 +15,17 @@ echo creating vue@latest project - failing at present - avoiding this as failing
 echo
 echo
 echo
-echo instead installing from github repo
-git clone https://github.com/philanderson888/vue
-cd vue/projects/starter-template-03
-#sed -i 's/3000/3008/g' server.js
-#sed -i 's/listening on port/node express server 08 responding on port/g' server.js
+githubRepository=https://github.com/philanderson888/vue
+projectPath=/projects/starter-template-03
+echo cloning github repo $githubRepository
+git clone $githubRepository
+cd $projectPath
 echo
 echo
 echo
-echo ==============================================================================
-echo ==================      $project - npm install                    ===================
-echo ==============================================================================
+echo ======================================================================================
+echo ==================            $project - npm install               ===================
+echo ======================================================================================
 echo install libraries for vue project
 npm install
 echo web server should now be installed
