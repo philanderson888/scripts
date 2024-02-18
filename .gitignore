@@ -1,10 +1,10 @@
+# mac finder file - not part of repository
+.DS_Store
+# dont commit executablees
 *.exe
-
-# keys
-alpine.pem
-
 # aws linux cli installer
 AWSCLIV2.pkg
-
 # aws config with keys
 config
+# keys
+alpine.pem
