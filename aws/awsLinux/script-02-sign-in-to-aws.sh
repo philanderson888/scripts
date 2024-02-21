@@ -22,9 +22,8 @@ else
 fi
 
 
-echo no need to sign in as already signed in 
-# sign in to aws cli
-# aws sso login
+echo sign in to aws cli
+aws sso login
 echo aws configure sso also signs user in ...
 # aws configure sso 
 

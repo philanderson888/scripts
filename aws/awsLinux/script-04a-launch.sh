@@ -6,7 +6,5 @@ sshLoginUsername=$userName@$instance_public_ip
 certificatePath='~/.ssh/alpine.pem'
 
 cd ~/github/scripts/aws/awsLinux
-echo '\n\n\n'
-echo running script 04a to query linux instance and upgrade if possible
-ssh -i $certificatePath $sshLoginUsername 'bash -s' < script-04a-query-aws.sh
+ssh -i $certificatePath $sshLoginUsername 'bash -s' < script-04a-query-linux.sh
 echo
