@@ -8,3 +8,5 @@ AWSCLIV2.pkg
 config
 # keys
 alpine.pem
+# env
+.env

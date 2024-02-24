@@ -1,13 +1,10 @@
 #!/bin/sh
 
-# aws cli
 installing_aws_cli=false
 sign_in_to_aws=false
-# instances
 terminating_old_instance=false
 create_new_instance=false
-# query
-query_aws=false
+query_aws=true
 query_linux=true
 
 

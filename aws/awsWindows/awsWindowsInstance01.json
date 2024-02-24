@@ -1,0 +1,38 @@
+{
+    "MaxCount": 1,
+    "MinCount": 1,
+    "ImageId": "ami-0f9c44e98edf38a2b",
+    "InstanceType": "t2.micro",
+    "KeyName": "alpine",
+    "EbsOptimized": false,
+    "NetworkInterfaces": [
+      {
+        "AssociatePublicIpAddress": true,
+        "DeviceIndex": 0,
+        "Groups": [
+          "<groupId of the new security group created below>"
+        ]
+      }
+    ],
+    "TagSpecifications": [
+      {
+        "ResourceType": "instance",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "Windows"
+          }
+        ]
+      }
+    ],
+    "MetadataOptions": {
+      "HttpTokens": "required",
+      "HttpEndpoint": "enabled",
+      "HttpPutResponseHopLimit": 2
+    },
+    "PrivateDnsNameOptions": {
+      "HostnameType": "ip-name",
+      "EnableResourceNameDnsARecord": true,
+      "EnableResourceNameDnsAAAARecord": false
+    }
+  }
