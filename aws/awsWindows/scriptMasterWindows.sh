@@ -1,6 +1,36 @@
+echo
+echo
+echo
+echo
+echo
+echo
+echo ==============================================================
+echo ==============================================================
+echo ==============================================================
+echo ============              azure                  =============
+echo ============        build windows server         =============
+echo ============         build ubuntu server         =============
+echo ============       run web servers on both       =============
+echo ==============================================================
+echo ==============================================================
+echo ==============================================================
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+# installing
+installing_powershell=false
+installing_aws_cli=false
+# logging in 
+logging_in_to_azure_portal=false
 # listing
 list_resource_groups=true
-resource_group_name=ResourceGroup02
+resource_group_prefix=ResourceGroup
+resource_group_index=01
+resource_group_name=$resource_group_prefix$resource_group_index
 resource_group_location=uksouth
 list_vm_image_sizes=false
 list_vms=true
@@ -9,7 +39,7 @@ list_kubernetes_clusters=false
 # creating
 create_resource_group=false
 create_vm_windows_server=true
-create_vm_ubuntu_linux=false
+create_vm_ubuntu_linux=true
 create_vm_windows_client=false
 # vm details
 adminuser=azureuser
@@ -36,62 +66,101 @@ query_vm_windows_server=true
 query_vm_ubuntu_linux=true
 # manage vms
 manage_vms=true
+# cleanup
+delete_vms=false
+delete_resource_group=false
 # script timing
 startTimeOnMasterScript=$(date +%s)
-
-
-## use rdp to connect to Windows instance
-## also available is aws nitro connection
-## you don't need a public ipv4 address to connect  - see https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html for picture on how aws instance is set up 
-
-
-## mac - install RDP client https://apps.apple.com/us/app/microsoft-remote-desktop/id1295203466?mt=12
-
-
-## aws instance ec2 windows server - connect via aws session manager
-
-
-## aws session manager - enable explorer as well - is this required?
-
-
-
-#ec2-54-86-149-140.compute-1.amazonaws.com
-#Administrator
-#?tuaKBbW9H7U@;c@l4tJKzBckk!mu?XH
-
-
-## giving up on aws
-
-## instead installing azure cli
-#brew update
-#brew install azure-cli
-
-## log in
-#echo logging in to azure client
-#az login 
-# [
-#  {
-#    "cloudName": "AzureCloud",
-#    "homeTenantId": "84db59c8-e4f2-4a8b-9c4a-2f6be457ceba",
-#    "isDefault": true,
-#    "id": "29a6dc31-f2c3-4caa-a935-2a7158618df5",
-#    "managedByTenants": [],
-#    "name": "Pay-As-You-Go",
-#    "state": "Enabled",
-#    "tenantId": "84db59c8-e4f2-4a8b-9c4a-2f6be457ceba",
-#    "user": {
-#      "name": "philanderson888@hotmail.com",
-#      "type": "user"
-#    }
-#  }
-#]
-
-
-## Who Is Logged In
+echo script launching at time $startTimeOnMasterScript
+echo
+echo
+echo
+if [ "$installing_aws_cli" = true ] ; then
+    echo
+    echo
+    echo
+    echo ==============================================================
+    echo ============          installing aws client      =============
+    echo ==============================================================
+    echo
+    echo
+    echo
+    brew update
+    brew install azure-cli
+else
+    echo =======================================================================
+    echo ============      aws client is already installed         =============
+    echo =======================================================================
+fi
+echo
+echo
+echo
+if [ "$installing_powershell" = true ] ; then
+    echo
+    echo
+    echo
+    echo ==============================================================
+    echo ============       installing powershell         =============
+    echo ==============================================================
+    echo
+    echo
+    echo
+    echo installing standard version of powershell
+    brew update
+    brew install powershell/tap/powershell
+    brew upgrade powershell
+    pwsh
+    echo
+    echo
+    echo
+    echo installing powershell preview edition
+    brew install powershell/tap/powershell-preview
+    pwsh-preview
+    brew upgrade powershell-preview
+else
+    echo =======================================================================
+    echo ============      powershell is already instsalled        =============
+    echo =======================================================================
+fi
+if [ "$logging_in_to_azure_portal" = true ] ; then
+    echo
+    echo
+    echo
+    echo ==============================================================
+    echo ============      logging in to azure portal     =============
+    echo ==============================================================
+    echo
+    echo
+    echo
+    az login
+    # [
+    #  {
+    #    "cloudName": "AzureCloud",
+    #    "homeTenantId": "84db59c8-e4f2-4a8b-9c4a-2f6be457ceba",
+    #    "isDefault": true,
+    #    "id": "29a6dc31-f2c3-4caa-a935-2a7158618df5",
+    #    "managedByTenants": [],
+    #    "name": "Pay-As-You-Go",
+    #    "state": "Enabled",
+    #    "tenantId": "84db59c8-e4f2-4a8b-9c4a-2f6be457ceba",
+    #    "user": {
+    #      "name": "philanderson888@hotmail.com",
+    #      "type": "user"
+    #    }
+    #  }
+    #]
+else
+    echo =======================================================================
+    echo ============     already logged in to azure portal        =============
+    echo =======================================================================
+fi
+echo
+echo
+echo who is logged in
 az account list -o table
-#read -p "press any key"
-
-
+echo
+echo
+echo
 if [ "$list_resource_groups" = true ] ; then
     echo
     echo
@@ -117,18 +186,19 @@ if [ "$create_resource_group" = true ] ; then
     echo ==============================================================
     echo ============           resource groups           =============
     echo ==============================================================
-    echo list resource groups
-    az group list -o table
-    echo
-    echo
-    echo
     echo creating resource group $resource_group_name in uk south region
     az group create --name $resource_group_name --location $resource_group_location
     echo
     echo
     echo
-    echo listing resource groups after creating new one ...
+    echo list resource groups
     az group list -o table
+    echo
+    echo
+    echo
+    echo resource group was just created, so servers have to be created also
+    create_vm_windows_server=true
+    create_vm_ubuntu_linux=true
     echo
     echo
     echo
@@ -137,9 +207,9 @@ else
     echo ============       creating resource group - skipped         ==========
     echo =======================================================================
 fi
-
-
-
+echo
+echo
+echo
 echo ==========================================================================
 echo ============          list resource group resources          =============
 echo ==========================================================================
@@ -482,20 +552,13 @@ if [ "$query_vm_ubuntu_linux" = true ] ; then
     echo ======================================================================
     echo
     echo
-    # echo "... waiting for vm to build ..."
     subscription=$(az account show --query "id" -o tsv)
     ubuntu_vm_id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$ubuntu_vm_name"
-    # az vm wait --created --ids $ubuntu_vm_id $ubuntu_server_vm_id
-    # echo vm has been created
     echo ubuntu server vm id is $ubuntu_vm_id
 
     echo resource group name $resource_group_name
-
-    az vm show --resource-group $resource_group_name
-
     ubuntu_machine_id=$(az vm show --resource-group $resource_group_name --name $ubuntu_vm_name --query vmId -o tsv)
     echo ubuntu machine id $ubuntu_machine_id
-    read -p "press any key"
     ubuntu_user_name=$(az vm show --resource-group $resource_group_name --name $ubuntu_vm_name --query osProfile.adminUsername -o tsv)
     echo ubuntu user name $ubuntu_user_name
     ubuntu_computer_name=$(az vm show --resource-group $resource_group_name --name $ubuntu_vm_name --query osProfile.computerName -o tsv)
@@ -522,8 +585,9 @@ if [ "$query_vm_ubuntu_linux" = true ] ; then
     network_card_location=$(az network nic show --ids $ubuntu_network_id --query location -o tsv)
     resource_group_name=$(az network nic show --ids $ubuntu_network_id --query resourceGroup -o tsv)
     resource_group_id=$(az network nic show --ids $ubuntu_network_id --query resourceGuid -o tsv)
-    echo resource group location $network_card_location ... name $resource_group_name ... id $resource_group_id    
-
+    echo resource group name $resource_group_name
+    echo resource group location $network_card_location
+    echo resource group id $resource_group_id
 else
     echo
     echo
@@ -663,38 +727,56 @@ fi
 
 
 
+if [ "$delete_vms" = true ] ; then
+    echo
+    echo
+    echo
+    echo =======================================================================
+    echo ============                 delete vms                    ============
+    echo =======================================================================
+    echo
+    echo
+    echo
+    echo delete ubuntu vm by vm id $ubuntu_machine_id
+    echo az vm delete --ids $ubuntu_machine_id --yes
+    echo
+    echo
+    echo
+    echo delete windows server vm by vm name $windows_server_vm_name
+    az vm delete --resource-group $resource_group_name --name $windows_server_vm_name --yes
+    echo
+    echo
+    echo
+    echo delete ubuntu vm by vm name $ubuntu_vm_name_02
+    az vm delete --resource-group $resource_group_name --name $ubuntu_vm_name_02 --yes
+    echo
+    echo
+    echo
+    az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
+    echo
+    echo
+    echo
+fi
 
-echo =======================================================================
-echo ============                 delete vms                    ============
-echo =======================================================================
+if [ "$delete_resource_groups" = true ] ; then
+    echo
+    echo
+    echo
+    echo =======================================================================
+    echo ============            delete resource groups             ============
+    echo =======================================================================
+    echo
+    echo
+    echo
+    # az group wait --deleted --resource-group $resource_group_name
+    az group delete --name $resource_group_name --force-deletion-types Microsoft.Compute/virtualMachines
+fi
 echo
 echo
 echo
-echo delete ubuntu vm by vm id $ubuntu_machine_id
-echo az vm delete --ids $ubuntu_machine_id --yes
-echo
-echo
-echo delete windows server vm by vm name $windows_server_vm_name
-az vm delete --resource-group $resource_group_name --name $windows_server_vm_name --yes
-echo delete ubuntu vm by vm name $ubuntu_vm_name_02
-az vm delete --resource-group $resource_group_name --name $ubuntu_vm_name_02 --yes
-
-echo
-echo
-echo
-az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
-echo
-echo
-echo
-
-echo =======================================================================
-echo ============            delete resource groups             ============
-echo =======================================================================
-echo
-echo
-echo
-az group wait --deleted --resource-group $resource_group_name
-
 echo =======================================================================
 echo ============             azure script ended                ============
 echo =======================================================================
+echo
+echo
+echo
