@@ -10,3 +10,6 @@ config
 alpine.pem
 # env
 .env
+ubuntuPassword.txt
+windowsPassword.txt
+linuxPassword.txt
