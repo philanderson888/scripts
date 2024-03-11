@@ -1,17 +1,14 @@
-# mac finder file - not part of repository
+# mac finder
 .DS_Store
-# dont commit executablees
+# exe
 *.exe
 # aws linux cli installer
 AWSCLIV2.pkg
 # aws config with keys
 config
-# keys
-alpine.pem
-# env
-.env
-ubuntuPassword.txt
-windowsPassword.txt
-linuxPassword.txt
+# passwords
 adminPassword.txt
+# output files
 output.txt
+outputNetworkSecurityGroupInformation.txt
+azure_vm_list.txt
