@@ -544,8 +544,9 @@ if [ "$create_vm_linux_flavours" = true ] ; then
     echo "============               create $ubuntu_vm_name_02                 ============="
     echo "============                  $minutes:$seconds                            ============="
     echo =============================================================================
-    az vm create  --name $ubuntu_vm_name_02 --resource-group $resource_group_name --image Ubuntu2204  --ssh-key-value ~/.ssh/azureCliUbuntuLogin.pub --no-wait
-    #az vm create --name $ubuntu_vm_name_02 --resource-group $resource_group_name --image Ubuntu2204 --generate-ssh-keys --no-wait
+    az vm create  --name $ubuntu_vm_name_02 --resource-group $resource_group_name --image Ubuntu2204  --admin-username $admin_username --admin-password $admin_password --ssh-key-value ~/.ssh/azureCliUbuntuLogin.pub --no-wait
+    query_vm_ubuntu_02=false
+    log_in_to_ubuntu_02=false
     echo
     echo
     echo
@@ -559,26 +560,57 @@ if [ "$create_vm_linux_flavours" = true ] ; then
     echo "============               create $red_hat_vm_name                 ============="
     echo "============                  $minutes:$seconds                            ============="
     echo =============================================================================
-    az vm create --name $red_hat_vm_name --resource-group $resource_group_name --image RHELRaw8LVMGen2 --generate-ssh-keys --no-wait
-    query_vm_redhat=true
+    az vm create --name $red_hat_vm_name --resource-group $resource_group_name --image RHELRaw8LVMGen2 --admin-username $admin_username --admin-password $admin_password --ssh-key-value ~/.ssh/azureCliUbuntuLogin.pub --no-wait
+    query_vm_redhat=false
+    log_in_to_red_hat=false
     echo
     echo
     echo
-    # echo create debian linux .. asynchronously ...
-    # az vm create --name $debian_vm_name --resource-group $resource_group_name --image Debian11 --generate-ssh-keys --no-wait
-    query_vm_debian=false
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo =============================================================================
+    echo "============               create $debian_vm_name                 ============="
+    echo "============                  $minutes:$seconds                            ============="
+    echo =============================================================================  
+    az vm create --name $debian_vm_name --resource-group $resource_group_name --image Debian11 --admin-username $admin_username --admin-password $admin_password --ssh-key-value ~/.ssh/azureCliUbuntuLogin.pub --no-wait
+    query_vm_debian=true
+    log_in_to_debian=true
     echo
     echo
     echo
-    # echo create centos linux ... asynchronously ...
-    # az vm create --name $centos_vm_name --resource-group $resource_group_name --image CentOS85Gen2 --generate-ssh-keys --no-wait
-    query_vm_centos=false
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo =============================================================================
+    echo "============               create $centos_vm_name                 ============="
+    echo "============                  $minutes:$seconds                            ============="
+    echo =============================================================================  
+    az vm create --name $centos_vm_name --resource-group $resource_group_name --image CentOS85Gen2 --admin-username $admin_username --admin-password $admin_password --ssh-key-value ~/.ssh/azureCliUbuntuLogin.pub --no-wait
+    query_vm_centos=true
+    log_in_to_centos=true
     echo
     echo
     echo
-    # echo create open suse linux ... asynchronously ...
-    # az vm create --name $open_suse_vm_name --resource-group $resource_group_name --image OpenSuseLeap154Gen2 --generate-ssh-keys --no-wait
-    query_vm_open_suse=false
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo =============================================================================
+    echo "============               create $open_suse_vm_name                ============="
+    echo "============                  $minutes:$seconds                            ============="
+    echo =============================================================================  
+    az vm create --name $open_suse_vm_name --resource-group $resource_group_name --image OpenSuseLeap154Gen2 --admin-username $admin_username --admin-password $admin_password --ssh-key-value ~/.ssh/azureCliUbuntuLogin.pub --no-wait
+    query_vm_open_suse=true
+    log_in_to_open_suse=true
     echo
     echo
     echo 
@@ -592,7 +624,6 @@ fi
 
 
 
-query_vm_ubuntu_linux=false
 if [ "$create_vm_ubuntu_linux" = true ] ; then
     echo
     echo
@@ -862,6 +893,76 @@ echo
 
 
 
+
+
+
+if [ "$query_vm_ubuntu_02" = true ] ; then
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ======================================================================
+    echo "============            query $ubuntu_vm_name_02              ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ======================================================================
+    echo resource group name $resource_group_name
+    subscription=$(az account show --query "id" -o tsv)
+    ubuntu_vm_id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$ubuntu_vm_name_02"
+    echo ubuntu server vm id is $ubuntu_vm_id
+    ubuntu_machine_id=$(az vm show --resource-group $resource_group_name --name $ubuntu_vm_name_02 --query vmId -o tsv)
+    echo ubuntu machine id $ubuntu_machine_id
+    ubuntu_user_name=$(az vm show --resource-group $resource_group_name --name $ubuntu_vm_name_02 --query osProfile.adminUsername -o tsv)
+    echo ubuntu user name $ubuntu_user_name
+    ubuntu_computer_name=$(az vm show --resource-group $resource_group_name --name $ubuntu_vm_name_02 --query osProfile.computerName -o tsv)
+    echo ubuntu computer name $ubuntu_computer_name
+    ubuntu_vm_id_hash=$(az vm show -d --resource-group $resource_group_name --name $ubuntu_vm_name_02 --query "vmId" -o tsv)    
+    echo ubuntu vm id hash ... $ubuntu_vm_id_hash
+    ubuntu_vm_size=$(az vm show -d --resource-group $resource_group_name --name $ubuntu_vm_name_02 --query "hardwareProfile.vmSize" -o tsv)
+    echo ubuntu vm size ... $ubuntu_vm_size
+    ubuntu_vm_fqdn=$(az vm show -d --resource-group $resource_group_name --name $ubuntu_vm_name_02 --query "fqdns" -o tsv)
+    if [ ! -z "$ubuntu_vm_fqdn" ] 
+    then
+        echo ubuntu vm fqdn is $ubuntu_vm_fqdn
+    fi
+    ubuntu_network_id=$(az vm show --resource-group $resource_group_name --name $ubuntu_vm_name_02 --query 'networkProfile.networkInterfaces[].id' -o tsv)
+    echo ubuntu vm network id is $ubuntu_network_id
+    network_card_name=$(az network nic show --ids $ubuntu_network_id --query "name" -o tsv)
+    echo network card name $network_card_name
+    ubuntu_vm_public_ip_address_02=$(az vm show -d --resource-group $resource_group_name --name $ubuntu_vm_name_02 --query publicIps -o tsv)
+    echo ubuntu vm public ip is $ubuntu_vm_public_ip_address_02
+    ubuntu_vm_private_ip=$(az vm show -d --resource-group $resource_group_name --name $ubuntu_vm_name_02 --query privateIps -o tsv)        
+    echo ubuntu vm private ip is $ubuntu_vm_private_ip
+    network_card_mac_address=$(az network nic show --ids $ubuntu_network_id --query macAddress -o tsv)
+    echo network card mac address $network_card_mac_address
+    network_card_location=$(az network nic show --ids $ubuntu_network_id --query location -o tsv)
+    resource_group_name=$(az network nic show --ids $ubuntu_network_id --query resourceGroup -o tsv)
+    resource_group_id=$(az network nic show --ids $ubuntu_network_id --query resourceGuid -o tsv)
+    echo resource group name $resource_group_name
+    echo resource group location $network_card_location
+    echo resource group id $resource_group_id
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if [ "$query_vm_redhat" = true ] ; then
     echo
     echo
@@ -1072,8 +1173,6 @@ fi
 
 
 
-
-query_vm_windows_server=false
 if [ "$create_vm_windows_server" = true ] ; then
     echo
     echo
@@ -1133,6 +1232,7 @@ if [ "$create_vm_windows_server" = true ] ; then
     echo opening firewall port 22 ssh 
     az network nsg rule create -g $resource_group_name --nsg-name $network_security_group_name -n allow-SSH --priority 1010 --source-address-prefixes Internet --destination-port-ranges 22 --protocol TCP
     query_vm_windows_server=true
+    log_in_to_windows=true
 fi
 
 
@@ -1160,9 +1260,14 @@ if [ "$set_auto_shutdown" = true ] ; then
         echo $shut_down_object | jq .name 
         echo $shut_down_object | jq .status
     done
-    #az vm auto-shutdown -g $resource_group_name -n $windows_server_vm_name --time 1730 --email $email_address --webhook $webhook_address
-    #az vm auto-shutdown -g $resource_group_name -n $ubuntu_vm_name --time 1730 --email $email_address --webhook $webhook_address
-    #az vm auto-shutdown -g $resource_group_name -n $ubuntu_vm_name_02 --time 1730 --email $email_address --webhook $webhook_address
+    az vm auto-shutdown -g $resource_group_name -n $windows_server_vm_name --time 1730 --email $email_address --webhook $webhook_address
+    az vm auto-shutdown -g $resource_group_name -n $ubuntu_vm_name --time 1730 --email $email_address --webhook $webhook_address
+    az vm auto-shutdown -g $resource_group_name -n $ubuntu_vm_name_02 --time 1730 --email $email_address --webhook $webhook_address
+    echo
+    echo
+    echo
+    echo do it also for other machines ....
+    sleep 20
     echo
     echo
     echo 
@@ -1282,7 +1387,298 @@ fi
 
 
 
-log_in_to_windows=true
+
+if [ "$log_in_to_ubuntu_02" = true ] ; then
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ======================================================================
+    echo "============           logging in to $ubuntu_vm_name_02              ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ======================================================================
+    echo
+    echo
+    echo working directory
+    pwd   
+    echo ip address
+    echo $ubuntu_vm_public_ip_address_02  
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ==============================================================================
+    echo "============   running script 04 query linux on $ubuntu_vm_name_02              ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ==============================================================================
+    echo
+    echo
+    echo
+    ssh -i ~/.ssh/azureCliUbuntuLogin.pem $admin_username@$ubuntu_vm_public_ip_address_02 'bash -s' < ../awsLinux/script-04a-query-linux.sh
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
+    echo
+    echo
+    echo
+fi
+
+
+
+
+
+
+
+
+if [ "$log_in_to_red_hat" = true ] ; then
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ======================================================================
+    echo "============           logging in to $red_hat_vm_name             ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ======================================================================
+    echo
+    echo
+    echo working directory
+    pwd   
+    echo ip address
+    echo $red_hat_vm_public_ip_address  
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ==============================================================================
+    echo "============   running script 04 query linux on $red_hat_vm_name             ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ==============================================================================
+    echo
+    echo
+    echo
+    ssh -i ~/.ssh/azureCliUbuntuLogin.pem $admin_username@$red_hat_vm_public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
+    echo
+    echo
+    echo
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+if [ "$log_in_to_debian" = true ] ; then
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ======================================================================
+    echo "============           logging in to $debian_vm_name              ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ======================================================================
+    echo
+    echo
+    echo working directory
+    pwd   
+    echo ip address
+    echo $debian_vm_public_ip_address
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ==============================================================================
+    echo "============   running script 04 query linux on $debian_vm_name             ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ==============================================================================
+    echo
+    echo
+    echo
+    ssh -i ~/.ssh/azureCliUbuntuLogin.pem $admin_username@$debian_vm_public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
+    echo
+    echo
+    echo
+fi
+
+
+
+
+
+
+
+if [ "$log_in_to_centos" = true ] ; then
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ======================================================================
+    echo "============           logging in to $centos_vm_name              ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ======================================================================
+    echo
+    echo
+    echo working directory
+    pwd   
+    echo ip address
+    echo $centos_vm_public_ip_address
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ==============================================================================
+    echo "============   running script 04 query linux on $centos_vm_name              ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ==============================================================================
+    echo
+    echo
+    echo
+    ssh -i ~/.ssh/azureCliUbuntuLogin.pem $admin_username@$centos_vm_public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
+    echo
+    echo
+    echo
+fi
+
+
+
+
+
+
+
+
+
+
+
+if [ "$log_in_to_open_suse" = true ] ; then
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ======================================================================
+    echo "============           logging in to $open_suse_vm_name             ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ======================================================================
+    echo
+    echo
+    echo working directory
+    pwd   
+    echo ip address
+    echo $open_suse_vm_public_ip_address
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
+    echo ==============================================================================
+    echo "============   running script 04 query linux on $open_suse_vm_name             ============="
+    echo "============                  $minutes:$seconds                       ============="
+    echo ==============================================================================
+    echo
+    echo
+    echo
+    ssh -i ~/.ssh/azureCliUbuntuLogin.pem $admin_username@$open_suse_vm_public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
+    echo
+    echo
+    echo
+    duration=$SECONDS
+    echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
+    echo
+    echo
+    echo
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if [ "$log_in_to_windows" = true ] ; then
     echo
     echo
@@ -1321,7 +1717,9 @@ if [ "$log_in_to_windows" = true ] ; then
     echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
     #ssh -i ~/.ssh/azureCliUbuntuLogin.pem $admin_username@$windows_server_vm_public_ip_address 'bash -s' < script.sh
     #ssh -i ~/.ssh/azureCliUbuntuLogin.pem $admin_username@$windows_server_vm_public_ip_address
-    az vm run-command invoke --resource-group $resource_group_name --name $windows_server_vm_name --command-id 'RunPowerShellScript' --scripts @scriptMaster.ps1
+    windows_server_output=$(az vm run-command invoke --resource-group $resource_group_name --name $windows_server_vm_name --command-id 'RunPowerShellScript' --scripts @scriptMaster.ps1)
+    echo split this string
+    echo $windows_server_output
     echo ddd
     duration=$SECONDS
     echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
@@ -1390,8 +1788,15 @@ if [ "$delete_vms" = true ] ; then
     echo
     echo
     echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
     echo =======================================================================
     echo "============                 delete vms                    ============"
+    echo "============                 $minutes:$seconds                       ============="
     echo =======================================================================
     echo
     echo
@@ -1419,15 +1824,22 @@ fi
 echo
 echo
 echo
-echo ... waiting 10 minutes then deleting all servers and all resource groups so we start from scratch every time ...
-sleep 600
+echo ... waiting 2 minutes then deleting all servers and all resource groups so we start from scratch every time ...
+sleep 120
 delete_resource_groups=true
 if [ "$delete_resource_groups" = true ] ; then
     echo
     echo
     echo
+    duration=$SECONDS
+    minutes=$(( $duration / 60 ))
+    seconds=$(( $duration % 60 )) 
+    if [ "$seconds" -lt 10 ] ; then
+        seconds="0"$seconds
+    fi
     echo "======================================================================="
     echo "============            delete resource groups             ============"
+    echo "============                 $minutes:$seconds                       ============="
     echo "======================================================================="
     echo
     echo
@@ -1450,11 +1862,17 @@ fi
 echo
 echo
 echo
+duration=$SECONDS
+minutes=$(( $duration / 60 ))
+seconds=$(( $duration % 60 )) 
+if [ "$seconds" -lt 10 ] ; then
+    seconds="0"$seconds
+fi
 endTimeOnMasterScript=$(date +%s)
 echo "======================================================================="
 echo "============             azure script ended                ============"
-echo "============                 at time                       ============"
-echo ============ script ends at unix time $endTimeOnMasterScript
-echo ============ script ends at $endTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
+echo "============                  $minutes:$seconds                       ============="
+echo ============              unix time $endTimeOnMasterScript
+echo ============              $endTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
 echo "======================================================================="
 echo
