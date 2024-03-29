@@ -53,7 +53,6 @@ if [[  "$os_type" == "$os_type_debian" ]]; then
     sudo systemctl restart systemd-resolved.service
     sudo systemctl restart systemd-logind.service
     sudo systemctl restart unattended-upgrades.service
-    sudo systemctl restart user@1000.service
 elif [[  "$os_type" == "$os_type_fedora" ]]; then
     echo confirmation of red hat release version 
     echo "/etc/redhat-release"
@@ -61,6 +60,3 @@ elif [[  "$os_type" == "$os_type_fedora" ]]; then
     echo "-f /etc/redhat-release"
     echo -f /etc/redhat-release
 fi
-
-
-test_phil_variable=22

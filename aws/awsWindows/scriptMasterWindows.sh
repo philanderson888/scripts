@@ -46,7 +46,7 @@ print_status_of_progress () {
     if [ "$powershell_installed" = true ] ; then
         echo powershell version $powershell_version installed
     elif [ "$powershell_already_installed" = true ] ; then
-        echo powershell version $powershell_version already installed=
+        echo powershell version $powershell_version already installed
     fi
     if [ "$environment_has_been_cleaned_before_start" = true ] ; then
         echo environment cleaned

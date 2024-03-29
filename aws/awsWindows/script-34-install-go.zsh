@@ -22,12 +22,13 @@ echo "======================================================================="
 echo list files in home directory
 ls
 echo move to go folder
-mv ./script-34-go ./go
-cd ./go
-go run ./script-34.go
-echo go build script-34.go will build hello-world file
-go build ./script-34.go
+mv script-34.go go
+cd go
+echo list files in go directory
 ls
-./hello-world
-echo go install path-to-file
-go install ./script-34.go
+now can run the script-34.go file by calling it with the go command
+go run script-34.go
+echo go build script-34.go will build hello-world file
+go build script-34.go
+echo now can run the executable file called 'script-34'
+./script-34

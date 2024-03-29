@@ -25,6 +25,7 @@ if [ "$azure" = true ] ; then
     echo "=============================================================="
     echo "====                     sign in                          ===="
     echo "=============================================================="
+    ssh_key=
     admin_username=azureuser
     ubuntu_vm_name=ubuntuVm01
     public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $ubuntu_vm_name --query publicIps -o tsv)
@@ -34,6 +35,9 @@ if [ "$azure" = true ] ; then
     echo user $admin_username
     echo ip $public_ip_address
     ssh -i $ssh_key $admin_username@$public_ip_address
+    ssh -i ~/.ssh/azureCliUbuntuLogin.pem azureuser@51.143.156.14
+    
+
 elif [ "$aws" = true ] ; then
     instance_public_ip=$(aws ec2 describe-instances --instance-ids $instance_id --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
     echo instance public ip is $instance_public_ip
