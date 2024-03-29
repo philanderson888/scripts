@@ -12,3 +12,5 @@ adminPassword.txt
 output.txt
 outputNetworkSecurityGroupInformation.txt
 output-azure_vms.txt
+output-network-security-group.txt
+output-resource-groups.txt
