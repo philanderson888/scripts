@@ -11,4 +11,4 @@ adminPassword.txt
 # output files
 output.txt
 outputNetworkSecurityGroupInformation.txt
-azure_vm_list.txt
+output-azure_vms.txt

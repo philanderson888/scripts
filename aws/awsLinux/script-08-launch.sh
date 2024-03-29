@@ -12,13 +12,17 @@ echo
 echo
 echo
 echo
-echo running script-08-install-and-run-node-express-web-server.sh
+echo "==============================================================="
+echo "====                        install node   1                         ===="
+echo "==============================================================="
 startTime=$(date +%s)
 ssh -i $certificatePath $sshLoginUsername 'bash -s' < script-08-install-and-run-node-express-web-server.sh
 echo
 echo 
 echo
 endTime=$(date +%s)
-scriptDuration=$(($endTime-$startTime))
-echo "server 05 apache web server finished after $scriptDuration"
-echo "server 08 apache web server finished after ${$scriptDuration}"
+scriptDuration=$(($endTime-$startTime))1
+echo "==============================================================="
+echo "====                    install node completed                       ===="
+echo "====                        $scriptDuration seconds                         ===="
+echo "==============================================================="

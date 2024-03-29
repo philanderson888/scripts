@@ -1,9 +1,9 @@
 echo
 echo
 echo
-echo ==========================================
-echo =====   learn linux bash scripting   =====
-echo ==========================================
+echo "==========================================
+echo "====      learn linux bash scripting   =====
+echo "==========================================
 echo
 echo
 echo

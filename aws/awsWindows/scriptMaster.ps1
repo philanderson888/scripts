@@ -1,5 +1,5 @@
 echo "======================================================="
-echo "===== powershell script running on windows server ====="
+echo "====    powershell script running on windows server   ===="
 echo "======================================================="
 
 # aws cli for windows
@@ -41,7 +41,7 @@ echo " "
 echo " "
 echo " "
 echo "======================================================="
-echo "========          environment variables        ========"
+echo "====                   environment variables                 ===="
 echo "======================================================="
 Get-ChildItem env:
 echo " "
@@ -68,5 +68,5 @@ echo " "
 echo " "
 echo " "
 echo "============================================================="
-echo "=====   end powershell script running on windows server ====="
+echo "====      end powershell script running on windows server   ===="
 echo "============================================================="

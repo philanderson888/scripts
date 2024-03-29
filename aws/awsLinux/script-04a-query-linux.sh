@@ -2,17 +2,47 @@
 echo
 echo
 echo
-echo ====================================================================================
+echo which shell am i using
+echo $SHELL 
+$SHELL --version
+echo
+echo
+echo
+echo "======================================================================="
 echo =======       script 04 .. 1 .. update and upgrade ... 2 .. query             ======
-echo ====================================================================================
+echo "======================================================================="
 echo
 echo
 echo
 
 
-echo ====================================================================================
+echo "======================================================================="
 echo =======              which flavour of linux is this machine                   ======
-echo ====================================================================================
+echo "======================================================================="
+echo
+echo
+echo
+echo "running a case statement on /etc/os-release against the option 'ID'"
+. /etc/os-release
+linux_release_id=not_recognised
+case "$ID" in
+    ubuntu) 
+        echo 'This is Ubuntu Linux' 
+        linux_release_id=ubuntu
+        ;;
+    centos)
+        echo 'This is centos Linux'
+        linux_release_id=centos
+        ;;
+    debian)
+        echo 'this is debian linux'
+        linux_release_id=debian
+        ;;
+    *)
+        echo 'This is an unknown linux distribution type' 
+        linux_release_id=not_recognised
+        ;; 
+esac
 echo
 echo
 echo
@@ -35,18 +65,23 @@ case "`/usr/bin/lsb_release -si`" in
         id_like=debian
         ;;
     *) 
-        echo not debian / ubuntu ... for now assuming this is red hat fedora linux distribution, can refine over time
-        operating_system_type=red_hat_fedora_yum_distribution
-        linux_version_id_like=fedora
-        id_like=fedora
+        echo not recognised
+        operating_system_type=not_recognised
+        linux_version_id_like=not_recognised
+        id_like=not_recognised
         ;;
 esac
 echo
 echo
 echo
-echo ====================================================================================
+echo "======================================================================="
 echo =======                    operating system type                              ======
-echo ====================================================================================
+echo "======================================================================="
+# apt(-get) is a package manager for Debian + Ubuntu + Linux Mint and all Linux Distributions build in Debian
+# Redhat, fedora and CentOS are using dnf/yum package manager
+# ArchLinux and all distributions build in arch as Manjaro, ... use pacman package manager
+# openSUSE uses zypper package manager
+# https://distrowatch.com/weekly.php?issue=20081013#feature
 echo
 echo
 echo
@@ -78,25 +113,7 @@ cat /etc/os-release
 #HOME_URL="https://www.debian.org/"
 #BUG_REPORT_URL="https://bugs.debian.org/"
 #SUPPORT_URL="https://www.debian.org/support"
-echo
-echo
-echo
-echo "running a case statement on /etc/os-release against the option 'ID'"
-. /etc/os-release
-case "$ID" in
-    ubuntu) 
-        echo 'This is Ubuntu Linux' 
-        ;;
-    centos)
-        echo 'This is centos Linux'
-        ;;
-    debian)
-        echo 'this is debian linux'
-        ;;
-    *)
-        echo 'This is an unknown linux distribution type' 
-        ;; 
-esac
+
 echo
 echo
 echo
@@ -105,6 +122,11 @@ case "$ID_LIKE" in
     debian) 
         echo 'This is Debian Linux => of which Ubuntu is a flavour' 
         #operating_system_type=ubuntu_distribution
+        ;;
+    suse\ opensuse)
+        echo this is open suse linux 
+        linux_version_id_like="suse opensuse"
+        operating_system_type=opensuse
         ;;
 #    rhel\ fedora)
  #       echo 'This is a red hat fedora yum distribution' 
@@ -128,6 +150,11 @@ echo
 echo
 echo awk - F = '/^NAME/{print $2}' /etc/os-release
 awk -F= '/^NAME/{print $2}' /etc/os-release
+linux_version_name_with_quotes=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+linux_version_name_with_quotes="${linux_version_name_with_quotes#\"}"
+linux_version_name_without_quotes="${linux_version_name_with_quotes%\"}"
+echo linux version name without quotes
+echo $linux_version_name_without_quotes
 echo
 echo
 echo
@@ -139,6 +166,22 @@ echo
 echo
 echo "awk - F =/PRETTY_NAME/ { print $ 2 } /etc/os-release"
 awk -F '=' '/PRETTY_NAME/ { print $2 }' /etc/os-release
+linux_pretty_name_with_quotes=$(awk -F '=' '/PRETTY_NAME/ { print $2 }' /etc/os-release)
+linux_pretty_name_with_quotes="${linux_pretty_name_with_quotes#\"}"
+linux_pretty_name_without_quotes="${linux_pretty_name_with_quotes%\"}"
+echo linux pretty name without quotes
+echo $linux_version_name_without_quotes
+echo
+echo
+echo
+echo "lsb_release - d | awk - F \t  { print $ 2}"
+lsb_release -d | awk -F "\t" '{print $2}'
+echo
+echo
+echo
+echo "lsb_release -sd"
+lsb_release -sd
+#Ubuntu 18.04.3 LTS
 echo
 echo
 echo
@@ -151,6 +194,12 @@ echo
 linux_version_id=`grep 'VERSION_ID' /etc/os-release`
 echo linux VERSION_ID in /etc/os-release 
 echo $linux_version_id
+echo
+echo
+echo
+echo "lsb_release -sr"
+lsb_release -sr
+#18.04
 echo
 echo
 echo
@@ -171,37 +220,22 @@ fi
 #if platform?("redhat", "centos", "fedora")
   # Code for only Red Hat Linux family systems.
 #end
+
 echo
 echo
 echo
-echo lsb_release - d | awk - F "\t" '{print $2}'
-lsb_release -d | awk -F "\t" '{print $2}'
-echo
-echo
-echo
-echo lsb_release: lsb_release - d | awk - F "\t" '{print $2}' | awk - F " " '{print $1}'
+echo "lsb_release: lsb_release - d | awk - F \ t {print $ 2} | awk - F {print $ 1}"
 lsb_release: lsb_release -d | awk -F "\t" '{print $2}' | awk -F " " '{print $1}'
 echo
 echo
 echo
-echo lsb_release - d | awk '{print $3}'
+echo "lsb_release - d | awk {print $ 3}"
 lsb_release -d | awk '{print $3}'
+
 echo
 echo
 echo
-echo lsb_release -sd
-lsb_release -sd
-#Ubuntu 18.04.3 LTS
-echo
-echo
-echo
-echo lsb_release -sr
-lsb_release -sr
-#18.04
-echo
-echo
-echo
-echo lsb_release -a
+echo "lsb_release -a"
 lsb_release -a
 echo
 echo
@@ -227,23 +261,23 @@ fi
 echo
 echo
 echo
-UNAME=$(uname | tr "[:upper:]" "[:lower:]")
-echo unix name = uname = $UNAME
-echo
-echo
-echo
-echo uname
+echo uname = unix name
 uname
+UNAME=$(uname | tr "[:upper:]" "[:lower:]")
+echo $UNAME
+# Linux
 echo
 echo
 echo
-echo "echo uname -a"
+echo "echo uname -a .... full complex linux kernel version ..."
 echo $uname -a
+uname -a
+# Linux ip-172-31-29-138.ec2.internal 6.1.66-91.160.amzn2023.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Dec 13 04:50:24 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
 echo
 echo
-echo
-echo "echo uname -a ... grep Ubuntu"
-echo $uname -a | grep Ubuntu
+echo "uname -srm .... linux kernel short version ..."
+uname -srm
+# Linux 6.1.66-91.160.amzn2023.x86_64 x86_64echo 
 echo
 echo
 echo
@@ -260,22 +294,11 @@ echo distribution is $DISTRO
 echo
 echo
 echo
-echo what version of linux is being run
-echo uname -a
-uname -a
-# Linux ip-172-31-29-138.ec2.internal 6.1.66-91.160.amzn2023.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Dec 13 04:50:24 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-echo 
-echo
-echo
-echo what version of linux is being run - short version
-echo uname -srm
-uname -srm
-# Linux 6.1.66-91.160.amzn2023.x86_64 x86_64
-echo
-echo 
-echo 
-echo what version of linux is being run
-echo cat /etc/system-release = cat /usr/lib/system-release = cat /usr/lib/system-release = echo cat /etc/system-release = cat /etc/amazon-linux-release
+echo "Amazon Linux AWS version ... 4 ways to say the same thing ..." 
+echo "cat /etc/system-release"
+echo "cat /usr/lib/system-release"
+echo "cat /usr/lib/system-release"
+echo "cat /etc/amazon-linux-release"
 cat /etc/system-release
 # Amazon Linux release 2023 (Amazon Linux)
 echo
@@ -363,50 +386,37 @@ hostnamectl
 #  Hardware Vendor: Xen
 #   Hardware Model: HVM domU
 # Firmware Version: 4.11.amazon
-echo
-echo
-echo
-echo which version of python is installed
-python3 --version
-echo 
-echo
-echo
-echo "python3 -mplatform"
-python3 -mplatform
-echo
-echo
-echo
-echo ====================================================================================
-echo =======       run updates and upgrades depending on id_like                   ======
-echo ====================================================================================
+echo "======================================================================="
+echo "====              run updates and upgrades depending on id_like                       ===="
+echo "======================================================================="
 if [[  "$id_like" == "debian" ]]; then
     echo 
     echo 
     echo
-    echo ====================================================================================
-    echo =======                         apt-get update                                ======
-    echo ====================================================================================
+    echo "======================================================================="
+    echo "====                                apt-get update                                    ===="
+    echo "======================================================================="
     sudo apt-get update -y
     echo
     echo
     echo
-    echo ====================================================================================
-    echo =======                         apt-get upgrade                               ======
-    echo ====================================================================================
+    echo "======================================================================="
+    echo "====                                apt-get upgrade                                   ===="
+    echo "======================================================================="
     sudo apt-get upgrade -y
     echo
     echo
     echo
-    echo ====================================================================================
-    echo =======                       apt-get install nginx                           ======
-    echo ====================================================================================
+    echo "======================================================================="
+    echo "====                              apt-get install nginx                               ===="
+    echo "======================================================================="
     sudo apt-get install nginx -y
     echo
     echo
     echo
-    echo ====================================================================================
-    echo =======                       update various services                         ======
-    echo ====================================================================================
+    echo "======================================================================="
+    echo "====                              update various services                             ===="
+    echo "======================================================================="
     sudo systemctl restart systemd-journald.service 
     sudo /etc/needrestart/restart.d/systemd-manager
     sudo systemctl restart systemd-networkd.service
@@ -417,10 +427,40 @@ if [[  "$id_like" == "debian" ]]; then
     echo
     echo
     echo
-    echo ====================================================================================
-    echo =======                      apt-get install gcc                              ======
-    echo ====================================================================================
+    echo "======================================================================="
+    echo "====                             apt-get install gcc                                  ===="
+    echo "======================================================================="
     sudo apt-get install gcc -y
+    echo
+    echo
+    echo
+    echo "======================================================================="
+    echo "====                             apt-get install fish                                  ===="
+    echo "======================================================================="
+    sudo apt-add-repository ppa:fish-shell/release-3 -y
+    sudo apt-get update -y
+    sudo apt-get install fish -y
+    echo
+    echo
+    echo
+    echo "======================================================================="
+    echo "====                             apt-get install zsh                                  ===="
+    echo "======================================================================="
+    sudo apt-get install zsh -y
+    zsh --version
+    chsh -s $(which zsh)
+    # sudo lchsh $USER if you are on Fedora.
+    # Note that this will not work if Zsh is not in your authorized shells list (/etc/shells)
+    # or if you don't have permission to use chsh. 
+    # If that's the case you'll need to use a different procedure.
+    # If you use lchsh you need to type /bin/zsh to make it your default shell.
+    # Log out and log back in again to use your new default shell.
+    # Test that it worked with echo $SHELL. Expected result: /bin/zsh or similar.
+    # Test with $SHELL --version. Expected result: 'zsh 5.8' or similar
+    echo $SHELL 
+    $SHELL --version
+
+
 elif [[  "$id_like" == "fedora" ]]; then
     echo
     echo
@@ -433,33 +473,52 @@ elif [[  "$id_like" == "fedora" ]]; then
     echo
     echo
     echo   
-    echo =================================================================
+    echo "======================================================================="
     echo ===========             sudo yum update               ===========
-    echo =================================================================
+    echo "======================================================================="
     echo yum update
     sudo yum update -y
     echo dnf update
     sudo dnf update -y
-    echo =================================================================
+    echo "======================================================================="
     echo ===========             sudo yum upgrade              ===========
-    echo =================================================================
+    echo "======================================================================="
     echo yum upgrade
     sudo yum upgrade -y 
     echo dnf upgrade
     sudo dnf upgrade -y
-    echo =================================================================
+    echo "======================================================================="
     echo ===========             yum install gcc               ===========
-    echo =================================================================
-    sudo yum install gcc -y 
+    echo "======================================================================="
+    sudo yum install gcc -y
+elif [[  "$id_like" == "suse opensuse" ]]; then
+    echo operating system id_like is opensuse
+    sudo zypper refresh
+    suzo zypper update
 else
-    echo operating system id_like is neither debian nor fedora
+    echo operating system id_like $id_like is not recognised
+fi
+
+if [[  "$operating_system_type" == "opensuse" ]]; then
+    echo operating system id_like is opensuse
+    sudo zypper refresh
+    suzo zypper update
 fi
 echo
 echo
 echo
 echo "apt-get -v &> /dev/null && apt-get update"
 apt-get -v &> /dev/null && apt-get update
-
+echo
+echo
+echo
+echo python version
+python3 --version
+echo 
+echo
+echo
+echo python platform ... linux os on which python is built .... 
+python3 -mplatform
 echo
 echo
 echo
@@ -474,7 +533,7 @@ echo =====================================================
 echo
 echo
 echo
-echo "=============================================================================="
-echo "=========       script script 04 query linux ... complete           =========="
-echo "=============================================================================="
+echo "====================================================================="
+echo "====                  script script 04 query linux ... complete                       ===="
+echo "====================================================================="
 echo

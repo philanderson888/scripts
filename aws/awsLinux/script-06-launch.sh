@@ -16,9 +16,9 @@ echo copying script-06-server.js to remote server
 scp -i $certificatePath script-06-server.js $sshLoginUsername:~
 echo
 
-echo ===================================================================
+echo "======================================================================="
 echo ==================   running node web server  =====================
-echo ===================================================================
+echo "======================================================================="
 echo running script-06-run-node-web-server.sh
 ssh -i $certificatePath $sshLoginUsername 'bash -s' < script-06-run-node-web-server.sh
 echo
