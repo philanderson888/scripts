@@ -1,7 +1,4 @@
-echo
-echo
-echo
-echo which shell am i using
+echo shell running on mac
 echo $SHELL 
 $SHELL --version
 echo
@@ -12,12 +9,12 @@ SECONDS=0
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
-echo "====                                   azure                  ============="
-echo "====                             build windows server         ============="
-echo "====                              build ubuntu server         ============="
-echo "====                            run web servers on both       ============="
-echo "====                      script starts at unix time $startTimeOnMasterScript
-echo "====                      script starts at $startTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
+echo "====                      azure                           ===="
+echo "====                build windows server                  ===="
+echo "====                 build ubuntu server                  ===="
+echo "====               run web servers on both                ===="
+echo "====        script starts at unix time $startTimeOnMasterScript
+echo "====        script starts at $startTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
@@ -32,11 +29,14 @@ getElapsedTime () {
         seconds="0"$seconds
     fi
 }
-print_status_of_progress () {
+printTime () {
     getElapsedTime
+    echo "====                    $minutes:$seconds"
+}
+print_status_of_progress () {
     echo "=============================================================="
     echo "====                waypoint $waypoint $1"
-    echo "====                         $minutes:$seconds                       ===="
+    printTime
     echo "=============================================================="
     if [ "$aws_cli_installed" = true ] ; then
         echo aws cli installed of version $aws_version
@@ -67,9 +67,8 @@ print_status_of_progress () {
         echo vm templates not queried
     fi
     if [ "$vm_created" = true ] ; then
-        echo vm $vm_name created from image $vm_image
+        echo vm $vm_name ... image $vm_image .. os $os type $os_type
         echo vm ip $public_ip_address
-        echo os $os is of type $os_type
     fi
     if [ "$vm_queried" = true ] ; then
         echo vm $vm_name queried
@@ -267,7 +266,8 @@ waypoint=07
 print_status_of_progress "query vm templates"
 
 echo "=============================================================="
-echo "====                                   set vm                 ============="
+echo "====                       set vm                         ===="
+printTime
 echo "=============================================================="
 if [ "$os" == "$os_ubuntu" ] ; then
     vm_name=$ubuntu_vm_name
@@ -298,10 +298,16 @@ waypoint=13
 echo test phil variable is $test_phil_variable
 print_status_of_progress "log in and get linux version"
 
+
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-14-install-dnf.sh
 waypoint=14
 print_status_of_progress "dnf install"
 
+
+echo "=============================================================="
+echo "====           update vm with apt/yum $vm_name"
+printTime
+echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-16-update-server-to-latest-versions.sh
 waypoint=16
 print_status_of_progress "os updated"
@@ -321,11 +327,9 @@ waypoint=17
 print_status_of_progress "deciding which services to install"
 
 
-
-getElapsedTime
 echo "=============================================================="
-echo "====                                  install zsh                            ===="
-echo "====                                   $minutes:$seconds                   ============="
+echo "====                    install zsh                       ===="
+printTime
 echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-18a-install-zsh.sh
 zsh_installed=true
@@ -335,44 +339,41 @@ print_status_of_progress zsh
 
 
 echo "=============================================================="
-echo "====                                  test zsh                               ===="
-echo "====                                   $minutes:$seconds                   ============="
+echo "====                     test zsh                         ===="
+printTime
 echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-18b-test-zsh.zsh
-getElapsedTime
 zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
 echo yes i got the zsh remote version which is ...
 echo $zsh_remote_version
 
 
 echo "=============================================================="
-echo "====                                  install oh my z                        ===="
-echo "====                                   $minutes:$seconds                   ============="
+echo "====                  install oh my z                     ===="
+printTime
 echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-18c-install-oh-my-zsh.zsh
-getElapsedTime
 echo "=============================================================="
-echo "====                                  test oh my zsh                         ===="
-echo "====                                   $minutes:$seconds                   ============="
+echo "====                 test oh my zsh                       ===="
+echo "====                   $minutes:$seconds"
 echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-18d-test-oh-my-zsh.zsh
 
 
-getElapsedTime
 echo "=============================================================="
-echo "====                   install c compiler                            ===="
-echo "====                             $minutes:$seconds                           ===="
+echo "====                  install c compiler                  ===="
+printTime
 echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-20-install-c-compiler.sh
 echo "=============================================================="
-echo "====                       upload c program                          ===="
-echo "====                             $minutes:$seconds                           ===="
+echo "====                   upload c program                   ===="
+printTime
 echo "=============================================================="
 cd ../awsWindows
 scp -i $ssh_key script-20a-hello-world.c $admin_username@$public_ip_address:script-20a-hello-world.c 
 echo "=============================================================="
-echo "====                          run c program                          ===="
-echo "====                             $minutes:$seconds                           ===="
+echo "====                     run c program                    ===="
+printTime
 echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-20b-run-c-program.sh
 waypoint=20
@@ -381,10 +382,10 @@ c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "gcc --version")
 print_status_of_progress "c compiler"
 
 
-echo "========================================================================"
-echo "====                     install git                                ===="
-echo "====                       $minutes:$seconds                        ===="
-echo "========================================================================"
+echo "=============================================================="
+echo "====                     install git                      ===="
+printTime
+echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-21-install-git.sh
 git_installed=true
 waypoint=21
@@ -399,22 +400,24 @@ print_status_of_progress apache
 
 if [ "$install_nginx" = true ] ; then
     echo "=============================================================="
-    echo "====                               install nginx               ============="
-    echo "====                             $minutes:$seconds                           ===="
+    echo "====                 install nginx                        ===="
+    printTime
     echo "=============================================================="
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-23-install-nginx.sh
     echo "=============================================================="
-    echo "====                     install nginx complete                       ===="
+    echo "====               install nginx complete                 ===="
+    printTime
     echo "=============================================================="
 fi
 if [ "$restart_services" = true ] ; then
     echo "=============================================================="
-    echo "====                             update services              ============="
-    echo "====                             $minutes:$seconds                           ===="
+    echo "====                update services                       ===="
+    printTime
     echo "=============================================================="
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-24-update-services.sh
     echo "=============================================================="
-    echo "====                     update services complete                     ===="
+    echo "====             update services complete                 ===="
+    printTime
     echo "=============================================================="
 fi
 
@@ -427,37 +430,42 @@ fi
 
 if [ "$install_express" = true ] ; then
     echo "=============================================================="
-    echo "====                            install express - remove this block               ============="
+    echo "====                install express                       ===="
+    printTime
     echo "=============================================================="
-    #ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-test2.zsh
-    #ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-25-install-node.zsh
-    #ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-nothing.zsh
-    #ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-test.zsh
-    #ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-install-express.zsh
-    #echo "=============================================================="
-    #echo "====                     install express done                         ===="
-    #echo "=============================================================="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-test2.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-nothing.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-test.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-install-express.zsh
+    echo "=============================================================="
+    echo "====               install express done                   ===="
+    printTime
+    echo "=============================================================="
 fi
 if [ "$install_vue" = true ] ; then
     echo "=============================================================="
-    echo "====                               install vue                 ============="
+    echo "====                    install vue                       ===="
+    printTime
     echo "=============================================================="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-28-install-vue.zsh
 fi
 if [ "$install_bun" = true ] ; then
     echo "=============================================================="
-    echo "====                               install bun               ============="
+    echo "====                     install bun                      ===="
+    printTime
     echo "=============================================================="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-30-install-bun.zsh
 fi
 if [ "$install_react" = true ] ; then
     echo "=============================================================="
     echo "====                   install react                      ===="
+    printTime
     echo "=============================================================="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-32-install-react.zsh
 fi
 echo "=============================================================="
 echo "====                     running servers                  ===="
+printTime
 echo "=============================================================="
 run_servers=true
 if [ "$run_servers" = true ] ; then
@@ -472,56 +480,64 @@ fi
 if [ "$apache_installed" = true ] && [ "$run_apache" = true ] ; then
     echo "=============================================================="
     echo "====                run apache web server                 ===="
+    printTime
     echo "=============================================================="
     open -a Terminal ./script-40-run-apache-web-server.sh
 fi
 if [ "$nginx_installed" = true ] && [ "$run_nginx" = true ] ; then
     echo "=============================================================="
     echo "====               run nginx web server                   ===="
+    printTime
     echo "=============================================================="
     source ./script-41-run-nginx-web-server.sh
 fi
 if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
-    echo "======================================================================="
-    echo ==================   running node web server  =====================
-    echo "======================================================================="
+    echo "=============================================================="
+    echo "====             running node web server                  ===="
+    printTime
+    echo "=============================================================="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-41-run-node-web-server.sh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsLinux/script-06-run-node-web-server.sh
 fi
 if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
     echo "=============================================================="
     echo "====             run express web server                   ===="
+    printTime
     echo "=============================================================="
     source ../awsWindows/script-42-run-express-web-server.sh
 fi
 if [ "$vue_installed" = true ] && [ "$run_vue" = true ] ; then
     echo "=============================================================="
     echo "====               run vue web server                     ===="
+    printTime
     echo "=============================================================="
     source ../awsWindows/script-44-run-vue-web-server.sh
 fi
 if [ "$bun_installed" = true ] && [ "$run_bun" = true ] ; then
     echo "=============================================================="
     echo "====                 run bun web server                  ====="
+    printTime
     echo "=============================================================="
     source ../awsWindows/script-46-run-bun-web-server.sh
 fi
 if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
     echo "=============================================================="
     echo "====                run react web server                  ===="
+    printTime
     echo "=============================================================="
     source ../awsWindows/script-48-run-react-web-server.sh
 fi
 install_go=true
 if [ "$install_go" = true ] ; then
     echo "=============================================================="
-    echo "====                      upload go program"
-    echo "====                         $minutes:$seconds"
+    echo "====                 upload go program                    ===="
+    printTime
     echo "=============================================================="
     cd ../awsWindows
     scp -i $ssh_key script-34.go $admin_username@$public_ip_address:script-34.go
     echo "=============================================================="
-    echo "====                  install and run go                  ===="
+    echo "====                install and run go                    ===="
+    printTime
     echo "=============================================================="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-install-go.zsh
 fi
@@ -537,6 +553,7 @@ if [ "$list_vms" = true ] ; then
     echo
     echo "=============================================================="
     echo "====               list vms and storage                   ===="
+    printTime
     echo "=============================================================="
     echo list vms output to output-azure_vms.txt
     az vm list >> output-azure_vms.txt
@@ -559,10 +576,9 @@ create_vm_windows_server=false
 query_vm_windows_server=false
 log_in_to_windows=false
 if [ "$create_vm_windows_server" = true ] ; then
-    getElapsedTime
     echo "=============================================================="
     echo "====                create $windows_server_vm_name"
-    echo "====                    $minutes:$seconds"
+    printTime
     echo "=============================================================="
     windows_server_enable_rdp=false
     windows_server_enable_ssh=false
@@ -613,7 +629,8 @@ if [ "$create_vm_windows_server" = true ] ; then
 fi
 if [ "$set_auto_shutdown" = true ] ; then
     echo "=============================================================="
-    echo "====                                       set auto shutdown       ============="
+    echo "====                  set auto shutdown                   ===="
+    printTime
     echo "=============================================================="
     SHUTDOWN_TIME="18:00"
     AUTO_SHUTDOWN="true"
@@ -635,7 +652,8 @@ if [ "$set_auto_shutdown" = true ] ; then
 fi
 if [ "$query_vm_windows_server" = true ] ; then
     echo "=============================================================="
-    echo "====                               query vm - windows server         ============="
+    echo "====               query vm - windows server              ===="
+    printTime
     echo "=============================================================="
     subscription=$(az account show --query "id" -o tsv)
     windows_server_vm_id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$windows_server_vm_name"
@@ -666,7 +684,7 @@ if [ "$query_vm_windows_server" = true ] ; then
     echo resource group location $network_card_location ... name $resource_group_name ... id $resource_group_id    
     echo querying network security group ... output sent to output.txt
     echo "==============================================================" >> output.txt
-    echo "====                               query network security group       =============" >> output.txt
+    echo "====          query network security group                ====" >> output.txt
     echo "==============================================================" >> output.txt
     echo az network nsg list ...
     az network nsg list > outputNetworkSecurityGroupInformation.txt
@@ -692,7 +710,8 @@ fi
 
 if [ "$create_vm_windows_client" = true ] ; then
     echo "=============================================================="
-    echo "====                                create vm - windows client        ============="
+    echo "====            create vm - windows client                ===="
+    printTime
     echo "=============================================================="
     image=MicrosoftWindowsDesktop:office-365:20h2-evd-o365pp-g2:19042.2846.230411
     az vm create \
@@ -704,26 +723,17 @@ if [ "$create_vm_windows_client" = true ] ; then
         --size $size_02 \
         --public-ip-address "" \
         --nsg ""
-    echo
-    echo
-    echo
 else
-    echo
-    echo
-    echo
     echo "=============================================================="
-    echo "====                              create windows client vm - skipped        ============="
+    echo "====        create windows client vm - skipped            ===="
+    printTime
     echo "=============================================================="
-    echo
-    echo
-    echo
 fi
 if [ "$log_in_to_windows" = true ] ; then
-    getElapsedTime
     windows_server_login_start=$duration
     echo "=============================================================="
-    echo "====                                log in to $windows_server_vm_name          ============="
-    echo "====                                       $minutes:$seconds                       ============="
+    echo "====         log in to $windows_server_vm_name"
+    printTime
     echo "=============================================================="
     # echo scripts to install on remote computer for remote management
     # pwsh -Command 'Install-Module -Name PSWSMan'
@@ -760,58 +770,51 @@ if [ "$log_in_to_windows" = true ] ; then
     echo
 fi
 if [ "$list_kubernetes_clusters" = true ] ; then
-    echo
-    echo
-    echo
     echo "=============================================================="
-    echo "====                                list kubernetes           ============="
+    echo "====                  list kubernetes                     ===="
+    printTime
     echo "=============================================================="
-    echo
-    echo
-    echo
     echo azure kubernetes clusters show
     az aks show --resource-group $resource_group_name --name iHaveToSupplyAValidNameHere
-    echo
-    echo
-    echo
 else
     echo "=============================================================="
-    echo "====                             list kubernetes skipped      ============="
+    echo "====                list kubernetes skipped               ===="
     echo "=============================================================="
-    echo
-    echo
-    echo
 fi
-echo
-echo
-echo
 deallocate_vms=false
 if [ "$deallocate_vms" = true ] ; then
     az vm deallocate --resource-group $resource_group_name --name $ubuntu_vm_name
     az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
 fi
-echo
-echo
-echo
 echo "=============================================================="
-echo "====                               list resource groups       ============="
+echo "====                 list resource groups                 ===="
+printTime
 echo "=============================================================="
 source ./script-08-list-resource-groups.sh
 echo
 echo
 echo
 echo "=============================================================="
-echo "====                                   list vms               ============="
+echo "====                      list vms                        ===="
+printTime
 echo "=============================================================="
 source ./script-09-list-vms.sh
 echo
 echo
 echo
+echo "=============================================================="
+echo "====                  teaching script                     ===="
+printTime
+echo "=============================================================="
+source ./script-09-list-vms.sh
+echo
+echo
+echo
+
 if [ "$delete_vms" = true ] ; then
-    getElapsedTime
     echo "=============================================================="
-    echo "====                                      delete vms           ============"
-    echo "====                                      $minutes:$seconds            ============="
+    echo "====                      delete vms                      ===="
+    printTime
     echo "=============================================================="
     echo
     echo
@@ -823,18 +826,9 @@ if [ "$delete_vms" = true ] ; then
     echo
     echo delete windows server vm by vm name $windows_server_vm_name
     az vm delete --resource-group $resource_group_name --name $windows_server_vm_name --yes
-    echo
-    echo
-    echo
     #echo delete ubuntu vm by vm name $ubuntu_vm_name
     #az vm delete --resource-group $resource_group_name --name $ubuntu_vm_name --yes
-    echo
-    echo
-    echo
     #az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
-    echo
-    echo
-    echo
 fi
 echo
 echo
@@ -843,14 +837,10 @@ echo ... waiting 2 minutes then deleting all servers and all resource groups so 
 sleep 120
 delete_resource_groups=true
 if [ "$delete_resource_groups" = true ] ; then
-    getElapsedTime
     echo "====================================================================="
-    echo "====                                 delete resource groups             ============"
-    echo "====                                      $minutes:$seconds                    ============="
+    echo "====                  delete resource groups                     ===="
+    printTime
     echo "====================================================================="
-    echo
-    echo
-    echo
     IFS=$'\n' resource_group_names=($(az group list --query [].name -o tsv))
     echo resource group names are ...
     printf '%s\n' "${resource_group_names[@]}"
@@ -866,11 +856,10 @@ if [ "$delete_resource_groups" = true ] ; then
         fi
     done
 fi
-getElapsedTime
 endTimeOnMasterScript=$(date +%s)
 echo "====================================================================="
 echo "====                   azure script ended                        ===="
-echo "====                   $minutes:$seconds"
+printTime
 echo "====                  unix time $endTimeOnMasterScript"
 echo $endTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
 echo "====================================================================="
