@@ -805,9 +805,7 @@ echo "=============================================================="
 echo "====                  teaching script                     ===="
 printTime
 echo "=============================================================="
-echo pass through variable to remote host
-philTestVariable=philTestVariableSentToRemoteMachine
-ssh -i $ssh_key $admin_username@$public_ip_address "./script-90-teaching.zsh $philTestVariable"
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-teaching.zsh
 echo
 echo
 echo
