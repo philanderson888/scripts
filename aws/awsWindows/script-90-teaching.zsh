@@ -1,3 +1,9 @@
-echo pass through variable to remote host
-
-ssh pvt@192.168.1.133 "~/tools/run_pvt.pl $BUILD_NUMBER"
+echo
+echo
+echo
+echo teaching script
+echo passing through variable into remote script
+echo variable passed in is philTestVariable which has value $philTestVariable
+echo 
+echo
+echo

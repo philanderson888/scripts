@@ -31,7 +31,7 @@ getElapsedTime () {
 }
 printTime () {
     getElapsedTime
-    echo "====                    $minutes:$seconds"
+    echo "====                         $minutes:$seconds"
 }
 print_status_of_progress () {
     echo "=============================================================="
@@ -806,7 +806,9 @@ echo "=============================================================="
 echo "====                  teaching script                     ===="
 printTime
 echo "=============================================================="
-source ./script-09-list-vms.sh
+echo pass through variable to remote host
+philTestVariable=philTestVariableSentToRemoteMachine
+ssh -i $ssh_key $admin_username@$public_ip_address "./script-90-teaching.zsh $philTestVariable"
 echo
 echo
 echo
