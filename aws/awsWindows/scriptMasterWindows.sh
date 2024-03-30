@@ -496,8 +496,7 @@ if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
     echo "====             running node web server                  ===="
     printTime
     echo "=============================================================="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-41-run-node-web-server.sh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsLinux/script-06-run-node-web-server.sh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-41-run-node-web-server.zsh
 fi
 if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
     echo "=============================================================="
