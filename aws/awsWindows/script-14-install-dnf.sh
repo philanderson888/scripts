@@ -1,9 +1,7 @@
 #!/bin/bash
 echo "=============================================================="
-echo "====                                    install dnf                          ===="
-echo "====                                       $minutes:$seconds                               ===="
+echo "====                   install dnf                        ===="
 echo "=============================================================="
-echo install dnf
 if [ "$os" == "$os_ubuntu" ] ; then
     echo do not install dnf on ubuntu
     dnf_installed=false
