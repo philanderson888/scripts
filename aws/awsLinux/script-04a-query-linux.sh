@@ -1,27 +1,10 @@
 #!/bin/bash
-echo
-echo
-echo
 echo which shell am i using
 echo $SHELL 
 $SHELL --version
-echo
-echo
-echo
 echo "======================================================================="
-echo =======       script 04 .. 1 .. update and upgrade ... 2 .. query             ======
+echo "====               which flavour of linux is this machine          ===="
 echo "======================================================================="
-echo
-echo
-echo
-
-
-echo "======================================================================="
-echo =======              which flavour of linux is this machine                   ======
-echo "======================================================================="
-echo
-echo
-echo
 echo "running a case statement on /etc/os-release against the option 'ID'"
 . /etc/os-release
 linux_release_id=not_recognised
