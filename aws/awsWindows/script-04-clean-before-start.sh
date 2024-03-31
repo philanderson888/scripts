@@ -1,8 +1,8 @@
 resource_group_name=invalid
 if [ "$clean_before_start" = true ] ; then
-    echo "======================================================================="
-    echo "====                          rebuilding from scratch every time        ============="
-    echo "======================================================================="
+    echo "=============================================================="
+    echo "====        rebuilding from scratch every time            ===="
+    echo "=============================================================="
     echo tearing down and building up from scratch every time
     echo ... remove any resource groups if they contain the name 'Resource Group'
     echo ... parse the number of the last known resource group
@@ -12,16 +12,16 @@ if [ "$clean_before_start" = true ] ; then
     deleting_resource_group_and_servers=true
     environment_has_been_cleaned_before_start=true
 else
-    echo "======================================================================="
-    echo "====                             reusing servers if they exist          ============="
-    echo "======================================================================="
+    echo "=============================================================="
+    echo "====            reusing servers if they exist             ===="
+    echo "=============================================================="
     echo preserving existing resource group and servers so not tearing anything down ...
     echo
     echo
     echo
-    echo "======================================================================="
-    echo "====                                resource groups           ============="
-    echo "======================================================================="
+    echo "=============================================================="
+    echo "====                  resource groups                     ===="
+    echo "=============================================================="
     az group list      
     az group list -o table
     az group list --query [].name -o tsv
@@ -65,24 +65,22 @@ resource_group_name=invalid
 resource_group_new_index=-1
 resource_group_new_name=invalid
 if [ "$getting_existing_and_new_resource_group_names_before_deletion" = true ] ; then
-    echo "====================================================================="
-    echo "====                           getting existing and new resource group names            ============"
-    echo "====================================================================="
-    echo
-    echo
-    echo
-    az group list      
-    az group list -o table
+    echo "=============================================================="
+    echo "=============================================================="
+    echo "====                list resource groups                  ===="
+    echo "=============================================================="
+    az group list >> output-resource-groups.txt
+    az group list -o table >> output-resource-groups.txt
     az group list --query [].name -o tsv
-    echo
-    echo
-    echo
+    echo "=============================================================="
+    echo "====                get next resource group               ===="
+    echo "=============================================================="
     echo putting into an array
     IFS=$'\n' resource_group_names=($(az group list --query [].name -o tsv))
-    echo printing array
+    echo
+    echo for each resource group in list of resource groups
+    echo
     printf '%s\n' "${resource_group_names[@]}"
-    echo for each over array
-
     for array_index in "${!resource_group_names[@]}"
     do
         resource_group_name=${resource_group_names[$array_index]}
@@ -116,7 +114,7 @@ fi
 
 if [ "$deleting_resource_group_and_servers" = true ] ; then
     echo "====================================================================="
-    echo "====                                 deleting existing resource groups                  ============"
+    echo "====            deleting existing resource groups                ===="
     echo "====================================================================="
     for array_index in "${!resource_group_names[@]}"
     do
