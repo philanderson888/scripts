@@ -505,7 +505,7 @@ python3 -mplatform
 echo
 echo
 echo
-echo "gcc --verstion"
+echo "gcc --version"
 gcc --version
 echo
 echo
