@@ -1,10 +1,10 @@
 echo "====================================================================="
-echo "====                              list resource groups               ============="
+echo "====                  list resource groups                       ===="
 echo "====================================================================="
 az resource list --query "[].{resource:resourceGroup,name:name}" --output table
-echo
-echo
-echo
+echo "====================================================================="
+echo "====                   get resource group                        ===="
+echo "====================================================================="
 IFS=$'\n' resource_group_names=($(az group list --query [].name -o tsv))
 echo resource group names are ...
 printf '%s\n' "${resource_group_names[@]}"
@@ -19,7 +19,6 @@ done
 resource_group_name=$resource_group_valid_name
 echo resource group $resource_group_name will be used to build servers in 
 az resource list -g $resource_group_name -o table >> output-resource-groups.txt
-resource_group_listed=true
 echo
 echo
 echo
