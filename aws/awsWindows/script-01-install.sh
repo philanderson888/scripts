@@ -1,21 +1,22 @@
 if [ "$installing_aws_cli" = true ] ; then
-    echo "======================================================================="
-    echo "====                               installing aws client      ============="
-    echo "======================================================================="
+    echo "================================================================="
+    echo "====                   installing aws client                 ===="
+    echo "================================================================="
     brew update
     brew install azure-cli
     aws_cli_installed=true
 else
-    echo "======================================================================="
-    echo "====                           aws client is already installed         ============="
-    echo "======================================================================="
+    echo "=================================================================="
+    echo "====             aws client is already installed              ===="
+    echo "=================================================================="
     aws_cli_already_installed=true
 fi
 aws_version=$(aws --version)
+aws_version="${aws_version:0:16}"
 if [ "$installing_powershell" = true ] ; then
-    echo "======================================================================="
-    echo "====                            installing powershell         ============="
-    echo "======================================================================="
+    echo "==================================================================="
+    echo "====                  installing powershell                    ===="
+    echo "==================================================================="
     brew update
     brew install powershell/tap/powershell
     brew upgrade powershell
@@ -30,7 +31,7 @@ if [ "$installing_powershell" = true ] ; then
     powershell_installed=true
 else
     echo "======================================================================="
-    echo "====                           powershell is already instsalled        ============="
+    echo "====                 powershell is already installed               ===="
     echo "======================================================================="
     powershell_already_installed=true
 fi
