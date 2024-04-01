@@ -3,7 +3,8 @@ echo "======================================================================="
 echo "====                          shell                                ===="
 echo "======================================================================="
 shell_version=$($SHELL --version)
-echo shell in use on remote machine is $SHELL of version $shell_version
+echo "shell in use on remote machine is $SHELL"
+echo "remote shell version ${shell_version:0:57}"
 echo "======================================================================="
 echo "====                        linux version                          ===="
 echo "======================================================================="
@@ -36,17 +37,30 @@ esac
 if [[  "$os" == "$os_ubuntu" ]]; then
     os_type=$os_type_debian
 fi
-echo "======================================================================="
+echo "=================================================================="
 echo "====              update $os of type $os_type"
-echo "======================================================================="
+echo "=================================================================="
 if [[  "$os_type" == "$os_type_debian" ]]; then
-    echo "======================================================================="
-    echo "====                              apt-get install nginx                               ===="
-    echo "======================================================================="
-    sudo apt-get install nginx -y
-    echo "======================================================================="
-    echo "====                              update various services                             ===="
-    echo "======================================================================="
+    echo "=============================================================="
+    echo "====              apt-get install nginx"
+    echo "=============================================================="
+    echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+    sudo chmod 777 /var/cache/debconf/ 
+    sudo chmod 777 /var/cache/debconf/passwords.dat
+
+    sudo add-apt-repository universe
+    sudo apt-get -qq update -y
+
+    sudo apt-get install -y -q >> output.txt
+    sudo apt-get install dialog -y -q >> output.txt
+    sudo apt-get install apt-utils -y -q >> output.txt
+    sudo apt-get -qq install nginx -y >> output.txt
+
+    echo nginx version
+    nginx -v
+    echo "=============================================================="
+    echo "====               update various services                ===="
+    echo "=============================================================="
     sudo systemctl restart systemd-journald.service 
     sudo /etc/needrestart/restart.d/systemd-manager
     sudo systemctl restart systemd-networkd.service
