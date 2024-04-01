@@ -47,11 +47,17 @@ if [[  "$os_type" == "$os_type_debian" ]]; then
     echo "====================================================================="
     echo "====                    apt-get update                           ===="
     echo "====================================================================="
-    sudo apt-get update -y
+    sudo apt-get -qq update -y
     echo "====================================================================="
     echo "====                    apt-get upgrade                          ===="
     echo "====================================================================="
-    sudo apt-get upgrade -y
+    echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+    sudo chmod 777 /var/cache/debconf/ 
+    sudo chmod 777 /var/cache/debconf/passwords.dat
+    sudo apt-get install -y -q >> output.txt
+    sudo apt-get install dialog -y -q >> output.txt
+    sudo apt-get install apt-utils -y -q >> output.txt
+    sudo apt-get -qq upgrade -y >> output.txt
 elif [[  "$os_type" == "$os_type_fedora" ]]; then
     echo confirmation of red hat release version 
     echo "/etc/redhat-release"
@@ -78,7 +84,7 @@ if [[  "$operating_system_type" == "opensuse" ]]; then
     suzo zypper update
 fi
 echo "================================================================="
-echo "====                                 python                    ==========="
+echo "====                       python                            ===="
 echo "================================================================="
 echo python version
 python3 --version
@@ -88,6 +94,6 @@ echo python platform ... linux os on which python is built ....
 python3 -mplatform
 python_platform_version=$(python3 -mplatform)
 echo "==============================================================="
-echo "====                    update and upgrade linux complete    ==========="
+echo "====          update and upgrade linux complete            ===="
 echo "==============================================================="
 os_updated=true
