@@ -1,5 +1,7 @@
 #!/bin/zsh
-echo which shell am i using
+zsh
+echo which shell am i using ... fix this later as I really really really want to be using z shell here !!!
+echo it did not seem to work, setting zsh as the default shell ... why not ... would be good to know!
 echo $SHELL 
 $SHELL --version
 echo
@@ -8,7 +10,7 @@ echo
 echo which version of zsh is in use
 zsh --version
 echo "====================================================================="
-echo "====                             install oh my zsh                                  ===="
+echo "====        download and install zsh using curl command          ===="
 echo "====================================================================="
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # sudo lchsh $USER if you are on Fedora.

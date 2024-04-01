@@ -1,4 +1,8 @@
 #!/bin/zsh
+zsh
+cd ./.oh-my-zsh
+zsh
+cd ..
 echo which shell am i using
 echo $SHELL 
 $SHELL --version
@@ -10,5 +14,3 @@ zsh --version
 echo "====================================================================="
 echo "====                         test oh-my-zsh                            ===="
 echo "====================================================================="
-oh-my-zsh.sh
-

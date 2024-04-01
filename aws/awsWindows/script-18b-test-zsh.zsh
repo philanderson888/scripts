@@ -1,5 +1,6 @@
 #!/bin/zsh
-echo which shell am i using
+zsh
+echo which shell am i using ... fix this later as I really really really want to be using z shell here !!!
 echo $SHELL 
 $SHELL --version
 echo
