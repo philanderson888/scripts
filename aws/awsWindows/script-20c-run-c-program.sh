@@ -1,0 +1,23 @@
+echo "================================================================="
+echo "====                   create folder                        ====="
+echo "================================================================="
+mkdir c
+echo "================================================================="
+echo "====                     move files                         ====="
+echo "================================================================="
+mv ./script-20a-hello-world.c c
+cd c
+echo list files in c folder
+ls
+echo "================================================================="
+echo "====                   compile c program                    ====="
+echo "================================================================="
+cat ./script-20a-hello-world.c
+gcc ./script-20a-hello-world.c -o ./script-20a-hello-world-executable.c
+echo "================================================================="
+echo "====                    run c program                        ===="
+echo "================================================================="
+chmod 777 ./script-20a-hello-world-executable.c
+echo c program about to be run
+./script-20a-hello-world-executable.c
+echo c program has been run
