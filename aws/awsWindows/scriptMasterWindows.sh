@@ -33,6 +33,12 @@ printTime () {
     getElapsedTime
     echo "====                         $minutes:$seconds"
 }
+printHeading () {
+    echo "=============================================================="
+    echo $1
+    printTime
+    echo "=============================================================="
+}
 print_status_of_progress () {
     echo "=============================================================="
     echo "====                waypoint $waypoint $1"
@@ -58,27 +64,15 @@ print_status_of_progress () {
     elif [ "$resource_group_already_created" = false ] ; then
         echo resource group $resource_group_name already created
     fi
-    if [ "$resource_group_listed" = true ] ; then
-        echo resource group listing done
-    fi
-    if [ "$vm_templates_queried" = true ] ; then
-        echo vm templates queried
-    elif [ "$vm_templates_queried" = false ] ; then
-        echo vm templates not queried
-    fi
     if [ "$vm_created" = true ] ; then
         echo vm $vm_name ... image $vm_image .. os $os type $os_type
-        echo vm ip $public_ip_address
-    fi
-    if [ "$vm_queried" = true ] ; then
-        echo vm $vm_name queried
+        echo vm $vm_name has ip $public_ip_address
     fi
     if [ "$query_network_security_group" = true ] ; then
         echo network security group queried
     fi
-    if [ "$python_installed" = true ] ; then
-        echo python is installed of version $python_version
-        echo python platform is $python_platform_version
+    if [ "$remote_shell_obtained" = true ] ; then
+        echo remote shell version $remote_shell
     fi
     if [ "$dnf_installed" = true ] ; then
         echo dnf installed on vm $vm_name
@@ -90,10 +84,7 @@ print_status_of_progress () {
         echo os version is $python_platform_version
     fi
     if [ "$zsh_installed" = true ] ; then
-        echo zsh $zsh_remote_version has been installed on $vm_name
-    fi
-    if [ "$git_installed" = true ] ; then
-        echo git has been installed
+        echo zsh version $zsh_remote_version
     fi
     if [ "$install_services" = true ] ; then
         echo the following services will be installed ...
@@ -125,36 +116,47 @@ print_status_of_progress () {
     elif [ "$install_services" = false ] ; then
         echo services will not be installed
     fi
-    if [ "$c_installed" = true ] ; then
-        echo c compiler installed ... of version ...
-        echo "${c_version:0:30}"
+    if [ "$c_run" = true ] ; then
+        echo "c version ${c_version:0:30}"
+    fi
+    if [ "$cpp_run" = true ] ; then
+        echo "c++ version ${cpp_version:0:30}"
     fi
     if [ "$git_installed" = true ] ; then
-        echo git has been installed
+        echo "git version $git_version"
     fi
     if [ "$apache_installed" = true ] ; then
-        echo apache has been installed
+        echo "apache version $apache_version"
     fi
     if [ "$nginx_installed" = true ] ; then
-        echo nginx has been
+        echo "nginx version $nginx_version"
     fi
     if [ "$services_restarted" = true ] ; then
         echo services have been
     fi
     if [ "$node_installed" = true ] ; then
-        echo node has been installed
+        echo "node version $node_version"
+    fi
+    if [ "$npm_installed" = true ] ; then
+        echo "npm version $npm_version"
     fi
     if [ "$express_installed" = true ] ; then
-        echo express has been installed
+        echo "express version $express_version"
     fi
     if [ "$vue_installed" = true ] ; then
-        echo vue has been
+        echo "vue version $vue_version"
     fi
     if [ "$bun_installed" = true ] ; then
-        echo bun has been installed
+        echo "bun version $bun_version"
     fi
     if [ "$react_installed" = true ] ; then
-        echo react has been installed
+        echo "react version $react_version"
+    fi
+    if [ "$dot_net_installed" = true ] ; then
+        echo "dot net version $dot_net_version"
+    fi
+    if [ "$docker_installed" = true ] ; then
+        echo "docker version $docker_version"
     fi
 }
 
@@ -172,7 +174,7 @@ clean_before_start=true
 
 # resource group
 resource_group_prefix=ResourceGroup
-resource_group_index=01
+resource_group_index=02
 resource_group_name=$resource_group_prefix$resource_group_index
 resource_group_location=uksouth
 list_resource_groups=true
@@ -265,10 +267,7 @@ source ./script-07-query-vm-templates.sh
 waypoint=07
 print_status_of_progress "query vm templates"
 
-echo "=============================================================="
-echo "====                       set vm                         ===="
-printTime
-echo "=============================================================="
+printHeading "====                       set vm                         ===="
 if [ "$os" == "$os_ubuntu" ] ; then
     vm_name=$ubuntu_vm_name
     vm_image=$ubuntu_image_name
@@ -292,13 +291,36 @@ waypoint=12
 print_status_of_progress "query network security group performed"
 
 
-remote_shell_in_use=$(ssh -i $ssh_key $admin_username@$public_ip_address "$SHELL --version")
+remote_user_1=$(ssh -i $ssh_key $admin_username@$public_ip_address "whoami")
+remote_user_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "echo $USER")
+remote_user_3=$(ssh -i $ssh_key $admin_username@$public_ip_address "echo "$USER"")
+remote_user_4=$(ssh -i $ssh_key $admin_username@$public_ip_address "echo \"$USER\"")
+echo remote user 1
+echo $remote_user_1
+echo remote user 1
+echo $remote_user_1
+echo remote user 1
+echo $remote_user_1
+echo remote user 1
+echo $remote_user_1
+sleep 180
+
+printHeading "====                    get remote shell"
+remote_shell=$(ssh -i $ssh_key $admin_username@$public_ip_address "bash --version")
+remote_shell=${remote_shell:0:57}
+remote_shell_obtained=true
+
+
+printHeading "====                log in and get linux version"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-13-get-linux-version.sh
+ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
+
+
 waypoint=13
-echo test phil variable is $test_phil_variable
 print_status_of_progress "log in and get linux version"
 
 
+printHeading "                     dnf install"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-14-install-dnf.sh
 waypoint=14
 print_status_of_progress "dnf install"
@@ -306,9 +328,11 @@ print_status_of_progress "dnf install"
 
 echo "=============================================================="
 echo "====           update vm with apt/yum $vm_name"
+echo "====                check python3 version"
 printTime
 echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-16-update-server-to-latest-versions.sh
+python_platform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 -mplatform")
 waypoint=16
 print_status_of_progress "os updated"
 
@@ -327,31 +351,27 @@ waypoint=17
 print_status_of_progress "deciding which services to install"
 
 
-echo "=============================================================="
-echo "====                    install zsh                       ===="
-printTime
-echo "=============================================================="
+printHeading "====                    install zsh                       ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-18a-install-zsh.sh
 zsh_installed=true
 waypoint=18
 print_status_of_progress zsh
 
 
-
-echo "=============================================================="
-echo "====                     test zsh                         ===="
-printTime
-echo "=============================================================="
+printHeading "====                     test zsh                         ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-18b-test-zsh.zsh
 zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
 echo yes i got the zsh remote version which is ...
 echo $zsh_remote_version
+echo fix this later .. confusion between z shell and bash shell
 
 
 echo "=============================================================="
 echo "====                  install oh my z                     ===="
 printTime
 echo "=============================================================="
+
+
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-18c-install-oh-my-zsh.zsh
 echo "=============================================================="
 echo "====                 test oh my zsh                       ===="
@@ -360,25 +380,62 @@ echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-18d-test-oh-my-zsh.zsh
 
 
+
+
+printHeading "====                fish shell"
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-fish.zsh
+waypoint=19
+fish_installed=true
+fish_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "fish --version")
+echo fish version $fish_version
+print_status_of_progress "fish"
+
+
+
+
+
 echo "=============================================================="
 echo "====                  install c compiler                  ===="
 printTime
 echo "=============================================================="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-20-install-c-compiler.sh
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20b-install-c-compiler.sh
+c_installed=true
+
 echo "=============================================================="
 echo "====                   upload c program                   ===="
 printTime
 echo "=============================================================="
-cd ../awsWindows
 scp -i $ssh_key script-20a-hello-world.c $admin_username@$public_ip_address:script-20a-hello-world.c 
 echo "=============================================================="
 echo "====                     run c program                    ===="
 printTime
 echo "=============================================================="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-20b-run-c-program.sh
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20c-run-c-program.sh
 waypoint=20
-c_installed=true
+c_run=true
 c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "gcc --version")
+print_status_of_progress "c compiler"
+
+
+echo "=============================================================="
+echo "====                install cpp compiler                  ===="
+printTime
+echo "=============================================================="
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20e-install-cpp-compiler.sh
+cpp_installed=true
+echo "=============================================================="
+echo "====                 upload cpp program                   ===="
+printTime
+echo "=============================================================="
+scp -i $ssh_key script-20d-hello-world.cpp $admin_username@$public_ip_address:script-20d-hello-world.cpp
+echo "=============================================================="
+echo "====                   run cpp program                    ===="
+printTime
+echo "=============================================================="
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-20f-run-cpp-program.sh
+waypoint=20
+cpp_run=true
+cpp_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "g++ --version")
 print_status_of_progress "c compiler"
 
 
@@ -387,81 +444,87 @@ echo "====                     install git                      ===="
 printTime
 echo "=============================================================="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-21-install-git.sh
-git_installed=true
+git_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "git --version")
 waypoint=21
-print_status_of_progress git
+print_status_of_progress git installed
 
 
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-22-install-apache.sh
 waypoint=22
+apache_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "apache2 -v")
+# For CentOS/RHEL/Fedora Linux server, type command: httpd -v
+
 apache_installed=true
-print_status_of_progress apache
+print_status_of_progress apache installed
 
 
 if [ "$install_nginx" = true ] ; then
-    echo "=============================================================="
-    echo "====                 install nginx                        ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====                 install nginx                        ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-23-install-nginx.sh
-    echo "=============================================================="
-    echo "====               install nginx complete                 ===="
-    printTime
-    echo "=============================================================="
+    waypoint=23
+    nginx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "nginx -v")
+    nginx_installed=true
+    print_status_of_progress nginx installed
+    printHeading "====               install nginx complete                 ===="
 fi
 if [ "$restart_services" = true ] ; then
-    echo "=============================================================="
-    echo "====                update services                       ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====                update services                       ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-24-update-services.sh
-    echo "=============================================================="
-    echo "====             update services complete                 ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====             update services complete                 ===="
 fi
 
-
 if [ "$install_node" = true ] ; then
+    printHeading "              install node and npm in main script"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-25-install-node-npm.zsh
+    waypoint=25
+    node_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "node -v")
+    npm_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm -v")
+    node_installed=true
+    npm_installed=true
+    print_status_of_progress install node and npm
 fi
 
 
 
 if [ "$install_express" = true ] ; then
-    echo "=============================================================="
-    echo "====                install express                       ===="
-    printTime
-    echo "=============================================================="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-test2.zsh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-nothing.zsh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-test.zsh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-install-express.zsh
-    echo "=============================================================="
-    echo "====               install express done                   ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====                install express"
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-express.zsh
+    printHeading "====               install express done"
+    express_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "express -v")
+    express_installed=true
+
+    printHeading "====                  run express"
+    open -a Terminal ./script-26-launch-express.zsh
+
+    printHeading "====                test express"
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-test-express.zsh
+    waypoint=26
+    print_status_of_progress express installed run and tested
 fi
+
 if [ "$install_vue" = true ] ; then
-    echo "=============================================================="
-    echo "====                    install vue                       ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====                    install vue                       ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-28-install-vue.zsh
+    waypoint=28
+    vue_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vue -v")
+    vue_installed=true
+    print_status_of_progress install vue
 fi
 if [ "$install_bun" = true ] ; then
-    echo "=============================================================="
-    echo "====                     install bun                      ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====                     install bun                      ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-30-install-bun.zsh
+    waypoint=30
+    bun_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "bun -v")
+    bun_installed=true
+    print_status_of_progress install bun
 fi
 if [ "$install_react" = true ] ; then
-    echo "=============================================================="
-    echo "====                   install react                      ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====                   install react                      ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-32-install-react.zsh
+    waypoint=32
+    react_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "react -v")
+    react_installed=true
+    print_status_of_progress install react
 fi
 echo "=============================================================="
 echo "====                     running servers                  ===="
@@ -469,13 +532,13 @@ printTime
 echo "=============================================================="
 run_servers=true
 if [ "$run_servers" = true ] ; then
-    run_apache=false
-    run_nginx=false
+    run_apache=true
+    run_nginx=true
     run_node=true
-    run_express=false
-    run_vue=false
-    run_bun=false
-    run_react=false
+    run_express=true
+    run_vue=true
+    run_bun=true
+    run_react=true
 fi
 if [ "$apache_installed" = true ] && [ "$run_apache" = true ] ; then
     echo "=============================================================="
@@ -489,14 +552,16 @@ if [ "$nginx_installed" = true ] && [ "$run_nginx" = true ] ; then
     echo "====               run nginx web server                   ===="
     printTime
     echo "=============================================================="
-    source ./script-41-run-nginx-web-server.sh
+    #source ./script-41-run-nginx-web-server.sh
+    open -a Terminal ./script-41-run-nginx-web-server.sh
 fi
 if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
     echo "=============================================================="
     echo "====             running node web server                  ===="
     printTime
     echo "=============================================================="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-41-run-node-web-server.zsh
+    scp -i $ssh_key script-41-server.js $admin_username@$public_ip_address:script-41-server.js
+    open -a Terminal ./script-41-launch-node.zsh
 fi
 if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
     echo "=============================================================="
@@ -528,18 +593,42 @@ if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
 fi
 install_go=true
 if [ "$install_go" = true ] ; then
-    echo "=============================================================="
-    echo "====                 upload go program                    ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====                 upload go program                    ===="
     cd ../awsWindows
     scp -i $ssh_key script-34.go $admin_username@$public_ip_address:script-34.go
-    echo "=============================================================="
-    echo "====                install and run go                    ===="
-    printTime
-    echo "=============================================================="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-install-go.zsh
+    printHeading "====                install and run go                    ===="
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-install-go.zsh
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-test-go.zsh
 fi
+
+install_dot_net=true
+if [ "$install_dot_net" = true ] ; then
+    printHeading "====               install .net core               ===="
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-50-dot-net.zsh
+    waypoint=50
+    dot_net_installed=true
+    dot_net_sdks=$(ssh -i $ssh_key $admin_username@$public_ip_address "dotnet --list-sdks")
+    echo dot net sdks
+    echo $dot_net_sdks
+    dot_net_runtimes=$(ssh -i $ssh_key $admin_username@$public_ip_address "dotnet --list-runtimes")
+    echo dot net runtimes
+    echo $dot_net_runtimes
+    print_status_of_progress "dot net installed"
+fi
+
+
+
+
+install_docker=true
+if [ "$install_docker" = true ] ; then
+    printHeading "====               install docker                 ===="
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-51-docker.zsh
+    waypoint=51
+    docker_installed=true
+    docker_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version")
+    print_status_of_progress "docker"
+fi
+
 
 
 
@@ -801,30 +890,23 @@ source ./script-09-list-vms.sh
 echo
 echo
 echo
-echo "=============================================================="
-echo "====                  teaching script                     ===="
-printTime
-echo "=============================================================="
+
+
+printHeading "====           upload node teaching files                   ===="
+cd ../awsWindows
+scp -i $ssh_key script-90-teaching.js $admin_username@$public_ip_address:script-90-teaching.js
+scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:package.json
+printHeading "====           install and run teaching node                    ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-teaching.zsh
-echo
-echo
-echo
+
+
 
 if [ "$delete_vms" = true ] ; then
-    echo "=============================================================="
-    echo "====                      delete vms                      ===="
-    printTime
-    echo "=============================================================="
-    echo
-    echo
-    echo
+    printHeading "====                      delete vms                      ===="
     echo delete ubuntu vm by vm id $ubuntu_machine_id
     az vm delete --ids $ubuntu_machine_id --yes
-    echo
-    echo
-    echo
-    echo delete windows server vm by vm name $windows_server_vm_name
-    az vm delete --resource-group $resource_group_name --name $windows_server_vm_name --yes
+    #echo delete windows server vm by vm name $windows_server_vm_name
+    #az vm delete --resource-group $resource_group_name --name $windows_server_vm_name --yes
     #echo delete ubuntu vm by vm name $ubuntu_vm_name
     #az vm delete --resource-group $resource_group_name --name $ubuntu_vm_name --yes
     #az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
@@ -832,8 +914,10 @@ fi
 echo
 echo
 echo
-echo ... waiting 2 minutes then deleting all servers and all resource groups so we start from scratch every time ...
-sleep 120
+delayBeforeEraseAllServers=120
+delayInMinutesBeforeEraseAllServers=$(($delayBeforeEraseAllServers / 60))
+echo ... waiting $delayInMinutesBeforeEraseAllServers minutes then deleting all servers and all resource groups so we start from scratch every time ...
+sleep $delayBeforeEraseAllServers
 delete_resource_groups=true
 if [ "$delete_resource_groups" = true ] ; then
     echo "====================================================================="
@@ -849,9 +933,7 @@ if [ "$delete_resource_groups" = true ] ; then
         echo $resource_group_name
         if [[ $resource_group_name = 'ResourceGroup'* ]]; then
             echo found a resource group ... with name ... $resource_group_name
-            # az group wait --deleted --resource-group $resource_group_name
             az group delete --name $resource_group_name --yes
-            # az group delete --name $resource_group_name --force-deletion-types Microsoft.Compute/virtualMachines
         fi
     done
 fi
