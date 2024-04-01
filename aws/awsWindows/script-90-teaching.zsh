@@ -34,20 +34,20 @@ sudo apt-get -qq install nodejs -y >> output.txt
 node --version
 npm --version
 
-echo "adding some commands to .zshrc to get bash to recognise zsh !?!??!!?"
-echo "not sure ..."
-cat ~/.bashrc >> ~/.zshrc
-cat ~/.bash_profile >> ~/.zshrc
+echo "adding some commands to .zshrc to get bash to recognise zsh"
+echo "not sure"
+#cat ~/.bashrc >> ~/.zshrc
+#cat ~/.bash_profile >> ~/.zshrc
 node -v
 npm -v
 echo 
 echo
-echo "features learned in logical format ... for ease of finding them !!!"
+echo "features learned in logical format - for ease of finding them"
 echo "list files"
 ls
 echo move to js folder
 mkdir js
-mv ./script-90.js js
+mv ./script-90-teaching.js js
 mv ./package.json js
 cd js
 echo list files in js folder
@@ -59,4 +59,4 @@ npm install
 echo "=============================================================="
 echo "====                     run node                         ===="
 echo "=============================================================="
-node ./script-90.js
+node ./script-90-teaching.js
