@@ -4,7 +4,7 @@ if [ "$creating_resource_group_and_servers" = true ] ; then
     echo "=============================================================="
     resource_group_name=$resource_group_new_name
     if [[ "$resource_group_name" == "invalid" ]] ; then
-        resource_group_name=ResourceGroup01
+        resource_group_name=ResourceGroup02
     fi
     echo creating resource group $resource_group_name in uk south region
     az group create --name $resource_group_name --location $resource_group_location
