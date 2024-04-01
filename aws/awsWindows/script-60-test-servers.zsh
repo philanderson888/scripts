@@ -1,5 +1,8 @@
 #!/bin/zsh
-
+zsh
+cd ./.oh-my-zsh
+zsh
+cd ..
 ip=$public_ip_address
 
 echo now lets see summary of all web servers before we terminate the instance ...
