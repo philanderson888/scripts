@@ -1,7 +1,11 @@
 #!/bin/zsh
-echo "======================================================================="
-echo "====                           install vue               =================="
-echo "======================================================================="
+zsh
+cd ./.oh-my-zsh
+zsh
+cd ..
+echo "=================================================================="
+echo "====                      install vue                         ===="
+echo "=================================================================="
 library=vue
 projectName="${library}WebServer"
 port=3010
@@ -16,5 +20,5 @@ cd StarAdmin-Free-Vue-Admin-Template
 npm install
 endTime=$(date +%s)
 scriptDuration=$(($endTime-$startTime))
-echo ... 6.12 ... $library web server install complete ... and took ... $scriptDuration seconds
+echo "... 6.12 ... $library web server install complete ... and took ... $scriptDuration seconds"
 echo
