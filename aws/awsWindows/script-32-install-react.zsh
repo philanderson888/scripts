@@ -48,14 +48,14 @@ echo
 
 #echo yarn create react app
 #yarn create react-app server09
-cd server09
+#cd server09
 
-echo about to set the port to $port
-sed -i 's/react-scripts start/PORT=3009 react-scripts start/g' package.json
+#echo about to set the port to $port
+#sed -i 's/react-scripts start/PORT=3009 react-scripts start/g' package.json
 
-echo starting react app on port $port
-npm start
+#echo starting react app on port $port
+#npm start
 
-curl localhost:3009 -s
-curl ::1:3009 -s
-curl $ip:3009 -s
+#curl localhost:3009 -s
+#curl ::1:3009 -s
+#curl $ip:3009 -s
