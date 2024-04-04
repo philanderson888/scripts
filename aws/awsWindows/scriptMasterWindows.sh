@@ -140,8 +140,12 @@ print_status_of_progress () {
     if [ "$npm_installed" = true ] ; then
         echo "npm version $npm_version"
     fi
+    if [ "$npx_installed" = true ] ; then
+        echo "npx version $npx_version"
+    fi
     if [ "$express_installed" = true ] ; then
-        echo "express version $express_version"
+        echo "express version   $express_version"
+        echo "express version 2 $express_version_2"
     fi
     if [ "$vue_installed" = true ] ; then
         echo "vue version $vue_version"
@@ -153,7 +157,8 @@ print_status_of_progress () {
         echo "react version $react_version"
     fi
     if [ "$dot_net_installed" = true ] ; then
-        echo "dot net version $dot_net_version"
+        echo "dot net sdks $dot_net_sdks"
+        echo "dot net runtimes $dot_net_runtimes"
     fi
     if [ "$docker_installed" = true ] ; then
         echo "docker version $docker_version"
@@ -342,10 +347,10 @@ if [ "$install_services" = true ] ; then
     install_nginx=true
     restart_services=true
     install_node=true
-    install_express=false
-    install_vue=false
-    install_bun=false
-    install_react=false
+    install_express=true
+    install_vue=true
+    install_bun=true
+    install_react=true
 fi
 waypoint=17
 print_status_of_progress "deciding which services to install"
@@ -479,9 +484,11 @@ if [ "$install_node" = true ] ; then
     waypoint=25
     node_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "node -v")
     npm_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm -v")
+    express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
     node_installed=true
     npm_installed=true
-    print_status_of_progress install node and npm
+    express_installed=true
+    print_status_of_progress install node and npm and express
 fi
 
 
@@ -497,13 +504,13 @@ if [ "$install_express" = true ] ; then
     open -a Terminal ./script-26-launch-express.zsh
 
     printHeading "====                test express"
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-test-express.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-express.zsh
     waypoint=26
     print_status_of_progress express installed run and tested
 fi
 
 if [ "$install_vue" = true ] ; then
-    printHeading "====                    install vue                       ===="
+    printHeading "====                    install vue   3                   ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-28-install-vue.zsh
     waypoint=28
     vue_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vue -v")
@@ -522,10 +529,18 @@ if [ "$install_react" = true ] ; then
     printHeading "====                   install react                      ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-32-install-react.zsh
     waypoint=32
+    npx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npx -v")
     react_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "react -v")
+    npx_installed=true
     react_installed=true
     print_status_of_progress install react
 fi
+
+
+
+
+
+
 echo "=============================================================="
 echo "====                     running servers                  ===="
 printTime
@@ -552,8 +567,7 @@ if [ "$nginx_installed" = true ] && [ "$run_nginx" = true ] ; then
     echo "====               run nginx web server                   ===="
     printTime
     echo "=============================================================="
-    #source ./script-41-run-nginx-web-server.sh
-    open -a Terminal ./script-41-run-nginx-web-server.sh
+    echo nginx install works ... nothing to test at present
 fi
 if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
     echo "=============================================================="
@@ -568,8 +582,10 @@ if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
     echo "====             run express web server                   ===="
     printTime
     echo "=============================================================="
-    source ../awsWindows/script-42-run-express-web-server.sh
+    source ../awsWindows/script-42-run-express.sh
 fi
+
+run_vue=false
 if [ "$vue_installed" = true ] && [ "$run_vue" = true ] ; then
     echo "=============================================================="
     echo "====               run vue web server                     ===="
@@ -577,6 +593,7 @@ if [ "$vue_installed" = true ] && [ "$run_vue" = true ] ; then
     echo "=============================================================="
     source ../awsWindows/script-44-run-vue-web-server.sh
 fi
+run_bun=false
 if [ "$bun_installed" = true ] && [ "$run_bun" = true ] ; then
     echo "=============================================================="
     echo "====                 run bun web server                  ====="
@@ -584,6 +601,7 @@ if [ "$bun_installed" = true ] && [ "$run_bun" = true ] ; then
     echo "=============================================================="
     source ../awsWindows/script-46-run-bun-web-server.sh
 fi
+run_react=false
 if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
     echo "=============================================================="
     echo "====                run react web server                  ===="
@@ -591,15 +609,59 @@ if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
     echo "=============================================================="
     source ../awsWindows/script-48-run-react-web-server.sh
 fi
+
+
 install_go=true
 if [ "$install_go" = true ] ; then
     printHeading "====                 upload go program                    ===="
     cd ../awsWindows
     scp -i $ssh_key script-34.go $admin_username@$public_ip_address:script-34.go
     printHeading "====                install and run go                    ===="
-    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-install-go.zsh
-    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-test-go.zsh
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-go.zsh
 fi
+
+
+install_java=true
+if [ "$install_java" = true ] ; then
+    printHeading "====               install java                    ===="
+    scp -i $ssh_key script-38-java.java $admin_username@$public_ip_address:script-38-java.java
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-38-install-java.zsh
+    waypoint=38
+    java_c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "javac -version")
+    java_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "java -version")
+    print_status_of_progress "java installed"
+fi
+
+
+
+install_maria_db=true
+if [ "$install_maria_db" = true ] ; then
+    printHeading "====            install maria db                    ===="
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-43-maria-db.zsh
+    waypoint=43
+    maria_db_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mariadb -V")
+    print_status_of_progress "maria db"
+fi
+
+
+
+
+
+install_mongo_db=true
+if [ "$install_mongo_db" = true ] ; then
+    printHeading "====            install mongo db                    ===="
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-44-mongo-db.zsh
+    waypoint=44
+    mongo_db_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mongod --version")
+    print_status_of_progress "mongo db"
+fi
+
+
+
+
+
+
+
 
 install_dot_net=true
 if [ "$install_dot_net" = true ] ; then
@@ -622,6 +684,7 @@ fi
 install_docker=true
 if [ "$install_docker" = true ] ; then
     printHeading "====               install docker                 ===="
+    scp -i $ssh_key script-51-docker-compose-2.yaml $admin_username@$public_ip_address:compose.yaml
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-51-docker.zsh
     waypoint=51
     docker_installed=true
@@ -631,6 +694,12 @@ fi
 
 
 
+
+express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
+node_installed=true
+npm_installed=true
+express_installed=true
+print_status_of_progress install node and npm and express
 
 
 

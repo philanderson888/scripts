@@ -3565,3 +3565,660 @@ Name              Location    Status
 ----------------  ----------  ---------
 NetworkWatcherRG  uksouth     Succeeded
 
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup02",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "ResourceGroup02",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+ResourceGroup02   uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup02",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "ResourceGroup02",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+ResourceGroup02   uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup02",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "ResourceGroup02",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+ResourceGroup02   uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup03",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "ResourceGroup03",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+ResourceGroup03   uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup02",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "ResourceGroup02",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+ResourceGroup02   uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup02",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "ResourceGroup02",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+ResourceGroup02   uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup03",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "ResourceGroup03",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+ResourceGroup03   uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup04",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "ResourceGroup04",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+ResourceGroup04   uksouth     Succeeded
+

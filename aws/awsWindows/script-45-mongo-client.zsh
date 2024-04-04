@@ -1,0 +1,3 @@
+
+echo install mongo client
+

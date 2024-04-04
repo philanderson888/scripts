@@ -19,22 +19,11 @@ sudo apt-get install docker-ce-cli -y
 sudo apt-get install containerd.io -y
 sudo apt-get install docker-buildx-plugin -y
 sudo apt-get install docker-compose-plugin -y0
-
-echo
-echo
-echo
-echo groupadd docker
-sudo groupadd docker
 echo
 echo
 echo
 echo usermod docker
 sudo usermod -aG docker ${USER}
-echo
-echo
-echo
-echo su user
-su -s ${USER}
 echo
 echo
 echo
@@ -80,8 +69,43 @@ echo
 echo
 echo docker run ubuntu
 docker run ubuntu whoami
+docker run ubuntu pwd
+touch myDockerFile.sh
+echo echo hello from running docker file by phil anderson the mega scripter >> myDockerFile.sh
+echo
+echo
+echo
+echo printing out shell file which is about to be run inside docker container
+cat ./myDockerFile.sh
+echo
+echo
+echo
+echo running my script inside docker container
+docker exec ubuntu ./myDockerFile.sh
 echo 
 echo 
+echo
+echo run docker interactive shell
+docker exec -it docker /bin/bash
+echo
+echo
+echo
+echo docker images
+docker ps
+echo
+echo
+echo
+echo docker running images
+docker ps -a
+echo
+echo
+echo
+echo docker pull alpine
+docker pull alpine
+echo docker run alpine
+docker run alpine whoami
+echo
+echo
 echo
 echo docker pull debian
 docker pull debian
@@ -90,10 +114,164 @@ echo
 echo
 echo docker run debian
 docker run debian whoami
+docker run debian pwd
 echo
 echo
 echo
+
+echo ls
+ls
+echo mkdir docker
+mkdir docker
+echo move compose.yaml to docker folder
+mv ./compose.yaml docker
+cd docker
+echo ls
+ls 
+
+docker compose up
+
+docker compose up -d
+
+curl localhost
+
+# Output:
+# <!DOCTYPE html>
+# <html>
+# <head>
+# <title>Welcome to nginx!</title>
+# ...
+
+echo
+echo
+echo
+echo docker images
+docker ps
+echo
+echo
+echo
+echo docker running images
+docker ps -a
+echo
+echo
+echo
+
 echo end docker script
 echo
 echo
 echo
+
+echo now kubectl
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+echo download checksum
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+
+
+echo validate checksum
+
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+
+
+
+echo install kubectl
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+echo kubectl version
+
+kubectl version --client
+
+echo kubectl detailed version
+
+kubectl version --client --output=yaml
+
+echo download minikube
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+echo install minikube
+
+sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+
+echo start minikube
+
+minikube start
+
+echo minikube use
+
+echo Alternatively, minikube can download the appropriate version of kubectl and you should be able to use it like this:
+
+minikube kubectl -- get po -A
+
+echo alias kubectl="minikube kubectl --"
+
+alias kubectl="minikube kubectl --"
+
+kubectl get po -A
+
+echo some services eg storage-provisioner may not be running
+echo this is normal during cluster bring-up
+echo this will resolve itself
+
+echo minkube dashboard shows status of clusters
+minikube dashboard
+
+
+
+
+echo Create a sample deployment and expose it on port 8080:
+
+kubectl create deployment hello-minikube --image=kicbase/echo-server:1.0
+
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+echo It may take a moment, but your deployment will soon show up when you run:
+
+kubectl get services hello-minikube
+
+echo The easiest way to access this service is to let minikube launch a web browser for you:
+
+minikube service hello-minikube
+
+echo Alternatively, use kubectl to forward the port:
+
+kubectl port-forward service/hello-minikube 7080:8080
+
+echo Tada! Your application is now available at http://localhost:7080/.
+
+echo You should be able to see the request metadata in the application output. Try changing the path of the request and observe the changes. Similarly, you can do a POST request and observe the body show up in the output.
+
+
+
+
+
+echo Halt the cluster:
+
+minikube stop
+
+
+echo Change the default memory limit (requires a restart):
+
+minikube config set memory 9001
+
+echo browse the catalog of easily installed Kubernetes services:
+
+minikube addons list
+
+
+echo Create a second cluster running an older Kubernetes release:
+
+minikube start -p aged --kubernetes-version=v1.16.1
+
+
+echo Delete all of the minikube clusters:
+
+minikube delete --all
+
+
+
+
+

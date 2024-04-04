@@ -114,6 +114,14 @@ ls
 echo "npm version using npm list express"
 npm list express
 echo "======================================================================="
+echo "====                        upgrade npm                            ===="
+echo "======================================================================="
+npm install -g npm@latest -y
+echo "======================================================================="
+echo "====                upgrade npm with sudo                          ===="
+echo "======================================================================="
+npm install -g npm@latest -y
+echo "======================================================================="
 echo "====                    npm start express  1                       ===="
 echo "======================================================================="
 echo "cannot run this right now - have to start in a different process"
@@ -131,23 +139,37 @@ echo "======================================================================="
 echo "====                     express complete    1                     ===="
 echo "======================================================================="
 echo "======================================================================="
-echo "====                        install vue                            ===="
+echo "====                        install vue   1                        ===="
 echo "======================================================================="
-library=vue
-projectName="${library}WebServer"
+projectName="vueWebServer"
 port=3010
 echo
-echo installing $library web server
+echo install vue
 startTime="$(date +%s)"
 echo installing create-vue
-#npm install -g create-vue
 npm install create-vue
+echo "======================================================================="
+echo "====                      clone vue repo                           ===="
+echo "======================================================================="
 git clone https://github.com/BootstrapDash/StarAdmin-Free-Vue-Admin-Template.git
-cd StarAdmin-Free-Vue-Admin-Template
+echo "======================================================================="
+echo "====                 npm install on cloned repo                    ===="
+echo "======================================================================="
+mv StarAdmin-Free-Vue-Admin-Template vue
+cd vue
 npm install
 endTime=$(date +%s)
 scriptDuration=$(($endTime-$startTime))
-echo "$library web server install complete - took $scriptDuration seconds"
+echo "vue install complete - took $scriptDuration seconds"
+
+echo
+echo
+echo
+echo create-vue is based on vite
+echo older vue cli was based on webpack
+echo npm create vue latest
+npm create vue@latest
+
 echo "======================================================================="
 echo "====                     install zip                               ===="
 echo "======================================================================="

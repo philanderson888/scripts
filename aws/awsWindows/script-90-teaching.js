@@ -60,15 +60,21 @@ console.log('====               ps-list                    ====')
 console.log('====         list all process ...             ====')
 console.log('====      in this case break early ...        ====')
 console.log('==================================================')
-for (const process of psList()) {
+const runningProcesses = await psList()
+
+let testProcessId = 0;
+
+for (const process of runningProcesses) {
     console.log(process)
+
+    testProcessId = process.pid;
+
     if (process.pid > 1) {
         break;
     }
 }
-
 console.log('==================================================')
-console.log('====               ps-node                    ====')
+console.log('====             ps-node v1                   ====')
 console.log('==================================================')
 ps.lookup({
     command: 'node',
@@ -84,3 +90,19 @@ ps.lookup({
         }
     });
 });
+console.log('==================================================')
+console.log('====             ps-node v2                   ====')
+console.log('==================================================')
+ps.lookup({ testProcessId }, function (err, resultList) {
+    if (err) {
+      throw new Error(err);
+    }
+    const process = resultList[0];
+    if (process) {
+      console.log(JSON.stringify(process));
+    }
+    else {
+      console.log(JSON.stringify({}));
+    }
+  });
+
