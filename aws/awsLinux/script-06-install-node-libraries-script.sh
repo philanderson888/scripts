@@ -88,8 +88,19 @@ startTime="$(date +%s)"
 echo installing create-vue
 npm install -g create-vue
 npm install create-vue
-git clone https://github.com/BootstrapDash/StarAdmin-Free-Vue-Admin-Template.git
-cd StarAdmin-Free-Vue-Admin-Template
+
+
+cd ~
+echo git clone github kontent-ai sample-app-vue
+git clone https://github.com/kontent-ai/sample-app-vue
+echo
+echo
+echo
+echo mv sample-app-vue vue25150
+mv sample-app-vue vue25150
+cd vue25150
+
+
 npm install
 endTime=$(date +%s)
 scriptDuration=$(($endTime-$startTime))

@@ -1,15 +1,30 @@
 #!/bin/zsh
+echo zsh
 zsh
+echo
+echo
+echo
+echo cd .oh-my-zsh
 cd ./.oh-my-zsh
+echo
+echo
+echo
+echo zsh
 zsh
-cd ..
-echo which shell am i using
-echo $SHELL 
+echo
+echo
+echo
+echo shell
+echo $SHELL
+echo
+echo
+echo
+echo shell version 
 $SHELL --version
 echo
 echo
 echo
-echo which version of zsh is in use
+echo zsh version
 zsh --version
 echo "====================================================================="
 echo "====                         test oh-my-zsh                            ===="

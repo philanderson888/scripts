@@ -1,3 +1,8 @@
+clear
+echo screen cleared
+echo
+echo
+echo
 echo shell running on mac
 echo $SHELL 
 $SHELL --version
@@ -34,10 +39,18 @@ printTime () {
     echo "====                         $minutes:$seconds"
 }
 printHeading () {
+    echo
+    echo
+    echo
+    echo "=============================================================="
     echo "=============================================================="
     echo $1
     printTime
     echo "=============================================================="
+    echo "=============================================================="
+    echo
+    echo
+    echo
 }
 print_status_of_progress () {
     echo "=============================================================="
@@ -83,8 +96,19 @@ print_status_of_progress () {
         echo os has been updated and upgraded
         echo os version is $python_platform_version
     fi
+    if [ "$linux_details_obtained" = true ] ; then
+        echo linux version $linux_version
+        echo linux os details $linux_details
+        echo linux codename $linux_codename
+        echo linux id_like $linux_id_like
+        echo python version $python_version
+        echo python platform version $python_platform_version
+    fi
     if [ "$zsh_installed" = true ] ; then
         echo zsh version $zsh_remote_version
+    fi
+    if [ "$fish_installed" = true ] ; then
+        echo fish version $fish_version
     fi
     if [ "$install_services" = true ] ; then
         echo the following services will be installed ...
@@ -116,20 +140,14 @@ print_status_of_progress () {
     elif [ "$install_services" = false ] ; then
         echo services will not be installed
     fi
-    if [ "$c_run" = true ] ; then
+    if [ "$c_installed" = true ] ; then
         echo "c version ${c_version:0:30}"
     fi
-    if [ "$cpp_run" = true ] ; then
+    if [ "$cpp_installed" = true ] ; then
         echo "c++ version ${cpp_version:0:30}"
     fi
     if [ "$git_installed" = true ] ; then
         echo "git version $git_version"
-    fi
-    if [ "$apache_installed" = true ] ; then
-        echo "apache version $apache_version"
-    fi
-    if [ "$nginx_installed" = true ] ; then
-        echo "nginx version $nginx_version"
     fi
     if [ "$services_restarted" = true ] ; then
         echo services have been
@@ -142,6 +160,30 @@ print_status_of_progress () {
     fi
     if [ "$npx_installed" = true ] ; then
         echo "npx version $npx_version"
+    fi
+    if [ "$maria_db_installed" = true ] ; then
+        echo "maria db version $maria_db_version"
+        echo "maria db version $maria_db_version_mysqladmin"
+    fi
+    if [ "$mongo_db_installed" = true ] ; then
+        echo "mongo db version $mongo_db_version"
+    fi
+    if [ "$mongo_shell_installed" = true ] ; then
+        echo "mongo shell version $mongo_shell_version"
+    fi
+    if [ "$dot_net_installed" = true ] ; then
+        echo "dot net sdks $dot_net_sdks"
+        echo "dot net runtimes $dot_net_runtimes"
+    fi
+    if [ "$docker_installed" = true ] ; then
+        echo "docker version client $docker_version_client"
+        echo "docker version server $docker_version_server"
+    fi
+    if [ "$apache_installed" = true ] ; then
+        echo "apache version $apache_version"
+    fi
+    if [ "$nginx_installed" = true ] ; then
+        echo "nginx version $nginx_version"
     fi
     if [ "$express_installed" = true ] ; then
         echo "express version   $express_version"
@@ -156,12 +198,9 @@ print_status_of_progress () {
     if [ "$react_installed" = true ] ; then
         echo "react version $react_version"
     fi
-    if [ "$dot_net_installed" = true ] ; then
-        echo "dot net sdks $dot_net_sdks"
-        echo "dot net runtimes $dot_net_runtimes"
-    fi
-    if [ "$docker_installed" = true ] ; then
-        echo "docker version $docker_version"
+    if [ "$end_of_script" = true ] ; then
+        echo list files and hidden files
+        echo $list_files_and_hidden_files
     fi
 }
 
@@ -193,6 +232,7 @@ os_type_debian=debian
 os_type_fedora=fedora
 os_ubuntu=ubuntu
 ubuntu_image_name=Ubuntu2204
+ubuntu_version=Ubuntu_2204_Jammy
 os=$os_ubuntu
 if [[  "$os" == "$os_ubuntu" ]]; then
     os_type=$os_type_debian
@@ -242,8 +282,11 @@ touch output-network-security-group.txt
 touch output-azure-vm-image-templates.txt
 touch output-azure_vms.txt
 
-source ./script-01-install.sh
+# root directory
+root_directory=~/github/scripts/aws/awsWindows
+cd $root_directory
 
+source ./script-01-install.sh
 waypoint=01
 print_status_of_progress "installing aws and powershell"
 
@@ -272,13 +315,13 @@ source ./script-07-query-vm-templates.sh
 waypoint=07
 print_status_of_progress "query vm templates"
 
-printHeading "====                       set vm                         ===="
+
+
 if [ "$os" == "$os_ubuntu" ] ; then
     vm_name=$ubuntu_vm_name
     vm_image=$ubuntu_image_name
     vm_os_set=true
     create_vm=true
-    echo we will be building a $os vm
 fi
 waypoint=09
 print_status_of_progress "set vm type to be $os"
@@ -289,26 +332,16 @@ print_status_of_progress "vm created"
 
 source ./script-11-query-vm.sh
 waypoint=11
-print_status_of_progress "vm queried"
+print_status_of_progress "query vm using azure cli"
 
 source ./script-12-query-network-security-groups.sh
 waypoint=12
 print_status_of_progress "query network security group performed"
 
+printHeading "====                    who am i USER"
+remote_user=$(ssh -i $ssh_key $admin_username@$public_ip_address "whoami")
+echo username $remote_user
 
-remote_user_1=$(ssh -i $ssh_key $admin_username@$public_ip_address "whoami")
-remote_user_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "echo $USER")
-remote_user_3=$(ssh -i $ssh_key $admin_username@$public_ip_address "echo "$USER"")
-remote_user_4=$(ssh -i $ssh_key $admin_username@$public_ip_address "echo \"$USER\"")
-echo remote user 1
-echo $remote_user_1
-echo remote user 1
-echo $remote_user_1
-echo remote user 1
-echo $remote_user_1
-echo remote user 1
-echo $remote_user_1
-sleep 180
 
 printHeading "====                    get remote shell"
 remote_shell=$(ssh -i $ssh_key $admin_username@$public_ip_address "bash --version")
@@ -316,27 +349,28 @@ remote_shell=${remote_shell:0:57}
 remote_shell_obtained=true
 
 
-printHeading "====                log in and get linux version"
-ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-13-get-linux-version.sh
+printHeading "====                     query linux"
+ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-13-get-linux-version.sh
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
-
-
+linux_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep '^VERSION=' /etc/os-release")
+linux_details=$(ssh -i $ssh_key $admin_username@$public_ip_address "hostnamectl")
+linux_codename=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep 'VERSION_CODENAME' /etc/os-release")
+linux_id_like=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep '^ID_LIKE' /etc/os-release")
+python_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 --version")
+python_platform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 -mplatform")
+linux_details_obtained=true
 waypoint=13
-print_status_of_progress "log in and get linux version"
+print_status_of_progress "query linux"
 
 
-printHeading "                     dnf install"
-ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-14-install-dnf.sh
+printHeading "====                   dnf install"
+ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-14-install-dnf.sh
 waypoint=14
 print_status_of_progress "dnf install"
 
 
-echo "=============================================================="
-echo "====           update vm with apt/yum $vm_name"
-echo "====                check python3 version"
-printTime
-echo "=============================================================="
-ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-16-update-server-to-latest-versions.sh
+printHeading "====                   update os"
+ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-16-update-server-to-latest-versions.sh
 python_platform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 -mplatform")
 waypoint=16
 print_status_of_progress "os updated"
@@ -356,195 +390,147 @@ waypoint=17
 print_status_of_progress "deciding which services to install"
 
 
-printHeading "====                    install zsh                       ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-18a-install-zsh.sh
+printHeading "====                       zsh                            ===="
+ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-18a-install-zsh.sh
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18b-test-zsh.zsh
+zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
 zsh_installed=true
 waypoint=18
 print_status_of_progress zsh
 
 
-printHeading "====                     test zsh                         ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-18b-test-zsh.zsh
-zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
-echo yes i got the zsh remote version which is ...
-echo $zsh_remote_version
-echo fix this later .. confusion between z shell and bash shell
-
-
-echo "=============================================================="
-echo "====                  install oh my z                     ===="
-printTime
-echo "=============================================================="
-
-
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-18c-install-oh-my-zsh.zsh
-echo "=============================================================="
-echo "====                 test oh my zsh                       ===="
-echo "====                   $minutes:$seconds"
-echo "=============================================================="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-18d-test-oh-my-zsh.zsh
+printHeading "====                    oh my zsh                         ===="
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18c-install-oh-my-zsh.zsh
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18d-test-oh-my-zsh.zsh
 
 
 
-
-printHeading "====                fish shell"
+printHeading "====          fish friendly interactive shell             ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-fish.zsh
 waypoint=19
 fish_installed=true
 fish_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "fish --version")
 echo fish version $fish_version
-print_status_of_progress "fish"
+print_status_of_progress fish
 
 
-
-
-
-echo "=============================================================="
-echo "====                  install c compiler                  ===="
-printTime
-echo "=============================================================="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20b-install-c-compiler.sh
-c_installed=true
-
-echo "=============================================================="
-echo "====                   upload c program                   ===="
-printTime
-echo "=============================================================="
+printHeading "====                      c                               ===="
 scp -i $ssh_key script-20a-hello-world.c $admin_username@$public_ip_address:script-20a-hello-world.c 
-echo "=============================================================="
-echo "====                     run c program                    ===="
-printTime
-echo "=============================================================="
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20b-install-c-compiler.sh
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20c-run-c-program.sh
 waypoint=20
-c_run=true
+c_installed=true
 c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "gcc --version")
-print_status_of_progress "c compiler"
+print_status_of_progress "c"
 
 
-echo "=============================================================="
-echo "====                install cpp compiler                  ===="
-printTime
-echo "=============================================================="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20e-install-cpp-compiler.sh
-cpp_installed=true
-echo "=============================================================="
-echo "====                 upload cpp program                   ===="
-printTime
-echo "=============================================================="
+printHeading "====                      c++                             ===="
 scp -i $ssh_key script-20d-hello-world.cpp $admin_username@$public_ip_address:script-20d-hello-world.cpp
-echo "=============================================================="
-echo "====                   run cpp program                    ===="
-printTime
-echo "=============================================================="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-20f-run-cpp-program.sh
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20e-install-cpp-compiler.sh
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20f-run-cpp-program.sh
 waypoint=20
-cpp_run=true
+cpp_installed=true
 cpp_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "g++ --version")
-print_status_of_progress "c compiler"
+print_status_of_progress "c++"
 
 
-echo "=============================================================="
-echo "====                     install git                      ===="
-printTime
-echo "=============================================================="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-21-install-git.sh
+printHeading "====                         git                          ===="
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-21-install-git.sh
 git_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "git --version")
+git_installed=true
 waypoint=21
-print_status_of_progress git installed
+print_status_of_progress git
 
-
-ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-22-install-apache.sh
+printHeading "====                        apache                        ===="
+ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-22-install-apache.sh
 waypoint=22
+apache_installed=true
 apache_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "apache2 -v")
 # For CentOS/RHEL/Fedora Linux server, type command: httpd -v
+print_status_of_progress apache
 
-apache_installed=true
-print_status_of_progress apache installed
 
 
 if [ "$install_nginx" = true ] ; then
-    printHeading "====                 install nginx                        ===="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-23-install-nginx.sh
-    waypoint=23
+    printHeading "====                      nginx                           ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-23-install-nginx.sh
     nginx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "nginx -v")
+    waypoint=23
     nginx_installed=true
-    print_status_of_progress nginx installed
-    printHeading "====               install nginx complete                 ===="
-fi
-if [ "$restart_services" = true ] ; then
-    printHeading "====                update services                       ===="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsWindows/script-24-update-services.sh
-    printHeading "====             update services complete                 ===="
+    print_status_of_progress nginx
 fi
 
+
+if [ "$restart_services" = true ] ; then
+    printHeading "====               restart services                       ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-24-update-services.sh
+fi
+
+
 if [ "$install_node" = true ] ; then
-    printHeading "              install node and npm in main script"
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-25-install-node-npm.zsh
+    printHeading "====              node npm express                         ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-25-install-node-npm.zsh
     waypoint=25
     node_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "node -v")
     npm_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm -v")
-    express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
+    express_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
     node_installed=true
     npm_installed=true
     express_installed=true
-    print_status_of_progress install node and npm and express
+    print_status_of_progress node npm express
 fi
 
 
 
 if [ "$install_express" = true ] ; then
-    printHeading "====                install express"
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-26-express.zsh
-    printHeading "====               install express done"
-    express_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "express -v")
-    express_installed=true
-
-    printHeading "====                  run express"
-    open -a Terminal ./script-26-launch-express.zsh
-
-    printHeading "====                test express"
+    printHeading "====                     express 26                        ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-express.zsh
+    express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
+    express_installed_2=true
+    echo "running express in second terminal"
+    open -a Terminal ./script-26-launch-express.zsh
     waypoint=26
-    print_status_of_progress express installed run and tested
+    print_status_of_progress "express 2"
 fi
 
 if [ "$install_vue" = true ] ; then
-    printHeading "====                    install vue   3                   ===="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-28-install-vue.zsh
+    printHeading "====                         vue                         ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-28-install-vue.zsh
     waypoint=28
     vue_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vue -v")
     vue_installed=true
-    print_status_of_progress install vue
+    print_status_of_progress vue
 fi
+
 if [ "$install_bun" = true ] ; then
-    printHeading "====                     install bun                      ===="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-30-install-bun.zsh
+    printHeading "====                         bun                         ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-30-install-bun.zsh
     waypoint=30
     bun_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "bun -v")
     bun_installed=true
-    print_status_of_progress install bun
+    print_status_of_progress bun
 fi
 if [ "$install_react" = true ] ; then
-    printHeading "====                   install react                      ===="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ../awsWindows/script-32-install-react.zsh
+    printHeading "====                        react                        ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-32-install-react.zsh
     waypoint=32
+    echo npx version is installed at way point 32 - install it earlier 
     npx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npx -v")
     react_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "react -v")
     npx_installed=true
     react_installed=true
-    print_status_of_progress install react
+    echo 
+    echo
+    echo
+    echo - - - have a look at the file listing - does it contain package json files - - - 
+    echo sleep 1
+    sleep 1
+    print_status_of_progress react
 fi
 
 
 
-
-
-
-echo "=============================================================="
-echo "====                     running servers                  ===="
-printTime
-echo "=============================================================="
+printHeading "====                    running servers                  ===="
 run_servers=true
 if [ "$run_servers" = true ] ; then
     run_apache=true
@@ -582,7 +568,7 @@ if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
     echo "====             run express web server                   ===="
     printTime
     echo "=============================================================="
-    source ../awsWindows/script-42-run-express.sh
+    source ./script-42-run-express.sh
 fi
 
 run_vue=false
@@ -591,7 +577,7 @@ if [ "$vue_installed" = true ] && [ "$run_vue" = true ] ; then
     echo "====               run vue web server                     ===="
     printTime
     echo "=============================================================="
-    source ../awsWindows/script-44-run-vue-web-server.sh
+    source ./script-44-run-vue-web-server.sh
 fi
 run_bun=false
 if [ "$bun_installed" = true ] && [ "$run_bun" = true ] ; then
@@ -599,7 +585,7 @@ if [ "$bun_installed" = true ] && [ "$run_bun" = true ] ; then
     echo "====                 run bun web server                  ====="
     printTime
     echo "=============================================================="
-    source ../awsWindows/script-46-run-bun-web-server.sh
+    source ./script-46-run-bun-web-server.sh
 fi
 run_react=false
 if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
@@ -607,23 +593,22 @@ if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
     echo "====                run react web server                  ===="
     printTime
     echo "=============================================================="
-    source ../awsWindows/script-48-run-react-web-server.sh
+    source ./script-48-run-react-web-server.sh
 fi
 
 
 install_go=true
 if [ "$install_go" = true ] ; then
-    printHeading "====                 upload go program                    ===="
-    cd ../awsWindows
+    printHeading "====                install go - failing                 ===="
+    cd $root_directory
     scp -i $ssh_key script-34.go $admin_username@$public_ip_address:script-34.go
-    printHeading "====                install and run go                    ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-go.zsh
 fi
 
 
 install_java=true
 if [ "$install_java" = true ] ; then
-    printHeading "====               install java                    ===="
+    printHeading "====                  install java                       ===="
     scp -i $ssh_key script-38-java.java $admin_username@$public_ip_address:script-38-java.java
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-38-install-java.zsh
     waypoint=38
@@ -640,6 +625,9 @@ if [ "$install_maria_db" = true ] ; then
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-43-maria-db.zsh
     waypoint=43
     maria_db_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mariadb -V")
+    maria_db_version_mysqladmin=$(ssh -i $ssh_key $admin_username@$public_ip_address "sudo mysqladmin version")
+    maria_db_version_mysqladmin=${maria_db_version_mysqladmin:0:80}
+    maria_db_installed=true
     print_status_of_progress "maria db"
 fi
 
@@ -653,12 +641,21 @@ if [ "$install_mongo_db" = true ] ; then
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-44-mongo-db.zsh
     waypoint=44
     mongo_db_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mongod --version")
+    mongo_db_installed=true
     print_status_of_progress "mongo db"
 fi
 
 
 
-
+install_mongo_shell=true
+if [ "$install_mongo_shell" = true ] ; then
+    printHeading "====            install mongo shell                    ===="
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-45-mongo-shell.zsh
+    waypoint=45
+    mongo_shell_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mongosh --version")
+    mongo_shell_installed=true
+    print_status_of_progress "mongo shell"
+fi
 
 
 
@@ -684,11 +681,17 @@ fi
 install_docker=true
 if [ "$install_docker" = true ] ; then
     printHeading "====               install docker                 ===="
-    scp -i $ssh_key script-51-docker-compose-2.yaml $admin_username@$public_ip_address:compose.yaml
+    echo "====    note - maybe work through kubectl and minikube using interactive shell first * * * "
+    scp -i $ssh_key script-51-docker-compose.yaml $admin_username@$public_ip_address:script-51-docker-compose.yaml
+    scp -i $ssh_key script-51-kubectl.yaml $admin_username@$public_ip_address:script-51-kubectl.yaml
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-51-docker.zsh
     waypoint=51
     docker_installed=true
-    docker_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version")
+    docker_version_client=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Client.Version}}'")
+    docker_version_server=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Server.Version}}'")
+    docker version --format '{{.Client.APIVersion}}'
+
+
     print_status_of_progress "docker"
 fi
 
@@ -964,9 +967,21 @@ echo
 printHeading "====           upload node teaching files                   ===="
 cd ../awsWindows
 scp -i $ssh_key script-90-teaching.js $admin_username@$public_ip_address:script-90-teaching.js
-scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:package.json
+scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:script-90-package.json
 printHeading "====           install and run teaching node                    ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-teaching.zsh
+
+
+printHeading "====              bash scripting a to z                    ===="
+cd ../awsWindows
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-bash-commands.zsh
+
+
+
+printHeading "====                     list files                        ===="
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-92-list-files.zsh
+
+
 
 
 

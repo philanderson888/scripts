@@ -112,11 +112,7 @@ if [ "$install_apache" = true ] && [ "$os_type" == "$os_type_fedora" ]; then
     # cd /etc/pki/tls/certs
     # echo not sure if this command works or not
     # sudo ./make-dummy-cert localhost.crt
-    echo
-    echo
-    echo
-    apache_installed=true
     echo "=============================================================="
-    echo "====                   install apache complete                         ===="
+    echo "====               install apache complete                ===="
     echo "=============================================================="
 fi

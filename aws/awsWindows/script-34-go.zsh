@@ -5,18 +5,16 @@ echo "====                        install go "
 echo "======================================================================="
 echo list files
 ls
-echo list files and hidden files
-ls -lah
+echo
+echo
+echo
 echo install go using wget on linux
 wget --quiet -O - https://git.io/vQhTU -o /dev/null | bash
 
-echo install go using curl on mac
-curl -L https://git.io/vQhTU | bash
-
-echo not sure what is happening here but I think i am making go available to bash
+#echo install go using curl on mac
+#curl -L https://git.io/vQhTU | bash
+echo source bashrc
 source /home/azureuser/.bashrc
-
-
 echo "======================================================================="
 echo "====                        add go to PATH                         ===="
 echo "======================================================================="
@@ -29,11 +27,7 @@ go version
 echo "======================================================================="
 echo "====                     run   go version                          ===="
 echo "======================================================================="
-echo list files in home directory
-ls
-echo
-echo
-echo
+cd ~
 echo move to go folder
 mv script-34.go go
 cd go

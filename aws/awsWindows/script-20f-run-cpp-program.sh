@@ -12,13 +12,9 @@ ls
 echo "================================================================="
 echo "====                   compile cpp                           ===="
 echo "================================================================="
-cat ./script-20d-hello-world.cpp
 g++ ./script-20d-hello-world.cpp -o ./script-20d-hello-world-executable.cpp
 echo "================================================================="
 echo "====                    run cpp                              ===="
 echo "================================================================="
 chmod 777 ./script-20d-hello-world-executable.cpp
-echo cpp program about to be run
 ./script-20d-hello-world-executable.cpp
-echo cpp program has been run
-cpp_run=true

@@ -46,6 +46,7 @@ echo "====================================================================="
 if [[  "$os_type" == "$os_type_debian" ]]; then
     echo "====================================================================="
     echo "====                    apt-get update                           ===="
+    echo "====                  * * * silent * * *                         ===="
     echo "====================================================================="
     sudo apt-get -qq update -y
     echo "====================================================================="
@@ -86,13 +87,15 @@ fi
 echo "================================================================="
 echo "====                       python                            ===="
 echo "================================================================="
-echo python version
-python3 --version
 python_version=$(python3 --version)
-python_installed=true
-echo python platform ... linux os on which python is built .... 
-python3 -mplatform
+echo python version 
+echo $python_version
+echo
+echo
+echo
 python_platform_version=$(python3 -mplatform)
+echo python platform ... linux os on which python is built .... 
+echo $python_platform_version
 echo "==============================================================="
 echo "====          update and upgrade linux complete            ===="
 echo "==============================================================="

@@ -1,8 +1,11 @@
 #!/bin/zsh
 zsh
-echo which shell am i using ... fix this later as I really really really want to be using z shell here !!!
-echo it did not seem to work, setting zsh as the default shell ... why not ... would be good to know!
-echo $SHELL 
+echo shell
+echo $SHELL
+echo
+echo
+echo
+echo shell version 
 $SHELL --version
 echo
 echo

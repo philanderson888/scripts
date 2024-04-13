@@ -1,12 +1,25 @@
 #!/bin/bash
 echo "======================================================================="
-echo "====                          shell                                ===="
+echo "====                          shell 01310                          ===="
 echo "======================================================================="
 shell_version=$($SHELL --version)
 echo "shell in use on remote machine is $SHELL"
 echo "remote shell version ${shell_version:0:57}"
+echo
+echo
+echo
+echo touch output.txt 01310
+touch output.txt
+echo
+echo
+echo
+echo chmod 777 output.txt
+chmod 777 output.txt
+echo
+echo
+echo
 echo "======================================================================="
-echo "====                        linux version                          ===="
+echo "====                     linux version 01320                       ===="
 echo "======================================================================="
 os_type_debian=debian
 os_ubuntu=ubuntu
@@ -38,28 +51,30 @@ if [[  "$os" == "$os_ubuntu" ]]; then
     os_type=$os_type_debian
 fi
 echo "=================================================================="
-echo "====              update $os of type $os_type"
+echo "====              update $os of type $os_type 01330"
 echo "=================================================================="
 if [[  "$os_type" == "$os_type_debian" ]]; then
     echo "=============================================================="
-    echo "====              apt-get install nginx"
+    echo "====              apt-get install nginx 01340"
     echo "=============================================================="
     echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
     sudo chmod 777 /var/cache/debconf/ 
     sudo chmod 777 /var/cache/debconf/passwords.dat
-
-    sudo add-apt-repository universe
-    sudo apt-get -qq update -y
-
+    sudo add-apt-repository universe >> output.txt
+    sudo apt-get -qq update -y >> output.txt
+    sleep 1
     sudo apt-get install -y -q >> output.txt
     sudo apt-get install dialog -y -q >> output.txt
     sudo apt-get install apt-utils -y -q >> output.txt
     sudo apt-get -qq install nginx -y >> output.txt
-
-    echo nginx version
+    echo "=============================================================="
+    echo "====                    nginx version 01350               ===="
+    echo "=============================================================="
+    echo keep sleep 1
+    sleep 1
     nginx -v
     echo "=============================================================="
-    echo "====               update various services                ===="
+    echo "====               update various services 01360          ===="
     echo "=============================================================="
     sudo systemctl restart systemd-journald.service 
     sudo /etc/needrestart/restart.d/systemd-manager

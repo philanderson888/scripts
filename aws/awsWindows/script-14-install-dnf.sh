@@ -4,7 +4,8 @@ echo "======================================================================="
 echo "====                          shell                                ===="
 echo "======================================================================="
 shell_version=$($SHELL --version)
-echo "shell in use on remote machine is $SHELL of version echo ${c_version:0:57}"
+echo "shell in use on remote machine is $SHELL"
+echo "remote shell version ${shell_version:0:57}"
 echo "======================================================================="
 echo "====                        linux version                          ===="
 echo "======================================================================="
@@ -42,7 +43,8 @@ echo "====              update $os of type $os_type 2"
 echo "=================================================================="
 if [[  "$os_type" == "$os_type_debian" ]]; then
     echo "=============================================================="
-    echo "====              apt-get install nginx  2                 ===="
+    echo "====              apt-get install nginx  2                ===="
+    echo "====                 * * * silent * * *                   ===="
     echo "=============================================================="
     sudo apt-get install nginx -y >> output.txt
     echo "=============================================================="
@@ -61,8 +63,6 @@ elif [[  "$os_type" == "$os_type_fedora" ]]; then
     echo "-f /etc/redhat-release"
     echo -f /etc/redhat-release
 fi
-
-
 echo "=============================================================="
 echo "====                   install dnf                        ===="
 echo "=============================================================="
