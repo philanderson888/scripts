@@ -561,7 +561,9 @@ if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
     printTime
     echo "=============================================================="
     scp -i $ssh_key script-41-server.js $admin_username@$public_ip_address:script-41-server.js
+    echo aaaa
     open -a Terminal ./script-41-launch-node.zsh
+    echo bbbb
 fi
 if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
     echo "=============================================================="
