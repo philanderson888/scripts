@@ -9,6 +9,7 @@ config
 # passwords
 adminPassword.txt
 # output files
+output*
 output.txt
 outputNetworkSecurityGroupInformation.txt
 output-azure_vms.txt
