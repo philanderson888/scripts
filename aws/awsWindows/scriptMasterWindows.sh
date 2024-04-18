@@ -699,6 +699,14 @@ fi
 
 
 
+echo install terraform
+
+echo https://medium.com/@sanghpriya785/running-your-first-terraform-hello-world-example-4bd8bb5c3efc
+
+echo https://www.terraformbyexample.com/hello-world
+
+echo https://developer.hashicorp.com/terraform/install
+
 
 express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
 node_installed=true
