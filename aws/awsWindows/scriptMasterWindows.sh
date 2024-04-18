@@ -258,7 +258,7 @@ admin_password=$(cat $admin_password_file)
 ssh_key_public=~/.ssh/azureCliUbuntuLogin.pub
 ssh_key=~/.ssh/azureCliUbuntuLogin.pem
 echo user $admin_username
-echo pass $admin_password
+echo pass ... 
 
 # resource groups and vms
 query_assets=true
