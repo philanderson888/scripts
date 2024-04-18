@@ -707,6 +707,10 @@ echo https://www.terraformbyexample.com/hello-world
 
 echo https://developer.hashicorp.com/terraform/install
 
+echo ansible
+
+echo https://www.ansible.com/how-ansible-works/
+
 
 express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
 node_installed=true
