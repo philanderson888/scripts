@@ -1,0 +1,1181 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "/Users/phil/github/scripts",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2024-04-18 04:45:37",
+            "filesum": 177,
+            "codesum": 349157,
+            "commentsum": 8006,
+            "blanksum": 1239,
+            "statistics": {
+                ".code-workspace": {
+                    "code": 7,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".sql": {
+                    "code": 16,
+                    "comment": 0,
+                    "blank": 5
+                },
+                "": {
+                    "code": 232,
+                    "comment": 3,
+                    "blank": 31
+                },
+                ".txt": {
+                    "code": 342472,
+                    "comment": 7712,
+                    "blank": 453
+                },
+                ".json": {
+                    "code": 600,
+                    "comment": 0,
+                    "blank": 10
+                },
+                ".rb": {
+                    "code": 18,
+                    "comment": 6,
+                    "blank": 3
+                },
+                ".ps1": {
+                    "code": 369,
+                    "comment": 8,
+                    "blank": 95
+                },
+                ".sh": {
+                    "code": 3606,
+                    "comment": 239,
+                    "blank": 544
+                },
+                ".bat": {
+                    "code": 8,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".log": {
+                    "code": 198,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".ahk": {
+                    "code": 48,
+                    "comment": 8,
+                    "blank": 7
+                },
+                ".js": {
+                    "code": 126,
+                    "comment": 4,
+                    "blank": 12
+                },
+                ".tsx": {
+                    "code": 8,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".zsh": {
+                    "code": 1369,
+                    "comment": 18,
+                    "blank": 65
+                },
+                ".cpp": {
+                    "code": 31,
+                    "comment": 4,
+                    "blank": 7
+                },
+                ".md": {
+                    "code": 2,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".java": {
+                    "code": 9,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".yaml": {
+                    "code": 6,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".go": {
+                    "code": 5,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".c": {
+                    "code": 27,
+                    "comment": 4,
+                    "blank": 6
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": ".aliases.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": ".bash_profile"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/bunServer.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/directly-sign-in-to-server.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 595,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/launchOutput.txt"
+                },
+                {
+                    "blank": 1,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/nodeExpressServer.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/nodeExpressServer_package.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 4,
+                    "filename": "aws/awsLinux/script-01-install-aws-linux-cli.sh"
+                },
+                {
+                    "blank": 29,
+                    "code": 57,
+                    "comment": 8,
+                    "filename": "aws/awsLinux/script-02-sign-in-to-aws.sh"
+                },
+                {
+                    "blank": 1,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-03-spin-up-aws-instance-01.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-03-spin-up-aws-instance-03.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-03-spin-up-aws-instance-04-amazon-linux.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-03-spin-up-aws-instance-05-ubuntu-linux.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-03-spin-up-aws-instance-amazon-linux.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-03-spin-up-aws-instance-ubuntu.sh"
+                },
+                {
+                    "blank": 1,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-03-spin-up-aws-instance.json"
+                },
+                {
+                    "blank": 30,
+                    "code": 52,
+                    "comment": 13,
+                    "filename": "aws/awsLinux/script-04-query-aws.sh"
+                },
+                {
+                    "blank": 2,
+                    "code": 7,
+                    "comment": 1,
+                    "filename": "aws/awsLinux/script-04a-launch.sh"
+                },
+                {
+                    "blank": 4,
+                    "code": 459,
+                    "comment": 80,
+                    "filename": "aws/awsLinux/script-04a-query-linux.sh"
+                },
+                {
+                    "blank": 9,
+                    "code": 71,
+                    "comment": 33,
+                    "filename": "aws/awsLinux/script-05-install-apache-web-server.sh"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 1,
+                    "filename": "aws/awsLinux/script-05-launch.sh"
+                },
+                {
+                    "blank": 5,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "aws/awsLinux/script-06-install-node-libraries-launcher.sh"
+                },
+                {
+                    "blank": 4,
+                    "code": 111,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-06-install-node-libraries-script.sh"
+                },
+                {
+                    "blank": 4,
+                    "code": 25,
+                    "comment": 1,
+                    "filename": "aws/awsLinux/script-06-launch.sh"
+                },
+                {
+                    "blank": 12,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-06-run-node-web-server.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": "aws/awsLinux/script-06-server.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 15,
+                    "comment": 3,
+                    "filename": "aws/awsLinux/script-07-install-and-run-bun-web-server.sh"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "aws/awsLinux/script-07-launch.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-08-install-and-run-node-express-web-server.sh"
+                },
+                {
+                    "blank": 2,
+                    "code": 25,
+                    "comment": 1,
+                    "filename": "aws/awsLinux/script-08-launch.sh"
+                },
+                {
+                    "blank": 6,
+                    "code": 15,
+                    "comment": 3,
+                    "filename": "aws/awsLinux/script-09-install-and-run-create-react-app.sh"
+                },
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": "aws/awsLinux/script-10-launch.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 36,
+                    "comment": 4,
+                    "filename": "aws/awsLinux/script-10-run-vue-web-server.sh"
+                },
+                {
+                    "blank": 4,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "aws/awsLinux/script-99-terminate-aws-instances.sh"
+                },
+                {
+                    "blank": 99,
+                    "code": 301,
+                    "comment": 5,
+                    "filename": "aws/awsLinux/scriptMaster.sh"
+                },
+                {
+                    "blank": 2,
+                    "code": 43,
+                    "comment": 1,
+                    "filename": "aws/awsLinux/test-servers.sh"
+                },
+                {
+                    "blank": 1,
+                    "code": 38,
+                    "comment": 1,
+                    "filename": "aws/awsLinux/test-web-servers-from-ec2-instance.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/adminPassword.txt"
+                },
+                {
+                    "blank": 1,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/awsWindowsInstance01.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/awsWindowsInstance02-m5.json"
+                },
+                {
+                    "blank": 7,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/directly-sign-in-to-server.sh"
+                },
+                {
+                    "blank": 133,
+                    "code": 343,
+                    "comment": 7712,
+                    "filename": "aws/awsWindows/log-2024-04-18.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 195,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/networkSecurityGroupJsonProvision.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 143,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/networkSecurityGroupJsonProvision2.json"
+                },
+                {
+                    "blank": 16,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/output-azure-vm-image-templates.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 234634,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/output-azure_vms.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 56737,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/output-network-security-group.txt"
+                },
+                {
+                    "blank": 291,
+                    "code": 4454,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/output-resource-groups.txt"
+                },
+                {
+                    "blank": 13,
+                    "code": 45156,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/output.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 543,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/outputNetworkSecurityGroupInformation.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-01-install.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 19,
+                    "comment": 16,
+                    "filename": "aws/awsWindows/script-02-log-in-to-azure.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-03-query-azure-account.sh"
+                },
+                {
+                    "blank": 9,
+                    "code": 120,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-04-clean-before-start.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-05-create-resource-group.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-06-list-resource-group-names.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 85,
+                    "comment": 9,
+                    "filename": "aws/awsWindows/script-07-query-vm-templates.sh"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-08-list-resource-groups.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-09-list-vms.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-10-create-vm.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-11-query-vm.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-12-query-network-security-groups.sh"
+                },
+                {
+                    "blank": 1,
+                    "code": 89,
+                    "comment": 1,
+                    "filename": "aws/awsWindows/script-13-get-linux-version.sh"
+                },
+                {
+                    "blank": 1,
+                    "code": 81,
+                    "comment": 2,
+                    "filename": "aws/awsWindows/script-14-install-dnf.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 101,
+                    "comment": 1,
+                    "filename": "aws/awsWindows/script-16-update-server-to-latest-versions.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-18a-install-zsh.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-18b-test-zsh.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-18c-install-oh-my-zsh.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-18d-test-oh-my-zsh.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-19-fish.zsh"
+                },
+                {
+                    "blank": 6,
+                    "code": 27,
+                    "comment": 4,
+                    "filename": "aws/awsWindows/script-20a-hello-world.c"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-20b-install-c-compiler.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-20c-run-c-program.sh"
+                },
+                {
+                    "blank": 7,
+                    "code": 31,
+                    "comment": 4,
+                    "filename": "aws/awsWindows/script-20d-hello-world.cpp"
+                },
+                {
+                    "blank": 0,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-20e-install-cpp-compiler.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-20f-run-cpp-program.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 2,
+                    "filename": "aws/awsWindows/script-21-install-git.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 110,
+                    "comment": 8,
+                    "filename": "aws/awsWindows/script-22-install-apache.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-23-install-nginx.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-24-update-services.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 227,
+                    "comment": 6,
+                    "filename": "aws/awsWindows/script-25-install-node-npm.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-26-express.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-26-launch-express.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-26-run-express.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-26-test-express.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 54,
+                    "comment": 1,
+                    "filename": "aws/awsWindows/script-28-install-vue.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 1,
+                    "filename": "aws/awsWindows/script-30-install-bun.zsh"
+                },
+                {
+                    "blank": 4,
+                    "code": 70,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-32-install-react.zsh"
+                },
+                {
+                    "blank": 6,
+                    "code": 66,
+                    "comment": 2,
+                    "filename": "aws/awsWindows/script-34-go.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-34.go"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-36-install-dot-net-core.zsh"
+                },
+                {
+                    "blank": 5,
+                    "code": 90,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-38-install-java.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-38-java.java"
+                },
+                {
+                    "blank": 1,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-40-run-apache-web-server.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-41-launch-node.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-41-run-node.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": "aws/awsWindows/script-41-server.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-42-run-express.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 43,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-43-maria-db.zsh"
+                },
+                {
+                    "blank": 10,
+                    "code": 45,
+                    "comment": 1,
+                    "filename": "aws/awsWindows/script-44-mongo-db.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 47,
+                    "comment": 2,
+                    "filename": "aws/awsWindows/script-45-mongo-shell.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 1,
+                    "filename": "aws/awsWindows/script-50-dot-net.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-51-docker-compose.yaml"
+                },
+                {
+                    "blank": 33,
+                    "code": 341,
+                    "comment": 3,
+                    "filename": "aws/awsWindows/script-51-docker.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-51-kubectl.yaml"
+                },
+                {
+                    "blank": 1,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-60-test-servers.zsh"
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-90-package.json"
+                },
+                {
+                    "blank": 11,
+                    "code": 97,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-90-teaching.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 89,
+                    "comment": 1,
+                    "filename": "aws/awsWindows/script-90-teaching.zsh"
+                },
+                {
+                    "blank": 2,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-91-bash-commands.zsh"
+                },
+                {
+                    "blank": 1,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/script-92-list-files.zsh"
+                },
+                {
+                    "blank": 5,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "aws/awsWindows/scriptMaster.ps1"
+                },
+                {
+                    "blank": 117,
+                    "code": 881,
+                    "comment": 33,
+                    "filename": "aws/awsWindows/scriptMasterWindows.sh"
+                },
+                {
+                    "blank": 7,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "azure/create-azure-database.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "azure/create-azure-virtual-machine-2.ps1"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "azure/create-azure-virtual-machine-3.ps1"
+                },
+                {
+                    "blank": 1,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "azure/create-azure-virtual-machine-4.ps1"
+                },
+                {
+                    "blank": 1,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "azure/create-azure-virtual-machine.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "azure/remove-azure-database.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "devops/docker/install-docker-on-windows.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "devops/docker/install-visual-studio-community-edition.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "devops/docker/install-windows-subsystem-for-linux.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "devops/kubernetes/config"
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "devops/packer/template.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant-hyperv-1/.vagrant/machines/default/hyperv/vagrant_cwd"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 2,
+                    "filename": "devops/vagrant-hyperv-1/.vagrant/rgloader/loader.rb"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "devops/vagrant-hyperv-1/Vagrant.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "devops/vagrant-hyperv-1/Vagrantfile"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant/.vagrant/machines/default/virtualbox/action_provision"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant/.vagrant/machines/default/virtualbox/action_set_name"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant/.vagrant/machines/default/virtualbox/box_meta"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant/.vagrant/machines/default/virtualbox/creator_uid"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant/.vagrant/machines/default/virtualbox/id"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant/.vagrant/machines/default/virtualbox/index_uuid"
+                },
+                {
+                    "blank": 0,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "devops/vagrant/.vagrant/machines/default/virtualbox/private_key"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant/.vagrant/machines/default/virtualbox/synced_folders"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant/.vagrant/machines/default/virtualbox/vagrant_cwd"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 2,
+                    "filename": "devops/vagrant/.vagrant/rgloader/loader.rb"
+                },
+                {
+                    "blank": 5,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "devops/vagrant/environment/provision.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 198,
+                    "comment": 0,
+                    "filename": "devops/vagrant/ubuntu-xenial-16.04-cloudimg-console.log"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "devops/vagrant/Vagrantfile"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "devops/vagrant/Vagrantfile2"
+                },
+                {
+                    "blank": 10,
+                    "code": 59,
+                    "comment": 2,
+                    "filename": "devops/vagrant/Vagrantfile3"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant2/.vagrant/machines/web/virtualbox/action_set_name"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant2/.vagrant/machines/web/virtualbox/creator_uid"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant2/.vagrant/machines/web/virtualbox/id"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "devops/vagrant2/.vagrant/machines/web/virtualbox/index_uuid"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 2,
+                    "filename": "devops/vagrant2/.vagrant/rgloader/loader.rb"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "devops/vagrant2/Vagrantfile"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "linux/learn_bash.sh"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "MAC/.aliases.sh"
+                },
+                {
+                    "blank": 16,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "MAC/.bash_profile"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "MAC/.bash_profile2"
+                },
+                {
+                    "blank": 42,
+                    "code": 136,
+                    "comment": 2,
+                    "filename": "MAC/gitcheckMAC.sh"
+                },
+                {
+                    "blank": 117,
+                    "code": 129,
+                    "comment": 2,
+                    "filename": "MAC/gitcheckWorkMAC.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "MAC/learning_bash_on_mac.sh"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "scripts.code-workspace"
+                },
+                {
+                    "blank": 5,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "SQL/SQLBeginnerScript.sql"
+                },
+                {
+                    "blank": 7,
+                    "code": 48,
+                    "comment": 8,
+                    "filename": "Windows/AutoHotKey/AutoHotkey.ahk"
+                },
+                {
+                    "blank": 55,
+                    "code": 78,
+                    "comment": 0,
+                    "filename": "Windows/get-disc-information.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "Windows/git-setup-ssh-keys.ps1"
+                },
+                {
+                    "blank": 17,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "Windows/gitcheck.ps1"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "Windows/gitpull.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "Windows/gitpush.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "Windows/gitpushevery20minutes.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 8,
+                    "filename": "Windows/gitsetup.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "Windows/globalFunction.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "Windows/kill.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "Windows/Microsoft.PowerShell_profile.ps1"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "Windows/mkcd.ps1"
+                },
+                {
+                    "blank": 4,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "Windows/ping.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "Windows/ping2.bat"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "Windows/startAutoHotKey.ps1"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "Windows/These files are created in C Scripts and overwrite C Users Username WindowsPowerShell folder"
+                }
+            ]
+        }
+    ]
+}

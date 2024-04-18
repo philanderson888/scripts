@@ -1,0 +1,213 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2024-04-18 04:45:37
+count workspace : /Users/phil/github/scripts
+total files : 177
+total code lines : 349157
+total comment lines : 8006
+total blank lines : 1239
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |.code-workspace|              7|              0|              0| 0.0020|
+   |           .sql|             16|              0|              5| 0.0046|
+   |               |            232|              3|             31|  0.066|
+   |           .txt|         342472|           7712|            453|     98|
+   |          .json|            600|              0|             10|   0.17|
+   |            .rb|             18|              6|              3| 0.0052|
+   |           .ps1|            369|              8|             95|   0.11|
+   |            .sh|           3606|            239|            544|    1.0|
+   |           .bat|              8|              0|              0| 0.0023|
+   |           .log|            198|              0|              0|  0.057|
+   |           .ahk|             48|              8|              7|  0.014|
+   |            .js|            126|              4|             12|  0.036|
+   |           .tsx|              8|              0|              0| 0.0023|
+   |           .zsh|           1369|             18|             65|   0.39|
+   |           .cpp|             31|              4|              7| 0.0089|
+   |            .md|              2|              0|              1|0.00057|
+   |          .java|              9|              0|              0| 0.0026|
+   |          .yaml|              6|              0|              0| 0.0017|
+   |            .go|              5|              0|              0| 0.0014|
+   |             .c|             27|              4|              6| 0.0077|
+   -------------------------------------------------------------------------
+.aliases.sh, code is 9, comment is 0, blank is 2.
+.bash_profile, code is 7, comment is 0, blank is 0.
+.gitignore, code is 17, comment is 0, blank is 0.
+aws/awsLinux/bunServer.tsx, code is 8, comment is 0, blank is 0.
+aws/awsLinux/directly-sign-in-to-server.sh, code is 18, comment is 0, blank is 8.
+aws/awsLinux/launchOutput.txt, code is 595, comment is 0, blank is 0.
+aws/awsLinux/nodeExpressServer.js, code is 1, comment is 0, blank is 1.
+aws/awsLinux/nodeExpressServer_package.json, code is 11, comment is 0, blank is 0.
+aws/awsLinux/script-01-install-aws-linux-cli.sh, code is 9, comment is 4, blank is 0.
+aws/awsLinux/script-02-sign-in-to-aws.sh, code is 57, comment is 8, blank is 29.
+aws/awsLinux/script-03-spin-up-aws-instance-01.json, code is 26, comment is 0, blank is 1.
+aws/awsLinux/script-03-spin-up-aws-instance-03.json, code is 26, comment is 0, blank is 1.
+aws/awsLinux/script-03-spin-up-aws-instance-04-amazon-linux.json, code is 37, comment is 0, blank is 1.
+aws/awsLinux/script-03-spin-up-aws-instance-05-ubuntu-linux.json, code is 37, comment is 0, blank is 1.
+aws/awsLinux/script-03-spin-up-aws-instance-amazon-linux.sh, code is 10, comment is 0, blank is 0.
+aws/awsLinux/script-03-spin-up-aws-instance-ubuntu.sh, code is 10, comment is 0, blank is 0.
+aws/awsLinux/script-03-spin-up-aws-instance.json, code is 26, comment is 0, blank is 1.
+aws/awsLinux/script-04-query-aws.sh, code is 52, comment is 13, blank is 30.
+aws/awsLinux/script-04a-launch.sh, code is 7, comment is 1, blank is 2.
+aws/awsLinux/script-04a-query-linux.sh, code is 459, comment is 80, blank is 4.
+aws/awsLinux/script-05-install-apache-web-server.sh, code is 71, comment is 33, blank is 9.
+aws/awsLinux/script-05-launch.sh, code is 9, comment is 1, blank is 2.
+aws/awsLinux/script-06-install-node-libraries-launcher.sh, code is 19, comment is 1, blank is 5.
+aws/awsLinux/script-06-install-node-libraries-script.sh, code is 111, comment is 0, blank is 4.
+aws/awsLinux/script-06-launch.sh, code is 25, comment is 1, blank is 4.
+aws/awsLinux/script-06-run-node-web-server.sh, code is 29, comment is 0, blank is 12.
+aws/awsLinux/script-06-server.js, code is 14, comment is 2, blank is 0.
+aws/awsLinux/script-07-install-and-run-bun-web-server.sh, code is 15, comment is 3, blank is 7.
+aws/awsLinux/script-07-launch.sh, code is 19, comment is 1, blank is 2.
+aws/awsLinux/script-08-install-and-run-node-express-web-server.sh, code is 0, comment is 0, blank is 0.
+aws/awsLinux/script-08-launch.sh, code is 25, comment is 1, blank is 2.
+aws/awsLinux/script-09-install-and-run-create-react-app.sh, code is 15, comment is 3, blank is 6.
+aws/awsLinux/script-10-launch.sh, code is 18, comment is 1, blank is 5.
+aws/awsLinux/script-10-run-vue-web-server.sh, code is 36, comment is 4, blank is 0.
+aws/awsLinux/script-99-terminate-aws-instances.sh, code is 13, comment is 0, blank is 4.
+aws/awsLinux/scriptMaster.sh, code is 301, comment is 5, blank is 99.
+aws/awsLinux/test-servers.sh, code is 43, comment is 1, blank is 2.
+aws/awsLinux/test-web-servers-from-ec2-instance.sh, code is 38, comment is 1, blank is 1.
+aws/awsWindows/adminPassword.txt, code is 1, comment is 0, blank is 0.
+aws/awsWindows/awsWindowsInstance01.json, code is 37, comment is 0, blank is 1.
+aws/awsWindows/awsWindowsInstance02-m5.json, code is 26, comment is 0, blank is 1.
+aws/awsWindows/directly-sign-in-to-server.sh, code is 55, comment is 0, blank is 7.
+aws/awsWindows/log-2024-04-18.txt, code is 343, comment is 7712, blank is 133.
+aws/awsWindows/networkSecurityGroupJsonProvision.json, code is 195, comment is 0, blank is 0.
+aws/awsWindows/networkSecurityGroupJsonProvision2.json, code is 143, comment is 0, blank is 3.
+aws/awsWindows/output-azure-vm-image-templates.txt, code is 4, comment is 0, blank is 16.
+aws/awsWindows/output-azure_vms.txt, code is 234634, comment is 0, blank is 0.
+aws/awsWindows/output-network-security-group.txt, code is 56737, comment is 0, blank is 0.
+aws/awsWindows/output-resource-groups.txt, code is 4454, comment is 0, blank is 291.
+aws/awsWindows/output.txt, code is 45156, comment is 0, blank is 13.
+aws/awsWindows/outputNetworkSecurityGroupInformation.txt, code is 543, comment is 0, blank is 0.
+aws/awsWindows/script-01-install.sh, code is 38, comment is 0, blank is 0.
+aws/awsWindows/script-02-log-in-to-azure.sh, code is 19, comment is 16, blank is 0.
+aws/awsWindows/script-03-query-azure-account.sh, code is 15, comment is 0, blank is 0.
+aws/awsWindows/script-04-clean-before-start.sh, code is 120, comment is 0, blank is 9.
+aws/awsWindows/script-05-create-resource-group.sh, code is 25, comment is 0, blank is 0.
+aws/awsWindows/script-06-list-resource-group-names.sh, code is 24, comment is 0, blank is 0.
+aws/awsWindows/script-07-query-vm-templates.sh, code is 85, comment is 9, blank is 0.
+aws/awsWindows/script-08-list-resource-groups.sh, code is 11, comment is 0, blank is 1.
+aws/awsWindows/script-09-list-vms.sh, code is 7, comment is 0, blank is 0.
+aws/awsWindows/script-10-create-vm.sh, code is 12, comment is 0, blank is 0.
+aws/awsWindows/script-11-query-vm.sh, code is 37, comment is 0, blank is 0.
+aws/awsWindows/script-12-query-network-security-groups.sh, code is 9, comment is 0, blank is 0.
+aws/awsWindows/script-13-get-linux-version.sh, code is 89, comment is 1, blank is 1.
+aws/awsWindows/script-14-install-dnf.sh, code is 81, comment is 2, blank is 1.
+aws/awsWindows/script-16-update-server-to-latest-versions.sh, code is 101, comment is 1, blank is 0.
+aws/awsWindows/script-18a-install-zsh.sh, code is 16, comment is 0, blank is 0.
+aws/awsWindows/script-18b-test-zsh.zsh, code is 39, comment is 0, blank is 0.
+aws/awsWindows/script-18c-install-oh-my-zsh.zsh, code is 21, comment is 0, blank is 0.
+aws/awsWindows/script-18d-test-oh-my-zsh.zsh, code is 31, comment is 0, blank is 0.
+aws/awsWindows/script-19-fish.zsh, code is 3, comment is 0, blank is 0.
+aws/awsWindows/script-20a-hello-world.c, code is 27, comment is 4, blank is 6.
+aws/awsWindows/script-20b-install-c-compiler.sh, code is 17, comment is 0, blank is 0.
+aws/awsWindows/script-20c-run-c-program.sh, code is 21, comment is 0, blank is 0.
+aws/awsWindows/script-20d-hello-world.cpp, code is 31, comment is 4, blank is 7.
+aws/awsWindows/script-20e-install-cpp-compiler.sh, code is 24, comment is 0, blank is 0.
+aws/awsWindows/script-20f-run-cpp-program.sh, code is 20, comment is 0, blank is 0.
+aws/awsWindows/script-21-install-git.sh, code is 7, comment is 2, blank is 0.
+aws/awsWindows/script-22-install-apache.sh, code is 110, comment is 8, blank is 0.
+aws/awsWindows/script-23-install-nginx.sh, code is 13, comment is 0, blank is 0.
+aws/awsWindows/script-24-update-services.sh, code is 10, comment is 0, blank is 0.
+aws/awsWindows/script-25-install-node-npm.zsh, code is 227, comment is 6, blank is 0.
+aws/awsWindows/script-26-express.zsh, code is 27, comment is 0, blank is 0.
+aws/awsWindows/script-26-launch-express.zsh, code is 3, comment is 0, blank is 0.
+aws/awsWindows/script-26-run-express.zsh, code is 8, comment is 0, blank is 0.
+aws/awsWindows/script-26-test-express.sh, code is 11, comment is 0, blank is 0.
+aws/awsWindows/script-28-install-vue.zsh, code is 54, comment is 1, blank is 0.
+aws/awsWindows/script-30-install-bun.zsh, code is 15, comment is 1, blank is 0.
+aws/awsWindows/script-32-install-react.zsh, code is 70, comment is 0, blank is 4.
+aws/awsWindows/script-34-go.zsh, code is 66, comment is 2, blank is 6.
+aws/awsWindows/script-34.go, code is 5, comment is 0, blank is 0.
+aws/awsWindows/script-36-install-dot-net-core.zsh, code is 0, comment is 0, blank is 0.
+aws/awsWindows/script-38-install-java.zsh, code is 90, comment is 0, blank is 5.
+aws/awsWindows/script-38-java.java, code is 9, comment is 0, blank is 0.
+aws/awsWindows/script-40-run-apache-web-server.sh, code is 1, comment is 0, blank is 1.
+aws/awsWindows/script-41-launch-node.zsh, code is 3, comment is 0, blank is 0.
+aws/awsWindows/script-41-run-node.zsh, code is 27, comment is 0, blank is 0.
+aws/awsWindows/script-41-server.js, code is 14, comment is 2, blank is 0.
+aws/awsWindows/script-42-run-express.sh, code is 2, comment is 0, blank is 2.
+aws/awsWindows/script-43-maria-db.zsh, code is 43, comment is 0, blank is 0.
+aws/awsWindows/script-44-mongo-db.zsh, code is 45, comment is 1, blank is 10.
+aws/awsWindows/script-45-mongo-shell.zsh, code is 47, comment is 2, blank is 0.
+aws/awsWindows/script-50-dot-net.zsh, code is 13, comment is 1, blank is 0.
+aws/awsWindows/script-51-docker-compose.yaml, code is 5, comment is 0, blank is 0.
+aws/awsWindows/script-51-docker.zsh, code is 341, comment is 3, blank is 33.
+aws/awsWindows/script-51-kubectl.yaml, code is 1, comment is 0, blank is 0.
+aws/awsWindows/script-60-test-servers.zsh, code is 46, comment is 0, blank is 1.
+aws/awsWindows/script-90-package.json, code is 16, comment is 0, blank is 0.
+aws/awsWindows/script-90-teaching.js, code is 97, comment is 0, blank is 11.
+aws/awsWindows/script-90-teaching.zsh, code is 89, comment is 1, blank is 3.
+aws/awsWindows/script-91-bash-commands.zsh, code is 46, comment is 0, blank is 2.
+aws/awsWindows/script-92-list-files.zsh, code is 15, comment is 0, blank is 1.
+aws/awsWindows/scriptMaster.ps1, code is 7, comment is 0, blank is 5.
+aws/awsWindows/scriptMasterWindows.sh, code is 881, comment is 33, blank is 117.
+azure/create-azure-database.ps1, code is 35, comment is 0, blank is 7.
+azure/create-azure-virtual-machine-2.ps1, code is 11, comment is 0, blank is 0.
+azure/create-azure-virtual-machine-3.ps1, code is 10, comment is 0, blank is 1.
+azure/create-azure-virtual-machine-4.ps1, code is 15, comment is 0, blank is 1.
+azure/create-azure-virtual-machine.ps1, code is 14, comment is 0, blank is 1.
+azure/remove-azure-database.ps1, code is 4, comment is 0, blank is 0.
+devops/docker/install-docker-on-windows.ps1, code is 8, comment is 0, blank is 0.
+devops/docker/install-visual-studio-community-edition.ps1, code is 6, comment is 0, blank is 0.
+devops/docker/install-windows-subsystem-for-linux.ps1, code is 3, comment is 0, blank is 0.
+devops/kubernetes/config, code is 19, comment is 1, blank is 0.
+devops/packer/template.json, code is 20, comment is 0, blank is 0.
+devops/vagrant-hyperv-1/.vagrant/machines/default/hyperv/vagrant_cwd, code is 1, comment is 0, blank is 0.
+devops/vagrant-hyperv-1/.vagrant/rgloader/loader.rb, code is 6, comment is 2, blank is 1.
+devops/vagrant-hyperv-1/Vagrant.txt, code is 5, comment is 0, blank is 0.
+devops/vagrant-hyperv-1/Vagrantfile, code is 5, comment is 0, blank is 0.
+devops/vagrant/.vagrant/machines/default/virtualbox/action_provision, code is 1, comment is 0, blank is 0.
+devops/vagrant/.vagrant/machines/default/virtualbox/action_set_name, code is 1, comment is 0, blank is 0.
+devops/vagrant/.vagrant/machines/default/virtualbox/box_meta, code is 1, comment is 0, blank is 0.
+devops/vagrant/.vagrant/machines/default/virtualbox/creator_uid, code is 1, comment is 0, blank is 0.
+devops/vagrant/.vagrant/machines/default/virtualbox/id, code is 1, comment is 0, blank is 0.
+devops/vagrant/.vagrant/machines/default/virtualbox/index_uuid, code is 1, comment is 0, blank is 0.
+devops/vagrant/.vagrant/machines/default/virtualbox/private_key, code is 27, comment is 0, blank is 0.
+devops/vagrant/.vagrant/machines/default/virtualbox/synced_folders, code is 1, comment is 0, blank is 0.
+devops/vagrant/.vagrant/machines/default/virtualbox/vagrant_cwd, code is 1, comment is 0, blank is 0.
+devops/vagrant/.vagrant/rgloader/loader.rb, code is 6, comment is 2, blank is 1.
+devops/vagrant/environment/provision.sh, code is 12, comment is 1, blank is 5.
+devops/vagrant/ubuntu-xenial-16.04-cloudimg-console.log, code is 198, comment is 0, blank is 0.
+devops/vagrant/Vagrantfile, code is 6, comment is 0, blank is 0.
+devops/vagrant/Vagrantfile2, code is 5, comment is 0, blank is 0.
+devops/vagrant/Vagrantfile3, code is 59, comment is 2, blank is 10.
+devops/vagrant2/.vagrant/machines/web/virtualbox/action_set_name, code is 1, comment is 0, blank is 0.
+devops/vagrant2/.vagrant/machines/web/virtualbox/creator_uid, code is 1, comment is 0, blank is 0.
+devops/vagrant2/.vagrant/machines/web/virtualbox/id, code is 1, comment is 0, blank is 0.
+devops/vagrant2/.vagrant/machines/web/virtualbox/index_uuid, code is 1, comment is 0, blank is 0.
+devops/vagrant2/.vagrant/rgloader/loader.rb, code is 6, comment is 2, blank is 1.
+devops/vagrant2/Vagrantfile, code is 5, comment is 0, blank is 1.
+LICENSE, code is 17, comment is 0, blank is 4.
+linux/learn_bash.sh, code is 5, comment is 0, blank is 0.
+MAC/.aliases.sh, code is 12, comment is 0, blank is 2.
+MAC/.bash_profile, code is 47, comment is 0, blank is 16.
+MAC/.bash_profile2, code is 5, comment is 0, blank is 0.
+MAC/gitcheckMAC.sh, code is 136, comment is 2, blank is 42.
+MAC/gitcheckWorkMAC.sh, code is 129, comment is 2, blank is 117.
+MAC/learning_bash_on_mac.sh, code is 33, comment is 0, blank is 0.
+README.md, code is 2, comment is 0, blank is 1.
+scripts.code-workspace, code is 7, comment is 0, blank is 0.
+SQL/SQLBeginnerScript.sql, code is 16, comment is 0, blank is 5.
+Windows/AutoHotKey/AutoHotkey.ahk, code is 48, comment is 8, blank is 7.
+Windows/get-disc-information.ps1, code is 78, comment is 0, blank is 55.
+Windows/git-setup-ssh-keys.ps1, code is 16, comment is 0, blank is 0.
+Windows/gitcheck.ps1, code is 72, comment is 0, blank is 17.
+Windows/gitpull.ps1, code is 8, comment is 0, blank is 3.
+Windows/gitpush.ps1, code is 12, comment is 0, blank is 0.
+Windows/gitpushevery20minutes.ps1, code is 14, comment is 0, blank is 0.
+Windows/gitsetup.ps1, code is 13, comment is 8, blank is 0.
+Windows/globalFunction.ps1, code is 4, comment is 0, blank is 0.
+Windows/kill.ps1, code is 2, comment is 0, blank is 0.
+Windows/Microsoft.PowerShell_profile.ps1, code is 1, comment is 0, blank is 0.
+Windows/mkcd.ps1, code is 8, comment is 0, blank is 1.
+Windows/ping.ps1, code is 27, comment is 0, blank is 4.
+Windows/ping2.bat, code is 8, comment is 0, blank is 0.
+Windows/startAutoHotKey.ps1, code is 1, comment is 0, blank is 0.
+Windows/These files are created in C Scripts and overwrite C Users Username WindowsPowerShell folder, code is 0, comment is 0, blank is 0.
+===============================================================================
