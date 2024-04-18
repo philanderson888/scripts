@@ -4709,3 +4709,37 @@ Name              Location    Status
 ----------------  ----------  ---------
 NetworkWatcherRG  uksouth     Succeeded
 
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
+[
+  {
+    "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/NetworkWatcherRG",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+Name              Location    Status
+----------------  ----------  ---------
+NetworkWatcherRG  uksouth     Succeeded
+
