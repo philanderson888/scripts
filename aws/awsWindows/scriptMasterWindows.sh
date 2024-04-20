@@ -165,9 +165,6 @@ print_status_of_progress () {
         echo "maria db version $maria_db_version"
         echo "maria db version $maria_db_version_mysqladmin"
     fi
-    if [ "$mongo_db_installed" = true ] ; then
-        echo "mongo db version $mongo_db_version"
-    fi
     if [ "$mongo_shell_installed" = true ] ; then
         echo "mongo shell version $mongo_shell_version"
     fi
@@ -179,7 +176,16 @@ print_status_of_progress () {
         echo "docker version client $docker_version_client"
         echo "docker version server $docker_version_server"
     fi
+    if [ "$terraform_installed" = true ] ; then
+        echo "terraform version $terraform_version"
+    fi
+    if [ "$ansible_installed" = true ] ; then
+        echo "ansible version $ansible_version"
+    fi
     if [ "$apache_installed" = true ] ; then
+        echo "=============================="
+        echo "====      fix these       ===="
+        echo "=============================="
         echo "apache version $apache_version"
     fi
     if [ "$nginx_installed" = true ] ; then
@@ -197,6 +203,9 @@ print_status_of_progress () {
     fi
     if [ "$react_installed" = true ] ; then
         echo "react version $react_version"
+    fi
+      if [ "$mongo_db_installed" = true ] ; then
+        echo "mongo db version $mongo_db_version"
     fi
     if [ "$end_of_script" = true ] ; then
         echo list files and hidden files
@@ -692,26 +701,54 @@ if [ "$install_docker" = true ] ; then
     docker_version_client=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Client.Version}}'")
     docker_version_server=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Server.Version}}'")
     docker version --format '{{.Client.APIVersion}}'
-
-
     print_status_of_progress "docker"
 fi
 
 
 
-echo install terraform
-
-echo https://medium.com/@sanghpriya785/running-your-first-terraform-hello-world-example-4bd8bb5c3efc
-
-echo https://www.terraformbyexample.com/hello-world
-
-echo https://developer.hashicorp.com/terraform/install
-
-echo ansible
-
-echo https://www.ansible.com/how-ansible-works/
 
 
+install_terraform=true
+if [ "$install_terraform" = true ] ; then
+    printHeading "====               install terraform              ===="
+    scp -i $ssh_key script-52-terraform.yaml $admin_username@$public_ip_address:script-52-terraform.yaml
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-52-terraform.zsh
+    waypoint=52
+    terraform_installed=true
+    terraform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "terraform -v")
+    print_status_of_progress "terraform"
+fi
+
+
+
+
+install_ansible=true
+if [ "$install_ansible" = true ] ; then
+    printHeading "====               install ansible                ===="
+    scp -i $ssh_key script-53-ansible.yaml $admin_username@$public_ip_address:script-53-ansible.yaml
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-53-ansible.zsh
+    waypoint=53
+    ansible_installed=true
+    ansible_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "ansible --version")
+    print_status_of_progress "ansible"
+fi
+
+
+
+
+printHeading "====               github actions                 ===="
+echo run all my code on a commit, not just when i want to run it?
+echo https://docs.github.com/en/actions/quickstart
+
+
+
+
+
+
+
+
+
+printHeading "====             problem libraries                ===="
 express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
 node_installed=true
 npm_installed=true
@@ -720,15 +757,14 @@ print_status_of_progress install node and npm and express
 
 
 
+
+
+
+
+
 list_vms=true
 if [ "$list_vms" = true ] ; then
-    echo
-    echo
-    echo
-    echo "=============================================================="
-    echo "====               list vms and storage                   ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====         list vms and storages                ===="
     echo list vms output to output-azure_vms.txt
     az vm list >> output-azure_vms.txt
     echo vm info >> output-azure_vms.txt
@@ -743,6 +779,16 @@ if [ "$list_vms" = true ] ; then
     echo storage profile >> output-azure_vms.txt
     az vm show --resource-group $resource_group_name --name $ubuntu_vm_name --query "storageProfile" >> output-azure_vms.txt
 fi
+
+
+
+
+
+
+
+
+
+
 echo
 echo
 echo
@@ -750,10 +796,7 @@ create_vm_windows_server=false
 query_vm_windows_server=false
 log_in_to_windows=false
 if [ "$create_vm_windows_server" = true ] ; then
-    echo "=============================================================="
-    echo "====                create $windows_server_vm_name"
-    printTime
-    echo "=============================================================="
+    printHeading "====       create $windows_server_vm_name"
     windows_server_enable_rdp=false
     windows_server_enable_ssh=false
     windows_server_enable_default=true
@@ -801,15 +844,20 @@ if [ "$create_vm_windows_server" = true ] ; then
     query_vm_windows_server=true
     log_in_to_windows=true
 fi
+
+
+
+
+
+
+
+
 if [ "$set_auto_shutdown" = true ] ; then
-    echo "=============================================================="
-    echo "====                  set auto shutdown                   ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====            set auto shutdown                 ===="
     SHUTDOWN_TIME="18:00"
     AUTO_SHUTDOWN="true"
     AUTO_START="false"
-    echo setting auto shutdown
+    echo setting auto shutdown at $SHUTDOWN_TIME
     for VM_ID in $(az vm list -g $resource_group_name --query "[].id" -o tsv); do
         shut_down_object=$(az vm auto-shutdown --ids $VM_ID --time $SHUTDOWN_TIME --email $email_address --webhook $webhook_address)
         echo shut down object >> output.txt
@@ -824,11 +872,16 @@ if [ "$set_auto_shutdown" = true ] ; then
         az vm auto-shutdown -g $resource_group_name -n $ubuntu_vm_name         --time 1730 --email $email_address --webhook $webhook_address
     fi
 fi
+
+
+
+
+
+
+
+
 if [ "$query_vm_windows_server" = true ] ; then
-    echo "=============================================================="
-    echo "====               query vm - windows server              ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====        query vm - windows server             ===="
     subscription=$(az account show --query "id" -o tsv)
     windows_server_vm_id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$windows_server_vm_name"
     echo windows server vm id is $windows_server_vm_id 
@@ -943,57 +996,91 @@ if [ "$log_in_to_windows" = true ] ; then
     echo
     echo
 fi
+
+
+
+
+
+
+
 if [ "$list_kubernetes_clusters" = true ] ; then
-    echo "=============================================================="
-    echo "====                  list kubernetes                     ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====            list kubernetes                   ===="
     echo azure kubernetes clusters show
     az aks show --resource-group $resource_group_name --name iHaveToSupplyAValidNameHere
 else
-    echo "=============================================================="
-    echo "====                list kubernetes skipped               ===="
-    echo "=============================================================="
+    printHeading "====       list kubernetes skipped                ===="
 fi
+
+
+
+
+
+
+
+
 deallocate_vms=false
 if [ "$deallocate_vms" = true ] ; then
     az vm deallocate --resource-group $resource_group_name --name $ubuntu_vm_name
     az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
 fi
-echo "=============================================================="
-echo "====                 list resource groups                 ===="
-printTime
-echo "=============================================================="
+
+
+
+
+
+
+
+
+
+
+printHeading "====          list resource groups                ===="
 source ./script-08-list-resource-groups.sh
-echo
-echo
-echo
-echo "=============================================================="
-echo "====                      list vms                        ===="
-printTime
-echo "=============================================================="
+
+
+
+
+
+
+printHeading "====               list vms                       ===="
 source ./script-09-list-vms.sh
-echo
-echo
-echo
+
+
+
 
 
 printHeading "====           upload node teaching files                   ===="
-cd ../awsWindows
 scp -i $ssh_key script-90-teaching.js $admin_username@$public_ip_address:script-90-teaching.js
 scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:script-90-package.json
-printHeading "====           install and run teaching node                    ===="
+printHeading "====           install and run teaching node                ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-teaching.zsh
 
 
+
+
+
+
+
+
 printHeading "====              bash scripting a to z                    ===="
-cd ../awsWindows
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-bash-commands.zsh
+
+
+
+
+
+
 
 
 
 printHeading "====                     list files                        ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-92-list-files.zsh
+
+
+
+
+
+
+
 
 
 
@@ -1035,6 +1122,15 @@ if [ "$delete_resource_groups" = true ] ; then
         fi
     done
 fi
+
+
+
+
+
+
+
+
+
 endTimeOnMasterScript=$(date +%s)
 echo "====================================================================="
 echo "====                   azure script ended                        ===="
