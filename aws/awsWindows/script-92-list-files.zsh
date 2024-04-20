@@ -11,6 +11,6 @@ ls -lah
 echo
 echo
 echo
-echo cat output.txt
-cat output.txt
+#echo cat output.txt
+#cat output.txt
 
