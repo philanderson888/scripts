@@ -711,7 +711,7 @@ fi
 install_terraform=true
 if [ "$install_terraform" = true ] ; then
     printHeading "====               install terraform              ===="
-    scp -i $ssh_key script-52-terraform.yaml $admin_username@$public_ip_address:script-52-terraform.yaml
+    scp -i $ssh_key script-52-terraform.tf $admin_username@$public_ip_address:script-52-terraform.tf
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-52-terraform.zsh
     waypoint=52
     terraform_installed=true
@@ -726,6 +726,7 @@ install_ansible=true
 if [ "$install_ansible" = true ] ; then
     printHeading "====               install ansible                ===="
     scp -i $ssh_key script-53-ansible.yaml $admin_username@$public_ip_address:script-53-ansible.yaml
+    scp -i $ssh_key script-53-inventory.ini $admin_username@$public_ip_address:script-53-inventory.ini 
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-53-ansible.zsh
     waypoint=53
     ansible_installed=true
