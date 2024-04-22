@@ -1,4 +1,7 @@
 #!/bin/bash
+echo
+echo
+echo
 echo which shell am i using
 echo $SHELL 
 echo
