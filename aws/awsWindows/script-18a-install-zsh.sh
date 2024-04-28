@@ -16,6 +16,11 @@ echo apt-get install apt-utils
 sudo apt-get install apt-utils
 echo apt-get install zsh
 sudo apt-get -qq install zsh -y >> output.txt
+sudo
+sudo
+sudo
+echo touch ./.oh-my-zsh
+touch ./.oh-my-zsh
 echo
 echo
 echo
