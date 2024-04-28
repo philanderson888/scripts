@@ -386,61 +386,102 @@ print_status_of_progress "os updated"
 
 install_services=true
 if [ "$install_services" = true ] ; then
+
+    install_fish=true
+
+    install_c=false
+    install_cpp=false
+
+    install_mongo_db=false
+    install_mongo_shell=false
+
+    install_dot_net=false
+
+    install_maria_db=false
+    install_java=false
+    install_go=false
+
+
     install_apache=true
     install_nginx=true
     restart_services=true
     install_node=true
     install_express=true
-    install_vue=true
-    install_bun=true
-    install_react=true
+
+
+
+    install_vue=false
+    install_bun=false
+    install_react=false
+
+
+
+
+    install_docker=true
+    install_terraform=true
+    install_ansible=true
+
 fi
 waypoint=17
 print_status_of_progress "deciding which services to install"
+install_zsh=true
+if [ "$install_zsh" = true ] ; then
+    printHeading "====                       zsh                            ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-18a-install-zsh.sh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-18-always-run-zsh.sh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18b-test-zsh.zsh
+    zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
+    zsh_installed=true
+    waypoint=18
+    print_status_of_progress zsh
+fi
+
+install_oh_my_zsh=false
+if [ "$install_oh_my_zsh" = true ] ; then
+    printHeading "====                    oh my zsh                         ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18c-install-oh-my-zsh.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18d-test-oh-my-zsh.zsh
+fi
 
 
-printHeading "====                       zsh                            ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-18a-install-zsh.sh
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18b-test-zsh.zsh
-zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
-zsh_installed=true
-waypoint=18
-print_status_of_progress zsh
 
 
-printHeading "====                    oh my zsh                         ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18c-install-oh-my-zsh.zsh
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18d-test-oh-my-zsh.zsh
+if [ "$install_fish" = true ] ; then
+    printHeading "====          fish friendly interactive shell             ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-fish.zsh
+    waypoint=19
+    fish_installed=true
+    fish_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "fish --version")
+    echo fish version $fish_version
+    print_status_of_progress fish
+fi
 
 
 
-printHeading "====          fish friendly interactive shell             ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-fish.zsh
-waypoint=19
-fish_installed=true
-fish_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "fish --version")
-echo fish version $fish_version
-print_status_of_progress fish
+if [ "$install_c" = true ] ; then
+    printHeading "====                      c                               ===="
+    scp -i $ssh_key script-20a-hello-world.c $admin_username@$public_ip_address:script-20a-hello-world.c 
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20b-install-c-compiler.sh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20c-run-c-program.sh
+    waypoint=20
+    c_installed=true
+    c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "gcc --version")
+    print_status_of_progress "c"
+fi
 
 
-printHeading "====                      c                               ===="
-scp -i $ssh_key script-20a-hello-world.c $admin_username@$public_ip_address:script-20a-hello-world.c 
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20b-install-c-compiler.sh
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20c-run-c-program.sh
-waypoint=20
-c_installed=true
-c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "gcc --version")
-print_status_of_progress "c"
 
+if [ "$install_cpp" = true ] ; then
+    printHeading "====                      c++                             ===="
+    scp -i $ssh_key script-20d-hello-world.cpp $admin_username@$public_ip_address:script-20d-hello-world.cpp
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20e-install-cpp-compiler.sh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20f-run-cpp-program.sh
+    waypoint=20
+    cpp_installed=true
+    cpp_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "g++ --version")
+    print_status_of_progress "c++"
+fi
 
-printHeading "====                      c++                             ===="
-scp -i $ssh_key script-20d-hello-world.cpp $admin_username@$public_ip_address:script-20d-hello-world.cpp
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20e-install-cpp-compiler.sh
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20f-run-cpp-program.sh
-waypoint=20
-cpp_installed=true
-cpp_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "g++ --version")
-print_status_of_progress "c++"
 
 
 printHeading "====                         git                          ===="
@@ -463,7 +504,7 @@ print_status_of_progress apache
 if [ "$install_nginx" = true ] ; then
     printHeading "====                      nginx                           ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-23-install-nginx.sh
-    nginx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "nginx -v")
+    nginx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "sudo systemctl restart systemd-journald.service")
     waypoint=23
     nginx_installed=true
     print_status_of_progress nginx
@@ -502,6 +543,8 @@ if [ "$install_express" = true ] ; then
     print_status_of_progress "express 2"
 fi
 
+
+
 if [ "$install_vue" = true ] ; then
     printHeading "====                         vue                         ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-28-install-vue.zsh
@@ -539,6 +582,8 @@ fi
 
 
 
+
+
 printHeading "====                    running servers                  ===="
 run_servers=true
 if [ "$run_servers" = true ] ; then
@@ -550,6 +595,8 @@ if [ "$run_servers" = true ] ; then
     run_bun=true
     run_react=true
 fi
+
+
 if [ "$apache_installed" = true ] && [ "$run_apache" = true ] ; then
     echo "=============================================================="
     echo "====                run apache web server                 ===="
@@ -557,6 +604,8 @@ if [ "$apache_installed" = true ] && [ "$run_apache" = true ] ; then
     echo "=============================================================="
     open -a Terminal ./script-40-run-apache-web-server.sh
 fi
+
+
 if [ "$nginx_installed" = true ] && [ "$run_nginx" = true ] ; then
     echo "=============================================================="
     echo "====               run nginx web server                   ===="
@@ -564,6 +613,8 @@ if [ "$nginx_installed" = true ] && [ "$run_nginx" = true ] ; then
     echo "=============================================================="
     echo nginx install works ... nothing to test at present
 fi
+
+
 if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
     echo "=============================================================="
     echo "====             running node web server                  ===="
@@ -574,6 +625,8 @@ if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
     open -a Terminal ./script-41-launch-node.zsh
     echo bbbb
 fi
+
+
 if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
     echo "=============================================================="
     echo "====             run express web server                   ===="
@@ -608,7 +661,8 @@ if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
 fi
 
 
-install_go=true
+
+
 if [ "$install_go" = true ] ; then
     printHeading "====                install go - failing                 ===="
     cd $root_directory
@@ -617,7 +671,6 @@ if [ "$install_go" = true ] ; then
 fi
 
 
-install_java=true
 if [ "$install_java" = true ] ; then
     printHeading "====                  install java                       ===="
     scp -i $ssh_key script-38-java.java $admin_username@$public_ip_address:script-38-java.java
@@ -630,7 +683,6 @@ fi
 
 
 
-install_maria_db=true
 if [ "$install_maria_db" = true ] ; then
     printHeading "====            install maria db                    ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-43-maria-db.zsh
@@ -646,7 +698,7 @@ fi
 
 
 
-install_mongo_db=true
+
 if [ "$install_mongo_db" = true ] ; then
     printHeading "====            install mongo db                    ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-44-mongo-db.zsh
@@ -658,7 +710,6 @@ fi
 
 
 
-install_mongo_shell=true
 if [ "$install_mongo_shell" = true ] ; then
     printHeading "====            install mongo shell                    ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-45-mongo-shell.zsh
@@ -671,7 +722,7 @@ fi
 
 
 
-install_dot_net=true
+
 if [ "$install_dot_net" = true ] ; then
     printHeading "====               install .net core               ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-50-dot-net.zsh
@@ -689,9 +740,8 @@ fi
 
 
 
-install_docker=true
 if [ "$install_docker" = true ] ; then
-    printHeading "====               install docker                 ===="
+    printHeading "====               install docker"
     echo "====    note - maybe work through kubectl and minikube using interactive shell first * * * "
     scp -i $ssh_key script-51-docker-compose.yaml $admin_username@$public_ip_address:script-51-docker-compose.yaml
     scp -i $ssh_key script-51-kubectl.yaml $admin_username@$public_ip_address:script-51-kubectl.yaml
@@ -708,10 +758,11 @@ fi
 
 
 
-install_terraform=true
+
 if [ "$install_terraform" = true ] ; then
     printHeading "====               install terraform              ===="
     scp -i $ssh_key script-52-terraform.tf $admin_username@$public_ip_address:script-52-terraform.tf
+    scp -i $ssh_key script-52-terraform-main.tf $admin_username@$public_ip_address:script-52-terraform-main.tf
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-52-terraform.zsh
     waypoint=52
     terraform_installed=true
@@ -722,7 +773,7 @@ fi
 
 
 
-install_ansible=true
+
 if [ "$install_ansible" = true ] ; then
     printHeading "====               install ansible                ===="
     scp -i $ssh_key script-53-ansible.yaml $admin_username@$public_ip_address:script-53-ansible.yaml
