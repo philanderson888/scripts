@@ -12,13 +12,30 @@ $SHELL --version
 echo
 echo
 echo
-echo touch output.txt 04005
+echo touch output.txt 04-015
 touch output.txt
 echo
 echo
 echo
 echo chmod 777 output.txt
 chmod 777 output.txt
+echo
+echo
+echo
+echo ls -lah output.txt
+ls -lah output.txt
+echo
+echo
+echo echo output.txt into output.txt
+echo "this is the end of the output file" >> output.txt
+echo
+echo
+echo
+echo tail output.txt
+tail output.txt
+echo
+echo
+echo
 echo "======================================================================="
 echo "====          which flavour of linux is this machine 04010         ===="
 echo "======================================================================="
@@ -412,7 +429,7 @@ if [[  "$id_like" == "debian" ]]; then
     echo "====                  apt-get upgrade 04320                        ===="
     echo "======================================================================="
     echo apt-get upgrade silent
-    sudo apt-get -qq upgrade -y >> output.txt
+    sudo apt-get -qq upgrade -y
     sleep 1
     echo
     echo
@@ -426,7 +443,9 @@ if [[  "$id_like" == "debian" ]]; then
     echo "======================================================================="
     echo "====           update various services 04330                       ===="
     echo "======================================================================="
+    echo gett nginx version using system control restart journal d service wow
     sudo systemctl restart systemd-journald.service 
+    sleep 1
     sudo /etc/needrestart/restart.d/systemd-manager
     sudo systemctl restart systemd-networkd.service
     sudo systemctl restart systemd-resolved.service
@@ -437,45 +456,14 @@ if [[  "$id_like" == "debian" ]]; then
     echo "====          apt-get install gcc 04340                            ===="
     echo "======================================================================="
     sudo apt-get -qq install gcc -y >> output.txt
+    sleep 1
     echo "======================================================================="
     echo "====             apt-get install fish 04350                        ===="
     echo "======================================================================="
-    sudo apt-add-repository ppa:fish-shell/release-3 -y >> output.txt
+    sudo apt-add-repository ppa:fish-shell/release-3 -y 
     sudo apt-get -qq update -y >> output.txt
     sudo apt-get -qq install fish -y >> output.txt
-    echo "======================================================================="
-    echo "====            apt-get install zsh 04360                          ===="
-    echo "======================================================================="
-    sudo apt-get -qq install zsh -y >> output.txt
-    echo
-    echo
-    echo
-    echo zsh version
-    zsh --version
-    echo
-    echo
-    echo
-    echo change shell to zsh with chsh which zsh
-    chsh --s $(which zsh)
     sleep 1
-    # sudo lchsh $USER if you are on Fedora.
-    # Note that this will not work if Zsh is not in your authorized shells list (/etc/shells)
-    # or if you don't have permission to use chsh. 
-    # If that's the case you'll need to use a different procedure.
-    # If you use lchsh you need to type /bin/zsh to make it your default shell.
-    # Log out and log back in again to use your new default shell.
-    # Test that it worked with echo $SHELL. Expected result: /bin/zsh or similar.
-    # Test with $SHELL --version. Expected result: 'zsh 5.8' or similar
-    echo
-    echo
-    echo
-    echo echo shell
-    echo $SHELL 
-    echo
-    echo
-    echo
-    echo shell version
-    $SHELL --version
 elif [[  "$id_like" == "fedora" ]]; then
     echo
     echo
@@ -522,14 +510,14 @@ fi
 echo
 echo
 echo
-echo check this is fixed
-echo "apt-get -v &> /dev/null "
-apt-get -v &> /dev/null
+echo what is this 
+echo "apt-get -v"
+apt-get -v 
 echo
 echo
 echo
 echo apt-get update
-apt-get update -y
+sudo apt-get update -y
 echo
 echo
 echo
