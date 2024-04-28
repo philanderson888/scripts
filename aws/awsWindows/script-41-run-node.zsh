@@ -7,8 +7,18 @@ mkdir node41
 echo
 echo
 echo
+echo ls
+ls
+echo
+echo
+echo
 echo mv ./script-41-server.js node41
 mv ./script-41-server.js node41
+echo
+echo
+echo
+echo ls
+ls
 echo
 echo
 echo

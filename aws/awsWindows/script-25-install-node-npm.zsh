@@ -1,8 +1,8 @@
 #!/bin/zsh
-#zsh
-#cd .oh-my-zsh
-#zsh
-#cd ..
+echo zsh
+zsh
+echo cd ~
+cd ~
 install_single_instance_of_node=true
 if [ "$install_single_instance_of_node" = true ] ; then
     echo "==================================================================="

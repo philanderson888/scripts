@@ -1,8 +1,7 @@
 #!/bin/zsh
+echo zsh
 zsh
 cd ~
-cd ./.oh-my-zsh
-zsh
 startTime="$(date +%s)"
 echo "=================================================================="
 echo "====           npm install create-vue 28020                   ===="
