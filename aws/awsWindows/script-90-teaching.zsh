@@ -11,26 +11,6 @@ echo
 echo
 echo ls -lah
 ls -lah
-echo
-echo
-echo
-echo cd .oh-my-zsh
-cd ./.oh-my-zsh
-echo
-echo
-echo
-echo ls -lah
-ls -lah
-echo
-echo
-echo
-echo cat ./oh-my-zsh
-cat ./oh-my-zsh
-echo
-echo
-echo
-echo cd ~
-cd ~
 echo "==================================================================="
 echo "==================================================================="
 echo "====             teach node script launcher                    ===="
@@ -114,8 +94,14 @@ ls
 echo
 echo
 echo
-echo mv ./script-90-teaching.js js
-sudo mv ./script-90-package.json js
+echo mv script 90 teaching.js and package.json to js folder
+sudo mv script-90-teaching.js  js
+sudo mv script-90-package.json js
+echo
+echo
+echo
+echo ls
+ls
 echo
 echo
 echo
@@ -124,12 +110,17 @@ cd js
 echo
 echo
 echo
-echo mv ./script-90-package.json package.json
-mv ./script-90-package.json package.json
+echo ls
+ls
 echo
 echo
 echo
-echo "list files"
+echo cp script-90-package.json package.json
+cp script-90-package.json package.json
+echo
+echo
+echo
+echo ls
 ls
 echo
 echo

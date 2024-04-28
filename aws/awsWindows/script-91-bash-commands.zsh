@@ -1,16 +1,8 @@
 #!/bin/zsh
 echo zsh
 zsh
-echo
-echo
-echo
 echo cd ~
 cd ~
-echo
-echo
-echo
-echo cat ./.oh-my-zsh
-cat ./.oh-my-zsh
 echo "==================================================================="
 echo "==================================================================="
 echo "====                     bash commands                         ===="
