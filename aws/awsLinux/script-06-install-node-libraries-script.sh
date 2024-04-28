@@ -33,11 +33,14 @@ echo
 echo
 echo
 echo "======================================================================="
-echo =================              install node LTS          ====================
+echo "====                      install node LTS                         ===="
 echo "======================================================================="
+echo nvm install lts
 nvm install --lts
-echo ... 6.7 ... node has been installed ... 
-echo ... 6.8 ... checking node npm and nvm installed versions
+echo
+echo
+echo
+echo node npm nvm versions
 node -v 
 npm -v
 nvm -v
@@ -46,70 +49,73 @@ echo
 echo
 echo
 echo "======================================================================="
-echo =================   6.9 ... run test nodejs command to check output ... ====================
+echo "====                   test node command 06-049                    ===="
 echo "======================================================================="
+echo node - e console.log process version
 node -e "console.log('Running Node.js ' + process.version)"
-echo ... 6.9 ... node test command complete
-echo
-echo
-echo
 echo "======================================================================="
-echo ============ script 06 node web server - installation of basic node libraries is now complete =================
+echo "====                     install bun-06-063                        ===="
 echo "======================================================================="
-echo
-echo
-echo
-echo "======================================================================="
-echo =================   6.10 ... install bun web server libraries ... ==============================
-echo "======================================================================="
+echo curl - f s S L https://bun.sh/install 
 curl -fsSL https://bun.sh/install | bash
-echo ... 6.10 ... bun web server libraries install complete
-echo
-echo
-echo
 echo "======================================================================="
-echo =================    6.11 ...   install git           ====================
+echo "====                       install git-06-71                       ===="
 echo "======================================================================="
+echo sudo dnf install git - y
 sudo dnf install git -y
+echo
+echo
+echo
+echo git version
 git --version
-echo ... 6.11 ... git install complete
-echo
-echo
-echo
 echo "======================================================================="
-echo =========================  6.12 install vue   ===============================
+echo "====                        install vue                            ===="
 echo "======================================================================="
-library=vue
-projectName="${library}WebServer"
-port=3010
-echo
-echo installing $library web server
 startTime="$(date +%s)"
-echo installing create-vue
-npm install -g create-vue
-npm install create-vue
-
-
+echo cd ~
 cd ~
+echo
+echo
+echo
 echo git clone github kontent-ai sample-app-vue
 git clone https://github.com/kontent-ai/sample-app-vue
 echo
 echo
 echo
-echo mv sample-app-vue vue25150
-mv sample-app-vue vue25150
-cd vue25150
-
-
-npm install
-endTime=$(date +%s)
-scriptDuration=$(($endTime-$startTime))
-echo ... 6.12 ... $library web server install complete ... and took ... $scriptDuration seconds
+echo mv sample-app-vue vue06093
+mv sample-app-vue vue06093
+echo
+echo
+echo
+echo cd vue06093
+cd vue06093
 echo
 echo
 echo
 echo "======================================================================="
-echo ================  script 06 complete ...                             ============= 
-echo ================  ... installed ... 1 node ... 2 bun ... 3 vue ...   ============= 
-echo ================  ... libraries and web servers                      =============
+echo "====                install vue libraries vue-06104                ===="
+echo "======================================================================="
+echo sudo npm install - g create-vue
+sudo npm install -g create-vue
+echo
+echo
+echo
+echo npm install create-vue
+npm install create-vue
+echo
+echo
+echo
+echo "======================================================================="
+echo "====                     npm install vue-06117                     ===="
+echo "======================================================================="
+echo npm install
+npm install
+endTime=$(date +%s)
+scriptDuration=$(($endTime-$startTime))
+echo vue-06-123 install took $scriptDuration seconds
+echo
+echo
+echo
+echo "======================================================================="
+echo "====               install vue-06-128 complete                     ===="
 echo "======================================================================="
