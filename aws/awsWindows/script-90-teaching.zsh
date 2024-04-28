@@ -1,26 +1,62 @@
 #!/bin/zsh
+echo zsh
 zsh
+echo
+echo
+echo
+echo cd ~
+cd ~
+echo
+echo
+echo
+echo ls -lah
+ls -lah
+echo
+echo
+echo
+echo cd .oh-my-zsh
 cd ./.oh-my-zsh
-zsh
-cd ..
 echo
 echo
 echo
-echo teaching script
-
+echo ls -lah
+ls -lah
+echo
+echo
+echo
+echo cat ./oh-my-zsh
+cat ./oh-my-zsh
+echo
+echo
+echo
+echo cd ~
+cd ~
+echo "==================================================================="
+echo "==================================================================="
+echo "====             teach node script launcher                    ===="
+echo "==================================================================="
+echo "==================================================================="
+echo
+echo
+echo
 echo "==================================================================="
 echo "====             install node and npm                          ===="
 echo "==================================================================="
-echo "==================================================================="
-echo "====        obtaining node binaries via curl command           ===="
-echo "==================================================================="
-echo "seems like i need this command ... but how do i make it silent !?!?!??!"
+echo "curl - f s S L https://deb.nodesource.com/setup_20.x   sudo - E zsh"
+curl --silent -fsSL https://deb.nodesource.com/setup_20.x | sudo -E zsh
+echo
+echo
+echo
+echo "curl - f s S L https://deb.nodesource.com/setup_20.x   sudo - E bash"
 curl --silent -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash
-
-echo "note that - E means 'preserve environment' ... but of the host ... or this environment ? not sure ... can investigate ..."
-echo "sudo - E will download the file then execute it with sudo commands, using bash, preserving the existing environment variables ... interesting ... "
-echo "can I do the same thing using zsh ? worth a try !!!"
-
+echo
+echo
+echo
+echo "E means preserve environment"
+echo "sudo - E bash downloads, executes with sudo, using bash, preserving the existing environment variables"
+echo
+echo
+echo
 echo "==================================================================="
 echo "====                  install node"
 echo "====      * * *   commands are totally silent        * * *     ===="
@@ -28,14 +64,28 @@ echo "==================================================================="
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 sudo chmod 777 /var/cache/debconf/ 
 sudo chmod 777 /var/cache/debconf/passwords.dat
+echo
+echo
+echo
+echo touch ~/output.txt
+echo chmod 777 ~/output.txt
 echo totally silent apt get install
-sudo apt-get install -y -q >> output.txt
+sudo apt-get install -y -q >> ~/output.txt
+echo
+echo
+echo
 echo totally silent apt get install dialog
-sudo apt-get install dialog -y -q >> output.txt
+sudo apt-get install dialog -y -q >> ~/output.txt
+echo
+echo
+echo
 echo totally silent apt get install apt-utils
-sudo apt-get install apt-utils -y -q >> output.txt
+sudo apt-get install apt-utils -y -q >> ~/output.txt
+echo
+echo
+echo
 echo totally silent apt get install node js - wow! this is the one!!!
-sudo apt-get -qq install nodejs -y >> output.txt
+sudo apt-get -qq install nodejs -y >> ~/output.txt
 echo
 echo
 echo
@@ -54,10 +104,18 @@ echo "features learned in logical format - for ease of finding them"
 echo
 echo
 echo
-echo move to js folder
-mkdir js
-mv ./script-90-teaching.js js
-mv ./script-90-package.json js
+echo sudo mkdir js
+sudo mkdir js
+echo
+echo
+echo
+echo ls
+ls 
+echo
+echo
+echo
+echo mv ./script-90-teaching.js js
+sudo mv ./script-90-package.json js
 echo
 echo
 echo
