@@ -58,8 +58,13 @@ ansible --version
 echo
 echo
 echo
-echo alternative way to install ansible ... not doing this here ... just documenting it ...
-echo pip install ansible
+echo sudo apt-get install python-pip Python3-pip
+sudo apt-get install Python3-pip -y
+sudo apt-get install python-pip -y
+echo
+echo
+echo
+echo alternative way to install ansible ... pip install ansible
 pip install ansible
 echo
 echo
@@ -72,7 +77,7 @@ echo
 echo
 echo ping hosts in inventory
 echo ansible myhosts -m ping -i inventory.ini
-ansible myhosts -m ping -i inventory.ini
+ansible myhosts -m ping -i inventory.ini --connection local
 echo
 echo
 echo

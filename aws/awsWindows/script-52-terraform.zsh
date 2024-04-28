@@ -18,6 +18,11 @@ cd ~
 echo 
 echo
 echo
+echo ls
+ls
+echo
+echo
+echo
 echo mkdir terraform-052-021
 mkdir terraform-052-021
 echo
@@ -25,6 +30,11 @@ echo
 echo
 echo mv ./script-52-terraform.tf terraform-052-021
 mv ./script-52-terraform.tf terraform-052-021
+echo
+echo
+echo
+echo ls
+ls
 echo
 echo
 echo
@@ -114,8 +124,8 @@ terraform apply -input=false -auto-approve
 echo
 echo
 echo
-echo terraform apply input=false script-52-terraform.tf
-terraform apply -input=false script-52-terraform.tf
+# echo terraform apply input=false script-52-terraform.tf
+# terraform apply -input=false script-52-terraform.tf
 echo
 echo
 echo
@@ -144,6 +154,11 @@ terraform plan -destroy -out=tfplan -input=false -lock=false
 echo
 echo
 echo
+echo terraform apply -input=false -auto-approve -lock=false tfplan
+terraform apply -input=false -auto-approve -lock=false tfplan
+echo
+echo
+echo
 echo ls
 ls
 echo
@@ -154,8 +169,10 @@ screen -dm
 echo
 echo
 echo
-echo screen - d m /usr/share/game/startlss.sh
-screen -dm /usr/share/game/startlss.sh
+touch terraformScript.sh
+echo echo hello from running terraform script by phil anderson the mega scripter >> terraformScript.sh
+echo screen - d m ./terraformScript.sh
+screen -dm ./terraformScript.sh
 echo
 echo
 echo
@@ -174,8 +191,8 @@ ls
 echo
 echo
 echo
-echo cd terraform
-cd terraform
+echo cd terraform-052-021
+cd terraform-052-021
 echo
 echo
 echo

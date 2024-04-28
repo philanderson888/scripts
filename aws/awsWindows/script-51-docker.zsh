@@ -132,8 +132,8 @@ docker exec ubuntu ./myDockerFile.sh
 echo 
 echo 
 echo
-echo run docker interactive shell
-docker exec -it docker /bin/bash
+echo docker exec - run docker interactive shell - commented out for now as we dont want this
+# docker exec -it ubuntu /bin/bash
 echo
 echo
 echo
@@ -167,6 +167,11 @@ echo
 echo
 echo sudo find / -name docker-compose
 sudo find / -name docker-compose
+echo
+echo
+echo
+echo docker compose version
+docker compose version
 echo
 echo
 echo
