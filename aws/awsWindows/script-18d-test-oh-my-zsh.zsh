@@ -4,16 +4,6 @@ zsh
 echo
 echo
 echo
-echo cd .oh-my-zsh
-cd ./.oh-my-zsh
-echo
-echo
-echo
-echo zsh
-zsh
-echo
-echo
-echo
 echo shell
 echo $SHELL
 echo
