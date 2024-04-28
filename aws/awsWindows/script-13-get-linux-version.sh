@@ -74,8 +74,10 @@ if [[  "$os_type" == "$os_type_debian" ]]; then
     sleep 1
     nginx -v
     echo "=============================================================="
-    echo "====               update various services 01360          ===="
+    echo "====               update various services 013-077        ===="
     echo "=============================================================="
+    echo this command gives nginx version
+    sudo systemctl restart systemd-journald.service 
     sudo systemctl restart systemd-journald.service 
     sudo /etc/needrestart/restart.d/systemd-manager
     sudo systemctl restart systemd-networkd.service
