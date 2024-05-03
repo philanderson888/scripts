@@ -116,7 +116,7 @@ echo
 echo
 echo
 echo cp script-90-package.json package.json
-cp script-90-package.json package.json
+sudo cp script-90-package.json package.json
 echo
 echo
 echo
