@@ -1,9 +1,9 @@
-- name: My first play
+- name: phil anderson first ansible script running on list of hosts specified in the inventory 
   hosts: myhosts
   connection: local
   tasks:
    - name: Print message
      ansible.builtin.debug:
-      msg: Hello world
+      msg: hello from phil ansible running ansible on a host
    - name: Ping my hosts
      ansible.builtin.ping:

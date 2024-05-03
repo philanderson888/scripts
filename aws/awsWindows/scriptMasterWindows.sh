@@ -800,9 +800,32 @@ fi
 
 
 printHeading "====               github actions                 ===="
+echo github actions ... build test and deploy code 
+echo github actions ... can add labels when issue is created, for example
+echo github actions run on linux windows or macos machines called 'runners'
+echo github actions ... workflow is triggered ... on event ...
+echo ... workflow contains jobs ... in sequence or in parallel
+echo ... each job runs in own runner vm or container
+echo ... each job has a number of steps ...
+echo ... each step runs a script or an action which is a reusable extension
+echo event
+echo ... triggers workflow ... defined in yaml ...
+echo ... workflows in .github/workflows folder
+echo ... event -> workflow -> 
+echo -> vm runner 1 runs job 1 -> steps ... either actions or scripts ... 
+echo ... jobs .. can have dependencies if desired ...
+echo
 echo run all my code on a commit, not just when i want to run it?
+echo
+echo
+echo
+echo github action links
 echo https://docs.github.com/en/actions/quickstart
-
+echo
+echo
+echo sample given 
+echo ... installs bash testing framework 
+echo https://www.npmjs.com/package/bats
 
 
 
