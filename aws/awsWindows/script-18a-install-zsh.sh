@@ -3,6 +3,10 @@ echo "====            apt-get install zsh 18020                          ===="
 echo "======================================================================="   
 echo cd ~
 cd ~
+echo whoami
+whoami
+echo pwd
+pwd
 echo
 echo
 echo
@@ -57,6 +61,14 @@ $SHELL --version
 zsh --version
 echo which zsh
 which zsh
-echo set as default
+echo
+echo
+echo
+echo cat .zshrc
+cat .zshrc
+echo
+echo
+echo
+echo set zsh as default
 sudo chsh -s $(which zsh)
 exit
