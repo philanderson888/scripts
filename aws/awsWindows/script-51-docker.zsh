@@ -166,6 +166,7 @@ echo
 echo
 echo
 echo sudo find / -name docker-compose
+echo remove this search - as its super slow - as its searching entire computer for one string - not good
 sudo find / -name docker-compose
 echo
 echo
@@ -187,6 +188,11 @@ echo
 echo
 echo docker compose up - d
 docker compose up -d
+echo
+echo
+echo
+echo 
+sleep 1
 echo
 echo
 echo
