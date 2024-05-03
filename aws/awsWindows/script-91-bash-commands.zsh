@@ -9,6 +9,15 @@ echo "====                     bash commands                         ===="
 echo "==================================================================="
 echo "==================================================================="
 echo "==================================================================="
+echo "====                          apt                              ===="
+echo "==================================================================="
+echo apt is an updated form of apt-get
+echo apt-get released 1998
+echo apt released 2014
+echo apt search ... searches for all apt distributions containing that name
+echo apt search ansible
+apt search ansible
+echo "==================================================================="
 echo "====                    df disk free                           ===="
 echo "==================================================================="
 echo df

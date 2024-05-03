@@ -1,4 +1,5 @@
 #!/bin/zsh
+zsh
 echo "=============================================================="
 echo "====                    terraform help                    ===="
 echo "=============================================================="
@@ -28,8 +29,8 @@ mkdir terraform-052-021
 echo
 echo
 echo
-echo mv ./script-52-terraform.tf terraform-052-021
-mv ./script-52-terraform.tf terraform-052-021
+echo mv script-52-terraform.tf terraform-052-021
+mv script-52-terraform.tf terraform-052-021
 echo
 echo
 echo
@@ -48,12 +49,22 @@ mv script-52-terraformtf main.tf
 echo
 echo
 echo
+echo ls
+ls
+echo
+echo
+echo
 echo terraform tutorials
 echo https://medium.com/@sanghpriya785/running-your-first-terraform-hello-world-example-4bd8bb5c3efc
 echo https://www.terraformbyexample.com/hello-world
 echo https://developer.hashicorp.com/terraform/install
 echo https://levelup.gitconnected.com/terraform-hello-world-b4985162cff2
 echo install terraform on linux for azure https://developer.hashicorp.com/terraform/tutorials/azure-get-started/install-cli
+echo
+echo
+echo
+echo sleep 1
+sleep 1
 echo
 echo
 echo
@@ -71,7 +82,6 @@ echo
 echo
 echo sudo apt-get install software-properties-common
 sudo apt-get -qq install -y software-properties-common
-echo
 echo
 echo
 echo
@@ -171,8 +181,8 @@ echo
 echo
 touch terraformScript.sh
 echo echo hello from running terraform script by phil anderson the mega scripter >> terraformScript.sh
-echo screen - d m ./terraformScript.sh
-screen -dm ./terraformScript.sh
+echo screen - dm terraformScript.sh
+screen -dm terraformScript.sh
 echo
 echo
 echo
@@ -266,8 +276,8 @@ mkdir terraform-nginx-on-docker
 echo
 echo
 echo
-echo mv ./script-52-terraform-main.tf terraform-nginx-on-docker
-mv ./script-52-terraform-main.tf terraform-nginx-on-docker
+echo mv script-52-terraform-main.tf terraform-nginx-on-docker
+mv script-52-terraform-main.tf terraform-nginx-on-docker
 echo
 echo
 echo
@@ -276,7 +286,7 @@ cd terraform-nginx-on-docker
 echo
 echo
 echo
-echo mv ./script-52-terraform-main.tf ./main.tf
+echo mv script-52-terraform-main.tf main.tf
 mv script-52-terraform-main.tf main.tf
 echo
 echo
@@ -296,5 +306,9 @@ docker ps
 echo
 echo
 echo
+echo test nginx running on docker initiated by terraform
 echo curl localhost:8000
 curl localhost:8000
+echo
+echo
+echo
