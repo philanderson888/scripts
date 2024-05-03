@@ -36,7 +36,13 @@ getElapsedTime () {
 }
 printTime () {
     getElapsedTime
-    echo "====                         $minutes:$seconds"
+    echo "====          script elapsed time $minutes:$seconds"
+}
+printLastElapsedWaypointTime() {
+    elapsed_seconds_this_waypoint=$SECONDS
+    duration_this_waypoint=$elapsed_seconds_this_waypoint-$elapsed_seconds_previous_waypoint
+    echo "====             waypoint took $duration_this_waypoint seconds"
+    elapsed_seconds_previous_waypoint=$elapsed_seconds_this_waypoint
 }
 printHeading () {
     echo
@@ -56,6 +62,7 @@ print_status_of_progress () {
     echo "=============================================================="
     echo "====                waypoint $waypoint $1"
     printTime
+    printLastElapsedWaypointTime
     echo "=============================================================="
     if [ "$aws_cli_installed" = true ] ; then
         echo aws cli installed of version $aws_version
@@ -212,6 +219,10 @@ print_status_of_progress () {
         echo $list_files_and_hidden_files
     fi
 }
+
+# script timers
+# initial elapsed seconds is zero
+elapsed_seconds_previous_waypoint = 0
 
 # install
 installing_powershell=false
@@ -427,8 +438,8 @@ print_status_of_progress "deciding which services to install"
 install_zsh=true
 if [ "$install_zsh" = true ] ; then
     printHeading "====                       zsh                            ===="
+    scp -i $ssh_key script-18-always-run-zsh.sh $admin_username@$public_ip_address:script-18-always-run-zsh.sh 
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-18a-install-zsh.sh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-18-always-run-zsh.sh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18b-test-zsh.zsh
     zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
     zsh_installed=true
