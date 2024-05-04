@@ -45,7 +45,7 @@ echo
 echo
 echo
 echo mv ./script-52-terraform.tf ./main.tf
-mv script-52-terraformtf main.tf
+mv script-52-terraform.tf main.tf
 echo
 echo
 echo
@@ -60,11 +60,6 @@ echo https://www.terraformbyexample.com/hello-world
 echo https://developer.hashicorp.com/terraform/install
 echo https://levelup.gitconnected.com/terraform-hello-world-b4985162cff2
 echo install terraform on linux for azure https://developer.hashicorp.com/terraform/tutorials/azure-get-started/install-cli
-echo
-echo
-echo
-echo sleep 1
-sleep 1
 echo
 echo
 echo
