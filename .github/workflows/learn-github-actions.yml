@@ -9,6 +9,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - run: whoami
+      - run: pwd
       - run: npm install -g bats
       - run: bats -v
       - run: echo hello from the amazing world of scripting by phil anderson
+      - run: bash .github/scripts/github-script-001.sh
