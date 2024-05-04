@@ -18,15 +18,15 @@ echo "====                      azure                           ===="
 echo "====                build windows server                  ===="
 echo "====                 build ubuntu server                  ===="
 echo "====               run web servers on both                ===="
-echo "====        script starts at unix time $startTimeOnMasterScript
-echo "====        script starts at $startTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
+echo "====        script starts at unix time $startTimeOnMasterScript"
+echo ====        script starts at $startTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
 echo "====                  set functions                       ===="
 echo "=============================================================="
-getElapsedTime () {
+getMinutesAndSeconds() {
     duration=$SECONDS
     minutes=$(( $duration / 60 ))
     seconds=$(( $duration % 60 )) 
@@ -34,15 +34,36 @@ getElapsedTime () {
         seconds="0"$seconds
     fi
 }
-printTime () {
-    getElapsedTime
-    echo "====          script elapsed time $minutes:$seconds"
+printTime() {
+    getMinutesAndSeconds
+    echo "====           elapsed time $minutes:$seconds"
 }
-printLastElapsedWaypointTime() {
-    elapsed_seconds_this_waypoint=$SECONDS
-    duration_this_waypoint=$elapsed_seconds_this_waypoint-$elapsed_seconds_previous_waypoint
-    echo "====             waypoint took $duration_this_waypoint seconds"
-    elapsed_seconds_previous_waypoint=$elapsed_seconds_this_waypoint
+print_waypoint() {
+    waypoint_time=$SECONDS
+    waypoint_start=$waypoint_end
+    waypoint_end=$SECONDS
+    waypoint_duration=$(( waypoint_end - waypoint_start ))
+    waypoint_index=$(( waypoint_index + 1 ))
+    echo "=============================================================="
+    echo "====   waypoint index $waypoint_index : $waypoint_name : took $waypoint_duration s"   
+    printTime
+    echo "=============================================================="
+}
+push_waypoint_to_array() {
+    waypoint=$(waypoint_index="$waypoint_index" waypoint_name="$waypoint_name" waypoint_duration="$waypoint_duration" waypoint_start="$waypoint_start" waypoint_end="$waypoint_end")
+
+    waypoint_2=$(cat <<-END
+        {
+            "waypoint_index": $waypoint_index,
+            "waypoint_name": $waypoint_name,
+            "waypoint_start": $waypoint_start,
+            "waypoint_end": $waypoint_end,
+            "waypoint_duration": $waypoint_duration
+        }
+    END
+    )
+    waypoint_array+=($waypoint)
+    waypoint_array_2+=($waypoint_2)
 }
 printHeading () {
     echo
@@ -59,10 +80,9 @@ printHeading () {
     echo
 }
 print_status_of_progress () {
-    echo "=============================================================="
-    echo "====                waypoint $waypoint $1"
-    printTime
-    printLastElapsedWaypointTime
+    waypoint_name=$1
+    print_waypoint
+    push_waypoint_to_array
     echo "=============================================================="
     if [ "$aws_cli_installed" = true ] ; then
         echo aws cli installed of version $aws_version
@@ -220,9 +240,61 @@ print_status_of_progress () {
     fi
 }
 
-# script timers
-# initial elapsed seconds is zero
-elapsed_seconds_previous_waypoint = 0
+echo create array of waypoints
+waypoint_time_previous=0
+waypoint_name="start"
+waypoint_index=0
+waypoint_duration=0
+waypoint_start=0
+waypoint_end=0
+waypoint=${waypoint_index="$waypoint_index" waypoint_name="$waypoint_name" waypoint_duration="$waypoint_duration" }
+echo initial waypoint is 
+echo $waypoint
+
+waypoint_2=$(cat <<-END
+    {
+        "waypoint_index": $waypoint_index,
+        "waypoint_name": $waypoint_name,
+        "waypoint_start": $waypoint_start,
+        "waypoint_end": $waypoint_end,
+        "waypoint_duration": $waypoint_duration
+    }
+END
+)
+
+
+waypoint_array=($waypoint)
+waypoint_array_2=($waypoint_2)
+
+echo check for homebrew updates
+echo brew upgrade
+brew upgrade
+echo brew update
+brew update
+echo brew doctor 
+brew doctor
+
+echo install jq json parser
+brew install jq
+
+echo waypoint 1 is
+echo $waypoint
+cat $waypoint
+cat $waypoint | jq
+cat $waypoint | jq .waypoint_index
+cat $waypoint | jq .waypoint_name
+
+
+echo this is correct
+echo waypoint 2 is
+echo $waypoint_2
+cat $waypoint_2 | jq
+cat $waypoint_2 | jq .waypoint_index
+cat $waypoint_2 | jq .waypoint_name
+
+jq -r .waypoint_index $waypoint
+jq -r .waypoint_index $waypoint_2
+
 
 # install
 installing_powershell=false
@@ -811,8 +883,8 @@ echo ... each step runs a script or an action which is a reusable extension
 echo event
 echo ... triggers workflow ... defined in yaml ...
 echo ... workflows in .github/workflows folder
-echo ... event -> workflow -> 
-echo -> vm runner 1 runs job 1 -> steps ... either actions or scripts ... 
+echo ... event ... workflow ...  
+echo ... vm runner 1 runs job 1 ... steps ... either actions or scripts ... 
 echo ... jobs .. can have dependencies if desired ...
 echo
 echo run all my code on a commit, not just when i want to run it?
