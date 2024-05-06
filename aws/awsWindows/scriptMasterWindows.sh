@@ -11,6 +11,8 @@ echo
 echo
 startTimeOnMasterScript=$(date +%s)
 SECONDS=0
+slow_read=2
+quick_read=1
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
@@ -23,13 +25,13 @@ echo "====        script starts at " $startTimeOnMasterScript | perl -pe 's/(\d+
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
-sleep slow_read
+sleep $slow_read
 echo
 echo
 echo "=============================================================="
-echo "====                  set functions                       ===="
+echo "====            initialise script functions               ===="
 echo "=============================================================="
-sleep slow_read
+sleep $slow_read
 echo
 echo
 getMinutesAndSeconds() {
@@ -68,190 +70,30 @@ get_waypoint() {
     echo "====             waypoint $waypoint_index $waypoint_name took $waypoint_duration s"   
     printTime
     echo "=============================================================="
-    sleep slow_read
+    sleep $slow_read
     waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
-    sleep slow_read
+    sleep $slow_read
     echo
     echo waypoint as plain text
-    sleep quick_read
+    sleep $quick_read
     echo $waypoint
-    sleep quick_read
+    sleep $quick_read
     echo
     echo
     echo
     echo waypoint as json
-    sleep quick_read
+    sleep $quick_read
     echo "${waypoint}" | jq
-    sleep quick_read
+    sleep $quick_read
 }
-
-
-slow_read=0.01
-quick_read=0.01
-
-echo "=============================================================="
-echo "====                   jq  array                          ===="
-echo "=============================================================="
-sleep slow_read
-echo create json from string literal
-sleep slow_read
-json01=$(jq -s '.' <<< '{ "a": 1 } { "b": 2 }')
-echo $json01 | jq
-sleep slow_read
-echo
-echo
-echo import json from a file
-sleep slow_read
-json02=$(jq '.' < tmp.json)
-echo $json02 | jq
-sleep slow_read
-echo
-echo
-echo create a json array from string literal
-jq -s '.' <<< '{ "a": "mighty man" } { "b": "sole player" }'
-sleep slow_read
-echo
-echo
-echo
-echo create json array from file
-jq '.' < tmp2.json
-sleep slow_read
-echo
-echo
-echo
-echo create json array with one object from variables
-sleep slow_read
-json03data="here is some data"
-json03=$(jq -s '.' <<< '
-    { 
-        "d": "'"$json03data"'"
-    }'
-)
-echo $json03 | jq
-sleep slow_read
-echo
-echo
-echo add to json array
-sleep slow_read
-json01=$(echo $json01 | jq '. += 
-    [
-        { 
-            "c": 3
-        }
-    ]
-')
-echo $json01 | jq
-sleep slow_read
-echo
-echo
-echo
-echo add to json array with spaces in strings
-sleep slow_read
-json02=$(
-    echo $json02 | jq '. += 
-    [
-        {  
-            "name": "Phil Anderson",  
-            "email": "phil@company.com" 
-        }
-    ]'
-)
-echo $json02 | jq
-sleep slow_read
-echo
-echo
-echo add to json array with variables
-sleep slow_read
-json01data=15
-json01=$(echo $json01 | jq '. += 
-    [
-        { 
-            "d": "'"$json01data"'"
-        }
-    ]
-')
-echo $json01 | jq
-sleep slow_read
-echo
-echo
-echo add to json array using variables with spaces
-sleep slow_read
-json02data_name="Rob Walsh"
-json02data_email="rob@walshconstruction.com"
-json02=$(
-    echo $json02 | jq '. += 
-    [
-        {  
-            "name": "'"$json02data_name"'",
-            "email": "'"$json02data_email"'"
-        }
-    ]'
-)
-echo $json02 | jq
-sleep slow_read
-echo
-echo
-echo now extract data from json
-sleep slow_read
-echo lets start with just one single json object, not an array
-sleep slow_read
-echo
-echo
-echo get all the names
-sleep slow_read
-echo $json02 | jq -r '.[].name'
-echo
-echo
-echo get all the emails
-sleep 2
-echo $json02 | jq -r '.[].email'
-sleep 2
-echo
-echo
-echo can I now just get an individual field from an individual item within the array
-echo
-echo
-loop_counter=-1
-echo $json02 | jq -c '.[]' | while read i; do
-    echo
-    loop_counter=$(( loop_counter + 1 ))
-    echo array index $loop_counter
-    echo $i | jq -c '.[]' | while read j; do
-        j="${j#\"}"
-        j="${j%\"}"
-        echo $j
-    done
-done
-
-sleep 2
-
-
-
-
-exit
-
-
-
-
-
-echo ok i have created arrays of json objects
-sleep quick_read
-echo and i have pushed data to them also
-sleep quick_read
-echo using variable data and not just string literal fixed data
-sleep quick_read
-echo happy days
-sleep quick_read
-echo
-echo
 echo now work on waypoints
-sleep quick_read
+sleep $quick_read
 echo
 echo get one waypoint
-sleep quick_read
+sleep $quick_read
 echo
 echo now try same thing with waypoint
-sleep slow_read
+sleep $slow_read
 echo
 echo
 waypoint_time=$SECONDS
@@ -274,20 +116,20 @@ echo "=============================================================="
 echo "====   waypoint index $waypoint_index : $waypoint_name : took $waypoint_duration s"   
 printTime
 echo "=============================================================="
-sleep slow_read
+sleep $slow_read
 echo
 waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
 echo waypoint as plain text
 echo $waypoint
 echo
 echo waypoint as json
-sleep quick_read
+sleep $quick_read
 echo "${waypoint}" | jq
-sleep quick_read
+sleep $quick_read
 echo
 echo now create array of waypoints
 echo create json array with one object from variables
-sleep slow_read
+sleep $slow_read
 waypoints=$(jq -s '.' <<< '
     { 
         "waypoint_index": "'"$waypoint_index"'",
@@ -298,11 +140,11 @@ waypoints=$(jq -s '.' <<< '
     }'
 )
 echo $waypoints | jq
-sleep slow_read
+sleep $slow_read
 echo
 echo
 echo now add a second item to waypoints array
-sleep slow_read
+sleep $slow_read
 waypoints=$(
     echo $waypoints | jq '. += 
     [
@@ -316,18 +158,18 @@ waypoints=$(
     ]'
 )
 echo $waypoints | jq
-sleep slow_read
+sleep $slow_read
 echo
 echo
 echo "=============================================================="
 echo "====               initialise first waypoint              ===="
 echo "=============================================================="
-sleep slow_read
+sleep $slow_read
 waypoint_name="thisisawaypoint"
 waypoint_start=0
 waypoint_end=0
 get_waypoint
-sleep slow_read
+sleep $slow_read
 echo
 echo
 
@@ -993,8 +835,8 @@ if [ "$install_react" = true ] ; then
     echo
     echo
     echo - - - have a look at the file listing - does it contain package json files - - - 
-    echo sleep quick_read
-    sleep quick_read
+    echo sleep $quick_read
+    sleep $quick_read
     print_status_of_progress react
 fi
 
@@ -1369,7 +1211,7 @@ fi
 
 
 if [ "$set_auto_shutdown" = true ] ; then
-    sleep quick_read
+    sleep $quick_read
     printHeading "====            set auto shutdown                 ===="
     SHUTDOWN_TIME="18:00"
     AUTO_SHUTDOWN="true"
@@ -1543,19 +1385,19 @@ fi
 
 
 
-sleep quick_read
+sleep $quick_read
 printHeading "====           upload node teaching files                   ===="
 scp -i $ssh_key script-90-teaching.js $admin_username@$public_ip_address:script-90-teaching.js
 scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:script-90-package.json
 printHeading "====           install and run teaching node                ===="
 printHeading "====                    script 90                           ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-teaching.zsh
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-learn-node-js.zsh
 
 
 
 
 
-sleep quick_read
+sleep $quick_read
 printHeading "====              bash scripting a to z                    ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-bash-commands.zsh
 
