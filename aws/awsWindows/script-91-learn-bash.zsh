@@ -360,5 +360,88 @@ df -h | tee disk_usage.txt
 echo
 echo
 echo
+echo "==================================================================="
+echo "==================================================================="
+echo "==================================================================="
+echo "====                      json arrays                          ===="
+echo "====                 delete this code block                    ===="
+echo "====                    no longer needed                       ===="
+echo "==================================================================="
+echo "==================================================================="
+echo "==================================================================="
+echo now work on waypoints
+sleep $quick_read
+echo
+echo get one waypoint
+sleep $quick_read
+echo
+echo now try same thing with waypoint
+sleep $slow_read
+echo
+echo
+waypoint_time=$SECONDS
+waypoint_start=$waypoint_end
+waypoint_end=$SECONDS
+waypoint_duration=$(( waypoint_end - waypoint_start ))
+waypoint_index=$(( waypoint_index + 1 ))
+waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
+echo $waypoint | jq
+sleep 5
 
+waypoint_end=500
+waypoint_index=50
+waypoint_time=$SECONDS
+waypoint_start=$waypoint_end
+waypoint_end=$SECONDS
+waypoint_duration=$(( waypoint_end - waypoint_start ))
+waypoint_index=$(( waypoint_index + 1 ))
+echo "=============================================================="
+echo "====   waypoint index $waypoint_index : $waypoint_name : took $waypoint_duration s"   
+printTime
+echo "=============================================================="
+sleep $slow_read
+echo
+waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
+echo waypoint as plain text
+echo $waypoint
+echo
+echo waypoint as json
+sleep $quick_read
+echo "${waypoint}" | jq
+sleep $quick_read
+echo
+echo now create array of waypoints
+echo create json array with one object from variables
+sleep $slow_read
+waypoints=$(jq -s '.' <<< '
+    { 
+        "waypoint_index": "'"$waypoint_index"'",
+        "waypoint_name": "'"$waypoint_name"'",
+        "waypoint_start": "'"$waypoint_start"'",
+        "waypoint_end": "'"$waypoint_end"'",
+        "waypoint_duration": "'"$waypoint_duration"'"
+    }'
+)
+echo $waypoints | jq
+sleep $slow_read
+echo
+echo
+echo now add a second item to waypoints array
+sleep $slow_read
+waypoints=$(
+    echo $waypoints | jq '. += 
+    [
+        {  
+            "waypoint_index": "'"$waypoint_index"'",
+            "waypoint_name": "'"$waypoint_name"'",
+            "waypoint_start": "'"$waypoint_start"'",
+            "waypoint_end": "'"$waypoint_end"'",
+            "waypoint_duration": "'"$waypoint_duration"'"
+        }
+    ]'
+)
+echo $waypoints | jq
+sleep $slow_read
+echo
+echo
 
