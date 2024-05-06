@@ -1,38 +1,62 @@
-if [ "$installing_aws_cli" = true ] ; then
-    echo "================================================================="
-    echo "====                   installing aws client                 ===="
-    echo "================================================================="
+echo "================================================================"
+echo "====    only doing installs every 30 runs of this program ===="
+echo "================================================================"
+run_counter=$(cat .script_data/run_counter)
+run_counter=$(( run_counter + 1 ))
+run_counter=30
+echo there have been $run_counter runs of this script
+echo store new value for next time
+echo $run_counter > .script_data/run_counter
+echo cat .script_data/run_counter
+
+refresh_limit=30
+number_of_installs=$(($run_counter % $refresh_limit))
+
+if [ $number_of_installs -eq 0 ] ; then
+    echo only checking for updates every $refresh_limit runs of this program
+    echo check for homebrew updates
+    echo brew upgrade
+    brew upgrade
+    echo brew update
     brew update
+    brew doctor
+    echo
+    echo
+    echo
+    sleep 1
+    echo "==================================================================="
+    echo "====                   install azure client                    ===="
+    echo "==================================================================="
     brew install azure-cli
-    aws_cli_installed=true
-else
-    echo "=================================================================="
-    echo "====             aws client is already installed              ===="
-    echo "=================================================================="
-    aws_cli_already_installed=true
-fi
-aws_version=$(aws --version)
-aws_version="${aws_version:0:16}"
-if [ "$installing_powershell" = true ] ; then
+    sleep 1
     echo "==================================================================="
-    echo "====                  installing powershell                    ===="
+    echo "====                    install powershell                     ===="
     echo "==================================================================="
-    brew update
     brew install powershell/tap/powershell
     brew upgrade powershell
-    pwsh
-    echo
-    echo
-    echo
-    echo installing powershell preview edition
+    sleep 1
+    echo "==================================================================="
+    echo "====             install powershell preview                    ===="
+    echo "==================================================================="
     brew install powershell/tap/powershell-preview
     pwsh-preview
     brew upgrade powershell-preview
-    powershell_installed=true
-else
-    echo "======================================================================="
-    echo "====                 powershell is already installed               ===="
-    echo "======================================================================="
-    powershell_already_installed=true
+    sleep 1
+    echo "==================================================================="
+    echo "====                        install jq                         ===="
+    echo "==================================================================="
+    echo brew install jq
+    brew install jq
+    sleep 1
+    echo "==================================================================="
+    echo "====                     install jo                            ===="
+    echo "==================================================================="
+    echo brew install jo 
+    brew install jo
 fi
-powershell_version=$(pwsh --version)
+aws_cli_installed=true
+aws_cli_already_installed=true
+powershell_installed=true
+powershell_already_installed=true
+jq_installed=true
+jo_installed=true
