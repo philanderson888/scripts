@@ -114,6 +114,153 @@ echo "====                      jq from file                         ===="
 echo "==================================================================="
 echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' > json-01-test-data.json
 jq  '.' json-01-test-data.json
+echo "=============================================================="
+echo "====                   jq  array                          ===="
+echo "=============================================================="
+sleep $slow_read
+echo create json from string literal
+sleep $slow_read
+json01=$(jq -s '.' <<< '{ "a": 1 } { "b": 2 }')
+echo $json01 | jq
+sleep $slow_read
+echo
+echo
+echo import json from a file
+sleep $slow_read
+json02=$(jq '.' < tmp.json)
+echo $json02 | jq
+sleep $slow_read
+echo
+echo
+echo create a json array from string literal
+jq -s '.' <<< '{ "a": "mighty man" } { "b": "sole player" }'
+sleep $slow_read
+echo
+echo
+echo
+echo create json array from file
+jq '.' < tmp2.json
+sleep $slow_read
+echo
+echo
+echo
+echo create json array with one object from variables
+sleep $slow_read
+json03data="here is some data"
+json03=$(jq -s '.' <<< '
+    { 
+        "d": "'"$json03data"'"
+    }'
+)
+echo $json03 | jq
+sleep $slow_read
+echo
+echo
+echo add to json array
+sleep $slow_read
+json01=$(echo $json01 | jq '. += 
+    [
+        { 
+            "c": 3
+        }
+    ]
+')
+echo $json01 | jq
+sleep $slow_read
+echo
+echo
+echo
+echo add to json array with spaces in strings
+sleep $slow_read
+json02=$(
+    echo $json02 | jq '. += 
+    [
+        {  
+            "name": "Phil Anderson",  
+            "email": "phil@company.com" 
+        }
+    ]'
+)
+echo $json02 | jq
+sleep $slow_read
+echo
+echo
+echo add to json array with variables
+sleep $slow_read
+json01data=15
+json01=$(echo $json01 | jq '. += 
+    [
+        { 
+            "d": "'"$json01data"'"
+        }
+    ]
+')
+echo $json01 | jq
+sleep $slow_read
+echo
+echo
+echo add to json array using variables with spaces
+sleep $slow_read
+json02data_name="Rob Walsh"
+json02data_email="rob@walshconstruction.com"
+json02=$(
+    echo $json02 | jq '. += 
+    [
+        {  
+            "name": "'"$json02data_name"'",
+            "email": "'"$json02data_email"'"
+        }
+    ]'
+)
+echo $json02 | jq
+sleep $slow_read
+echo
+echo
+echo now extract data from json
+sleep $slow_read
+echo lets start with just one single json object, not an array
+sleep $slow_read
+echo
+echo
+echo get all the names
+sleep $slow_read
+echo $json02 | jq -r '.[].name'
+echo
+echo
+echo get all the emails
+sleep 2
+echo $json02 | jq -r '.[].email'
+sleep 2
+echo
+echo
+echo can I now just get an individual field from an individual item within the array
+echo
+echo
+loop_counter=-1
+echo $json02 | jq -c '.[]' | while read i; do
+    echo
+    loop_counter=$(( loop_counter + 1 ))
+    echo array index $loop_counter
+    echo $i | jq -c '.[]' | while read j; do
+        j="${j#\"}"
+        j="${j%\"}"
+        echo $j
+    done
+done
+sleep 2
+echo
+echo
+echo
+echo ok i have created arrays of json objects
+sleep $quick_read
+echo and i have pushed data to them also
+sleep $quick_read
+echo using variable data and not just string literal fixed data
+sleep $quick_read
+echo happy days
+sleep $quick_read
+echo
+echo
 echo "==================================================================="
 echo "====         lsof list processes running                       ===="
 echo "==================================================================="
