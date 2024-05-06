@@ -1,4 +1,4 @@
-clear
+#clear
 echo screen cleared
 echo
 echo
@@ -19,13 +19,19 @@ echo "====                build windows server                  ===="
 echo "====                 build ubuntu server                  ===="
 echo "====               run web servers on both                ===="
 echo "====        script starts at unix time $startTimeOnMasterScript"
-echo ====        script starts at $startTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
+echo "====        script starts at " $startTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
+sleep slow_read
+echo
+echo
 echo "=============================================================="
 echo "====                  set functions                       ===="
 echo "=============================================================="
+sleep slow_read
+echo
+echo
 getMinutesAndSeconds() {
     duration=$SECONDS
     minutes=$(( $duration / 60 ))
@@ -36,34 +42,7 @@ getMinutesAndSeconds() {
 }
 printTime() {
     getMinutesAndSeconds
-    echo "====           elapsed time $minutes:$seconds"
-}
-print_waypoint() {
-    waypoint_time=$SECONDS
-    waypoint_start=$waypoint_end
-    waypoint_end=$SECONDS
-    waypoint_duration=$(( waypoint_end - waypoint_start ))
-    waypoint_index=$(( waypoint_index + 1 ))
-    echo "=============================================================="
-    echo "====   waypoint index $waypoint_index : $waypoint_name : took $waypoint_duration s"   
-    printTime
-    echo "=============================================================="
-}
-push_waypoint_to_array() {
-    waypoint=$(waypoint_index="$waypoint_index" waypoint_name="$waypoint_name" waypoint_duration="$waypoint_duration" waypoint_start="$waypoint_start" waypoint_end="$waypoint_end")
-
-    waypoint_2=$(cat <<-END
-        {
-            "waypoint_index": $waypoint_index,
-            "waypoint_name": $waypoint_name,
-            "waypoint_start": $waypoint_start,
-            "waypoint_end": $waypoint_end,
-            "waypoint_duration": $waypoint_duration
-        }
-    END
-    )
-    waypoint_array+=($waypoint)
-    waypoint_array_2+=($waypoint_2)
+    echo "====                script elapsed time $minutes:$seconds"
 }
 printHeading () {
     echo
@@ -79,9 +58,322 @@ printHeading () {
     echo
     echo
 }
-print_status_of_progress () {
+get_waypoint() {
+    waypoint_time=$SECONDS
+    waypoint_start=$waypoint_end
+    waypoint_end=$SECONDS
+    waypoint_duration=$(( waypoint_end - waypoint_start ))
+    waypoint_index=$(( waypoint_index + 1 ))
+    echo "=============================================================="
+    echo "====             waypoint $waypoint_index $waypoint_name took $waypoint_duration s"   
+    printTime
+    echo "=============================================================="
+    sleep slow_read
+    waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
+    sleep slow_read
+    echo
+    echo waypoint as plain text
+    sleep quick_read
+    echo $waypoint
+    sleep quick_read
+    echo
+    echo
+    echo
+    echo waypoint as json
+    sleep quick_read
+    echo "${waypoint}" | jq
+    sleep quick_read
+}
+
+
+slow_read=0.01
+quick_read=0.01
+
+echo "=============================================================="
+echo "====                   jq  array                          ===="
+echo "=============================================================="
+sleep slow_read
+echo create json from string literal
+sleep slow_read
+json01=$(jq -s '.' <<< '{ "a": 1 } { "b": 2 }')
+echo $json01 | jq
+sleep slow_read
+echo
+echo
+echo import json from a file
+sleep slow_read
+json02=$(jq '.' < tmp.json)
+echo $json02 | jq
+sleep slow_read
+echo
+echo
+echo create a json array from string literal
+jq -s '.' <<< '{ "a": "mighty man" } { "b": "sole player" }'
+sleep slow_read
+echo
+echo
+echo
+echo create json array from file
+jq '.' < tmp2.json
+sleep slow_read
+echo
+echo
+echo
+echo create json array with one object from variables
+sleep slow_read
+json03data="here is some data"
+json03=$(jq -s '.' <<< '
+    { 
+        "d": "'"$json03data"'"
+    }'
+)
+echo $json03 | jq
+sleep slow_read
+echo
+echo
+echo add to json array
+sleep slow_read
+json01=$(echo $json01 | jq '. += 
+    [
+        { 
+            "c": 3
+        }
+    ]
+')
+echo $json01 | jq
+sleep slow_read
+echo
+echo
+echo
+echo add to json array with spaces in strings
+sleep slow_read
+json02=$(
+    echo $json02 | jq '. += 
+    [
+        {  
+            "name": "Phil Anderson",  
+            "email": "phil@company.com" 
+        }
+    ]'
+)
+echo $json02 | jq
+sleep slow_read
+echo
+echo
+echo add to json array with variables
+sleep slow_read
+json01data=15
+json01=$(echo $json01 | jq '. += 
+    [
+        { 
+            "d": "'"$json01data"'"
+        }
+    ]
+')
+echo $json01 | jq
+sleep slow_read
+echo
+echo
+echo add to json array using variables with spaces
+sleep slow_read
+json02data_name="Rob Walsh"
+json02data_email="rob@walshconstruction.com"
+json02=$(
+    echo $json02 | jq '. += 
+    [
+        {  
+            "name": "'"$json02data_name"'",
+            "email": "'"$json02data_email"'"
+        }
+    ]'
+)
+echo $json02 | jq
+sleep slow_read
+echo
+echo
+echo now extract data from json
+sleep slow_read
+echo lets start with just one single json object, not an array
+sleep slow_read
+echo
+echo
+echo get all the names
+sleep slow_read
+echo $json02 | jq -r '.[].name'
+echo
+echo
+echo get all the emails
+sleep 2
+echo $json02 | jq -r '.[].email'
+sleep 2
+echo
+echo
+echo can I now just get an individual field from an individual item within the array
+echo
+echo
+loop_counter=-1
+echo $json02 | jq -c '.[]' | while read i; do
+    echo
+    loop_counter=$(( loop_counter + 1 ))
+    echo array index $loop_counter
+    echo $i | jq -c '.[]' | while read j; do
+        j="${j#\"}"
+        j="${j%\"}"
+        echo $j
+    done
+done
+
+sleep 2
+
+
+
+
+exit
+
+
+
+
+
+echo ok i have created arrays of json objects
+sleep quick_read
+echo and i have pushed data to them also
+sleep quick_read
+echo using variable data and not just string literal fixed data
+sleep quick_read
+echo happy days
+sleep quick_read
+echo
+echo
+echo now work on waypoints
+sleep quick_read
+echo
+echo get one waypoint
+sleep quick_read
+echo
+echo now try same thing with waypoint
+sleep slow_read
+echo
+echo
+waypoint_time=$SECONDS
+waypoint_start=$waypoint_end
+waypoint_end=$SECONDS
+waypoint_duration=$(( waypoint_end - waypoint_start ))
+waypoint_index=$(( waypoint_index + 1 ))
+waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
+echo $waypoint | jq
+sleep 5
+
+waypoint_end=500
+waypoint_index=50
+waypoint_time=$SECONDS
+waypoint_start=$waypoint_end
+waypoint_end=$SECONDS
+waypoint_duration=$(( waypoint_end - waypoint_start ))
+waypoint_index=$(( waypoint_index + 1 ))
+echo "=============================================================="
+echo "====   waypoint index $waypoint_index : $waypoint_name : took $waypoint_duration s"   
+printTime
+echo "=============================================================="
+sleep slow_read
+echo
+waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
+echo waypoint as plain text
+echo $waypoint
+echo
+echo waypoint as json
+sleep quick_read
+echo "${waypoint}" | jq
+sleep quick_read
+echo
+echo now create array of waypoints
+echo create json array with one object from variables
+sleep slow_read
+waypoints=$(jq -s '.' <<< '
+    { 
+        "waypoint_index": "'"$waypoint_index"'",
+        "waypoint_name": "'"$waypoint_name"'",
+        "waypoint_start": "'"$waypoint_start"'",
+        "waypoint_end": "'"$waypoint_end"'",
+        "waypoint_duration": "'"$waypoint_duration"'"
+    }'
+)
+echo $waypoints | jq
+sleep slow_read
+echo
+echo
+echo now add a second item to waypoints array
+sleep slow_read
+waypoints=$(
+    echo $waypoints | jq '. += 
+    [
+        {  
+            "waypoint_index": "'"$waypoint_index"'",
+            "waypoint_name": "'"$waypoint_name"'",
+            "waypoint_start": "'"$waypoint_start"'",
+            "waypoint_end": "'"$waypoint_end"'",
+            "waypoint_duration": "'"$waypoint_duration"'"
+        }
+    ]'
+)
+echo $waypoints | jq
+sleep slow_read
+echo
+echo
+echo "=============================================================="
+echo "====               initialise first waypoint              ===="
+echo "=============================================================="
+sleep slow_read
+waypoint_name="thisisawaypoint"
+waypoint_start=0
+waypoint_end=0
+get_waypoint
+sleep slow_read
+echo
+echo
+
+
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+waypoints=($waypoint)
+waypoints+=($waypoint)
+waypoints+=($waypoint)
+echo
+echo
+echo
+
+echo waypoints array output to jq
+echo $waypoints | jq
+echo
+echo
+echo
+echo loop over waypoints array
+waypoint_counter=0
+for waypoint in ${waypoints[@]}; do
+    waypoint_counter=$(( waypoint_counter + 1 ))
+    echo
+    echo $waypoint_counter
+    echo "${waypoint}" | jq
+done
+
+exit
+
+
+
+
+display_progress () {
     waypoint_name=$1
-    print_waypoint
+    get_waypoint
     push_waypoint_to_array
     echo "=============================================================="
     if [ "$aws_cli_installed" = true ] ; then
@@ -238,62 +530,25 @@ print_status_of_progress () {
         echo list files and hidden files
         echo $list_files_and_hidden_files
     fi
+    echo 
+    
+    echo iterate over waypoints
+    for waypoint_item in "${!waypoints[@]}"
+    do
+        echo "waypoint is ... "
+        echo $waypoint_item
+    done
+
 }
 
-echo create array of waypoints
-waypoint_time_previous=0
-waypoint_name="start"
-waypoint_index=0
-waypoint_duration=0
-waypoint_start=0
-waypoint_end=0
-waypoint=${waypoint_index="$waypoint_index" waypoint_name="$waypoint_name" waypoint_duration="$waypoint_duration" }
-echo initial waypoint is 
-echo $waypoint
-
-waypoint_2=$(cat <<-END
-    {
-        "waypoint_index": $waypoint_index,
-        "waypoint_name": $waypoint_name,
-        "waypoint_start": $waypoint_start,
-        "waypoint_end": $waypoint_end,
-        "waypoint_duration": $waypoint_duration
-    }
-END
-)
 
 
-waypoint_array=($waypoint)
-waypoint_array_2=($waypoint_2)
-
-echo check for homebrew updates
-echo brew upgrade
-brew upgrade
-echo brew update
-brew update
-echo brew doctor 
-brew doctor
-
-echo install jq json parser
-brew install jq
-
-echo waypoint 1 is
-echo $waypoint
-cat $waypoint
-cat $waypoint | jq
-cat $waypoint | jq .waypoint_index
-cat $waypoint | jq .waypoint_name
 
 
-echo this is correct
-echo waypoint 2 is
-echo $waypoint_2
-cat $waypoint_2 | jq
-cat $waypoint_2 | jq .waypoint_index
-cat $waypoint_2 | jq .waypoint_name
 
-jq -r .waypoint_index $waypoint
-jq -r .waypoint_index $waypoint_2
+
+
+
 
 
 # install
@@ -372,15 +627,25 @@ touch output.txt
 touch output-resource-groups.txt
 touch output-network-security-group.txt 
 touch output-azure-vm-image-templates.txt
-touch output-azure_vms.txt
+touch output-azure-vms.txt
 
 # root directory
 root_directory=~/github/scripts/aws/awsWindows
 cd $root_directory
 
+
+printHeading "====           refresh libraries for mac scripting host"
+printHeading "====                       script 01    "
+
 source ./script-01-install.sh
 waypoint=01
+aws_version=$(aws --version)
+aws_version="${aws_version:0:16}"
+powershell_version=$(pwsh --version)
 print_status_of_progress "installing aws and powershell"
+
+
+
 
 source ./script-02-log-in-to-azure.sh
 
@@ -403,12 +668,19 @@ source ./script-06-list-resource-group-names.sh
 waypoint=06
 print_status_of_progress "list resource groups"
 
+
 source ./script-07-query-vm-templates.sh
 waypoint=07
 print_status_of_progress "query vm templates"
 
 
 
+
+
+
+
+printHeading "====                   choose vm image"
+printHeading "====                      script 09"
 if [ "$os" == "$os_ubuntu" ] ; then
     vm_name=$ubuntu_vm_name
     vm_image=$ubuntu_image_name
@@ -418,30 +690,51 @@ fi
 waypoint=09
 print_status_of_progress "set vm type to be $os"
 
+
+
+
+printHeading "====                      create vms"
+printHeading "====                      script 10"
 source ./script-10-create-vm.sh
 waypoint=10
 print_status_of_progress "vm created"
 
+
+
+printHeading "====                      query vms"
+printHeading "====                      script 11"
 source ./script-11-query-vm.sh
 waypoint=11
 print_status_of_progress "query vm using azure cli"
 
+
+printHeading "====               query network secuirity groups"
+printHeading "====                       script 12"
 source ./script-12-query-network-security-groups.sh
 waypoint=12
 print_status_of_progress "query network security group performed"
 
+
 printHeading "====                    who am i USER"
+printHeading "====                       script 13"
 remote_user=$(ssh -i $ssh_key $admin_username@$public_ip_address "whoami")
 echo username $remote_user
 
 
 printHeading "====                    get remote shell"
+printHeading "====                       script 13    "
 remote_shell=$(ssh -i $ssh_key $admin_username@$public_ip_address "bash --version")
 remote_shell=${remote_shell:0:57}
 remote_shell_obtained=true
 
 
+
+
+
+
 printHeading "====                     query linux"
+printHeading "====                       script 13"
+
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-13-get-linux-version.sh
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
 linux_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep '^VERSION=' /etc/os-release")
@@ -455,6 +748,7 @@ waypoint=13
 print_status_of_progress "query linux"
 
 
+printHeading "====                   dnf install"
 printHeading "====                   dnf install"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-14-install-dnf.sh
 waypoint=14
@@ -498,8 +792,6 @@ if [ "$install_services" = true ] ; then
     install_react=false
 
 
-
-
     install_docker=true
     install_terraform=true
     install_ansible=true
@@ -507,6 +799,14 @@ if [ "$install_services" = true ] ; then
 fi
 waypoint=17
 print_status_of_progress "deciding which services to install"
+
+
+
+
+
+
+
+
 install_zsh=true
 if [ "$install_zsh" = true ] ; then
     printHeading "====                       zsh                            ===="
@@ -519,12 +819,20 @@ if [ "$install_zsh" = true ] ; then
     print_status_of_progress zsh
 fi
 
-install_oh_my_zsh=false
+
+
+
+
+
+install_oh_my_zsh=true
 if [ "$install_oh_my_zsh" = true ] ; then
     printHeading "====                    oh my zsh                         ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18c-install-oh-my-zsh.zsh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18d-test-oh-my-zsh.zsh
+    waypoint=18
+    print_status_of_progress "install zsh oh-my-zsh"
 fi
+
 
 
 
@@ -543,6 +851,7 @@ fi
 
 if [ "$install_c" = true ] ; then
     printHeading "====                      c                               ===="
+    printHeading "====                   script 20                          ===="
     scp -i $ssh_key script-20a-hello-world.c $admin_username@$public_ip_address:script-20a-hello-world.c 
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20b-install-c-compiler.sh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20c-run-c-program.sh
@@ -556,6 +865,7 @@ fi
 
 if [ "$install_cpp" = true ] ; then
     printHeading "====                      c++                             ===="
+    printHeading "====                   script 20                          ===="
     scp -i $ssh_key script-20d-hello-world.cpp $admin_username@$public_ip_address:script-20d-hello-world.cpp
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20e-install-cpp-compiler.sh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20f-run-cpp-program.sh
@@ -568,13 +878,21 @@ fi
 
 
 printHeading "====                         git                          ===="
+printHeading "====                      script 21                       ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-21-install-git.sh
 git_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "git --version")
 git_installed=true
 waypoint=21
 print_status_of_progress git
 
+
+
+
 printHeading "====                        apache                        ===="
+printHeading "====                       script 22                      ===="
+echo not sure this is working ... on http ... 
+echo certainly not working on https
+echo low priority ... can have a look at this some time ...
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-22-install-apache.sh
 waypoint=22
 apache_installed=true
@@ -584,8 +902,11 @@ print_status_of_progress apache
 
 
 
+
+
 if [ "$install_nginx" = true ] ; then
     printHeading "====                      nginx                           ===="
+    printHeading "====                    script 23                         ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-23-install-nginx.sh
     nginx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "sudo systemctl restart systemd-journald.service")
     waypoint=23
@@ -600,8 +921,12 @@ if [ "$restart_services" = true ] ; then
 fi
 
 
+
+
+
 if [ "$install_node" = true ] ; then
     printHeading "====              node npm express                         ===="
+    printHeading "====                 script 25                             ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-25-install-node-npm.zsh
     waypoint=25
     node_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "node -v")
@@ -615,8 +940,10 @@ fi
 
 
 
+
 if [ "$install_express" = true ] ; then
-    printHeading "====                     express 26                        ===="
+    printHeading "====                   express                           ===="
+    printHeading "====                 script 26                          ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-express.zsh
     express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
     express_installed_2=true
@@ -629,7 +956,8 @@ fi
 
 
 if [ "$install_vue" = true ] ; then
-    printHeading "====                         vue                         ===="
+    printHeading "====                    vue                             ===="
+    printHeading "====                 script 28                          ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-28-install-vue.zsh
     waypoint=28
     vue_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vue -v")
@@ -637,16 +965,23 @@ if [ "$install_vue" = true ] ; then
     print_status_of_progress vue
 fi
 
+
+
+
 if [ "$install_bun" = true ] ; then
-    printHeading "====                         bun                         ===="
+    printHeading "====                   bun                             ===="
+    printHeading "====                script 30                          ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-30-install-bun.zsh
     waypoint=30
     bun_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "bun -v")
     bun_installed=true
     print_status_of_progress bun
 fi
+
+
 if [ "$install_react" = true ] ; then
-    printHeading "====                        react                        ===="
+    printHeading "====                  react                            ===="
+    printHeading "====                script 32                          ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-32-install-react.zsh
     waypoint=32
     echo npx version is installed at way point 32 - install it earlier 
@@ -658,8 +993,8 @@ if [ "$install_react" = true ] ; then
     echo
     echo
     echo - - - have a look at the file listing - does it contain package json files - - - 
-    echo sleep 1
-    sleep 1
+    echo sleep quick_read
+    sleep quick_read
     print_status_of_progress react
 fi
 
@@ -726,6 +1061,8 @@ if [ "$vue_installed" = true ] && [ "$run_vue" = true ] ; then
     echo "=============================================================="
     source ./script-44-run-vue-web-server.sh
 fi
+
+
 run_bun=false
 if [ "$bun_installed" = true ] && [ "$run_bun" = true ] ; then
     echo "=============================================================="
@@ -734,6 +1071,8 @@ if [ "$bun_installed" = true ] && [ "$run_bun" = true ] ; then
     echo "=============================================================="
     source ./script-46-run-bun-web-server.sh
 fi
+
+
 run_react=false
 if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
     echo "=============================================================="
@@ -747,15 +1086,20 @@ fi
 
 
 if [ "$install_go" = true ] ; then
+    echo question why is install of go failing
     printHeading "====                install go - failing                 ===="
+    printHeading "====                script 43                          ===="
     cd $root_directory
     scp -i $ssh_key script-34.go $admin_username@$public_ip_address:script-34.go
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-go.zsh
 fi
 
 
+
+
 if [ "$install_java" = true ] ; then
-    printHeading "====                  install java                       ===="
+    printHeading "====                install java                       ===="
+    printHeading "====                script 43                          ===="
     scp -i $ssh_key script-38-java.java $admin_username@$public_ip_address:script-38-java.java
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-38-install-java.zsh
     waypoint=38
@@ -768,6 +1112,7 @@ fi
 
 if [ "$install_maria_db" = true ] ; then
     printHeading "====            install maria db                    ===="
+    printHeading "====                script 43                          ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-43-maria-db.zsh
     waypoint=43
     maria_db_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mariadb -V")
@@ -784,6 +1129,7 @@ fi
 
 if [ "$install_mongo_db" = true ] ; then
     printHeading "====            install mongo db                    ===="
+    printHeading "====                script 44                          ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-44-mongo-db.zsh
     waypoint=44
     mongo_db_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mongod --version")
@@ -793,8 +1139,12 @@ fi
 
 
 
+
+
+
 if [ "$install_mongo_shell" = true ] ; then
     printHeading "====            install mongo shell                    ===="
+    printHeading "====                script 45                          ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-45-mongo-shell.zsh
     waypoint=45
     mongo_shell_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mongosh --version")
@@ -808,6 +1158,7 @@ fi
 
 if [ "$install_dot_net" = true ] ; then
     printHeading "====               install .net core               ===="
+    printHeading "====                script 50                          ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-50-dot-net.zsh
     waypoint=50
     dot_net_installed=true
@@ -825,6 +1176,7 @@ fi
 
 if [ "$install_docker" = true ] ; then
     printHeading "====               install docker"
+    printHeading "====                script 51                          ===="
     echo "====    note - maybe work through kubectl and minikube using interactive shell first * * * "
     scp -i $ssh_key script-51-docker-compose.yaml $admin_username@$public_ip_address:script-51-docker-compose.yaml
     scp -i $ssh_key script-51-kubectl.yaml $admin_username@$public_ip_address:script-51-kubectl.yaml
@@ -844,6 +1196,7 @@ fi
 
 if [ "$install_terraform" = true ] ; then
     printHeading "====               install terraform              ===="
+    printHeading "====                script 52                          ===="
     scp -i $ssh_key script-52-terraform.tf $admin_username@$public_ip_address:script-52-terraform.tf
     scp -i $ssh_key script-52-terraform-main.tf $admin_username@$public_ip_address:script-52-terraform-main.tf
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-52-terraform.zsh
@@ -859,6 +1212,7 @@ fi
 
 if [ "$install_ansible" = true ] ; then
     printHeading "====               install ansible                ===="
+    printHeading "====                script 53                          ===="
     scp -i $ssh_key script-53-ansible.yaml $admin_username@$public_ip_address:script-53-ansible.yaml
     scp -i $ssh_key script-53-inventory.ini $admin_username@$public_ip_address:script-53-inventory.ini 
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-53-ansible.zsh
@@ -911,6 +1265,10 @@ express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list
 node_installed=true
 npm_installed=true
 express_installed=true
+echo question not getting version of express js showing 
+echo question not getting version of vue js showing
+echo question not getting version of react js showing
+echo question not getting version of bun js showing
 print_status_of_progress install node and npm and express
 
 
@@ -923,19 +1281,19 @@ print_status_of_progress install node and npm and express
 list_vms=true
 if [ "$list_vms" = true ] ; then
     printHeading "====         list vms and storages                ===="
-    echo list vms output to output-azure_vms.txt
-    az vm list >> output-azure_vms.txt
-    echo vm info >> output-azure_vms.txt
-    az vm show --resource-group $resource_group_name --name $ubuntu_vm_name >> output-azure_vms.txt
-    echo vm resource usage to >> output-azure_vms.txt
-    az vm list-usage --location eastus >> output-azure_vms.txt
-    echo list disks sent to >> output-azure_vms.txt
-    echo list disks >> output-azure_vms.txt
-    echo list disks --resource-group $resource_group_name >> output-azure_vms.txt
-    echo storage profile sent to >> output-azure_vms.txt
+    echo list vms output to output-azure-vms.txt
+    az vm list >> output-azure-vms.txt
+    echo vm info >> output-azure-vms.txt
+    az vm show --resource-group $resource_group_name --name $ubuntu_vm_name >> output-azure-vms.txt
+    echo vm resource usage to >> output-azure-vms.txt
+    az vm list-usage --location eastus >> output-azure-vms.txt
+    echo list disks sent to >> output-azure-vms.txt
+    echo list disks >> output-azure-vms.txt
+    echo list disks --resource-group $resource_group_name >> output-azure-vms.txt
+    echo storage profile sent to >> output-azure-vms.txt
     echo 
-    echo storage profile >> output-azure_vms.txt
-    az vm show --resource-group $resource_group_name --name $ubuntu_vm_name --query "storageProfile" >> output-azure_vms.txt
+    echo storage profile >> output-azure-vms.txt
+    az vm show --resource-group $resource_group_name --name $ubuntu_vm_name --query "storageProfile" >> output-azure-vms.txt
 fi
 
 
@@ -1011,6 +1369,7 @@ fi
 
 
 if [ "$set_auto_shutdown" = true ] ; then
+    sleep quick_read
     printHeading "====            set auto shutdown                 ===="
     SHUTDOWN_TIME="18:00"
     AUTO_SHUTDOWN="true"
@@ -1176,11 +1535,6 @@ fi
 
 
 
-deallocate_vms=false
-if [ "$deallocate_vms" = true ] ; then
-    az vm deallocate --resource-group $resource_group_name --name $ubuntu_vm_name
-    az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
-fi
 
 
 
@@ -1189,36 +1543,19 @@ fi
 
 
 
-
-
-printHeading "====          list resource groups                ===="
-source ./script-08-list-resource-groups.sh
-
-
-
-
-
-
-printHeading "====               list vms                       ===="
-source ./script-09-list-vms.sh
-
-
-
-
-
+sleep quick_read
 printHeading "====           upload node teaching files                   ===="
 scp -i $ssh_key script-90-teaching.js $admin_username@$public_ip_address:script-90-teaching.js
 scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:script-90-package.json
 printHeading "====           install and run teaching node                ===="
+printHeading "====                    script 90                           ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-teaching.zsh
 
 
 
 
 
-
-
-
+sleep quick_read
 printHeading "====              bash scripting a to z                    ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-bash-commands.zsh
 
@@ -1238,6 +1575,16 @@ ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-92-list-f
 
 
 
+
+
+
+
+deallocate_vms=true
+if [ "$deallocate_vms" = true ] ; then
+    printHeading "====                  deallodcate vms                      ===="
+    az vm deallocate --resource-group $resource_group_name --name $ubuntu_vm_name
+    az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
+fi
 
 
 
