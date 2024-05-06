@@ -67,7 +67,7 @@ resource_group_new_name=invalid
 if [ "$getting_existing_and_new_resource_group_names_before_deletion" = true ] ; then
     echo "=============================================================="
     echo "=============================================================="
-    echo "====                list resource groups                  ===="
+    echo "====            list resource groups 004-070              ===="
     echo "=============================================================="
     az group list >> output-resource-groups.txt
     az group list -o table >> output-resource-groups.txt
