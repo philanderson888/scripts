@@ -24,6 +24,97 @@ echo df
 echo pipe output to tee disk_usage.txt
 df -h | tee disk_usage.txt
 echo "==================================================================="
+echo "====                   json with bash                          ===="
+echo "==================================================================="
+BUCKET_NAME="test bucket"
+OBJECT_NAME="testworkflow-2.0.1.jar"
+TARGET_LOCATION="/opt/test/testworkflow-2.0.1.jar"
+JSON_STRING='{"bucketname":"'"$BUCKET_NAME"'","objectname":"'"$OBJECT_NAME"'","targetlocation":"'"$TARGET_LOCATION"'"}'
+echo echo object using bash
+echo $JSON_STRING
+echo
+echo
+echo
+echo echo object using jq
+echo "${JSON_STRING}" | jq
+echo "==================================================================="
+echo "====                    jo json object                         ===="
+echo "==================================================================="
+jo test=1 test2=hello test3="some data" test4=$(jo test5=10 test6=hello test7="some_data")
+echo
+echo
+echo
+echo create json from string literal
+json01=$(jo test=1 test2=hello test3="some data" test4=$(jo test5=10 test6=hello test7="some_data"))
+echo
+echo
+echo
+echo echo json raw
+echo $json01
+echo
+echo
+echo
+echo echo json with jq
+echo $json01 | jq
+echo
+echo
+echo
+echo jo using variables
+test1data=1
+test2data=hello
+test3data="some data"
+json02=$(jo test="$test1data" test2="$test2data" test3="$test3data" test4=$(jo test5=10 test6=hello test7="some_data"))
+echo
+echo
+echo
+echo echo json
+echo $json02 | jq
+echo "==================================================================="
+echo "====                      jq  array                            ===="
+echo "==================================================================="
+echo create an array from object strings in jq
+jq -s '.' <<< '{ "a": 1 } { "b": 2 }'
+echo
+echo
+echo
+echo import a json array using jq
+jq -s '.' < tmp.json
+echo
+echo
+echo
+json01=$(jq -s '.' <<< '{ "a": 1 } { "b": 2 }')
+echo json01
+echo $json01 | jq
+echo
+echo
+echo
+json02=$(jq -s '.' < tmp.json)
+echo json02
+echo $json02 | jq
+echo
+echo
+echo
+
+echo
+echo
+echo
+echo create an array from object strings in jq
+jq -s '.' <<< '{ "a": "mighty man" } { "b": "sole player" }'
+echo
+echo
+echo
+echo import a json array using jq
+jq -s '.' < tmp2.json
+echo "==================================================================="
+echo "====                  jq  string literal                       ===="
+echo "==================================================================="
+echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.'
+echo "==================================================================="
+echo "====                      jq from file                         ===="
+echo "==================================================================="
+echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' > json-01-test-data.json
+jq  '.' json-01-test-data.json
+echo "==================================================================="
 echo "====         lsof list processes running                       ===="
 echo "==================================================================="
 echo also list processes on port 3006
