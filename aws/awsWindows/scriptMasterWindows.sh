@@ -86,50 +86,17 @@ get_waypoint() {
     echo "${waypoint}" | jq
     sleep $quick_read
 }
-echo now work on waypoints
-sleep $quick_read
-echo
-echo get one waypoint
-sleep $quick_read
-echo
-echo now try same thing with waypoint
-sleep $slow_read
-echo
-echo
-waypoint_time=$SECONDS
-waypoint_start=$waypoint_end
-waypoint_end=$SECONDS
-waypoint_duration=$(( waypoint_end - waypoint_start ))
-waypoint_index=$(( waypoint_index + 1 ))
-waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
-echo $waypoint | jq
-sleep 5
 
-waypoint_end=500
-waypoint_index=50
+echo "=============================================================="
+echo "====               initialise first waypoint              ===="
+echo "=============================================================="
+sleep $slow_read
 waypoint_time=$SECONDS
-waypoint_start=$waypoint_end
-waypoint_end=$SECONDS
-waypoint_duration=$(( waypoint_end - waypoint_start ))
-waypoint_index=$(( waypoint_index + 1 ))
-echo "=============================================================="
-echo "====   waypoint index $waypoint_index : $waypoint_name : took $waypoint_duration s"   
-printTime
-echo "=============================================================="
-sleep $slow_read
-echo
-waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
-echo waypoint as plain text
-echo $waypoint
-echo
-echo waypoint as json
-sleep $quick_read
-echo "${waypoint}" | jq
-sleep $quick_read
-echo
-echo now create array of waypoints
-echo create json array with one object from variables
-sleep $slow_read
+waypoint_name="script start"
+waypoint_index=0
+waypoint_start=0
+waypoint_end=0
+waypoint_duration=0
 waypoints=$(jq -s '.' <<< '
     { 
         "waypoint_index": "'"$waypoint_index"'",
@@ -139,63 +106,13 @@ waypoints=$(jq -s '.' <<< '
         "waypoint_duration": "'"$waypoint_duration"'"
     }'
 )
+echo waypoints array initialised
 echo $waypoints | jq
-sleep $slow_read
-echo
-echo
-echo now add a second item to waypoints array
-sleep $slow_read
-waypoints=$(
-    echo $waypoints | jq '. += 
-    [
-        {  
-            "waypoint_index": "'"$waypoint_index"'",
-            "waypoint_name": "'"$waypoint_name"'",
-            "waypoint_start": "'"$waypoint_start"'",
-            "waypoint_end": "'"$waypoint_end"'",
-            "waypoint_duration": "'"$waypoint_duration"'"
-        }
-    ]'
-)
-echo $waypoints | jq
-sleep $slow_read
-echo
-echo
-echo "=============================================================="
-echo "====               initialise first waypoint              ===="
-echo "=============================================================="
-sleep $slow_read
-waypoint_name="thisisawaypoint"
-waypoint_start=0
-waypoint_end=0
-get_waypoint
-sleep $slow_read
-echo
-echo
+
 
 
 exit
 
-
-
-
-
-
-
-
-
-
-
-
-waypoints=($waypoint)
-waypoints+=($waypoint)
-waypoints+=($waypoint)
-echo
-echo
-echo
-
-echo waypoints array output to jq
-echo $waypoints | jq
 echo
 echo
 echo
@@ -211,6 +128,13 @@ done
 exit
 
 
+waypoint_start=$SECONDS
+waypoint_end=$SECONDS
+waypoint_duration=$(( waypoint_end - waypoint_start ))
+waypoint_index=$(( waypoint_index + 1 ))
+
+
+exit
 
 
 display_progress () {
