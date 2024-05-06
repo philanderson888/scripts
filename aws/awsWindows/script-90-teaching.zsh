@@ -41,6 +41,13 @@ echo "==================================================================="
 echo "====                  install node"
 echo "====      * * *   commands are totally silent        * * *     ===="
 echo "==================================================================="
+echo totally silent apt get install node js 
+echo this is totally a duplicate and totally not required
+echo find the first point i install node js and use this line there
+echo and remove subsequent installs as they totally are not required after first install - do it once only
+echo
+echo
+echo
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 sudo chmod 777 /var/cache/debconf/ 
 sudo chmod 777 /var/cache/debconf/passwords.dat
@@ -64,7 +71,10 @@ sudo apt-get install apt-utils -y -q >> ~/output.txt
 echo
 echo
 echo
-echo totally silent apt get install node js - wow! this is the one!!!
+echo totally silent apt get install node js 
+echo this is totally a duplicate and totally not required
+echo find the first point i install node js and use this line there
+echo and remove subsequent installs as they totally are not required after first install - do it once only
 sudo apt-get -qq install nodejs -y >> ~/output.txt
 echo
 echo
@@ -120,6 +130,11 @@ sudo cp script-90-package.json package.json
 echo
 echo
 echo
+echo sudo rm script-90-package.json
+sudo rm script-90-package.json
+echo
+echo
+echo
 echo ls
 ls
 echo
@@ -134,7 +149,8 @@ echo
 echo "=============================================================="
 echo "====                   npm install                        ===="
 echo "=============================================================="
-npm install
+echo question ...  sudo npm install ... is failing with regular npm install ... should not need sudo rights for npm install ... strange
+sudo npm install
 echo "=============================================================="
 echo "====                     run node                         ===="
 echo "=============================================================="
