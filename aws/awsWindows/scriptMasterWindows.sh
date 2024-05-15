@@ -622,8 +622,6 @@ display_progress "set vm type to be $os"
 
 
 
-exit
-
 
 
 printHeading "====                      create vms"
