@@ -252,13 +252,13 @@ echo
 echo
 echo
 echo ok i have created arrays of json objects
-sleep $quick_read
+sleep $fast_read
 echo and i have pushed data to them also
-sleep $quick_read
+sleep $fast_read
 echo using variable data and not just string literal fixed data
-sleep $quick_read
+sleep $fast_read
 echo happy days
-sleep $quick_read
+sleep $fast_read
 echo
 echo
 echo "==================================================================="
@@ -370,10 +370,10 @@ echo "==================================================================="
 echo "==================================================================="
 echo "==================================================================="
 echo now work on waypoints
-sleep $quick_read
+sleep $fast_read
 echo
 echo get one waypoint
-sleep $quick_read
+sleep $fast_read
 echo
 echo now try same thing with waypoint
 sleep $slow_read
@@ -406,9 +406,9 @@ echo waypoint as plain text
 echo $waypoint
 echo
 echo waypoint as json
-sleep $quick_read
+sleep $fast_read
 echo "${waypoint}" | jq
-sleep $quick_read
+sleep $fast_read
 echo
 echo now create array of waypoints
 echo create json array with one object from variables
