@@ -105,7 +105,7 @@ echo
 echo
 echo
 echo mv script 90 teaching.js and package.json to js folder
-sudo mv script-90-teaching.js  js
+sudo mv script-90-learn-node.js  js
 sudo mv script-90-package.json js
 echo
 echo
@@ -149,9 +149,11 @@ echo
 echo "=============================================================="
 echo "====                   npm install                        ===="
 echo "=============================================================="
-echo question ...  sudo npm install ... is failing with regular npm install ... should not need sudo rights for npm install ... strange
+echo npm install
 sudo npm install
+sleep $fast_read
 echo "=============================================================="
 echo "====                     run node                         ===="
 echo "=============================================================="
-node ./script-90-teaching.js
+sleep $fast_read
+node ./script-90-learn-node.js
