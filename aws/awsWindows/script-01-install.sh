@@ -3,7 +3,6 @@ echo "====    only doing installs every 30 runs of this program ===="
 echo "================================================================"
 run_counter=$(cat .script_data/run_counter)
 run_counter=$(( run_counter + 1 ))
-run_counter=30
 echo there have been $run_counter runs of this script
 echo store new value for next time
 echo $run_counter > .script_data/run_counter
@@ -39,7 +38,9 @@ if [ $number_of_installs -eq 0 ] ; then
     echo "====             install powershell preview                    ===="
     echo "==================================================================="
     brew install powershell/tap/powershell-preview
-    pwsh-preview
+    echo
+    sleep $slow_read
+    echo the command pwsh-preview will change the shell to powershell
     brew upgrade powershell-preview
     sleep 1
     echo "==================================================================="
