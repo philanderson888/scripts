@@ -8,6 +8,8 @@ AWSCLIV2.pkg
 config
 # passwords
 adminPassword.txt
+# run time files
+run_counter
 # output files
 output*
 output.txt
@@ -15,3 +17,4 @@ outputNetworkSecurityGroupInformation.txt
 output-azure-vms.txt
 output-network-security-group.txt
 output-resource-groups.txt
+
