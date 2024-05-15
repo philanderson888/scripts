@@ -12,7 +12,7 @@ echo
 startTimeOnMasterScript=$(date +%s)
 SECONDS=0
 slow_read=2
-quick_read=1
+fast_read=1
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
@@ -70,22 +70,104 @@ get_waypoint() {
     echo "====             waypoint $waypoint_index $waypoint_name took $waypoint_duration s"   
     printTime
     echo "=============================================================="
-    sleep $slow_read
-    waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
-    sleep $slow_read
-    echo
-    echo waypoint as plain text
-    sleep $quick_read
-    echo $waypoint
-    sleep $quick_read
-    echo
-    echo
-    echo
-    echo waypoint as json
-    sleep $quick_read
-    echo "${waypoint}" | jq
-    sleep $quick_read
+    #sleep $slow_read
+    #waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
+    #sleep $slow_read
+    #echo
+    #echo waypoint as plain text
+    #sleep $fast_read
+    #echo $waypoint
+    #sleep $fast_read
+    #echo
+    #echo
+    #echo
+    #echo waypoint as json
+    #sleep $fast_read
+    #echo "${waypoint}" | jq
+    #sleep $fast_read
 }
+add_waypoint_to_waypoints() {
+    #echo add waypoint to waypoints array
+    #sleep $slow_read
+    waypoints=$(
+        echo $waypoints | jq '. += 
+        [
+            {  
+                "waypoint_index": "'"$waypoint_index"'",
+                "waypoint_name": "'"$waypoint_name"'",
+                "waypoint_start": "'"$waypoint_start"'",
+                "waypoint_end": "'"$waypoint_end"'",
+                "waypoint_duration": "'"$waypoint_duration"'"
+            }
+        ]'
+    )
+    #echo $waypoints | jq
+    #sleep $slow_read
+    #echo
+    #echo
+}
+
+print_waypoints() {
+    #echo print waypoints
+    #sleep $fast_read
+    #waypoint_counter=-1
+    #echo $waypoints | jq -c '.[]' | while read i; do
+        #echo
+        #waypoint_counter=$(( waypoint_counter + 1 ))
+        #echo array index $waypoint_counter
+        #sleep $slow_read
+        #echo i is the full object with keys and values 1
+        #echo
+        #echo $i | jq
+        #echo
+        #echo  
+        #sleep $slow_read
+
+        #echo bbb
+        #echo $i | jq -c '.[]'
+
+        #echo
+        #echo  
+        #sleep $slow_read
+
+        #echo $i | jq '.[]'
+
+        #echo
+        #echo  
+        #sleep $slow_read
+
+        #echo keys unsorted
+        #jq 'keys_unsorted' <<< $i
+
+        #echo
+        #echo  
+        #sleep $slow_read
+        #echo keys unsorted 2
+        #jq -r 'keys_unsorted[]' <<< $i
+        #sleep $fast_read
+        #echo
+        #echo
+        #echo get all keys
+        #echo $i | jq -r 'keys[]'
+
+        #sleep $slow_read
+        #echo
+        #echo
+        #waypoint_name=$(echo $i | jq -r '.waypoint_name')
+        #echo waypoint name 1 is $waypoint_name
+        #sleep $fast_read
+        #waypoint_duration=$(echo $i | jq -r '.waypoint_duration')
+        #echo waypoint duration is $waypoint_duration
+    #done
+    waypoint_index=-1
+    echo $waypoints | jq -c '.[]' | while read i; do
+        waypoint_index=$(( waypoint_index + 1 ))
+        waypoint_name=$(echo $i | jq -r '.waypoint_name')
+        waypoint_duration=$(echo $i | jq -r '.waypoint_duration')
+        echo waypoint index $waypoint_index name $waypoint_name duration $waypoint_duration
+    done       
+}
+
 
 echo "=============================================================="
 echo "====               initialise first waypoint              ===="
@@ -108,24 +190,110 @@ waypoints=$(jq -s '.' <<< '
 )
 echo waypoints array initialised
 echo $waypoints | jq
-
-
-
-exit
-
 echo
 echo
 echo
+sleep $fast_read
+echo loop over regular array
+
+
+
+
+json02=$(jq '.' < tmp.json)
+echo $json02 | jq
+json02=$(
+    echo $json02 | jq '. += 
+    [
+        {  
+            "name": "Phil Anderson",  
+            "email": "phil@company.com" 
+        }
+    ]'
+)
+echo $json02 | jq
+
+loop_counter=-1
+echo $json02 | jq -c '.[]' | while read i; do
+    echo
+    loop_counter=$(( loop_counter + 1 ))
+    echo array index $loop_counter
+    echo $i | jq -c '.[]' | while read j; do
+        j="${j#\"}"
+        j="${j%\"}"
+        echo $j
+    done
+done
+
+
+
+
 echo loop over waypoints array
+sleep $fast_read
 waypoint_counter=0
+loop_counter=-1
+echo $waypoints | jq -c '.[]' | while read i; do
+    echo
+    loop_counter=$(( loop_counter + 1 ))
+    echo array index $loop_counter
+
+
+    echo
+    echo  
+    sleep $slow_read
+
+    echo i is the full object with keys and values 3
+    echo $i | jq
+
+
+    echo
+    echo  
+    sleep $slow_read
+
+    echo bbb
+    echo $i | jq -c '.[]'
+
+    echo
+    echo  
+    sleep $slow_read
+
+    echo $i | jq '.[]'
+
+    echo
+    echo  
+    sleep $slow_read
+
+    echo keys unsorted
+    jq 'keys_unsorted' <<< $i
+
+    echo
+    echo  
+    sleep $slow_read
+    echo keys unsorted 2
+    jq -r 'keys_unsorted[]' <<< $i
+    sleep $fast_read
+    echo
+    echo
+    echo get all keys
+    echo $i | jq -r 'keys[]'
+
+    sleep $slow_read
+    echo
+    echo
+    waypoint_name=$(echo $i | jq -r '.waypoint_name')
+    echo index $loop_counter
+    echo waypoint name 3 is $waypoint_name
+    sleep $fast_read
+    waypoint_duration=$(echo $i | jq -r '.waypoint_duration')
+    echo waypoint duration is $waypoint_duration
+done
+
+
 for waypoint in ${waypoints[@]}; do
     waypoint_counter=$(( waypoint_counter + 1 ))
     echo
     echo $waypoint_counter
     echo "${waypoint}" | jq
 done
-
-exit
 
 
 waypoint_start=$SECONDS
@@ -134,13 +302,12 @@ waypoint_duration=$(( waypoint_end - waypoint_start ))
 waypoint_index=$(( waypoint_index + 1 ))
 
 
-exit
 
 
 display_progress () {
     waypoint_name=$1
     get_waypoint
-    push_waypoint_to_array
+    add_waypoint_to_waypoints
     echo "=============================================================="
     if [ "$aws_cli_installed" = true ] ; then
         echo aws cli installed of version $aws_version
@@ -296,15 +463,11 @@ display_progress () {
         echo list files and hidden files
         echo $list_files_and_hidden_files
     fi
-    echo 
-    
-    echo iterate over waypoints
-    for waypoint_item in "${!waypoints[@]}"
-    do
-        echo "waypoint is ... "
-        echo $waypoint_item
-    done
-
+    #echo 
+    #echo
+    #echo $slow_read
+    #echo print waypoints
+    print_waypoints
 }
 
 
@@ -408,7 +571,7 @@ waypoint=01
 aws_version=$(aws --version)
 aws_version="${aws_version:0:16}"
 powershell_version=$(pwsh --version)
-print_status_of_progress "installing aws and powershell"
+display_progress "installing aws and powershell"
 
 
 
@@ -416,28 +579,28 @@ print_status_of_progress "installing aws and powershell"
 source ./script-02-log-in-to-azure.sh
 
 waypoint=02
-print_status_of_progress "log in to azure"
+display_progress "log in to azure"
 
 source ./script-03-query-azure-account.sh
 waypoint=03
-print_status_of_progress "query azure"
+display_progress "query azure"
 
 source ./script-04-clean-before-start.sh
 waypoint=04
-print_status_of_progress "clean environment"
+display_progress "clean environment"
 
 source ./script-05-create-resource-group.sh
 waypoint=05
-print_status_of_progress "create resource group"
+display_progress "create resource group"
 
 source ./script-06-list-resource-group-names.sh
 waypoint=06
-print_status_of_progress "list resource groups"
+display_progress "list resource groups"
 
 
 source ./script-07-query-vm-templates.sh
 waypoint=07
-print_status_of_progress "query vm templates"
+display_progress "query vm templates"
 
 
 
@@ -454,8 +617,12 @@ if [ "$os" == "$os_ubuntu" ] ; then
     create_vm=true
 fi
 waypoint=09
-print_status_of_progress "set vm type to be $os"
+display_progress "set vm type to be $os"
 
+
+
+
+exit
 
 
 
@@ -463,7 +630,7 @@ printHeading "====                      create vms"
 printHeading "====                      script 10"
 source ./script-10-create-vm.sh
 waypoint=10
-print_status_of_progress "vm created"
+display_progress "vm created"
 
 
 
@@ -471,14 +638,14 @@ printHeading "====                      query vms"
 printHeading "====                      script 11"
 source ./script-11-query-vm.sh
 waypoint=11
-print_status_of_progress "query vm using azure cli"
+display_progress "query vm using azure cli"
 
 
 printHeading "====               query network secuirity groups"
 printHeading "====                       script 12"
 source ./script-12-query-network-security-groups.sh
 waypoint=12
-print_status_of_progress "query network security group performed"
+display_progress "query network security group performed"
 
 
 printHeading "====                    who am i USER"
@@ -511,21 +678,21 @@ python_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 --v
 python_platform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 -mplatform")
 linux_details_obtained=true
 waypoint=13
-print_status_of_progress "query linux"
+display_progress "query linux"
 
 
 printHeading "====                   dnf install"
 printHeading "====                   dnf install"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-14-install-dnf.sh
 waypoint=14
-print_status_of_progress "dnf install"
+display_progress "dnf install"
 
 
 printHeading "====                   update os"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-16-update-server-to-latest-versions.sh
 python_platform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 -mplatform")
 waypoint=16
-print_status_of_progress "os updated"
+display_progress "os updated"
 
 install_services=true
 if [ "$install_services" = true ] ; then
@@ -564,7 +731,7 @@ if [ "$install_services" = true ] ; then
 
 fi
 waypoint=17
-print_status_of_progress "deciding which services to install"
+display_progress "deciding which services to install"
 
 
 
@@ -582,7 +749,7 @@ if [ "$install_zsh" = true ] ; then
     zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
     zsh_installed=true
     waypoint=18
-    print_status_of_progress zsh
+    display_progress zsh
 fi
 
 
@@ -596,7 +763,7 @@ if [ "$install_oh_my_zsh" = true ] ; then
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18c-install-oh-my-zsh.zsh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18d-test-oh-my-zsh.zsh
     waypoint=18
-    print_status_of_progress "install zsh oh-my-zsh"
+    display_progress "install zsh oh-my-zsh"
 fi
 
 
@@ -610,7 +777,7 @@ if [ "$install_fish" = true ] ; then
     fish_installed=true
     fish_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "fish --version")
     echo fish version $fish_version
-    print_status_of_progress fish
+    display_progress fish
 fi
 
 
@@ -624,7 +791,7 @@ if [ "$install_c" = true ] ; then
     waypoint=20
     c_installed=true
     c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "gcc --version")
-    print_status_of_progress "c"
+    display_progress "c"
 fi
 
 
@@ -638,7 +805,7 @@ if [ "$install_cpp" = true ] ; then
     waypoint=20
     cpp_installed=true
     cpp_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "g++ --version")
-    print_status_of_progress "c++"
+    display_progress "c++"
 fi
 
 
@@ -649,7 +816,7 @@ ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-21-instal
 git_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "git --version")
 git_installed=true
 waypoint=21
-print_status_of_progress git
+display_progress git
 
 
 
@@ -664,7 +831,7 @@ waypoint=22
 apache_installed=true
 apache_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "apache2 -v")
 # For CentOS/RHEL/Fedora Linux server, type command: httpd -v
-print_status_of_progress apache
+display_progress apache
 
 
 
@@ -677,7 +844,7 @@ if [ "$install_nginx" = true ] ; then
     nginx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "sudo systemctl restart systemd-journald.service")
     waypoint=23
     nginx_installed=true
-    print_status_of_progress nginx
+    display_progress nginx
 fi
 
 
@@ -701,7 +868,7 @@ if [ "$install_node" = true ] ; then
     node_installed=true
     npm_installed=true
     express_installed=true
-    print_status_of_progress node npm express
+    display_progress node npm express
 fi
 
 
@@ -716,7 +883,7 @@ if [ "$install_express" = true ] ; then
     echo "running express in second terminal"
     open -a Terminal ./script-26-launch-express.zsh
     waypoint=26
-    print_status_of_progress "express 2"
+    display_progress "express 2"
 fi
 
 
@@ -728,7 +895,7 @@ if [ "$install_vue" = true ] ; then
     waypoint=28
     vue_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vue -v")
     vue_installed=true
-    print_status_of_progress vue
+    display_progress vue
 fi
 
 
@@ -741,7 +908,7 @@ if [ "$install_bun" = true ] ; then
     waypoint=30
     bun_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "bun -v")
     bun_installed=true
-    print_status_of_progress bun
+    display_progress bun
 fi
 
 
@@ -759,9 +926,9 @@ if [ "$install_react" = true ] ; then
     echo
     echo
     echo - - - have a look at the file listing - does it contain package json files - - - 
-    echo sleep $quick_read
-    sleep $quick_read
-    print_status_of_progress react
+    echo sleep $fast_read
+    sleep $fast_read
+    display_progress react
 fi
 
 
@@ -871,7 +1038,7 @@ if [ "$install_java" = true ] ; then
     waypoint=38
     java_c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "javac -version")
     java_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "java -version")
-    print_status_of_progress "java installed"
+    display_progress "java installed"
 fi
 
 
@@ -885,7 +1052,7 @@ if [ "$install_maria_db" = true ] ; then
     maria_db_version_mysqladmin=$(ssh -i $ssh_key $admin_username@$public_ip_address "sudo mysqladmin version")
     maria_db_version_mysqladmin=${maria_db_version_mysqladmin:0:80}
     maria_db_installed=true
-    print_status_of_progress "maria db"
+    display_progress "maria db"
 fi
 
 
@@ -900,7 +1067,7 @@ if [ "$install_mongo_db" = true ] ; then
     waypoint=44
     mongo_db_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mongod --version")
     mongo_db_installed=true
-    print_status_of_progress "mongo db"
+    display_progress "mongo db"
 fi
 
 
@@ -915,7 +1082,7 @@ if [ "$install_mongo_shell" = true ] ; then
     waypoint=45
     mongo_shell_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mongosh --version")
     mongo_shell_installed=true
-    print_status_of_progress "mongo shell"
+    display_progress "mongo shell"
 fi
 
 
@@ -934,7 +1101,7 @@ if [ "$install_dot_net" = true ] ; then
     dot_net_runtimes=$(ssh -i $ssh_key $admin_username@$public_ip_address "dotnet --list-runtimes")
     echo dot net runtimes
     echo $dot_net_runtimes
-    print_status_of_progress "dot net installed"
+    display_progress "dot net installed"
 fi
 
 
@@ -952,7 +1119,7 @@ if [ "$install_docker" = true ] ; then
     docker_version_client=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Client.Version}}'")
     docker_version_server=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Server.Version}}'")
     docker version --format '{{.Client.APIVersion}}'
-    print_status_of_progress "docker"
+    display_progress "docker"
 fi
 
 
@@ -969,7 +1136,7 @@ if [ "$install_terraform" = true ] ; then
     waypoint=52
     terraform_installed=true
     terraform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "terraform -v")
-    print_status_of_progress "terraform"
+    display_progress "terraform"
 fi
 
 
@@ -985,7 +1152,7 @@ if [ "$install_ansible" = true ] ; then
     waypoint=53
     ansible_installed=true
     ansible_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "ansible --version")
-    print_status_of_progress "ansible"
+    display_progress "ansible"
 fi
 
 
@@ -1035,7 +1202,7 @@ echo question not getting version of express js showing
 echo question not getting version of vue js showing
 echo question not getting version of react js showing
 echo question not getting version of bun js showing
-print_status_of_progress install node and npm and express
+display_progress install node and npm and express
 
 
 
@@ -1135,7 +1302,7 @@ fi
 
 
 if [ "$set_auto_shutdown" = true ] ; then
-    sleep $quick_read
+    sleep $fast_read
     printHeading "====            set auto shutdown                 ===="
     SHUTDOWN_TIME="18:00"
     AUTO_SHUTDOWN="true"
@@ -1309,9 +1476,9 @@ fi
 
 
 
-sleep $quick_read
+sleep $fast_read
 printHeading "====           upload node teaching files                   ===="
-scp -i $ssh_key script-90-teaching.js $admin_username@$public_ip_address:script-90-teaching.js
+scp -i $ssh_key script-90-learn-node.js $admin_username@$public_ip_address:script-90-learn-node.js
 scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:script-90-package.json
 printHeading "====           install and run teaching node                ===="
 printHeading "====                    script 90                           ===="
@@ -1321,7 +1488,7 @@ ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-learn-
 
 
 
-sleep $quick_read
+sleep $fast_read
 printHeading "====              bash scripting a to z                    ===="
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-bash-commands.zsh
 
@@ -1338,10 +1505,10 @@ ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-92-list-f
 
 
 
-
-
-
-
+printHeading "====                     get output                        ===="
+linux_output=$(ssh -i $ssh_key $admin_username@$public_ip_address "cat output.txt")
+touch linux-out-put.txt
+echo $linux_output >> linux-out-put.txt
 
 
 
