@@ -12,13 +12,20 @@ $SHELL --version
 echo
 echo
 echo
-echo touch output.txt 04-015
+echo touch output.txt
 touch output.txt
+echo
+echo
+echo
+echo touch output-apt-get-install.txt
+touch output-apt-get-install.txt
 echo
 echo
 echo
 echo chmod 777 output.txt
 chmod 777 output.txt
+echo chmod 777 output-apt-get-install.txt
+chmod 777 output-apt-get-install.txt
 echo
 echo
 echo
@@ -455,14 +462,14 @@ if [[  "$id_like" == "debian" ]]; then
     echo "======================================================================="
     echo "====          apt-get install gcc 04340                            ===="
     echo "======================================================================="
-    sudo apt-get -qq install gcc -y >> output.txt
+    sudo apt-get -qq install gcc -y
     sleep 1
     echo "======================================================================="
     echo "====             apt-get install fish 04350                        ===="
     echo "======================================================================="
     sudo apt-add-repository ppa:fish-shell/release-3 -y 
-    sudo apt-get -qq update -y >> output.txt
-    sudo apt-get -qq install fish -y >> output.txt
+    sudo apt-get -qq update -y
+    sudo apt-get -qq install fish -y
     sleep 1
 elif [[  "$id_like" == "fedora" ]]; then
     echo
