@@ -154,13 +154,13 @@ echo "======================================================================="
 echo "====                    git clone vue 25150                        ===="
 echo "======================================================================="
 cd ~
-echo git clone github kontent-ai sample-app-vue
-git clone https://github.com/kontent-ai/sample-app-vue
+echo git clone https://github.com/philanderson888/vue-sample
+git clone https://github.com/philanderson888/vue-sample
 echo
 echo
 echo
-echo mv sample-app-vue vue25150
-mv sample-app-vue vue25150
+echo mv vue-sample vue25150
+mv vue-sample vue25150
 cd vue25150
 echo
 echo
@@ -225,3 +225,8 @@ bun --version
 echo "======================================================================="
 echo "====                 install bun complete 25190                    ===="
 echo "======================================================================="
+echo "======================================================================="
+echo "====                       install jq 025-230                      ===="
+echo "======================================================================="
+echo install jq
+sudo apt-get -qq install jq -y
