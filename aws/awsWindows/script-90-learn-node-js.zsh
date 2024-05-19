@@ -151,9 +151,9 @@ echo "====                   npm install                        ===="
 echo "=============================================================="
 echo npm install
 sudo npm install
-sleep $fast_read
+sleep 1
 echo "=============================================================="
 echo "====                     run node                         ===="
 echo "=============================================================="
-sleep $fast_read
+sleep 1
 node ./script-90-learn-node.js
