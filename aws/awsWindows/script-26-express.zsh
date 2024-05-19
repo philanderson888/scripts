@@ -25,3 +25,47 @@ echo "list files now"
 ls
 echo "npm version using npm list express"
 npm list express
+echo
+echo
+echo
+echo "======================================================================="
+echo "====                 install and run express 026-032               ===="
+echo "======================================================================="
+echo "tutorial https://code.visualstudio.com/docs/nodejs/nodejs-tutorial"
+echo
+echo install express using ...
+echo touch ~/.zshrc
+touch ~/.zshrc
+echo
+echo
+echo
+echo amend the path so it accepts npm install -g commands
+echo 'export NODE_PATH="'$(npm root -g)'"' >> ~/.bash_profile && . ~/.bash_profile
+echo 'export NODE_PATH="'$(npm root -g)'"' >> ~/.zshrc && . ~/.zshrc
+echo
+echo
+echo
+echo sudo npm install express -g
+sudo npm install -g express -y
+echo
+echo
+echo
+echo npm install express-generator
+sudo npm install -g express-generator -y
+echo
+echo
+echo
+echo create express app
+echo express myExpressApp --view pug
+express express-026-044 --view pug
+echo
+echo
+echo
+echo cd express-026-044
+cd express-026-044
+echo
+echo
+echo
+echo npm install 
+npm install -y
+
