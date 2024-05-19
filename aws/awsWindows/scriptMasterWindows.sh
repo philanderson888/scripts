@@ -65,30 +65,26 @@ get_waypoint() {
     waypoint_start=$waypoint_end
     waypoint_end=$SECONDS
     waypoint_duration=$(( waypoint_end - waypoint_start ))
-    waypoint_index=$(( waypoint_index + 1 ))
+
+    echo "==================================================================="
+    echo "====                     array length                          ===="
+    echo "==================================================================="
+    fruits_array=("apple" "banana" "cherry")
+    echo $fruits_array
+    echo "fruits array has length ${#fruits_array[@]}"
+    waypoints_length=${#waypoints[@]}
+    echo "waypoints has length $waypoints_length"
+    echo "waypoints has length ${#waypoints[@]}"
+    waypoint_index=$(( $waypoints_length - 1 ))
+    echo
+    echo
+    echo
     echo "=============================================================="
-    echo "====             waypoint $waypoint_index $waypoint_name took $waypoint_duration s"   
+    echo "====             waypoint $waypoint_index at $waypoint_start s took $waypoint_duration s - $waypoint_name "   
     printTime
     echo "=============================================================="
-    #sleep $slow_read
-    #waypoint='{"waypoint_index":"'"$waypoint_index"'","waypoint_name":"'"$waypoint_name"'","waypoint_start":"'"$waypoint_start"'","waypoint_end":"'"$waypoint_end"'","waypoint_duration":"'"$waypoint_duration"'"}'
-    #sleep $slow_read
-    #echo
-    #echo waypoint as plain text
-    #sleep $fast_read
-    #echo $waypoint
-    #sleep $fast_read
-    #echo
-    #echo
-    #echo
-    #echo waypoint as json
-    #sleep $fast_read
-    #echo "${waypoint}" | jq
-    #sleep $fast_read
 }
 add_waypoint_to_waypoints() {
-    #echo add waypoint to waypoints array
-    #sleep $slow_read
     waypoints=$(
         echo $waypoints | jq '. += 
         [
@@ -101,208 +97,42 @@ add_waypoint_to_waypoints() {
             }
         ]'
     )
-    #echo $waypoints | jq
-    #sleep $slow_read
-    #echo
-    #echo
 }
 
 print_waypoints() {
-    #echo print waypoints
-    #sleep $fast_read
-    #waypoint_counter=-1
-    #echo $waypoints | jq -c '.[]' | while read i; do
-        #echo
-        #waypoint_counter=$(( waypoint_counter + 1 ))
-        #echo array index $waypoint_counter
-        #sleep $slow_read
-        #echo i is the full object with keys and values 1
-        #echo
-        #echo $i | jq
-        #echo
-        #echo  
-        #sleep $slow_read
-
-        #echo bbb
-        #echo $i | jq -c '.[]'
-
-        #echo
-        #echo  
-        #sleep $slow_read
-
-        #echo $i | jq '.[]'
-
-        #echo
-        #echo  
-        #sleep $slow_read
-
-        #echo keys unsorted
-        #jq 'keys_unsorted' <<< $i
-
-        #echo
-        #echo  
-        #sleep $slow_read
-        #echo keys unsorted 2
-        #jq -r 'keys_unsorted[]' <<< $i
-        #sleep $fast_read
-        #echo
-        #echo
-        #echo get all keys
-        #echo $i | jq -r 'keys[]'
-
-        #sleep $slow_read
-        #echo
-        #echo
-        #waypoint_name=$(echo $i | jq -r '.waypoint_name')
-        #echo waypoint name 1 is $waypoint_name
-        #sleep $fast_read
-        #waypoint_duration=$(echo $i | jq -r '.waypoint_duration')
-        #echo waypoint duration is $waypoint_duration
-    #done
     waypoint_index=-1
     echo $waypoints | jq -c '.[]' | while read i; do
         waypoint_index=$(( waypoint_index + 1 ))
         waypoint_name=$(echo $i | jq -r '.waypoint_name')
         waypoint_duration=$(echo $i | jq -r '.waypoint_duration')
-        echo waypoint index $waypoint_index name $waypoint_name duration $waypoint_duration
+        waypoint_start=$(echo $i | jq -r '.waypoint_start')
+        echo waypoint $waypoint_index at $waypoint_start s took $waypoint_duration s - $waypoint_name
     done       
 }
 
-
-echo "=============================================================="
-echo "====               initialise first waypoint              ===="
-echo "=============================================================="
-sleep $slow_read
-waypoint_time=$SECONDS
-waypoint_name="script start"
-waypoint_index=0
-waypoint_start=0
-waypoint_end=0
-waypoint_duration=0
-waypoints=$(jq -s '.' <<< '
-    { 
-        "waypoint_index": "'"$waypoint_index"'",
-        "waypoint_name": "'"$waypoint_name"'",
-        "waypoint_start": "'"$waypoint_start"'",
-        "waypoint_end": "'"$waypoint_end"'",
-        "waypoint_duration": "'"$waypoint_duration"'"
-    }'
-)
-echo waypoints array initialised
-echo $waypoints | jq
-echo
-echo
-echo
-sleep $fast_read
-echo loop over regular array
-
-
-
-
-json02=$(jq '.' < tmp.json)
-echo $json02 | jq
-json02=$(
-    echo $json02 | jq '. += 
-    [
-        {  
-            "name": "Phil Anderson",  
-            "email": "phil@company.com" 
-        }
-    ]'
-)
-echo $json02 | jq
-
-loop_counter=-1
-echo $json02 | jq -c '.[]' | while read i; do
-    echo
-    loop_counter=$(( loop_counter + 1 ))
-    echo array index $loop_counter
-    echo $i | jq -c '.[]' | while read j; do
-        j="${j#\"}"
-        j="${j%\"}"
-        echo $j
-    done
-done
-
-
-
-
-echo loop over waypoints array
-sleep $fast_read
-waypoint_counter=0
-loop_counter=-1
-echo $waypoints | jq -c '.[]' | while read i; do
-    echo
-    loop_counter=$(( loop_counter + 1 ))
-    echo array index $loop_counter
-
-
-    echo
-    echo  
+initialise_first_waypoint(){
+    echo "=============================================================="
+    echo "====               initialise first waypoint              ===="
+    echo "=============================================================="
     sleep $slow_read
-
-    echo i is the full object with keys and values 3
-    echo $i | jq
-
-
-    echo
-    echo  
-    sleep $slow_read
-
-    echo bbb
-    echo $i | jq -c '.[]'
-
-    echo
-    echo  
-    sleep $slow_read
-
-    echo $i | jq '.[]'
-
-    echo
-    echo  
-    sleep $slow_read
-
-    echo keys unsorted
-    jq 'keys_unsorted' <<< $i
-
-    echo
-    echo  
-    sleep $slow_read
-    echo keys unsorted 2
-    jq -r 'keys_unsorted[]' <<< $i
-    sleep $fast_read
-    echo
-    echo
-    echo get all keys
-    echo $i | jq -r 'keys[]'
-
-    sleep $slow_read
-    echo
-    echo
-    waypoint_name=$(echo $i | jq -r '.waypoint_name')
-    echo index $loop_counter
-    echo waypoint name 3 is $waypoint_name
-    sleep $fast_read
-    waypoint_duration=$(echo $i | jq -r '.waypoint_duration')
-    echo waypoint duration is $waypoint_duration
-done
-
-
-for waypoint in ${waypoints[@]}; do
-    waypoint_counter=$(( waypoint_counter + 1 ))
-    echo
-    echo $waypoint_counter
-    echo "${waypoint}" | jq
-done
-
-
-waypoint_start=$SECONDS
-waypoint_end=$SECONDS
-waypoint_duration=$(( waypoint_end - waypoint_start ))
-waypoint_index=$(( waypoint_index + 1 ))
-
-
-
+    waypoint_time=$SECONDS
+    waypoint_name="script start"
+    waypoint_index=0
+    waypoint_start=0
+    waypoint_end=0
+    waypoint_duration=0
+    waypoints=$(jq -s '.' <<< '
+        { 
+            "waypoint_index": "'"$waypoint_index"'",
+            "waypoint_name": "'"$waypoint_name"'",
+            "waypoint_start": "'"$waypoint_start"'",
+            "waypoint_end": "'"$waypoint_end"'",
+            "waypoint_duration": "'"$waypoint_duration"'"
+        }'
+    )
+    echo waypoints array initialised
+    echo $waypoints | jq
+}
 
 display_progress () {
     waypoint_name=$1
@@ -399,7 +229,7 @@ display_progress () {
         echo "c++ version ${cpp_version:0:30}"
     fi
     if [ "$git_installed" = true ] ; then
-        echo "git version $git_version"
+        echo $git_version
     fi
     if [ "$services_restarted" = true ] ; then
         echo services have been
@@ -470,15 +300,8 @@ display_progress () {
     print_waypoints
 }
 
-
-
-
-
-
-
-
-
-
+# initialise waypoints which measure script progress
+initialise_first_waypoint
 
 # install
 installing_powershell=false
@@ -695,44 +518,32 @@ display_progress "os updated"
 install_services=true
 if [ "$install_services" = true ] ; then
 
-    install_fish=true
+    install_fish=false
 
     install_c=false
     install_cpp=false
-
     install_mongo_db=false
     install_mongo_shell=false
-
     install_dot_net=false
-
     install_maria_db=false
     install_java=false
     install_go=false
 
-
-    install_apache=true
-    install_nginx=true
+    install_apache=false
+    install_nginx=false
     restart_services=true
     install_node=true
     install_express=true
-
-
-
     install_vue=false
     install_bun=false
     install_react=false
 
-
-    install_docker=true
-    install_terraform=true
-    install_ansible=true
-
+    install_docker=false
+    install_terraform=false
+    install_ansible=false
 fi
 waypoint=17
 display_progress "deciding which services to install"
-
-
-
 
 
 
@@ -749,7 +560,6 @@ if [ "$install_zsh" = true ] ; then
     waypoint=18
     display_progress zsh
 fi
-
 
 
 
@@ -874,14 +684,17 @@ fi
 
 if [ "$install_express" = true ] ; then
     printHeading "====                   express                           ===="
-    printHeading "====                 script 26                          ===="
+    printHeading "====                  script 26                         ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-express.zsh
     express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
     express_installed_2=true
-    echo "running express in second terminal"
-    open -a Terminal ./script-26-launch-express.zsh
+    scp -i $ssh_key script-26-run-express-01.zsh $admin_username@$public_ip_address:script-26-run-express-01.zsh
+    scp -i $ssh_key script-26-run-express-02.zsh $admin_username@$public_ip_address:script-26-run-express-02.zsh
+    echo "running express"
+    open -a Terminal ./script-26-launch-express-01.zsh
+    open -a Terminal ./script-26-launch-express-02.zsh
     waypoint=26
-    display_progress "express 2"
+    display_progress "express"
 fi
 
 
@@ -973,6 +786,10 @@ if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
     echo aaaa
     open -a Terminal ./script-41-launch-node.zsh
     echo bbbb
+    source ./script-41-launch-node.zsh
+    echo cccc
+    ./script-41-launch-node.zsh
+    echo dddd
 fi
 
 
@@ -981,7 +798,14 @@ if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
     echo "====             run express web server                   ===="
     printTime
     echo "=============================================================="
-    source ./script-42-run-express.sh
+    echo eeee
+    open -a Terminal ./script-26-launch-express-01.zsh
+    echo ffff
+    source ./script-26-launch-express-01.zsh
+    echo gggg
+    open -a Terminal ./script-26-launch-express-02.zsh
+    echo hhhh
+    source ./script-26-launch-express-02.zsh
 fi
 
 run_vue=false
@@ -1011,6 +835,21 @@ if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
     printTime
     echo "=============================================================="
     source ./script-48-run-react-web-server.sh
+fi
+
+
+
+
+
+test_web_servers=true
+if [ "$test_web_servers" = true ] ; then
+    if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
+        printHeading "====           script 60 test web servers"
+        ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-60-test-servers.zsh
+        waypoint=60
+        sleep $fast_read
+        display_progress test web servers
+    fi
 fi
 
 
@@ -1488,7 +1327,7 @@ ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-learn-
 
 sleep $fast_read
 printHeading "====              bash scripting a to z                    ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-bash-commands.zsh
+ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-learn-bash.zsh
 
 
 
