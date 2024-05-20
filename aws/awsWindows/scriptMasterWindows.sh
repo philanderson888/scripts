@@ -60,22 +60,14 @@ printHeading () {
     echo
     echo
 }
+
 get_waypoint() {
     waypoint_time=$SECONDS
     waypoint_start=$waypoint_end
     waypoint_end=$SECONDS
-    waypoint_duration=$(( waypoint_end - waypoint_start ))
-
-    echo "==================================================================="
-    echo "====                     array length                          ===="
-    echo "==================================================================="
-    fruits_array=("apple" "banana" "cherry")
-    echo $fruits_array
-    echo "fruits array has length ${#fruits_array[@]}"
-    waypoints_length=${#waypoints[@]}
-    echo "waypoints has length $waypoints_length"
-    echo "waypoints has length ${#waypoints[@]}"
-    waypoint_index=$(( $waypoints_length - 1 ))
+    waypoint_duration=$(( waypoint_end - waypoint_start ))  
+    waypoints_length=$( echo $waypoints | jq length )
+    waypoint_index=$(( waypoints_length ))
     echo
     echo
     echo
@@ -84,6 +76,10 @@ get_waypoint() {
     printTime
     echo "=============================================================="
 }
+
+
+
+
 add_waypoint_to_waypoints() {
     waypoints=$(
         echo $waypoints | jq '. += 
