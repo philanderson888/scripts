@@ -22,6 +22,8 @@ if [ $number_of_installs -eq 0 ] ; then
     echo
     echo
     echo
+    echo update omz using omz update
+    omz update
     sleep 1
     echo "==================================================================="
     echo "====                   install azure client                    ===="
@@ -54,6 +56,17 @@ if [ $number_of_installs -eq 0 ] ; then
     echo "==================================================================="
     echo brew install jo 
     brew install jo
+    echo "==================================================================="
+    echo "====                     install ttab                          ===="
+    echo "====              this opens new tab windows                   ===="
+    echo "==================================================================="
+    #echo install with npm ... npm install -g ttab
+    #sudo npm install -g ttab -y
+    echo install with homebrew ... 
+    echo brew tap mklement0/ttab https://github.com/mklement0/ttab.git
+    echo brew install mklement0/ttab/ttab
+    brew tap mklement0/ttab https://github.com/mklement0/ttab.git
+    brew install mklement0/ttab/ttab
 fi
 aws_cli_installed=true
 aws_cli_already_installed=true
