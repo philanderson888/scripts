@@ -742,6 +742,12 @@ fi
 
 
 
+printHeading "====                     python                          ===="
+./script-33-python.zsh
+
+
+
+
 printHeading "====                    running servers                  ===="
 run_servers=true
 if [ "$run_servers" = true ] ; then
@@ -757,7 +763,7 @@ fi
 
 if [ "$apache_installed" = true ] && [ "$run_apache" = true ] ; then
     echo "=============================================================="
-    echo "====                run apache web server                 ===="
+    echo "====                run apache web server    40           ===="
     printTime
     echo "=============================================================="
     open -a Terminal ./script-40-run-apache-web-server.sh
@@ -766,7 +772,7 @@ fi
 
 if [ "$nginx_installed" = true ] && [ "$run_nginx" = true ] ; then
     echo "=============================================================="
-    echo "====               run nginx web server                   ===="
+    echo "====               run nginx web server   N/A             ===="
     printTime
     echo "=============================================================="
     echo nginx install works ... nothing to test at present
@@ -774,35 +780,32 @@ fi
 
 
 if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
-    echo "=============================================================="
-    echo "====             running node web server                  ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====    script 59 - run node web server 41        ===="
     scp -i $ssh_key script-41-server.js $admin_username@$public_ip_address:script-41-server.js
+    chmod 777 ./script-59-launch-41-node-web-server.zsh
+    # echo IdentityFile ~/.ssh/azureCliUbuntuLogin.pem >> ~/.ssh/config
     echo aaaa
-    open -a Terminal ./script-41-launch-node.zsh
+    ttab './script-59-run-41-node-server.zsh'
     echo bbbb
-    source ./script-41-launch-node.zsh
-    echo cccc
-    ./script-41-launch-node.zsh
-    echo dddd
 fi
 
 
 if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
-    echo "=============================================================="
-    echo "====             run express web server                   ===="
-    printTime
-    echo "=============================================================="
-    echo eeee
-    open -a Terminal ./script-26-launch-express-01.zsh
-    echo ffff
-    source ./script-26-launch-express-01.zsh
-    echo gggg
-    open -a Terminal ./script-26-launch-express-02.zsh
-    echo hhhh
-    source ./script-26-launch-express-02.zsh
+    printHeading "====    script 59 - run express web server 26     ===="
+    scp -i $ssh_key script-41-server.js $admin_username@$public_ip_address:script-41-server.js
+    chmod 777 ./script-59-launch-41-node-web-server.zsh
+    # echo IdentityFile ~/.ssh/azureCliUbuntuLogin.pem >> ~/.ssh/config
+    printHeading "====                  run express 26-1"
+    chmod 777 ./script-59-run-26-express-server-1.zsh
+    ttab './script-59-run-26-express-server-1.zsh'
+    printHeading "====                  run express 26-2"
+    chmod 777 ./script-59-run-26-express-server-2.zsh
+    ttab './script-59-run-26-express-server-2.zsh'
 fi
+
+
+
+
 
 run_vue=false
 if [ "$vue_installed" = true ] && [ "$run_vue" = true ] ; then
@@ -1021,6 +1024,21 @@ echo https://www.npmjs.com/package/bats
 
 
 
+
+
+github_actions=true
+if [ "$github_actions" = true ] ; then
+    printHeading "==== script 54 - github actions - deploy web app  ===="
+    echo firstly install and run web app on new tab
+    chmod 777 ./script-54-github-actions-create-app.zsh
+    ttab './script-54-github-actions-create-app.zsh'
+    sleep 10
+    echo secondly test web app after waiting 10 seconds
+    echo should get a curl back if successful
+    chmod 777 ./script-54-github-actions-test-app.zsh
+    ./script-54-github-actions-test-app.zsh
+    echo now we know the web app works we can try to deploy it 
+fi
 
 
 
@@ -1349,7 +1367,7 @@ deallocate_vms=true
 if [ "$deallocate_vms" = true ] ; then
     printHeading "====                  deallodcate vms                      ===="
     az vm deallocate --resource-group $resource_group_name --name $ubuntu_vm_name
-    az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
+    #az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
 fi
 
 
