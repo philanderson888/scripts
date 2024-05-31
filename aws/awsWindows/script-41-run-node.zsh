@@ -29,9 +29,5 @@ echo "====                  run web server                     ===="
 echo "=============================================================="
 echo start web server
 echo comment out for now until actually run it
-#node script-41-server.js
-#echo 
-#echo testing web server with curl command
-#curl localhost:3006
-#echo successfully spun up a nodejs web server wow !!! happy days
+node script-41-server.js
 echo end of script 41 node web server
