@@ -20,7 +20,11 @@ curl $ip -s
 echo
 echo
 echo
-echo server 06 node     
+echo testing web server with curl command
+echo server 06 node
+echo curl localhost:3006
+curl localhost:3006
+echo curl $ip:3006 -s
 curl $ip:3006 -s
 echo
 echo
