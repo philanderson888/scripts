@@ -37,5 +37,4 @@ echo testing web server with curl command
 sleep 1
 curl localhost:3006
 
-echo successfully spun up a nodejs web server wow !!! happy days
 echo end of script 06 install and run node web server

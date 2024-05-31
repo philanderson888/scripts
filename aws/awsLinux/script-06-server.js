@@ -10,5 +10,5 @@ const server = http.createServer((req, res) => {
   res.end(output);
 });
 server.listen(port, hostname, () => {
-  console.log(`server 06 - nodejs web server running on Amazon EC2 basic server instance at http://${hostname}:${port}/`);
+  console.log(`server 06 - nodejs web server running at http://${hostname}:${port}/`);
 });
