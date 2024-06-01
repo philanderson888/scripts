@@ -253,6 +253,7 @@ display_progress () {
     if [ "$docker_installed" = true ] ; then
         echo "docker version client $docker_version_client"
         echo "docker version server $docker_version_server"
+        echo "docker compose version $docker_compose_version"
     fi
     if [ "$terraform_installed" = true ] ; then
         echo "terraform version $terraform_version"
@@ -534,7 +535,7 @@ if [ "$install_services" = true ] ; then
     install_bun=false
     install_react=false
 
-    install_docker=false
+    install_docker=true
     install_terraform=false
     install_ansible=false
 fi
@@ -955,6 +956,7 @@ if [ "$install_docker" = true ] ; then
     docker_version_client=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Client.Version}}'")
     docker_version_server=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Server.Version}}'")
     docker version --format '{{.Client.APIVersion}}'
+    docker_compose_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker-compose -v")
     display_progress "docker"
 fi
 
@@ -1038,10 +1040,25 @@ if [ "$github_actions" = true ] ; then
     chmod 777 ./script-54-github-actions-test-app.zsh
     ./script-54-github-actions-test-app.zsh
     echo now we know the web app works we can try to deploy it 
+    echo request is to deploy it first to a docker container then deploy that container
+    echo firstly then deploy web app to docker container
+    echo docker image holds code
+    echo dockerfile is used to build docker image using bash script
+    echo docker container is the running app
+    echo docker compose allows control over running app via yaml
+    echo
+    echo
+    echo
+    echo now lets try to deploy a web app
+    echo first stage is to create a docker image
+    echo
+    echo
+    echo
+    printHeading "====         create hello world docker image"
+    printHeading "====                script 61                          ===="
+    scp -i $ssh_key script-61-dockerfile-01 $admin_username@$public_ip_address:script-61-dockerfile-01
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-61-create-docker.zsh
 fi
-
-
-
 
 
 printHeading "====             problem libraries                ===="
@@ -1363,16 +1380,22 @@ echo $linux_output >> linux-out-put.txt
 
 
 
+echo
+echo
+echo
+delay_before_erase_all_servers=120
+delay_in_minutes_before_erase_all_servers=$(( $delay_before_erase_all_servers / 60 ))
+echo ... waiting $delay_in_minutes_before_erase_all_servers minutes then deleting all servers and all resource groups so we start from scratch every time ...
+sleep $delay_before_erase_all_servers
+
+sleep 600
+
 deallocate_vms=true
 if [ "$deallocate_vms" = true ] ; then
-    printHeading "====                  deallodcate vms                      ===="
+    printHeading "====                  deallocate vms                      ===="
     az vm deallocate --resource-group $resource_group_name --name $ubuntu_vm_name
     #az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
 fi
-
-
-
-
 
 
 if [ "$delete_vms" = true ] ; then
@@ -1385,13 +1408,7 @@ if [ "$delete_vms" = true ] ; then
     #az vm delete --resource-group $resource_group_name --name $ubuntu_vm_name --yes
     #az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
 fi
-echo
-echo
-echo
-delayBeforeEraseAllServers=120
-delayInMinutesBeforeEraseAllServers=$(($delayBeforeEraseAllServers / 60))
-echo ... waiting $delayInMinutesBeforeEraseAllServers minutes then deleting all servers and all resource groups so we start from scratch every time ...
-sleep $delayBeforeEraseAllServers
+
 delete_resource_groups=true
 if [ "$delete_resource_groups" = true ] ; then
     echo "====================================================================="

@@ -49,11 +49,6 @@ sudo apt-get install docker-ce -y
 echo
 echo
 echo
-echo docker compose version
-docker compose version
-echo
-echo
-echo
 echo install docker compose
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)"  -o /usr/local/bin/docker-compose
 sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
@@ -61,11 +56,13 @@ sudo chmod +x /usr/bin/docker-compose
 echo
 echo
 echo
+echo
+echo sudo apt-get install docker-compose-plugin
+sudo apt-get install docker-compose-plugin -y
+echo
+echo
 echo docker compose version
 docker compose version
-echo
-echo
-echo
 echo docker-compose -v
 docker-compose -v
 echo
@@ -171,23 +168,29 @@ sudo find / -name docker-compose
 echo
 echo
 echo
-echo docker compose version
-docker compose version
+echo docker-compose -v
+docker-compose -v
 echo
 echo
 echo
-echo docker compose ps
-docker compose ps
+echo docker ps
+docker ps
 echo
 echo
 echo
-echo docker compose up
-docker compose up
+echo docker-compose ps
+docker-compose ps
 echo
 echo
 echo
-echo docker compose up - d
-docker compose up -d
+echo
+echo docker-compose up
+docker-compose up
+echo
+echo
+echo
+echo docker-compose up - d
+docker-compose up -d
 echo
 echo
 echo
