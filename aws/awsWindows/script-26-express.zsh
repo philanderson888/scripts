@@ -56,13 +56,13 @@ echo
 echo
 echo
 echo create express app
-echo express myExpressApp --view pug
-express express-026-044 --view pug
+echo express myExpressApp2 --view pug
+express myExpressApp2 --view pug
 echo
 echo
 echo
-echo cd express-026-044
-cd express-026-044
+echo cd myExpressApp2
+cd myExpressApp2
 echo
 echo
 echo
