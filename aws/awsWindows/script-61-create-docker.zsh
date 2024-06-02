@@ -12,8 +12,13 @@ mkdir script-61-docker
 echo
 echo
 echo
-echo mv script-61-dockerfile-01 script-61-docker
-mv script-61-dockerfile-01 script-61-docker
+echo mv script-61-dockerfile script-61-docker
+mv script-61-dockerfile script-61-docker
+echo
+echo
+echo
+echo mv myExpressApp script-61-docker
+mv myExpressApp script-61-docker
 echo
 echo
 echo
@@ -22,8 +27,8 @@ cd script-61-docker
 echo
 echo
 echo
-echo mv script-61-dockerfile-01 Dockerfile
-mv script-61-dockerfile-01 Dockerfile
+echo mv script-61-dockerfile Dockerfile
+mv script-61-dockerfile Dockerfile
 echo
 echo
 echo

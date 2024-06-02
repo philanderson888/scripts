@@ -1,3 +1,0 @@
-FROM ubuntu:latest
-RUN apt-get update
-CMD ["echo", "this is a docker container built by phil anderson"]

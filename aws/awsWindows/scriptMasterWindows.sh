@@ -1055,9 +1055,16 @@ if [ "$github_actions" = true ] ; then
     echo
     echo
     printHeading "====         create hello world docker image"
-    printHeading "====                script 61                          ===="
-    scp -i $ssh_key script-61-dockerfile-01 $admin_username@$public_ip_address:script-61-dockerfile-01
+    printHeading "====        script 61 - deploy app built on mac        ===="
+    scp -i $ssh_key script-61-dockerfile $admin_username@$public_ip_address:script-61-dockerfile
+    scp -i $ssh_key -r ~/temp/myExpressApp $admin_username@$public_ip_address:myExpressApp
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-61-create-docker.zsh
+
+    printHeading "====     script 62 - deploy app build on ubuntu        ===="
+    scp -i $ssh_key script-62-dockerfile $admin_username@$public_ip_address:script-62-dockerfile
+    scp -i $ssh_key -r ~/temp/myExpressApp $admin_username@$public_ip_address:myExpressApp
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-62-create-docker.zsh
+
 fi
 
 
@@ -1341,26 +1348,19 @@ fi
 
 
 
-
-
-
-sleep $fast_read
-printHeading "====           upload node teaching files                   ===="
-scp -i $ssh_key script-90-learn-node.js $admin_username@$public_ip_address:script-90-learn-node.js
-scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:script-90-package.json
-printHeading "====           install and run teaching node                ===="
-printHeading "====                    script 90                           ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-learn-node-js.zsh
-
-
-
-
-
-sleep $fast_read
-printHeading "====              bash scripting a to z                    ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-learn-bash.zsh
-
-
+learning_mode=false
+if [ "$learining_mode" = true ] ; then
+    sleep $fast_read
+    printHeading "====           upload node teaching files                   ===="
+    scp -i $ssh_key script-90-learn-node.js $admin_username@$public_ip_address:script-90-learn-node.js
+    scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:script-90-package.json
+    printHeading "====           install and run teaching node                ===="
+    printHeading "====                    script 90                           ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-learn-node-js.zsh
+    sleep $fast_read
+    printHeading "====              bash scripting a to z                    ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-learn-bash.zsh
+fi
 
 
 
@@ -1383,12 +1383,14 @@ echo $linux_output >> linux-out-put.txt
 echo
 echo
 echo
-delay_before_erase_all_servers=120
+delay_before_erase_all_servers=1
+#delay_before_erase_all_servers=120
+#delay_before_erase_all_servers=720
 delay_in_minutes_before_erase_all_servers=$(( $delay_before_erase_all_servers / 60 ))
 echo ... waiting $delay_in_minutes_before_erase_all_servers minutes then deleting all servers and all resource groups so we start from scratch every time ...
 sleep $delay_before_erase_all_servers
 
-sleep 600
+
 
 deallocate_vms=true
 if [ "$deallocate_vms" = true ] ; then
