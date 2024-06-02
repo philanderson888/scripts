@@ -1,5 +1,5 @@
 #!/bin/zsh
-$slow_read=2
+slow_read=2
 echo zsh
 zsh
 echo cd ~
@@ -12,12 +12,13 @@ echo "==================================================================="
 echo "==================================================================="
 echo "====                          apt                              ===="
 echo "==================================================================="
-echo apt is an updated form of apt-get
-echo apt-get released 1998
-echo apt released 2014
-echo apt search ... searches for all apt distributions containing that name
-echo apt search ansible
+echo "apt is an updated form of apt-get"
+echo "apt-get released 1998"
+echo "apt released 2014"
+echo "apt search .. searches for all apt distributions containing that name"
+echo "apt search ansible"
 apt search ansible
+apt-cache search ansible
 echo "==================================================================="
 echo "====                     array length                          ===="
 echo "==================================================================="
