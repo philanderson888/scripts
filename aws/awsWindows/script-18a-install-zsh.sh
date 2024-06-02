@@ -73,7 +73,5 @@ cat .zshrc
 echo
 echo
 echo
-echo set zsh as default ... do any work ... with sudo or without sudo ... 1
-chsh -s $(which zsh)
 echo set zsh as default ... do any work ... with sudo or without sudo ... 2
 sudo chsh -s $(which zsh)
