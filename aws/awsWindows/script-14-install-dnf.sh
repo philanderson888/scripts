@@ -46,7 +46,7 @@ if [[  "$os_type" == "$os_type_debian" ]]; then
     echo "====              apt-get install nginx  2                ===="
     echo "====                 * * * silent * * *                   ===="
     echo "=============================================================="
-    sudo apt-get install nginx -y >> output.txt
+    sudo apt-get install nginx -y >> remote-output.txt
     echo "=============================================================="
     echo "====               update various services                ===="
     echo "=============================================================="

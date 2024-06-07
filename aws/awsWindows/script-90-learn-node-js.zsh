@@ -54,20 +54,20 @@ sudo chmod 777 /var/cache/debconf/passwords.dat
 echo
 echo
 echo
-echo touch ~/output.txt
-echo chmod 777 ~/output.txt
+echo touch ~/remote-output.txt
+echo chmod 777 ~/remote-output.txt
 echo totally silent apt get install
-sudo apt-get install -y -q >> ~/output.txt
+sudo apt-get install -y -q >> ~/remote-output.txt
 echo
 echo
 echo
 echo totally silent apt get install dialog
-sudo apt-get install dialog -y -q >> ~/output.txt
+sudo apt-get install dialog -y -q >> ~/remote-output.txt
 echo
 echo
 echo
 echo totally silent apt get install apt-utils
-sudo apt-get install apt-utils -y -q >> ~/output.txt
+sudo apt-get install apt-utils -y -q >> ~/remote-output.txt
 echo
 echo
 echo
@@ -75,7 +75,7 @@ echo totally silent apt get install node js
 echo this is totally a duplicate and totally not required
 echo find the first point i install node js and use this line there
 echo and remove subsequent installs as they totally are not required after first install - do it once only
-sudo apt-get -qq install nodejs -y >> ~/output.txt
+sudo apt-get -qq install nodejs -y >> ~/remote-output.txt
 echo
 echo
 echo

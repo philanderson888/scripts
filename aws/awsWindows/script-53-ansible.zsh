@@ -53,7 +53,7 @@ echo
 echo
 echo
 echo sudo apt-get install software-properties-common
-sudo apt-get -qq install software-properties-common -y >> output.txt
+sudo apt-get -qq install software-properties-common -y >> remote-output.txt
 echo
 echo
 echo
@@ -63,7 +63,7 @@ echo
 echo
 echo
 echo sudo apt-get install ansible
-sudo apt-get -qq install ansible -y >> output.txt
+sudo apt-get -qq install ansible -y >> remote-output.txt
 echo
 echo
 echo
@@ -83,7 +83,7 @@ echo
 echo
 echo
 echo sudo apt-get install python3-pip
-sudo apt-get -qq install python3-pip -y >> output.txt
+sudo apt-get -qq install python3-pip -y >> remote-output.txt
 echo
 echo
 echo

@@ -12,8 +12,8 @@ $SHELL --version
 echo
 echo
 echo
-echo touch output.txt
-touch output.txt
+echo touch remote-output.txt
+touch remote-output.txt
 echo
 echo
 echo
@@ -22,24 +22,24 @@ touch output-apt-get-install.txt
 echo
 echo
 echo
-echo chmod 777 output.txt
-chmod 777 output.txt
+echo chmod 777 remote-output.txt
+chmod 777 remote-output.txt
 echo chmod 777 output-apt-get-install.txt
 chmod 777 output-apt-get-install.txt
 echo
 echo
 echo
-echo ls -lah output.txt
-ls -lah output.txt
+echo ls -lah remote-output.txt
+ls -lah remote-output.txt
 echo
 echo
-echo echo output.txt into output.txt
-echo "this is the end of the output file" >> output.txt
+echo echo remote-output.txt into remote-output.txt
+echo "this is the end of the output file" >> remote-output.txt
 echo
 echo
 echo
-echo tail output.txt
-tail output.txt
+echo tail remote-output.txt
+tail remote-output.txt
 echo
 echo
 echo

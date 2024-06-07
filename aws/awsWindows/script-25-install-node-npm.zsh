@@ -17,10 +17,10 @@ if [ "$install_single_instance_of_node" = true ] ; then
     echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
     sudo chmod 777 /var/cache/debconf/ 
     sudo chmod 777 /var/cache/debconf/passwords.dat
-    sudo apt-get install -y -q >> output.txt
-    sudo apt-get install dialog -y -q >> output.txt
-    sudo apt-get install apt-utils -y -q >> output.txt
-    sudo apt-get -qq install nodejs -y >> output.txt
+    sudo apt-get install -y -q >> remote-output.txt
+    sudo apt-get install dialog -y -q >> remote-output.txt
+    sudo apt-get install apt-utils -y -q >> remote-output.txt
+    sudo apt-get -qq install nodejs -y >> remote-output.txt
     node --version
     npm --version
     echo "adding bash commands to zsh"
@@ -54,7 +54,7 @@ else
     echo "source bashrc"
     source ~/.bashrc
     echo "nvm list-remote"
-    nvm list-remote >> output.txt
+    nvm list-remote >> remote-output.txt
     echo "====================================================================="
     echo "====                   install node LTS 25090                    ===="
     echo "====================================================================="

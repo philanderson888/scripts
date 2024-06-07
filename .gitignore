@@ -13,6 +13,7 @@ run_counter
 # output files
 output*
 output.txt
+remote-output.txt
 outputNetworkSecurityGroupInformation.txt
 output-azure-vms.txt
 output-network-security-group.txt

@@ -8,7 +8,7 @@ echo
 echo
 echo
 echo sudo apt get install open jdk silent 
-sudo apt-get install openjdk-11-jdk -y >> output.txt
+sudo apt-get install openjdk-11-jdk -y >> remote-output.txt
 echo
 echo
 echo
@@ -25,12 +25,12 @@ echo "======================================================================="
 echo "====          install take 2 - jre java runtime                    ===="
 echo "======================================================================="
 echo sudo apt get install default jre silent
-sudo apt-get -qq install default-jre -y >> output.txt
+sudo apt-get -qq install default-jre -y >> remote-output.txt
 echo "======================================================================="
 echo "====                 install jdk and java compiler                 ===="
 echo "======================================================================="
 echo sudo apt gett install default jdk silent
-sudo apt-get -qq install default-jdk -y >> output.txt
+sudo apt-get -qq install default-jdk -y >> remote-output.txt
 echo "======================================================================="
 echo "====              jdk and java compiler version                    ===="
 echo "====          not needed - version did not update since last one   ===="
@@ -48,9 +48,9 @@ echo "======================================================================="
 echo "====                  take 3 install java   - not needed           ===="
 echo "======================================================================="
 sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get -qq update -y >> output.txt
-sudo apt-get -qq install oracle-java8-installer -y >> output.txt
-sudo apt-get -qq install oracle-java8-set-default -y >> output.txt
+sudo apt-get -qq update -y >> remote-output.txt
+sudo apt-get -qq install oracle-java8-installer -y >> remote-output.txt
+sudo apt-get -qq install oracle-java8-set-default -y >> remote-output.txt
 echo java versions have not changed since first install
 sleep 1
 javac -version

@@ -102,7 +102,7 @@ echo
 echo
 echo
 echo sudo apt-get install terraform
-sudo apt-get -qq install terraform -y >> ~/output.txt
+sudo apt-get -qq install terraform -y >> ~/remote-output.txt
 echo
 echo
 echo

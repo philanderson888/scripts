@@ -8,13 +8,13 @@ echo "remote shell version ${shell_version:0:57}"
 echo
 echo
 echo
-echo touch output.txt 01310
-touch output.txt
+echo touch remote-output.txt 01310
+touch remote-output.txt
 echo
 echo
 echo
-echo chmod 777 output.txt
-chmod 777 output.txt
+echo chmod 777 remote-output.txt
+chmod 777 remote-output.txt
 echo
 echo
 echo
@@ -60,13 +60,13 @@ if [[  "$os_type" == "$os_type_debian" ]]; then
     echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
     sudo chmod 777 /var/cache/debconf/ 
     sudo chmod 777 /var/cache/debconf/passwords.dat
-    sudo add-apt-repository universe >> output.txt
-    sudo apt-get -qq update -y >> output.txt
+    sudo add-apt-repository universe >> remote-output.txt
+    sudo apt-get -qq update -y >> remote-output.txt
     sleep 1
-    sudo apt-get install -y -q >> output.txt
-    sudo apt-get install dialog -y -q >> output.txt
-    sudo apt-get install apt-utils -y -q >> output.txt
-    sudo apt-get -qq install nginx -y >> output.txt
+    sudo apt-get install -y -q >> remote-output.txt
+    sudo apt-get install dialog -y -q >> remote-output.txt
+    sudo apt-get install apt-utils -y -q >> remote-output.txt
+    sudo apt-get -qq install nginx -y >> remote-output.txt
     echo "=============================================================="
     echo "====                    nginx version 01350               ===="
     echo "=============================================================="
