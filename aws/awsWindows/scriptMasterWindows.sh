@@ -188,6 +188,12 @@ display_progress () {
     if [ "$fish_installed" = true ] ; then
         echo fish version $fish_version
     fi
+    if [ "$python_installed" = true ] ; then
+        echo phyton version is ???????
+    fi
+    if [ "$git_installed" = true ] ; then
+        echo git is installed - does it have a version
+    fi
     if [ "$install_services" = true ] ; then
         echo the following services will be installed ...
         if [ "$install_apache" = true ] ; then
@@ -290,14 +296,8 @@ display_progress () {
         echo list files and hidden files
         echo $list_files_and_hidden_files
     fi
-    #echo 
-    #echo
-    #echo $slow_read
-    #echo print waypoints
     print_waypoints
 }
-
-# initialise waypoints which measure script progress
 initialise_first_waypoint
 
 # install
@@ -383,109 +383,77 @@ root_directory=~/github/scripts/aws/awsWindows
 cd $root_directory
 
 
-printHeading "====           refresh libraries for mac scripting host"
-printHeading "====                       script 01    "
 
+printHeading "====       install libraries"
 source ./script-01-install.sh
-waypoint=01
 aws_version=$(aws --version)
 aws_version="${aws_version:0:16}"
 powershell_version=$(pwsh --version)
-display_progress "installing aws and powershell"
+display_progress "install libraries"
 
-
-
-
+printHeading "====       log in to cloud"
 source ./script-02-log-in-to-azure.sh
+display_progress "log in to cloud"
 
-waypoint=02
-display_progress "log in to azure"
-
+printHeading "====       query cloud resources"
 source ./script-03-query-azure-account.sh
-waypoint=03
-display_progress "query azure"
+display_progress "query cloud resources"
 
+printHeading "====       delete existing environments"
 source ./script-04-clean-before-start.sh
-waypoint=04
 display_progress "clean environment"
 
+printHeading "====      create resource group"
 source ./script-05-create-resource-group.sh
-waypoint=05
 display_progress "create resource group"
 
+printHeading "====      list resource group"
 source ./script-06-list-resource-group-names.sh
-waypoint=06
 display_progress "list resource groups"
 
-
+printHeading "====      query vm templates"
 source ./script-07-query-vm-templates.sh
-waypoint=07
 display_progress "query vm templates"
 
 
-
-
-
-
-
-printHeading "====                   choose vm image"
-printHeading "====                      script 09"
+printHeading "====      choose vm image"
 if [ "$os" == "$os_ubuntu" ] ; then
     vm_name=$ubuntu_vm_name
     vm_image=$ubuntu_image_name
     vm_os_set=true
     create_vm=true
 fi
-waypoint=09
 display_progress "set vm type to be $os"
 
 
-
-
-
-
-printHeading "====                      create vms"
-printHeading "====                      script 10"
+printHeading "====       create vm"
 source ./script-10-create-vm.sh
-waypoint=10
 display_progress "vm created"
 
 
 
-printHeading "====                      query vms"
-printHeading "====                      script 11"
+printHeading "====        query vm"
 source ./script-11-query-vm.sh
-waypoint=11
-display_progress "query vm using azure cli"
+display_progress "query vm using cloud provider"
 
 
-printHeading "====               query network secuirity groups"
-printHeading "====                       script 12"
+printHeading "====               query network secuirity group"
 source ./script-12-query-network-security-groups.sh
-waypoint=12
 display_progress "query network security group performed"
 
 
 printHeading "====                    who am i USER"
-printHeading "====                       script 13"
 remote_user=$(ssh -i $ssh_key $admin_username@$public_ip_address "whoami")
 echo username $remote_user
 
 
 printHeading "====                    get remote shell"
-printHeading "====                       script 13    "
 remote_shell=$(ssh -i $ssh_key $admin_username@$public_ip_address "bash --version")
 remote_shell=${remote_shell:0:57}
 remote_shell_obtained=true
 
 
-
-
-
-
 printHeading "====                     query linux"
-printHeading "====                       script 13"
-
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-13-get-linux-version.sh
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
 linux_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep '^VERSION=' /etc/os-release")
@@ -495,27 +463,28 @@ linux_id_like=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep '^ID_LI
 python_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 --version")
 python_platform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 -mplatform")
 linux_details_obtained=true
-waypoint=13
 display_progress "query linux"
 
 
 printHeading "====                   dnf install"
-printHeading "====                   dnf install"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-14-install-dnf.sh
-waypoint=14
 display_progress "dnf install"
 
 
 printHeading "====                   update os"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-16-update-server-to-latest-versions.sh
 python_platform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 -mplatform")
-waypoint=16
 display_progress "os updated"
 
+
+printHeading "====        decide which services to install"
 install_services=true
 if [ "$install_services" = true ] ; then
-
+    install_zsh=true
     install_fish=false
+    
+    install_python=true
+    install_git=true
 
     install_c=false
     install_cpp=false
@@ -525,36 +494,31 @@ if [ "$install_services" = true ] ; then
     install_maria_db=false
     install_java=false
     install_go=false
+    
 
     install_apache=false
     install_nginx=false
     restart_services=true
     install_node=true
     install_express=true
-    install_vue=false
-    install_bun=false
-    install_react=false
+    install_vue=true
+    install_bun=true
+    install_react=true
 
     install_docker=true
-    install_terraform=false
-    install_ansible=false
+    install_terraform=true
+    install_ansible=true
 fi
-waypoint=17
 display_progress "deciding which services to install"
 
 
-
-
-
-install_zsh=true
 if [ "$install_zsh" = true ] ; then
-    printHeading "====                       zsh                            ===="
-    scp -i $ssh_key script-18-always-run-zsh.sh $admin_username@$public_ip_address:script-18-always-run-zsh.sh 
-    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-18a-install-zsh.sh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18b-test-zsh.zsh
+    printHeading "====                    install zsh"
+    scp -i $ssh_key script-18-run-zsh.sh $admin_username@$public_ip_address:script-18-run-zsh.sh 
+    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-18-install-zsh.sh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18-test-zsh.zsh
     zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
     zsh_installed=true
-    waypoint=18
     display_progress zsh
 fi
 
@@ -564,10 +528,9 @@ fi
 
 install_oh_my_zsh=true
 if [ "$install_oh_my_zsh" = true ] ; then
-    printHeading "====                    oh my zsh                         ===="
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18c-install-oh-my-zsh.zsh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18d-test-oh-my-zsh.zsh
-    waypoint=18
+    printHeading "====                  install oh my zsh"
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18-install-oh-my-zsh.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18-test-oh-my-zsh.zsh
     display_progress "install zsh oh-my-zsh"
 fi
 
@@ -576,9 +539,8 @@ fi
 
 
 if [ "$install_fish" = true ] ; then
-    printHeading "====          fish friendly interactive shell             ===="
+    printHeading "====          fish friendly interactive shell"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-fish.zsh
-    waypoint=19
     fish_installed=true
     fish_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "fish --version")
     echo fish version $fish_version
@@ -587,13 +549,39 @@ fi
 
 
 
+
+
+if [ "$install_python" = true ] ; then
+    printHeading "====                     python                          ===="
+    ./script-20-python.zsh
+    echo get version of python
+    echo get version of python
+    echo get version of python
+    echo get version of python
+    echo get version of python
+    python_installed=true
+    display_progress python
+fi
+
+
+
+
+
+if [ "$install_git" = true ] ; then
+    printHeading "====                         git                          ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-21-install-git.sh
+    git_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "git --version")
+    git_installed=true
+    display_progress git
+fi
+
+
+
 if [ "$install_c" = true ] ; then
     printHeading "====                      c                               ===="
-    printHeading "====                   script 20                          ===="
     scp -i $ssh_key script-20a-hello-world.c $admin_username@$public_ip_address:script-20a-hello-world.c 
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20b-install-c-compiler.sh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20c-run-c-program.sh
-    waypoint=20
     c_installed=true
     c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "gcc --version")
     display_progress "c"
@@ -603,11 +591,9 @@ fi
 
 if [ "$install_cpp" = true ] ; then
     printHeading "====                      c++                             ===="
-    printHeading "====                   script 20                          ===="
     scp -i $ssh_key script-20d-hello-world.cpp $admin_username@$public_ip_address:script-20d-hello-world.cpp
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20e-install-cpp-compiler.sh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-20f-run-cpp-program.sh
-    waypoint=20
     cpp_installed=true
     cpp_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "g++ --version")
     display_progress "c++"
@@ -615,39 +601,24 @@ fi
 
 
 
-printHeading "====                         git                          ===="
-printHeading "====                      script 21                       ===="
-ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-21-install-git.sh
-git_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "git --version")
-git_installed=true
-waypoint=21
-display_progress git
 
 
 
 
-printHeading "====                        apache                        ===="
-printHeading "====                       script 22                      ===="
-echo not sure this is working ... on http ... 
-echo certainly not working on https
-echo low priority ... can have a look at this some time ...
-ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-22-install-apache.sh
-waypoint=22
-apache_installed=true
-apache_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "apache2 -v")
-# For CentOS/RHEL/Fedora Linux server, type command: httpd -v
-display_progress apache
-
-
+if [ "$install_apache" = true ] ; then
+    printHeading "====                        apache                        ===="
+    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-22-install-apache.sh
+    apache_installed=true
+    apache_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "apache2 -v")
+    display_progress apache
+fi
 
 
 
 if [ "$install_nginx" = true ] ; then
     printHeading "====                      nginx                           ===="
-    printHeading "====                    script 23                         ===="
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-23-install-nginx.sh
     nginx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "sudo systemctl restart systemd-journald.service")
-    waypoint=23
     nginx_installed=true
     display_progress nginx
 fi
@@ -663,10 +634,8 @@ fi
 
 
 if [ "$install_node" = true ] ; then
-    printHeading "====              node npm express                         ===="
-    printHeading "====                 script 25                             ===="
+    printHeading "====             install node npm - and express "
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-25-install-node-npm.zsh
-    waypoint=25
     node_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "node -v")
     npm_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm -v")
     express_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
@@ -680,8 +649,7 @@ fi
 
 
 if [ "$install_express" = true ] ; then
-    printHeading "====                   express                           ===="
-    printHeading "====                  script 26                         ===="
+    printHeading "====            install and run express"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-express.zsh
     express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
     express_installed_2=true
@@ -690,17 +658,14 @@ if [ "$install_express" = true ] ; then
     echo "running express"
     open -a Terminal ./script-26-launch-express-01.zsh
     open -a Terminal ./script-26-launch-express-02.zsh
-    waypoint=26
     display_progress "express"
 fi
 
 
 
 if [ "$install_vue" = true ] ; then
-    printHeading "====                    vue                             ===="
-    printHeading "====                 script 28                          ===="
+    printHeading "====               install vue"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-28-install-vue.zsh
-    waypoint=28
     vue_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vue -v")
     vue_installed=true
     display_progress vue
@@ -710,41 +675,26 @@ fi
 
 
 if [ "$install_bun" = true ] ; then
-    printHeading "====                   bun                             ===="
-    printHeading "====                script 30                          ===="
+    printHeading "====              install  bun"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-30-install-bun.zsh
-    waypoint=30
     bun_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "bun -v")
     bun_installed=true
     display_progress bun
 fi
 
 
+
 if [ "$install_react" = true ] ; then
-    printHeading "====                  react                            ===="
-    printHeading "====                script 32                          ===="
+    printHeading "====         install react and npx"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-32-install-react.zsh
-    waypoint=32
-    echo npx version is installed at way point 32 - install it earlier 
+    echo npx is installed at way point 32 - install it earlier 
     npx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npx -v")
     react_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "react -v")
     npx_installed=true
     react_installed=true
-    echo 
-    echo
-    echo
-    echo - - - have a look at the file listing - does it contain package json files - - - 
-    echo sleep $fast_read
-    sleep $fast_read
     display_progress react
 fi
 
-
-
-
-
-printHeading "====                     python                          ===="
-./script-33-python.zsh
 
 
 
@@ -759,43 +709,40 @@ if [ "$run_servers" = true ] ; then
     run_vue=true
     run_bun=true
     run_react=true
+    test_web_servers_via_curl=true
 fi
 
 
+
+
 if [ "$apache_installed" = true ] && [ "$run_apache" = true ] ; then
-    echo "=============================================================="
-    echo "====                run apache web server    40           ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====         script 40 - run apache web server           ===="
     open -a Terminal ./script-40-run-apache-web-server.sh
 fi
 
 
+
+
 if [ "$nginx_installed" = true ] && [ "$run_nginx" = true ] ; then
-    echo "=============================================================="
-    echo "====               run nginx web server   N/A             ===="
-    printTime
-    echo "=============================================================="
+    printHeading "====         script xx - run nginx web server           ===="
     echo nginx install works ... nothing to test at present
 fi
 
 
-if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then
-    printHeading "====    script 59 - run node web server 41        ===="
+
+
+if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then  
+    printHeading "====       run node        ===="
     scp -i $ssh_key script-41-server.js $admin_username@$public_ip_address:script-41-server.js
-    chmod 777 ./script-59-launch-41-node-web-server.zsh
-    # echo IdentityFile ~/.ssh/azureCliUbuntuLogin.pem >> ~/.ssh/config
-    echo aaaa
-    ttab './script-59-run-41-node-server.zsh'
-    echo bbbb
+    script_41_node_web_server_port=3006
+    chmod 777 ./script-41-launch-node-server.zsh
+    ttab './script-41-launch-node-server.zsh'
 fi
 
 
+
+
 if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
-    printHeading "====    script 59 - run express web server 26     ===="
-    scp -i $ssh_key script-41-server.js $admin_username@$public_ip_address:script-41-server.js
-    chmod 777 ./script-59-launch-41-node-web-server.zsh
-    # echo IdentityFile ~/.ssh/azureCliUbuntuLogin.pem >> ~/.ssh/config
     printHeading "====                  run express 26-1"
     chmod 777 ./script-59-run-26-express-server-1.zsh
     ttab './script-59-run-26-express-server-1.zsh'
@@ -807,58 +754,42 @@ fi
 
 
 
-
-run_vue=false
 if [ "$vue_installed" = true ] && [ "$run_vue" = true ] ; then
-    echo "=============================================================="
-    echo "====               run vue web server                     ===="
-    printTime
-    echo "=============================================================="
-    source ./script-44-run-vue-web-server.sh
+    printHeading "====                  run vue"
+    chmod 777 ./script-44-run-vue-web-server.sh
+    ttab './script-44-run-vue-web-server.sh'
 fi
 
 
-run_bun=false
+
 if [ "$bun_installed" = true ] && [ "$run_bun" = true ] ; then
-    echo "=============================================================="
-    echo "====                 run bun web server                  ====="
-    printTime
-    echo "=============================================================="
-    source ./script-46-run-bun-web-server.sh
+    printHeading "====                  run bun"
+    chmod 7777 ./script-46-run-bun-web-server.sh
+    ttab './script-46-run-bun-web-server.sh'
 fi
 
 
-run_react=false
+
 if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
-    echo "=============================================================="
-    echo "====                run react web server                  ===="
-    printTime
-    echo "=============================================================="
-    source ./script-48-run-react-web-server.sh
+    printHeading "====                  run react"
+    chmod 7777 ./script-48-run-react-web-server.sh
+    ttab './script-48-run-react-web-server.sh'
 fi
 
 
 
 
-
-test_web_servers=true
-if [ "$test_web_servers" = true ] ; then
-    if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
-        printHeading "====           script 60 test web servers"
-        ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-60-test-servers.zsh
-        waypoint=60
-        sleep $fast_read
-        display_progress test web servers
-    fi
+if [ "$test_web_servers_via_curl" = true ] ; then
+    printHeading "====           test web servers"
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-60-test-servers.zsh
+    display_progress test web servers
 fi
 
 
 
 
 if [ "$install_go" = true ] ; then
-    echo question why is install of go failing
-    printHeading "====                install go - failing                 ===="
-    printHeading "====                script 43                          ===="
+    printHeading "====                install go is failing                 ===="
     cd $root_directory
     scp -i $ssh_key script-34.go $admin_username@$public_ip_address:script-34.go
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-34-go.zsh
@@ -869,10 +800,8 @@ fi
 
 if [ "$install_java" = true ] ; then
     printHeading "====                install java                       ===="
-    printHeading "====                script 43                          ===="
     scp -i $ssh_key script-38-java.java $admin_username@$public_ip_address:script-38-java.java
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-38-install-java.zsh
-    waypoint=38
     java_c_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "javac -version")
     java_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "java -version")
     display_progress "java installed"
@@ -882,9 +811,7 @@ fi
 
 if [ "$install_maria_db" = true ] ; then
     printHeading "====            install maria db                    ===="
-    printHeading "====                script 43                          ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-43-maria-db.zsh
-    waypoint=43
     maria_db_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mariadb -V")
     maria_db_version_mysqladmin=$(ssh -i $ssh_key $admin_username@$public_ip_address "sudo mysqladmin version")
     maria_db_version_mysqladmin=${maria_db_version_mysqladmin:0:80}
@@ -899,9 +826,7 @@ fi
 
 if [ "$install_mongo_db" = true ] ; then
     printHeading "====            install mongo db                    ===="
-    printHeading "====                script 44                          ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-44-mongo-db.zsh
-    waypoint=44
     mongo_db_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mongod --version")
     mongo_db_installed=true
     display_progress "mongo db"
@@ -914,9 +839,7 @@ fi
 
 if [ "$install_mongo_shell" = true ] ; then
     printHeading "====            install mongo shell                    ===="
-    printHeading "====                script 45                          ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-45-mongo-shell.zsh
-    waypoint=45
     mongo_shell_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "mongosh --version")
     mongo_shell_installed=true
     display_progress "mongo shell"
@@ -928,9 +851,7 @@ fi
 
 if [ "$install_dot_net" = true ] ; then
     printHeading "====               install .net core               ===="
-    printHeading "====                script 50                          ===="
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-50-dot-net.zsh
-    waypoint=50
     dot_net_installed=true
     dot_net_sdks=$(ssh -i $ssh_key $admin_username@$public_ip_address "dotnet --list-sdks")
     echo dot net sdks
@@ -946,12 +867,10 @@ fi
 
 if [ "$install_docker" = true ] ; then
     printHeading "====               install docker"
-    printHeading "====                script 51                          ===="
     echo "====    note - maybe work through kubectl and minikube using interactive shell first * * * "
     scp -i $ssh_key script-51-docker-compose.yaml $admin_username@$public_ip_address:script-51-docker-compose.yaml
     scp -i $ssh_key script-51-kubectl.yaml $admin_username@$public_ip_address:script-51-kubectl.yaml
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-51-docker.zsh
-    waypoint=51
     docker_installed=true
     docker_version_client=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Client.Version}}'")
     docker_version_server=$(ssh -i $ssh_key $admin_username@$public_ip_address "docker version --format '{{.Server.Version}}'")
@@ -967,11 +886,9 @@ fi
 
 if [ "$install_terraform" = true ] ; then
     printHeading "====               install terraform              ===="
-    printHeading "====                script 52                          ===="
     scp -i $ssh_key script-52-terraform.tf $admin_username@$public_ip_address:script-52-terraform.tf
     scp -i $ssh_key script-52-terraform-main.tf $admin_username@$public_ip_address:script-52-terraform-main.tf
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-52-terraform.zsh
-    waypoint=52
     terraform_installed=true
     terraform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "terraform -v")
     display_progress "terraform"
@@ -983,11 +900,9 @@ fi
 
 if [ "$install_ansible" = true ] ; then
     printHeading "====               install ansible                ===="
-    printHeading "====                script 53                          ===="
     scp -i $ssh_key script-53-ansible.yaml $admin_username@$public_ip_address:script-53-ansible.yaml
     scp -i $ssh_key script-53-inventory.ini $admin_username@$public_ip_address:script-53-inventory.ini 
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-53-ansible.zsh
-    waypoint=53
     ansible_installed=true
     ansible_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "ansible --version")
     display_progress "ansible"
@@ -1064,6 +979,10 @@ if [ "$github_actions" = true ] ; then
     scp -i $ssh_key script-62-dockerfile $admin_username@$public_ip_address:script-62-dockerfile
     scp -i $ssh_key -r ~/temp/myExpressApp $admin_username@$public_ip_address:myExpressApp
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-62-create-docker.zsh
+
+    printHeading "====     script 63 - deploy simple node app on docker  ===="
+    scp -i $ssh_key script-63-dockerfile $admin_username@$public_ip_address:script-63-dockerfile
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-63-create-docker.zsh
 
 fi
 
