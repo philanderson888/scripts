@@ -39,13 +39,13 @@ echo
 echo
 echo
 echo force zsh to always run every time by amending .bashrc file
-echo cat script-18-always-run-zsh.sh
-cat script-18-always-run-zsh.sh
+echo cat script-18-run-zsh.sh
+cat script-18-run-zsh.sh
 echo
 echo
 echo
-echo cat script-18-always-run-zsh.sh >> .bashrc
-cat script-18-always-run-zsh.sh >> .bashrc
+echo cat script-18-run-zsh.sh >> .bashrc
+cat script-18-run-zsh.sh >> .bashrc
 echo
 echo
 echo
