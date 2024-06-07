@@ -20,8 +20,7 @@ curl $ip -s
 echo
 echo
 echo
-echo testing web server with curl command
-echo server 06 node
+echo testing basic node web server on port 3006
 echo curl localhost:3006
 curl localhost:3006
 echo curl $ip:3006 -s
