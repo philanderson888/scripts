@@ -335,8 +335,8 @@ echo "==================================================================="
 echo "====                     ps process                            ===="
 echo "==================================================================="
 echo check if server is already running
-ps -ef | grep 'node script-41-server.js'
-ps aux | grep 'node script-41-server.js'
+ps -ef | grep 'node script-25-server.js'
+ps aux | grep 'node script-25-server.js'
 echo "==================================================================="
 echo "====                        script                             ===="
 echo "==================================================================="
