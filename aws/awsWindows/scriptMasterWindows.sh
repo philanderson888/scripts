@@ -114,9 +114,9 @@ print_waypoints() {
 }
 
 initialise_first_waypoint(){
-    echo "=============================================================="
-    echo "====               initialise first waypoint              ===="
-    echo "=============================================================="
+    echo "==============================================================" >> output-initialise-app.txt
+    echo "====               initialise first waypoint              ====" >> output-initialise-app.txt
+    echo "==============================================================" >> output-initialise-app.txt
     sleep $slow_read
     waypoint_time=$SECONDS
     waypoint_name="script start"
@@ -133,8 +133,9 @@ initialise_first_waypoint(){
             "waypoint_duration": "'"$waypoint_duration"'"
         }'
     )
-    echo waypoints array initialised
-    echo $waypoints | jq
+    echo waypoints initialised >> output-initialise-app.txt
+    echo waypoints initialised
+    echo $waypoints | jq >> output-initialise-app.txt
 }
 
 display_progress () {
@@ -186,7 +187,6 @@ display_progress () {
         echo linux os details $linux_details
         echo linux codename $linux_codename
         echo linux id_like $linux_id_like
-        echo python version $python_version
         echo python platform version $python_platform_version
     fi
     if [ "$zsh_installed" = true ] ; then
@@ -196,7 +196,8 @@ display_progress () {
         echo fish version $fish_version
     fi
     if [ "$python_installed" = true ] ; then
-        echo phyton version is ???????
+        echo python 3 version $python_3_version
+        echo python platform version $python_platform_version
     fi
     if [ "$git_installed" = true ] ; then
         echo git is installed - does it have a version
@@ -248,6 +249,9 @@ display_progress () {
     fi
     if [ "$npm_installed" = true ] ; then
         echo "npm version $npm_version"
+    fi
+    if [ "$yarn_installed" = true ] ; then
+        echo "yarn version $yarn_version"
     fi
     if [ "$npx_installed" = true ] ; then
         echo "npx version $npx_version"
@@ -383,6 +387,7 @@ touch output.txt
 touch output-resource-groups.txt
 touch output-network-security-group.txt 
 touch output-azure-vm-image-templates.txt
+touch output-initialise-app.txt
 touch output-azure-vms.txt
 
 # root directory
@@ -547,7 +552,7 @@ fi
 
 if [ "$install_fish" = true ] ; then
     printHeading "====          fish friendly interactive shell"
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-fish.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18-fish.zsh
     fish_installed=true
     fish_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "fish --version")
     echo fish version $fish_version
@@ -560,16 +565,13 @@ fi
 
 if [ "$install_python" = true ] ; then
     printHeading "====                     python                          ===="
-    ./script-20-python.zsh
-    echo get version of python
-    echo get version of python
-    echo get version of python
-    echo get version of python
-    echo get version of python
-    python_installed=true
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-python.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-python-pip.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-python-pandas.zsh
+    python_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 --version")
+    python_3_installed=true
     display_progress python
 fi
-
 
 
 
@@ -641,15 +643,19 @@ fi
 
 
 if [ "$install_node" = true ] ; then
-    printHeading "====             install node npm - and express "
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-25-install-node-npm.zsh
+    printHeading "====             install node npm yarn - and express "
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-express.zsh
+    chmod 777 ./script-25-launch-node.zsh
+    ttab './script-25-launch-node.zsh'
     node_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "node -v")
     npm_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm -v")
     express_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
+    yarn_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "yarn -v")
     node_installed=true
     npm_installed=true
     express_installed=true
-    display_progress node npm express
+    yarn_installed=true
+    display_progress node npm yarn express
 fi
 
 
@@ -657,22 +663,30 @@ fi
 
 if [ "$install_express" = true ] ; then
     printHeading "====            install and run express"
+    scp -i $ssh_key script-26-run-express-01.zsh $admin_username@$public_ip_address:script-26-run-express-01.zsh
+    scp -i $ssh_key script-26-run-express-02.zsh $admin_username@$public_ip_address:script-26-run-express-02.zsh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-express.zsh
     express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
     express_installed_2=true
-    scp -i $ssh_key script-26-run-express-01.zsh $admin_username@$public_ip_address:script-26-run-express-01.zsh
-    scp -i $ssh_key script-26-run-express-02.zsh $admin_username@$public_ip_address:script-26-run-express-02.zsh
-    echo "running express"
-    open -a Terminal ./script-26-launch-express-01.zsh
-    open -a Terminal ./script-26-launch-express-02.zsh
+
+    printHeading "====                  run express 26-1"
+    chmod 777 ./script-59-run-26-express-server-1.zsh
+    ttab './script-59-run-26-express-server-1.zsh'
+    
+    printHeading "====                  run express 26-2"
+    chmod 777 ./script-59-run-26-express-server-2.zsh
+    ttab './script-59-run-26-express-server-2.zsh'
+    
     display_progress "express"
 fi
 
 
 
+
 if [ "$install_vue" = true ] ; then
-    printHeading "====               install vue"
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-28-install-vue.zsh
+    printHeading "====         install and run vue"
+    chmod 777 ./script-28-launch-vue.zsh
+    ttab './script-28-launch-vue.zsh'
     vue_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vue -v")
     vue_installed=true
     display_progress vue
@@ -681,27 +695,34 @@ fi
 
 
 
+
+
 if [ "$install_bun" = true ] ; then
-    printHeading "====              install  bun"
+    printHeading "====             bun"
+    chmod 7777 ./script-30-launch-bun.sh
+    ttab './script-30-launch-bun.sh'
+
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-30-install-bun.zsh
     bun_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "bun -v")
     bun_installed=true
     display_progress bun
+
 fi
 
 
 
 if [ "$install_react" = true ] ; then
-    printHeading "====         install react and npx"
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-32-install-react.zsh
-    echo npx is installed at way point 32 - install it earlier 
+    printHeading "====      install and run react and npx"
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-32-react.zsh
+    chmod 7777 ./script-48-run-react-web-server.sh
+    ttab './script-48-run-react-web-server.sh'
+
     npx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npx -v")
     react_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "react -v")
     npx_installed=true
     react_installed=true
     display_progress react
 fi
-
 
 
 
@@ -740,48 +761,20 @@ fi
 
 if [ "$node_installed" = true ] && [ "$run_node" = true ] ; then  
     printHeading "====       run node        ===="
-    scp -i $ssh_key script-41-server.js $admin_username@$public_ip_address:script-41-server.js
+    scp -i $ssh_key script-25-server.js $admin_username@$public_ip_address:script-25-server.js
     script_41_node_web_server_port=3006
-    chmod 777 ./script-41-launch-node-server.zsh
-    ttab './script-41-launch-node-server.zsh'
+    chmod 777 ./script-25-launch-node-server.zsh
+    ttab './script-25-launch-node-server.zsh'
 fi
 
 
 
 
-if [ "$express_installed" = true ] && [ "$run_express" = true ] ; then
-    printHeading "====                  run express 26-1"
-    chmod 777 ./script-59-run-26-express-server-1.zsh
-    ttab './script-59-run-26-express-server-1.zsh'
-    printHeading "====                  run express 26-2"
-    chmod 777 ./script-59-run-26-express-server-2.zsh
-    ttab './script-59-run-26-express-server-2.zsh'
-fi
 
 
 
 
-if [ "$vue_installed" = true ] && [ "$run_vue" = true ] ; then
-    printHeading "====                  run vue"
-    chmod 777 ./script-44-run-vue-web-server.sh
-    ttab './script-44-run-vue-web-server.sh'
-fi
 
-
-
-if [ "$bun_installed" = true ] && [ "$run_bun" = true ] ; then
-    printHeading "====                  run bun"
-    chmod 7777 ./script-46-run-bun-web-server.sh
-    ttab './script-46-run-bun-web-server.sh'
-fi
-
-
-
-if [ "$react_installed" = true ] && [ "$run_react" = true ] ; then
-    printHeading "====                  run react"
-    chmod 7777 ./script-48-run-react-web-server.sh
-    ttab './script-48-run-react-web-server.sh'
-fi
 
 
 
@@ -1300,7 +1293,7 @@ ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-92-list-f
 
 
 printHeading "====                     get output                        ===="
-linux_output=$(ssh -i $ssh_key $admin_username@$public_ip_address "cat output.txt")
+linux_output=$(ssh -i $ssh_key $admin_username@$public_ip_address "cat remote-output.txt")
 touch linux-out-put.txt
 echo $linux_output >> linux-out-put.txt
 
