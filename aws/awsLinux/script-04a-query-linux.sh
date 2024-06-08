@@ -525,16 +525,6 @@ echo
 echo
 echo apt-get update
 sudo apt-get update -y
-echo
-echo
-echo
-echo python version
-python3 --version
-echo 
-echo
-echo
-echo python platform ... linux os on which python is built .... 
-python3 -mplatform
 echo "====================================================================="
 echo "====            query linux ... complete 04500                   ===="
 echo "====================================================================="
