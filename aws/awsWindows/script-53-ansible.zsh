@@ -53,7 +53,7 @@ echo
 echo
 echo
 echo sudo apt-get install software-properties-common
-sudo apt-get -qq install software-properties-common -y >> remote-output.txt
+sudo apt-get -qq install software-properties-common -y >> output.txt
 echo
 echo
 echo
@@ -63,44 +63,12 @@ echo
 echo
 echo
 echo sudo apt-get install ansible
-sudo apt-get -qq install ansible -y >> remote-output.txt
+sudo apt-get -qq install ansible -y >> output.txt
 echo
 echo
 echo
 echo ansible version
 ansible --version
-echo
-echo
-echo sudo apt-get install python3
-sudo apt-get -qq install python3 -y
-echo 
-echo
-echo
-echo check python version
-echo python3 --version
-python3 --version
-echo
-echo
-echo
-echo sudo apt-get install python3-pip
-sudo apt-get -qq install python3-pip -y >> remote-output.txt
-echo
-echo
-echo
-echo is python pip installed
-echo pip3 --version
-pip3 --version
-echo
-echo
-echo
-echo which pip3
-which pip3
-echo
-echo
-echo
-echo pip3 --help
-pip3 --help
-echo
 echo
 echo
 echo alternative way to install ansible ... pip install ansible
