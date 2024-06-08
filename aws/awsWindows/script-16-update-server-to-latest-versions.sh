@@ -51,6 +51,7 @@ if [[  "$os_type" == "$os_type_debian" ]]; then
     sudo apt-get -qq update -y
     echo "====================================================================="
     echo "====                    apt-get upgrade                          ===="
+    echo "====                  * * * silent * * *                         ===="
     echo "====================================================================="
     echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
     sudo chmod 777 /var/cache/debconf/ 
