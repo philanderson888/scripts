@@ -88,6 +88,34 @@ node -e "console.log(process.env);"
 echo "======================================================================="
 echo "====                  install node complete                        ===="
 echo "======================================================================="
+echo
+echo
+echo
+echo "============================================================"
+echo "====          install corepack and yarn                 ===="
+echo "============================================================"
+echo npm install yarn
+sudo npm install --global yarn -y
+echo corepack enable
+sudo corepack enable
+echo
+echo
+echo
+echo yarn update to latest 
+yarn set version stable -y
+yarn install -y
+echo yarn version
+yarn -v
+echo
+echo
+echo
+echo move this to express 
+echo move this to express 
+echo move this to express 
+echo move this to express 
+echo move this to express 
+echo move this to express 
+
 echo "======================================================================="
 echo "====                 download express project 25100                ===="
 echo "====         git clone strongloop/express-example-app              ====" 
