@@ -5,7 +5,7 @@ RUN ls /home
 RUN ls /home/script-63
 RUN cd /home/script-63 && ls
 RUN apt-get update
-RUN apt-get install nodejs -y
-RUN apt-get install npm -y
+RUN apt-get install nodejs -y > /dev/null
+RUN apt-get install npm -y /dev/null
 RUN cd /home/script-63 && npm install
 CMD ["echo", "this is a docker container built by phil anderson"]

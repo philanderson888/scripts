@@ -102,7 +102,7 @@ echo
 echo
 echo
 echo sudo apt-get install terraform
-sudo apt-get -qq install terraform -y >> ~/remote-output.txt
+sudo apt-get -qq install terraform -y > /dev/null
 echo
 echo
 echo
@@ -302,8 +302,8 @@ echo
 echo
 echo
 echo test nginx running on docker initiated by terraform
-echo curl localhost:8000
-curl localhost:8000
+echo curl localhost:54001
+curl localhost:54001
 echo
 echo
 echo

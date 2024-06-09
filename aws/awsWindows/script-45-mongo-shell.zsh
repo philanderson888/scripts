@@ -12,7 +12,7 @@ echo
 echo
 echo install gnupg encryption
 echo sudo apt-get install gnupg
-sudo apt-get install gnupg -y
+sudo apt-get install gnupg -y > /dev/null
 echo
 echo
 echo
@@ -29,14 +29,14 @@ echo
 echo
 echo
 echo sudo apt-get update
-sudo apt-get update -y
+sudo apt-get update -y > /dev/null
 echo
 echo
 echo
 echo install mongo shell
 echo mongosh supports open ssl
 echo sudo apt-get install mongodb-mongosh
-sudo apt-get install mongodb-mongosh -y
+sudo apt-get install mongodb-mongosh -y > /dev/null
 echo
 echo
 echo
