@@ -31,6 +31,64 @@ echo df
 echo pipe output to tee disk_usage.txt
 df -h | tee disk_usage.txt
 echo "==================================================================="
+echo "====                      export                               ===="
+echo "==================================================================="
+echo export command will add a variable to the list of environment variables
+echo this list of environment variables is available to this shell and to all child shells until machine reboot
+echo so its a good way of passing on variables if multiple shells are going to be spawned
+echo this is why the environment variables are exported at login in the .bashrc shell
+echo export command by itself shows all exported variables
+echo export
+export
+echo
+echo
+echo
+echo export -p shows variables exported on current shell only
+export -p
+echo
+echo
+echo
+echo export phil_variable=22
+export phil_variable=22
+echo
+echo
+echo
+echo bash
+bash
+echo phil_variable
+phil_variable
+echo
+echo
+echo
+echo can also just export the variable
+echo export phil_variable
+export phil_variable
+echo
+echo bash
+bash
+echo 
+echo phil_variable
+phil_variable
+echo
+echo
+echo
+echo export functions as well which can be super handy using the -f flag
+phil_function() {
+    echo this is phil function and its exported to environment variables as well
+    echo this function can be called from any shell or sub shell of this one
+}
+export -f phil_function
+echo
+echo
+echo
+echo invoke bash shell
+bash
+echo
+echo
+echo
+echo now call the phil_function
+phil_function
+echo "==================================================================="
 echo "====                   json with bash                          ===="
 echo "==================================================================="
 BUCKET_NAME="test bucket"
@@ -344,6 +402,16 @@ echo this command stops the script and opens a new interactive window
 echo so dont actually run it now ... or it will stop the script ...
 echo script /dev/null
 #script /dev/null
+echo "==================================================================="
+echo "====                        shell                              ===="
+echo "==================================================================="
+echo SHELL gives the default shell name but not necessarily the current shell name
+echo $SHELL
+echo
+echo
+echo
+echo 0 gives the current shell name
+echo $0
 echo "==================================================================="
 echo "====                        stat                               ===="
 echo "==================================================================="
