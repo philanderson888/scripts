@@ -1,5 +1,4 @@
 #!/bin/zsh
-echo zsh
 zsh
 cd ~
 startTime="$(date +%s)"
