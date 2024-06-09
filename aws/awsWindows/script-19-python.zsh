@@ -13,7 +13,7 @@ echo
 echo
 echo
 echo sudo apt-get install python3
-sudo apt-get -qq install python3 -y
+sudo apt-get -qq install python3 -y > /dev/null
 echo 
 echo
 echo

@@ -1,10 +1,10 @@
 #!/bin/zsh
 zsh
-echo investigate python pandas 
-echo https://www.w3schools.com/python/pandas/trypython.asp?filename=demo_pandas1
-
-
-
-
-
-
+echo pip3 install pandas
+pip3 install pandas
+echo
+echo
+echo
+cd ~
+echo python3 script-19-pandas.py
+python3 script-19-pandas.py
