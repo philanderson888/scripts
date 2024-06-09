@@ -6,7 +6,7 @@ run_counter=$(( run_counter + 1 ))
 echo there have been $run_counter runs of this script
 echo store new value for next time
 echo $run_counter > .script_data/run_counter
-echo cat .script_data/run_counter
+
 
 refresh_limit=30
 number_of_installs=$(($run_counter % $refresh_limit))
@@ -60,13 +60,13 @@ if [ $number_of_installs -eq 0 ] ; then
     echo "====                     install ttab                          ===="
     echo "====              this opens new tab windows                   ===="
     echo "==================================================================="
-    #echo install with npm ... npm install -g ttab
-    #sudo npm install -g ttab -y
     echo install with homebrew ... 
     echo brew tap mklement0/ttab https://github.com/mklement0/ttab.git
     echo brew install mklement0/ttab/ttab
     brew tap mklement0/ttab https://github.com/mklement0/ttab.git
     brew install mklement0/ttab/ttab
+    echo add program to output dots when waiting for a script to complete
+    chmod 777 ./run_with_dots.sh
 fi
 aws_cli_installed=true
 aws_cli_already_installed=true
