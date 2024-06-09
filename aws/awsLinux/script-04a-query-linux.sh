@@ -1,45 +1,6 @@
 #!/bin/bash
-echo
-echo
-echo
-echo which shell am i using
-echo $SHELL 
-echo
-echo
-echo
-echo shell version
-$SHELL --version
-echo
-echo
-echo
-echo touch remote-output.txt
-touch remote-output.txt
-echo
-echo
-echo
-echo touch output-apt-get-install.txt
-touch output-apt-get-install.txt
-echo
-echo
-echo
-echo chmod 777 remote-output.txt
-chmod 777 remote-output.txt
-echo chmod 777 output-apt-get-install.txt
-chmod 777 output-apt-get-install.txt
-echo
-echo
-echo
-echo ls -lah remote-output.txt
-ls -lah remote-output.txt
-echo
-echo
-echo echo remote-output.txt into remote-output.txt
-echo "this is the end of the output file" >> remote-output.txt
-echo
-echo
-echo
-echo tail remote-output.txt
-tail remote-output.txt
+echo shell in use is 
+echo $0
 echo
 echo
 echo
@@ -71,7 +32,7 @@ esac
 echo
 echo
 echo
-echo echo lsb_release -si
+echo echo linux standard base lsb_release -si
 lsb_release -si
 echo
 echo
@@ -202,6 +163,7 @@ awk -F '=' '/PRETTY_NAME/ { print $2 }' /etc/os-release
 echo
 echo
 echo
+echo linux standard base lsb
 echo linux os name and version without quotes - 1 - "lsb_release - d | awk - F \t  { print $ 2}"
 lsb_release -d | awk -F "\t" '{print $2}'
 echo linux os name and version without quotes - 2 - "lsb_release -sd"
@@ -223,7 +185,7 @@ echo $linux_version_major_minor_revision_with_VERSION_ID
 echo
 echo
 echo
-echo linux version major minor "lsb_release -sr"
+echo linux standard base lsb release version in format major.minor "lsb_release -sr"
 lsb_release -sr
 #18.04
 echo
@@ -277,49 +239,56 @@ echo
 echo
 echo
 echo uname = unix name
+unix_name=$uname
 uname
 # Linux
 echo
 echo
 echo
 echo uname in lower case
-UNAME=$(uname | tr "[:upper:]" "[:lower:]")
-echo $UNAME
+unix_name_in_lower_case=$($unix_name | tr "[:upper:]" "[:lower:]")
+echo $unix_name_in_lower_case
 # linux
 echo
 echo
 echo
-echo "echo uname -a .... full complex linux kernel version ..."
+echo "echo uname -a .... full unix name with kernele version"
 echo $uname -a
 uname -a
 # Linux ip-172-31-29-138.ec2.internal 6.1.66-91.160.amzn2023.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Dec 13 04:50:24 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
 echo
 echo
-echo "uname -srm .... linux kernel short version ..."
-echo "this is useful - export this one"
+echo "uname -srm .... unix name short version "
+unix_short_name=$($uname -srm)
 sleep 1
 uname -srm
 # Linux 6.1.66-91.160.amzn2023.x86_64 x86_64echo 
+echo $unix_short_name
 echo
 echo
 echo
-if [ "$UNAME" == "linux" ]; then
+echo get linux distribution name using 1 lsb-release 2 lsb 3 uname in that order
+if [ "$unix_name" == "linux" ]; then
     if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
-        export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
+        distribution_name=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
     else
-        export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1)
+        distribution_name=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1)
     fi
 fi
-[ "$DISTRO" == "" ] && export DISTRO=$UNAME
-echo distribution is $DISTRO
-# Ubuntu
+if [ "$distribution_name" == "" ]; then 
+ distribution_name=$unix_name
+fi
+echo distribution name is $distribution_name
+export distribution_name
 echo
 echo
 echo
-distribution=$(DISTRO | tr "[:upper:]" "[:lower:]")
-echo distribution in lower case is $distribution
-# ubuntu operating system
+distribution_name_in_lower_case=$($distribution_name | tr "[:upper:]" "[:lower:]")
+echo distribution name in lower case is $distribution_name_in_lower_case
 
+echo
+echo
+echo
 if [[  "$operating_system_type" == "ubuntu_distribution" ]]; then
     echo ubuntu operating system
 fi
@@ -332,6 +301,7 @@ if [[  "$operating_system_type" == "fedora" ]]; then
     cat /etc/system-release
     # Amazon Linux release 2023 (Amazon Linux)
 fi
+sleep 1
 echo
 echo
 echo
@@ -419,28 +389,26 @@ hostnamectl
 #  Hardware Vendor: Xen
 #   Hardware Model: HVM domU
 # Firmware Version: 4.11.amazon
+sleep 1
 if [[  "$id_like" == "debian" ]]; then
     echo "======================================================================="
-    echo "==== if id_like=debian then sudo apt-get update/upgrade 04300      ===="
+    echo "====                    debian linux                               ===="
     echo "======================================================================="
-    echo 
-    echo 
-    echo
-    echo "======================================================================="
-    echo "====                   apt-get update 04310                        ===="
-    echo "======================================================================="
-    echo apt-get update silent
-    sudo apt-get -qq update -y 
+    echo apt-get update 004-426
+    sudo apt-get -qq update -y > /dev/null
     sleep 1
-    echo "======================================================================="
-    echo "====                  apt-get upgrade 04320                        ===="
-    echo "======================================================================="
-    echo apt-get upgrade silent
-    sudo apt-get -qq upgrade -y
+    echo apt-get upgrade 004-429
+    sudo apt-get -qq upgrade -y > /dev/null
     sleep 1
     echo
     echo
     echo
+    echo why are we quering the version of nginx here - it is inappropriate - find a new point
+    echo why are we quering the version of nginx here - it is inappropriate - find a new point
+    echo why are we quering the version of nginx here - it is inappropriate - find a new point
+    echo why are we quering the version of nginx here - it is inappropriate - find a new point
+    echo why are we quering the version of nginx here - it is inappropriate - find a new point
+    echo why are we quering the version of nginx here - it is inappropriate - find a new point
     echo nginx -v
     nginx -v
     sleep 1
@@ -450,7 +418,7 @@ if [[  "$id_like" == "debian" ]]; then
     echo "======================================================================="
     echo "====           update various services 04330                       ===="
     echo "======================================================================="
-    echo gett nginx version using system control restart journal d service wow
+    echo get nginx version using system control restart journal d service wow
     sudo systemctl restart systemd-journald.service 
     sleep 1
     sudo /etc/needrestart/restart.d/systemd-manager
@@ -462,14 +430,14 @@ if [[  "$id_like" == "debian" ]]; then
     echo "======================================================================="
     echo "====          apt-get install gcc 04340                            ===="
     echo "======================================================================="
-    sudo apt-get -qq install gcc -y
+    sudo apt-get -qq install gcc -y > /dev/null
     sleep 1
     echo "======================================================================="
     echo "====             apt-get install fish 04350                        ===="
     echo "======================================================================="
-    sudo apt-add-repository ppa:fish-shell/release-3 -y 
-    sudo apt-get -qq update -y
-    sudo apt-get -qq install fish -y
+    sudo apt-add-repository ppa:fish-shell/release-3 -y  > /dev/null
+    sudo apt-get -qq update -y > /dev/null
+    sudo apt-get -qq install fish -y > /dev/null
     sleep 1
 elif [[  "$id_like" == "fedora" ]]; then
     echo
@@ -517,15 +485,25 @@ fi
 echo
 echo
 echo
-echo what is this 
-echo "apt-get -v"
+echo apt get version is ... apg-get - v
 apt-get -v 
 echo
 echo
 echo
 echo apt-get update
-sudo apt-get update -y
+sudo apt-get update -y > /dev/null
+sleep 2
+export id_like
+export unix_name
+export unix_short_name
+export unix_name_in_lower_case
+export distribution_name_in_lower_case
+export operating_system_type
+export PRETTY_NAME
 echo "====================================================================="
-echo "====            query linux ... complete 04500                   ===="
+echo "====            query linux ... complete 004-521                 ===="
 echo "====================================================================="
+echo
+echo
+echo
 echo
