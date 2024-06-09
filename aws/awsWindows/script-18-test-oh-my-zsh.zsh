@@ -4,13 +4,13 @@ zsh
 echo
 echo
 echo
-echo shell
-echo $SHELL
+echo shell in use
+echo $0
 echo
 echo
 echo
 echo shell version 
-$SHELL --version
+$0 --version
 echo
 echo
 echo

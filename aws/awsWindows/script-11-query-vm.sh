@@ -1,4 +1,4 @@
-printHeading "====                     query vm $vm_name               "
+printHeading "query vm $vm_name"
 echo resource group name $resource_group_name
 subscription=$(az account show --query "id" -o tsv)
 vm_id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$vm_name"

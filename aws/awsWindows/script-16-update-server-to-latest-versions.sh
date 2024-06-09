@@ -1,5 +1,6 @@
 #!/bin/bash
-echo shell $SHELL
+echo shell in use
+echo $0
 echo "=============================================================="
 echo "====                    update vm                         ===="
 echo "=============================================================="
@@ -46,20 +47,19 @@ echo "====================================================================="
 if [[  "$os_type" == "$os_type_debian" ]]; then
     echo "====================================================================="
     echo "====                    apt-get update                           ===="
-    echo "====                  * * * silent * * *                         ===="
     echo "====================================================================="
     sudo apt-get -qq update -y
     echo "====================================================================="
     echo "====                    apt-get upgrade                          ===="
-    echo "====                  * * * silent * * *                         ===="
+
     echo "====================================================================="
     echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
     sudo chmod 777 /var/cache/debconf/ 
     sudo chmod 777 /var/cache/debconf/passwords.dat
-    sudo apt-get install -y -q >> remote-output.txt
-    sudo apt-get install dialog -y -q >> remote-output.txt
-    sudo apt-get install apt-utils -y -q >> remote-output.txt
-    sudo apt-get -qq upgrade -y >> remote-output.txt
+    sudo apt-get install -y -q > /dev/null
+    sudo apt-get install dialog -y -q > /dev/null
+    sudo apt-get install apt-utils -y -q > /dev/null
+    sudo apt-get -qq upgrade -y > /dev/null
 elif [[  "$os_type" == "$os_type_fedora" ]]; then
     echo confirmation of red hat release version 
     echo "/etc/redhat-release"

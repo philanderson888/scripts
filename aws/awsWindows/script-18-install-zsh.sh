@@ -1,30 +1,21 @@
 echo "======================================================================="
 echo "====            apt-get install zsh 18020                          ===="
 echo "======================================================================="   
-echo cd ~
 cd ~
-echo whoami
-whoami
-echo pwd
-pwd
-echo
-echo
-echo
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 sudo chmod 777 /var/cache/debconf/ 
 sudo chmod 777 /var/cache/debconf/passwords.dat
-sudo apt-get install -y -q
-echo
+sudo apt-get install -y -q > /dev/null
 echo apt-get install dialog
-sudo apt-get install dialog
-echo
+sudo apt-get install dialog > /dev/null
 echo apt-get install apt-utils
-sudo apt-get install apt-utils
+sudo apt-get install apt-utils > /dev/null
 sleep 1
-echo
-echo apt-get install zsh 018-021
-sudo apt-get -qq install zsh -y
-sleep 2
+echo apt-get install zsh
+sudo apt-get -qq install zsh -y > /dev/null
+sleep 1
+echo zsh
+zsh
 echo
 echo
 echo
@@ -50,18 +41,12 @@ echo
 echo
 echo
 echo echo shell
-echo $SHELL 
+echo $0
 echo
 echo
 echo
-echo shell version
-$SHELL --version
-echo
-echo
-echo
+echo zsh version
 zsh --version
-echo which zsh
-which zsh
 echo
 echo
 echo
@@ -73,5 +58,4 @@ cat .zshrc
 echo
 echo
 echo
-echo set zsh as default ... do any work ... with sudo or without sudo ... 2
 sudo chsh -s $(which zsh)

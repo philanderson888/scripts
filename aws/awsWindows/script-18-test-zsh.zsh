@@ -1,14 +1,10 @@
 #!/bin/zsh
-echo
-echo
-echo
-echo zsh - setting zsh as the shell - but does it work
 zsh
 echo
 echo
 echo
 echo shell
-echo $SHELL 
+echo $0
 echo
 echo
 echo
@@ -40,9 +36,3 @@ sudo chsh -s /usr/bin/zsh
 #echo Log out and log back in again to use your new default shell.
 #echo Test that it worked with echo $SHELL. Expected result: /bin/zsh or similar
 #echo Test with $SHELL --version. Expected result: 'zsh 5.8' or similar
-echo
-echo
-echo
-echo has the shell changed - let us see 
-echo shell
-echo $SHELL

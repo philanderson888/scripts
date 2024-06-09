@@ -1,12 +1,33 @@
 #!/bin/zsh
+echo switch to zsh
 zsh
-echo shell
-echo $SHELL
+echo
+echo
+echo
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo install oh-my-zsh
+echo
+echo
+echo
+echo shell in use
+echo $0
 echo
 echo
 echo
 echo shell version 
-$SHELL --version
+$0 --version
 echo
 echo
 echo
