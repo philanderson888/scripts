@@ -1,7 +1,4 @@
 if [ "$creating_resource_group_and_servers" = true ] ; then
-    echo "=============================================================="
-    echo "====                            create resource group         ============="
-    echo "=============================================================="
     resource_group_name=$resource_group_new_name
     if [[ "$resource_group_name" == "invalid" ]] ; then
         resource_group_name=ResourceGroup02
