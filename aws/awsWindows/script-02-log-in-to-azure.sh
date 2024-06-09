@@ -3,7 +3,7 @@ if [ "$logging_in_to_azure_portal" = true ] ; then
     echo
     echo
     echo "======================================================================="
-    echo "====                           logging in to azure portal     ============="
+    echo "====                logging in to azure portal            ============="
     echo "======================================================================="
     echo
     echo
@@ -27,7 +27,7 @@ if [ "$logging_in_to_azure_portal" = true ] ; then
     #]
 else
     echo "======================================================================="
-    echo "====                          already logged in to azure portal        ============="
+    echo "====             already logged in to azure portal        ============="
     echo "======================================================================="
 fi
 echo
