@@ -6,8 +6,8 @@ sudo apt-get install nginx -y
 
 sudo apt-get install python-software-properties
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get install nodejs -y
-sudo npm install pm2 -g
+sudo apt-get install nodejs -y > /dev/null
+sudo npm install pm2 -g > /dev/null`
 
 echo 'hello' > testfile.txt
 
