@@ -1,30 +1,25 @@
 #!/bin/zsh
-echo zsh
 zsh
 echo cd ~
 cd ~
 install_single_instance_of_node=true
 if [ "$install_single_instance_of_node" = true ] ; then
     echo "==================================================================="
-    echo "====        obtaining node binaries via curl command 25020     ===="
+    echo "====           get node binaries via curl 025-012              ===="
     echo "==================================================================="
-    curl --silent -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash
+    curl --silent -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash > /dev/null
     echo "note - E means 'preserve environment'"
     echo "note - sudo - E will download the file then execute it with sudo commands"
     echo "==================================================================="
-    echo "====                  install node 25030"
+    echo "====                  install node 025-018"
     echo "==================================================================="
     echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
     sudo chmod 777 /var/cache/debconf/ 
     sudo chmod 777 /var/cache/debconf/passwords.dat
-    sudo apt-get install -y -q >> remote-output.txt
-    sudo apt-get install dialog -y -q >> remote-output.txt
-    sudo apt-get install apt-utils -y -q >> remote-output.txt
-    sudo apt-get -qq install nodejs -y >> remote-output.txt
-    node --version
-    npm --version
-    echo "adding bash commands to zsh"
-    cat ~/.bashrc >> ~/.zshrc
+    sudo apt-get install -y -q > /dev/null
+    sudo apt-get install dialog -y -q > /dev/null
+    sudo apt-get install apt-utils -y -q > /dev/null
+    sudo apt-get -qq install nodejs -y > /dev/null
 else
     echo "==================================================================="
     echo "====                    install nvm 25040                      ===="
@@ -54,7 +49,7 @@ else
     echo "source bashrc"
     source ~/.bashrc
     echo "nvm list-remote"
-    nvm list-remote >> remote-output.txt
+    nvm list-remote > /dev/null
     echo "====================================================================="
     echo "====                   install node LTS 25090                    ===="
     echo "====================================================================="
@@ -68,13 +63,33 @@ else
     nvm list
 fi
 echo "==================================================================="
-echo "====                  node and npm version                     ===="
+echo "====                         versions                          ===="
 echo "==================================================================="
-echo "node version"
+echo
+echo
+echo
+echo gnupg version
+gpg --version
+echo
+echo
+echo
+echo curl version
+curl --version
+echo
+echo
+echo
+echo node version
 node --version
-echo "npm version"
+echo
+echo
+echo
+echo npm version
 npm --version
-node_installed=true
+echo
+echo
+echo
+echo "adding bash commands to zsh"
+cat ~/.bashrc >> ~/.zshrc
 echo "====================================================================="
 echo "====                  node run js command                        ===="
 echo "====================================================================="
@@ -101,9 +116,17 @@ sudo corepack enable
 echo
 echo
 echo
-echo yarn update to latest 
+echo set version stable
 yarn set version stable -y
-yarn install -y
+yarn set version stable
+echo
+echo
+echo
+echo yarn install
+yarn install
+echo
+echo
+echo
 echo yarn version
 yarn -v
 echo
@@ -250,6 +273,8 @@ echo bun v
 bun -v
 echo bun version
 bun --version
+node -e "console.log('bun version ' + Bun.version);"
+node -e "console.log('bun version ' + Bun.revision);"
 echo "======================================================================="
 echo "====                 install bun complete 25190                    ===="
 echo "======================================================================="
