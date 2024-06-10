@@ -52,5 +52,9 @@ npm install
 echo
 echo
 echo
+port=3009
+echo about to set the port to $port
+sed -i 's/react-scripts start/PORT=3009 react-scripts start/g' package.json
+echo starting react app on port $port
 echo npm start
 npm start
