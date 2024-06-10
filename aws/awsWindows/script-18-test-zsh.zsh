@@ -1,30 +1,11 @@
 #!/bin/zsh
 zsh
-echo
-echo
-echo
-echo shell
-echo $0
-echo
-echo
-echo
-echo shell version
-$SHELL --version
-echo
-echo
-echo
+echo shell in use is $0
+echo shell version is $0 --version
 echo which zsh
 which zsh
-echo
-echo
-echo
 echo whereis zsh
 whereis zsh
-echo
-echo
-echo
-echo zsh version
-zsh --version
 echo "====================================================================="
 echo "====                set zsh as default shell                     ===="
 echo "====================================================================="
