@@ -48,5 +48,11 @@ echo
 endTime=$(date +%s)
 scriptDuration=$(($endTime-$startTime))
 echo "=================================================================="
-echo "====        git clone vue 28030 took $scriptDuration s        ===="
+echo "====     vue server built in $scriptDuration s - now run it   ===="
 echo "=================================================================="
+echo npm run dev 
+echo once running ... can be tested using curl http://localhost:5173
+npm run dev
+echo
+echo
+echo
