@@ -57,6 +57,7 @@ sudo firewall-cmd --zone=public --add-port=3007/tcp
 sudo firewall-cmd --zone=public --add-port=3008/tcp
 sudo firewall-cmd --zone=public --add-port=3009/tcp
 sudo firewall-cmd --zone=public --add-port=3010/tcp
+sudo firewall-cmd --zone=public --add-port=3020/tcp
 sudo firewall-cmd --zone=public --list-ports
 # 80/tcp 443/tcp 5000/tcp 80/udp 443/udp
 # list services
