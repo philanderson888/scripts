@@ -24,3 +24,9 @@ echo
 echo
 echo python platform ... linux os on which python is built .... 
 python3 -mplatform
+echo
+echo
+echo
+echo numpy is the python scientific library ... numbers in python ... but has been extended to many other scientific uses
+echo https://numpy.org/
+echo 
