@@ -239,58 +239,68 @@ echo
 echo
 echo
 echo uname = unix name
-unix_name=$uname
 uname
 # Linux
 echo
+echo uname as a variable ...
+unix_name=$(uname)
+echo $unix_name
 echo
 echo
 echo uname in lower case
-unix_name_in_lower_case=$($unix_name | tr "[:upper:]" "[:lower:]")
+unix_name_in_lower_case=$(uname | tr '[:upper:]' '[:lower:]')
 echo $unix_name_in_lower_case
 # linux
 echo
 echo
 echo
-echo "echo uname -a .... full unix name with kernele version"
-echo $uname -a
+echo "echo uname -a .... full unix name with kernel version"
+echo uname -a
 uname -a
 # Linux ip-172-31-29-138.ec2.internal 6.1.66-91.160.amzn2023.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Dec 13 04:50:24 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
 echo
 echo
-echo "uname -srm .... unix name short version "
-unix_short_name=$($uname -srm)
+echo "uname -srm .... unix name short version ... s = kernel ... r = release ... m = machine hardware"
+unix_short_name=`uname -srm`
 sleep 1
-uname -srm
-# Linux 6.1.66-91.160.amzn2023.x86_64 x86_64echo 
 echo $unix_short_name
+# Linux 6.1.66-91.160.amzn2023.x86_64 x86_64echo 
 echo
 echo
 echo
 echo get linux distribution name using 1 lsb-release 2 lsb 3 uname in that order
-if [ "$unix_name" == "linux" ]; then
+if [ "$unix_name" == "Linux" ]; then
     if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
         distribution_name=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
+        distribution_name_in_lower_case=$((lsb_release -i | cut -d: -f2 | sed s/'^\t'//) | tr "[:upper:]" "[:lower:]")
     else
         distribution_name=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1)
+        distribution_name_in_lower_case=$((ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1) | tr "[:upper:]" "[:lower:]")
     fi
 fi
-if [ "$distribution_name" == "" ]; then 
+if [ "$distribution_name" == "" ]; then
  distribution_name=$unix_name
+ distribution_name_in_lower_case=$unix_name_in_lower_case
 fi
-echo distribution name is $distribution_name
-export distribution_name
+echo distribution name is 
+echo $distribution_name
 echo
 echo
 echo
-distribution_name_in_lower_case=$($distribution_name | tr "[:upper:]" "[:lower:]")
-echo distribution name in lower case is $distribution_name_in_lower_case
-
+echo distribution name in lower case is
+echo $distribution_name_in_lower_case
+echo
+echo
+echo
+echo 
+distribution_name_in_lower_case_2=$(echo $distribution_name_in_lower_case | tr "[:upper:]" "[:lower:]")
+echo distribution name 2 in lower case is
+echo $distribution_name_in_lower_case_2
 echo
 echo
 echo
 if [[  "$operating_system_type" == "ubuntu_distribution" ]]; then
-    echo ubuntu operating system
+    echo operating system installed is ubuntu
 fi
 if [[  "$operating_system_type" == "fedora" ]]; then
     echo "Amazon Linux AWS version ... 4 ways to say the same thing ..." 
@@ -400,25 +410,9 @@ if [[  "$id_like" == "debian" ]]; then
     echo apt-get upgrade 004-429
     sudo apt-get -qq upgrade -y > /dev/null
     sleep 1
-    echo
-    echo
-    echo
-    echo why are we quering the version of nginx here - it is inappropriate - find a new point
-    echo why are we quering the version of nginx here - it is inappropriate - find a new point
-    echo why are we quering the version of nginx here - it is inappropriate - find a new point
-    echo why are we quering the version of nginx here - it is inappropriate - find a new point
-    echo why are we quering the version of nginx here - it is inappropriate - find a new point
-    echo why are we quering the version of nginx here - it is inappropriate - find a new point
-    echo nginx -v
-    nginx -v
-    sleep 1
-    echo
-    echo
-    echo
     echo "======================================================================="
     echo "====           update various services 04330                       ===="
     echo "======================================================================="
-    echo get nginx version using system control restart journal d service wow
     sudo systemctl restart systemd-journald.service 
     sleep 1
     sudo /etc/needrestart/restart.d/systemd-manager
@@ -431,13 +425,6 @@ if [[  "$id_like" == "debian" ]]; then
     echo "====          apt-get install gcc 04340                            ===="
     echo "======================================================================="
     sudo apt-get -qq install gcc -y > /dev/null
-    sleep 1
-    echo "======================================================================="
-    echo "====             apt-get install fish 04350                        ===="
-    echo "======================================================================="
-    sudo apt-add-repository ppa:fish-shell/release-3 -y  > /dev/null
-    sudo apt-get -qq update -y > /dev/null
-    sudo apt-get -qq install fish -y > /dev/null
     sleep 1
 elif [[  "$id_like" == "fedora" ]]; then
     echo
@@ -485,14 +472,13 @@ fi
 echo
 echo
 echo
-echo apt get version is ... apg-get - v
+echo apt get version apt-get - v
 apt-get -v 
 echo
 echo
 echo
-echo apt-get update
 sudo apt-get update -y > /dev/null
-sleep 2
+sleep 1
 export id_like
 export unix_name
 export unix_short_name
