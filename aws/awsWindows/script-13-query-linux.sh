@@ -22,7 +22,7 @@ echo iam list account aliases
 aws iam list-account-aliases
 
 echo 
-echo
+echo.
 echo iam get account summary
 #aws iam get-account-summary
 

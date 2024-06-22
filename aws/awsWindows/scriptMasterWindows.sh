@@ -479,7 +479,7 @@ remote_bash_version_obtained=true
 
 printHeading "query linux"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-13-get-linux-version.sh
-ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
+ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-13-query-linux.sh
 linux_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep '^VERSION=' /etc/os-release")
 linux_details=$(ssh -i $ssh_key $admin_username@$public_ip_address "hostnamectl")
 linux_codename=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep 'VERSION_CODENAME' /etc/os-release")
