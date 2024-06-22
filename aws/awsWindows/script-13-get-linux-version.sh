@@ -44,9 +44,6 @@ echo "=================================================================="
 echo "====              update $os of type $os_type 01330"
 echo "=================================================================="
 if [[  "$os_type" == "$os_type_debian" ]]; then
-    echo "=============================================================="
-    echo "====              apt-get install nginx 01340"
-    echo "=============================================================="
     echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
     sudo chmod 777 /var/cache/debconf/ 
     sudo chmod 777 /var/cache/debconf/passwords.dat
@@ -56,17 +53,9 @@ if [[  "$os_type" == "$os_type_debian" ]]; then
     sudo apt-get install -y -q > /dev/null
     sudo apt-get install dialog -y -q > /dev/null
     sudo apt-get install apt-utils -y -q > /dev/null
-    sudo apt-get -qq install nginx -y > /dev/null
     echo "=============================================================="
-    echo "====                    nginx version 01350               ===="
+    echo "====                  update services 013-077             ===="
     echo "=============================================================="
-    echo keep sleep 1
-    sleep 1
-    nginx -v
-    echo "=============================================================="
-    echo "====               update various services 013-077        ===="
-    echo "=============================================================="
-    echo this command gives nginx version
     sudo systemctl restart systemd-journald.service 
     sudo systemctl restart systemd-journald.service 
     sudo /etc/needrestart/restart.d/systemd-manager
