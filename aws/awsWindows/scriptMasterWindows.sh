@@ -59,15 +59,13 @@ printHeading () {
     echo
     echo
     echo
+    echo
     echo "=============================================================="
     echo "=============================================================="
     echo "====${custom_spaces}${1}"
     printTime
     echo "=============================================================="
     echo "=============================================================="
-    echo
-    echo
-    echo
 }
 
 
@@ -167,7 +165,7 @@ display_progress () {
         echo resource group $resource_group_name already created
     fi
     if [ "$vm_created" = true ] ; then
-        echo vm $vm_name ... image $vm_image .. os $os type $os_type
+        echo vm $vm_name ... image $vm_image .. os $vm_os type $vm_os_type
         echo vm $vm_name has ip $public_ip_address
     fi
     if [ "$query_network_security_group" = true ] ; then
@@ -179,7 +177,7 @@ display_progress () {
     if [ "$dnf_installed" = true ] ; then
         echo dnf installed on vm $vm_name
     elif [ "$dnf_installed" = false ] ; then
-        echo dnf not installed on vm $vm_name as os is $os
+        echo dnf not installed on vm $vm_name as os is $vm_os
     fi
     if [ "$os_updated" = true ] ; then
         echo os has been updated and upgraded
@@ -197,7 +195,7 @@ display_progress () {
         echo zsh version $zsh_remote_version
     fi
     if [ "$fish_installed" = true ] ; then
-        echo fish version $fish_version
+        echo $fish_version
     fi
     if [ "$python_installed" = true ] ; then
         echo python 3 version $python_3_version
@@ -290,7 +288,6 @@ display_progress () {
     fi
     if [ "$express_installed" = true ] ; then
         echo "express version   $express_version"
-        echo "express version 2 $express_version_2"
     fi
     if [ "$vue_installed" = true ] ; then
         echo "vue version $vue_version"
@@ -311,6 +308,13 @@ display_progress () {
     print_waypoints
 }
 initialise_first_waypoint
+
+# number of installs
+run_counter=$(cat .script_data/run_counter)
+run_counter=$(( run_counter + 1 ))
+echo there have been $run_counter runs of this script
+echo store new value for next time
+echo $run_counter > .script_data/run_counter
 
 # install
 installing_powershell=false
@@ -336,28 +340,49 @@ query_vm_image_templates=false
 size=Standard_D2_v2
 size02=Standard_D2as_v5
 image=MicrosoftWindowsDesktop:office-365:20h2-evd-o365pp-g2:19042.2846.230411
-os_type_debian=debian
-os_type_fedora=fedora
-os_ubuntu=ubuntu
-ubuntu_image_name=Ubuntu2204
-ubuntu_version=Ubuntu_2204_Jammy
-os=$os_ubuntu
-if [[  "$os" == "$os_ubuntu" ]]; then
-    os_type=$os_type_debian
-fi
 
-# vms
-create_vm_windows_client=false
+# linux
+vm_os_type_debian=debian
+vm_os_type_fedora=fedora
+
+# ubuntu
+ubuntu_os_name=ubuntu
+ubuntu_image_name=Ubuntu2204
+ubuntu_vm_name=ubuntuVm01
+
+# debian
+os_debian=debian
+debian_image_name=Debian11
+debian_vm_name="debianVm01"
+
+# others
+red_hat_vm_name=redHatVm01
+centos_vm_name="centosVm01"
+suse_vm_name="openSuseVm01"
+flatCarVmName="flatCarVm01"
+
+# windows
 windows_server_vm_name=winServerVm01
 network_security_group_name=winServerVm01NSG
 windows_server_vm_ip_name=winServerVm01PublicIP    
 windows_client_vm_name=winClientVm01
-ubuntu_vm_name=ubuntuVm01
-red_hat_vm_name=redHatVm01
-debian_vm_name="debianVm01"
-centos_vm_name="centosVm01"
-suse_vm_name="openSuseVm01"
-flatCarVmName="flatCarVm01"
+
+# os
+printHeading "choose vm image"
+install_os_frequency=5
+install_os_counter=$(($run_counter % $install_os_frequency))
+if [ $install_os_counter -lt 4 ] ; then
+    vm_os=$ubuntu_os_name
+    vm_os_type=$os_type_debian
+    vm_image=$ubuntu_image_name
+    vm_name=$ubuntu_vm_name
+else
+    vm_os=$os_debian
+    vm_os_type=$os_type_debian
+    vm_image=$debian_image_name
+    vm_name=$debian_vm_name
+fi
+
 
 # credentials
 admin_username=azureuser
@@ -376,8 +401,6 @@ query_vm_ubuntu=true
 
 # manage vms
 list_vms=true
-
-list_kubernetes_clusters=false
 
 # vm cleanup
 delete_vms=false
@@ -427,22 +450,11 @@ printHeading "query vm templates"
 source ./script-07-query-vm-templates.sh
 display_progress "query vm templates"
 
-
-printHeading "choose vm image"
-if [ "$os" == "$os_ubuntu" ] ; then
-    vm_name=$ubuntu_vm_name
-    vm_image=$ubuntu_image_name
-    vm_os_set=true
-    create_vm=true
-fi
 display_progress "set vm type to be $os"
-
 
 printHeading "create vm"
 source ./script-10-create-vm.sh
 display_progress "vm created"
-
-
 
 printHeading "query vm"
 source ./script-11-query-vm.sh
@@ -466,7 +478,6 @@ remote_bash_version_obtained=true
 
 
 printHeading "query linux"
-scp -i $ssh_key run_with_dots.sh $admin_username@$public_ip_address:run_with_dots.sh 
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-13-get-linux-version.sh
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ../awsLinux/script-04a-query-linux.sh
 linux_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep '^VERSION=' /etc/os-release")
@@ -481,6 +492,8 @@ linux_details_obtained=true
 display_progress "query linux"
 
 
+
+
 printHeading "dnf install"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-14-install-dnf.sh
 display_progress "dnf install"
@@ -492,14 +505,37 @@ python_platform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "py
 display_progress "os updated"
 
 
-printHeading "decide which services to install"
+printHeading "installing services"
 install_services=true
+
 if [ "$install_services" = true ] ; then
+
+    echo
+    echo run counter is
+    echo $run_counter
+
     install_zsh=true
     install_fish=false
+    install_fish_frequency=10
+    install_fish_counter=$(($run_counter % $install_fish_frequency))
+    if [ $install_fish_counter -eq 0 ] ; then
+        install_fish=true
+    fi
     
     install_python=true
     install_git=true
+
+    restart_services=true
+    
+    install_nginx=false
+    install_apache=false
+
+    install_node=true
+    install_express=true
+    install_vue=true
+    install_bun=false
+    install_react=false
+    test_web_servers_via_curl=true
 
     install_c=false
     install_cpp=false
@@ -509,27 +545,66 @@ if [ "$install_services" = true ] ; then
     install_maria_db=false
     install_java=false
     install_go=false
-    
 
-    install_apache=false
-    install_nginx=false
-    restart_services=true
-    install_node=true
-    install_express=true
-    install_vue=true
-    install_bun=true
-    install_react=true
+    install_docker=false
+    install_terraform=false
+    install_ansible=false
+    list_kubernetes_clusters=false
 
-    install_docker=true
-    install_terraform=true
-    install_ansible=true
+    install_frequency=30
+    install_counter=$(($run_counter % $install_frequency))
+
+    if [ $install_counter -lt 15 ] ; then
+        install_apache=true
+    else
+        install_nginx=true
+    fi
+
+    if [ $install_counter -eq 1 ] ; then
+        install_c=true
+    elif [ $install_counter -eq 2 ] ; then
+        install_cpp=true
+    elif [ $install_counter -eq 4 ] ; then
+        install_mongo_db=true
+        install_mongo_shell=true
+    elif [ $install_counter -eq 5 ] ; then
+        install_dot_net=true
+    elif [ $install_counter -eq 6 ] ; then
+        install_maria_db=true
+    elif [ $install_counter -eq 7 ] ; then
+        install_java=true
+    elif [ $install_counter -eq 8 ] ; then
+        install_go=true
+    elif [ $install_counter -eq 9 ] ; then
+        install_docker=true
+        install_terraform=true
+        install_ansible=true
+        github_actions=true
+        list_kubernetes_clusters=true
+    fi
+
+    learning_mode=false
+    if [ $install_counter -lt -1 ] ; then
+        learning_mode=true
+    fi
+
+    create_vm_windows_server=false
+    create_vm_windows_client=false
+    if [ $install_counter -lt -1 ] ; then
+        create_vm_windows_server=true
+        create_vm_windows_client=true
+    fi
+
 fi
-display_progress "deciding which services to install"
+
+
+
+
+
 
 
 if [ "$install_zsh" = true ] ; then
     printHeading "install zsh"
-    scp -i $ssh_key script-18-run-zsh.sh $admin_username@$public_ip_address:script-18-run-zsh.sh 
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-18-install-zsh.sh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18-test-zsh.zsh
     zsh_remote_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "zsh --version")    
@@ -558,7 +633,6 @@ if [ "$install_fish" = true ] ; then
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-18-fish.zsh
     fish_installed=true
     fish_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "fish --version")
-    echo fish version $fish_version
     display_progress fish
 fi
 
@@ -569,9 +643,10 @@ fi
 if [ "$install_python" = true ] ; then
     printHeading "python"
     scp -i $ssh_key script-19-pandas.py $admin_username@$public_ip_address:script-19-pandas.py
+    scp -i $ssh_key script-19-numpy.py $admin_username@$public_ip_address:script-19-numpy.py
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-python.zsh
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-python-pip.zsh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-python-pandas.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-19-pandas.zsh
     python_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 --version")
     python_3_installed=true
     display_progress python
@@ -631,10 +706,12 @@ fi
 if [ "$install_nginx" = true ] ; then
     printHeading "nginx"
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-23-install-nginx.sh
-    nginx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "sudo systemctl restart systemd-journald.service")
+    nginx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "nginx -v")
     nginx_installed=true
     display_progress nginx
 fi
+
+
 
 
 if [ "$restart_services" = true ] ; then
@@ -649,10 +726,11 @@ fi
 if [ "$install_node" = true ] ; then
     printHeading "install node npm yarn - and express"
     scp -i $ssh_key script-25-server.js $admin_username@$public_ip_address:script-25-server.js
-    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-25-install-node-npm-yarn-express.zsh
-    #ttab './script-25-launch-node.zsh'
-    #chmod 777 ./script-25-launch-node-test-from-phil.zsh
-    #ttab './script-25-launch-node-test-from-phil.zsh'
+    ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-25-install-node.sh
+
+    chmod 777 ./script-25-phil.sh
+    ttab './script-25-phil.sh'
+    
     sleep $slow_read
     node_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "node -v")
     npm_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm -v")
@@ -662,28 +740,29 @@ if [ "$install_node" = true ] ; then
     npm_installed=true
     express_installed=true
     yarn_installed=true
-    display_progress node npm yarn express
+    display_progress node npm yarn
 fi
+
+
+
+
+
+
+
+
 
 
 
 
 if [ "$install_express" = true ] ; then
     printHeading "install and run express"
-    scp -i $ssh_key script-26-run-express-01.zsh $admin_username@$public_ip_address:script-26-run-express-01.zsh
-    scp -i $ssh_key script-26-run-express-02.zsh $admin_username@$public_ip_address:script-26-run-express-02.zsh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-express.zsh
-    express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
-    express_installed_2=true
-
-    printHeading "run express 26-1"
-    chmod 777 ./script-26-launch-express-01.zsh
-    ttab './script-26-launch-express-01.zsh'
-    
-    printHeading "run express 26-2"
-    chmod 777 ./script-26-launch-express-02.zsh
-    ttab './script-26-launch-express-02.zsh'
-    
+    scp -i $ssh_key script-26-run-express.sh $admin_username@$public_ip_address:script-26-run-express.sh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-install-express.sh
+    express_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
+    express_installed=true
+    printHeading "express"
+    chmod 777 ./script-26-launch-express.sh
+    ttab './script-26-launch-express.sh'
     display_progress express
 fi
 
@@ -726,10 +805,12 @@ fi
 if [ "$install_react" = true ] ; then
     printHeading "install and run react and npx"
     cd $root_directory
-    chmod 777 ./script-32-launch-react.sh
-    ttab './script-32-launch-react.sh'
-    chmod 7777 ./script-32-launch-react-2.sh
-    ttab './script-32-launch-react-2.sh'
+    chmod 777 ./script-32-launch-react-01.sh
+    ttab './script-32-launch-react-01.sh'
+    chmod 7777 ./script-32-launch-react-02.sh
+    ttab './script-32-launch-react-02.sh'
+    chmod 7777 ./script-32-launch-react-03.sh
+    ttab './script-32-launch-react-03.sh'
     npx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npx -v")
     react_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "react -v")
     npx_installed=true
@@ -740,23 +821,48 @@ fi
 
 
 
-printHeading "running servers"
-run_servers=true
-if [ "$run_servers" = true ] ; then
-    run_apache=true
-    run_nginx=true
-    run_node=true
-    run_express=true
-    run_vue=true
-    run_bun=true
-    run_react=true
-    test_web_servers_via_curl=true
-fi
 
 
 
 
-if [ "$apache_installed" = true ] && [ "$run_apache" = true ] ; then
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if [ "$apache_installed" = true ] ; then
     printHeading "apache"
     open -a Terminal ./script-40-run-apache-web-server.sh
 fi
@@ -764,7 +870,7 @@ fi
 
 
 
-if [ "$nginx_installed" = true ] && [ "$run_nginx" = true ] ; then
+if [ "$nginx_installed" = true ] ; then
     printHeading "nginx"
     echo nginx install works ... nothing to test at present
 fi
@@ -778,18 +884,14 @@ fi
 
 
 
-
-
-
-
-
-
-
 if [ "$test_web_servers_via_curl" = true ] ; then
     printHeading "test web servers"
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-60-test-servers.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-60-test-servers-locally.zsh
     display_progress test web servers
 fi
+
+
+
 
 
 
@@ -949,7 +1051,9 @@ echo https://www.npmjs.com/package/bats
 
 
 
-github_actions=true
+
+
+
 if [ "$github_actions" = true ] ; then
     printHeading "github actions - deploy web app"
     echo firstly install and run web app on new tab
@@ -993,11 +1097,10 @@ if [ "$github_actions" = true ] ; then
 fi
 
 
+
+
+
 printHeading "problem libraries"
-express_version_2=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
-node_installed=true
-npm_installed=true
-express_installed=true
 echo question not getting version of express js showing 
 echo question not getting version of vue js showing
 echo question not getting version of react js showing
@@ -1037,13 +1140,9 @@ fi
 
 
 
-
 echo
 echo
 echo
-create_vm_windows_server=false
-query_vm_windows_server=false
-log_in_to_windows=false
 if [ "$create_vm_windows_server" = true ] ; then
     printHeading "create $windows_server_vm_name"
     windows_server_enable_rdp=false
@@ -1091,7 +1190,7 @@ if [ "$create_vm_windows_server" = true ] ; then
     echo opening firewall port 22 ssh 
     az network nsg rule create -g $resource_group_name --nsg-name $network_security_group_name -n allow-SSH --priority 1010 --source-address-prefixes Internet --destination-port-ranges 22 --protocol TCP
     query_vm_windows_server=true
-    log_in_to_windows=true
+    log_in_to_windows_server=true
 fi
 
 
@@ -1122,7 +1221,6 @@ if [ "$set_auto_shutdown" = true ] ; then
         az vm auto-shutdown -g $resource_group_name -n $ubuntu_vm_name         --time 1730 --email $email_address --webhook $webhook_address
     fi
 fi
-
 
 
 
@@ -1184,7 +1282,6 @@ fi
 
 
 
-
 if [ "$create_vm_windows_client" = true ] ; then
     echo "=============================================================="
     echo "====            create vm - windows client                ===="
@@ -1206,7 +1303,7 @@ else
     printTime
     echo "=============================================================="
 fi
-if [ "$log_in_to_windows" = true ] ; then
+if [ "$log_in_to_windows_server" = true ] ; then
     windows_server_login_start=$duration
     echo "=============================================================="
     echo "====         log in to $windows_server_vm_name"
@@ -1252,7 +1349,6 @@ fi
 
 
 
-
 if [ "$list_kubernetes_clusters" = true ] ; then
     printHeading "list kubernetes"
     echo azure kubernetes clusters show
@@ -1271,7 +1367,7 @@ fi
 
 
 
-learning_mode=false
+
 if [ "$learining_mode" = true ] ; then
     sleep $fast_read
     printHeading "upload node teaching files"
@@ -1299,6 +1395,10 @@ ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-95-list-f
 
 
 
+
+sleep 20
+
+
 echo
 echo
 echo
@@ -1314,7 +1414,10 @@ sleep $delay_before_erase_all_servers
 deallocate_vms=true
 if [ "$deallocate_vms" = true ] ; then
     printHeading "deallocate vms"
-    az vm deallocate --resource-group $resource_group_name --name $ubuntu_vm_name
+
+    echo resource group name $resource_group_name
+
+    az vm deallocate --name $ubuntu_vm_name --resource-group $resource_group_name 
     #az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
 fi
 
@@ -1330,6 +1433,9 @@ if [ "$delete_vms" = true ] ; then
     #az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
 fi
 
+
+sleep 300
+delete_resource_groups=true
 delete_resource_groups=true
 if [ "$delete_resource_groups" = true ] ; then
     printHeading "delete resource groups"
@@ -1356,9 +1462,9 @@ fi
 
 
 endTimeOnMasterScript=$(date +%s)
-echo "====================================================================="
-echo "====                   azure script ended                        ===="
+echo "=============================================================="
+echo "====                   azure script ended                 ===="
 printTime
 echo "====                  unix time $endTimeOnMasterScript"
 echo $endTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
-echo "====================================================================="
+echo "=============================================================="
