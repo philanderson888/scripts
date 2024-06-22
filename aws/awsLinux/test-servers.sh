@@ -1,4 +1,22 @@
 #!/bin/sh
+echo "=================="
+echo "=================="
+echo "====   no ip  ===="
+echo "=================="
+echo "=================="
+
+echo "=================="
+echo "=================="
+echo "====   no ip  ===="
+echo "=================="
+echo "=================="
+
+echo "=================="
+echo "=================="
+echo "====   no ip  ===="
+echo "=================="
+echo "=================="
+
 
 instance_public_ip=$(aws ec2 describe-instances --instance-ids $instance_id --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
 echo instance public ip is $instance_public_ip
