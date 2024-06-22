@@ -89,6 +89,20 @@ echo
 echo now call the phil_function
 phil_function
 echo "==================================================================="
+echo "====                       for loop                            ===="
+echo "==================================================================="
+for i in {1..5}
+do
+   echo "for loop counter is $i"
+done
+echo "==================================================================="
+echo "====                    for each loop                          ===="
+echo "==================================================================="
+for w in word1 word2 word3
+do
+  echo "for each loop prints every word ... $w"
+done
+echo "==================================================================="
 echo "====                   json with bash                          ===="
 echo "==================================================================="
 BUCKET_NAME="test bucket"
