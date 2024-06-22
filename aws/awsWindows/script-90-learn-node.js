@@ -1,5 +1,11 @@
 import ps from 'ps-node';	 
 import psList from 'ps-list';
+import process from 'node';
+import { platform } from 'node:process';
+import os from 'node:os';
+import processList from 'ps-list';
+
+
 console.log('==================================================')
 console.log('====           node hello world               ====')
 console.log('==================================================')
@@ -115,12 +121,79 @@ for (const [index,item] of myLoopArrayWithEntries.entries()) {
 }
 
 
+
+
+console.log('==================================================')
+console.log('====         operating system os              ====')
+console.log('==================================================')
+
+console.log(`operating system architecture is ${os.arch()}`)
+console.log(`operating system cpu cores are as listed here`);
+console.log(os.cpus())
+console.log(`operating system platform is ${os.platform()}`)
+
+
+console.log('==================================================')
+console.log('====               platform                    ====')
+console.log('==================================================')
+console.log(`the operating system platform is ${platform}`);
+
+
+
+
+console.log('==================================================')
+console.log('====            process using process         ====')
+console.log('==================================================')
+console.log(process.versions);
+console.log('node platform ' + process.platform);
+console.log('node environment variables');
+console.log(process.env);
+
+
+
+
+
+
+console.log('==================================================')
+console.log('====            process using ps-list         ====')
+console.log('==================================================')
+processList().then(data => {
+    console.log(data);
+    //=> [{pid: 3213, name: 'node', cmd: 'node test.js', cpu: '0.1'}, ...] 
+});
+processList()
+
+
+
+
+
+
+console.log('==================================================')
+console.log('====          process using ps                ====')
+console.log('==================================================')
+ps.lookup({ 
+  command: 'node',
+  arguments: '--debug',
+}, (err, resultList ) => {
+  if (err) {
+    throw new Error( err );
+  }
+  resultList.forEach(function( process ){
+    if( process ){
+        console.log( 'PID: %s, COMMAND: %s, ARGUMENTS: %s', process.pid, process.command, process.arguments );
+    }
+  });
+});
+
+
+
 console.log('==================================================')
 console.log('====               ps-list                    ====')
 console.log('====         list all process ...             ====')
 console.log('====      in this case break early ...        ====')
 console.log('==================================================')
-const runningProcesses = await psList()
+
+const runningProcesses = await processList()
 
 let testProcessId = 0;
 
@@ -133,6 +206,9 @@ for (const process of runningProcesses) {
         break;
     }
 }
+
+runningProcesses()
+
 console.log('==================================================')
 console.log('====             ps-node v1                   ====')
 console.log('==================================================')
