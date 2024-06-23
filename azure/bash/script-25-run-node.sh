@@ -2,17 +2,20 @@
 zsh
 echo cd ~
 cd ~
-echo mkdir node25
-mkdir node25
-echo mv script-25-server.js node25
-mv script-25-server.js node25
-echo cd node25
-cd node25
 echo
 echo
 echo
-echo "=============================================================="
-echo "====              run node web server                     ===="
-echo "====             using node script-25-server.js           ===="
-echo "=============================================================="
+echo pull down source files for servers from github
+echo git clone philanderson888 scripts
+git clone https://github.com/philanderson888/scripts
+echo
+echo
+echo
+echo now find node server
+echo cd ~/scripts/sample-apps/node/node-01-51279
+cd ~/scripts/sample-apps/node/node-01-51279
+echo
+echo
+echo
+echo now run node server
 node script-25-server.js
