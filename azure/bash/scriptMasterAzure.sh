@@ -527,8 +527,8 @@ if [ "$install_services" = true ] ; then
 
     restart_services=true
     
+    install_apache=true
     install_nginx=false
-    install_apache=false
 
     install_node=true
     install_express=true
@@ -551,14 +551,14 @@ if [ "$install_services" = true ] ; then
     install_ansible=false
     list_kubernetes_clusters=false
 
-    install_frequency=30
-    install_counter=$(($run_counter % $install_frequency))
-
-    if [ $install_counter -lt 15 ] ; then
-        install_apache=true
-    else
+    install_nginx_frequency=3
+    install_nginx_counter=$(($run_counter % $install_nginx_frequency))
+    if [ $install_nginx_counter -eq 0 ] ; then
         install_nginx=true
     fi
+
+    install_frequency=30
+    install_counter=$(($run_counter % $install_frequency))
 
     if [ $install_counter -eq 1 ] ; then
         install_c=true
@@ -584,13 +584,17 @@ if [ "$install_services" = true ] ; then
     fi
 
     learning_mode=false
-    if [ $install_counter -lt -1 ] ; then
+    install_learning_frequency=5
+    install_learning_counter=$(($run_counter % $install_learning_frequency))
+    if [ $install_learning_counter -eq 0 ] ; then
         learning_mode=true
     fi
 
     create_vm_windows_server=false
     create_vm_windows_client=false
-    if [ $install_counter -lt -1 ] ; then
+    install_windows_frequency=8
+    install_windows_counter=$(($run_counter % $install_windows_frequency))
+    if [ $install_windows_counter -eq 0 ] ; then
         create_vm_windows_server=true
         create_vm_windows_client=true
     fi
