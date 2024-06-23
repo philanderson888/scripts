@@ -5,7 +5,7 @@ const server = http.createServer((req, res) => {
   console.log('request recieved on node server port ' + port)
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  output = `response from node js web server`
+  output = `response from node js web server ... running at `
   output += `http://${hostname}:${port}/\n`
   res.end(output);
 });

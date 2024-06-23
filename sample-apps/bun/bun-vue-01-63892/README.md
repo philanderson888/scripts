@@ -24,7 +24,6 @@ bun install
 
 ```sh
 bun dev
-bun --port=63892 dev
 ```
 
 ### Type-Check, Compile and Minify for Production
