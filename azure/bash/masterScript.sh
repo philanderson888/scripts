@@ -369,9 +369,9 @@ windows_client_vm_name=winClientVm01
 
 # os
 printHeading "choose vm image"
-install_os_frequency=5
+install_os_frequency=10
 install_os_counter=$(($run_counter % $install_os_frequency))
-if [ $install_os_counter -lt 4 ] ; then
+if [ $install_os_counter -lt 9 ] ; then
     vm_os=$ubuntu_os_name
     vm_os_type=$os_type_debian
     vm_image=$ubuntu_image_name
@@ -414,7 +414,7 @@ touch output-azure-vm-image-templates.txt
 touch output-azure-vms.txt
 
 # root directory
-root_directory=~/github/scripts/aws/awsWindows
+root_directory=~/github/scripts/azure/bash
 cd $root_directory
 
 
@@ -533,8 +533,8 @@ if [ "$install_services" = true ] ; then
     install_node=true
     install_express=true
     install_vue=true
-    install_bun=false
-    install_react=false
+    install_bun=true
+    install_react=true
     test_web_servers_via_curl=true
 
     install_c=false
@@ -729,7 +729,6 @@ fi
 
 if [ "$install_node" = true ] ; then
     printHeading "install node npm yarn - and express"
-    scp -i $ssh_key script-25-server.js $admin_username@$public_ip_address:script-25-server.js
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-25-install-node.sh
 
     chmod 777 ./script-25-phil.sh
@@ -759,14 +758,19 @@ fi
 
 
 if [ "$install_express" = true ] ; then
-    printHeading "install and run express"
-    scp -i $ssh_key script-26-run-express.sh $admin_username@$public_ip_address:script-26-run-express.sh
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-26-install-express.sh
+    printHeading "express"
+
+    echo express 01 is generated
+    chmod 777 ./script-26-launch-express-01.sh
+    ttab './script-26-launch-express-01.sh'
+
     express_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
     express_installed=true
-    printHeading "express"
-    chmod 777 ./script-26-launch-express.sh
-    ttab './script-26-launch-express.sh'
+
+    echo express 02 is cloned from github
+    chmod 777 ./script-26-launch-express-02.sh
+    ttab './script-26-launch-express-02.sh'
+
     display_progress express
 fi
 
@@ -775,9 +779,7 @@ fi
 
 if [ "$install_vue" = true ] ; then
     printHeading "install and run vue"
-    echo aaaaa
     cd $root_directory
-    echo bbbbb
     chmod 777 ./script-28-launch-vue.sh
     echo ccccc
     ttab './script-28-launch-vue.sh'
@@ -786,6 +788,24 @@ if [ "$install_vue" = true ] ; then
     vue_installed=true
     display_progress vue
 fi
+
+
+
+
+
+
+install_vite=true
+if [ "$install_vite" = true ] ; then
+    printHeading "install and run vite"
+    cd $root_directory
+    chmod 777 ./script-29-launch-vite.sh
+    ttab './script-29-launch-vite.sh'
+    vite_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vite -v")
+    vite_installed=true
+    display_progress vite
+fi
+
+
 
 
 
@@ -809,12 +829,19 @@ fi
 if [ "$install_react" = true ] ; then
     printHeading "install and run react and npx"
     cd $root_directory
+    
     chmod 777 ./script-32-launch-react-01.sh
     ttab './script-32-launch-react-01.sh'
+    
     chmod 7777 ./script-32-launch-react-02.sh
     ttab './script-32-launch-react-02.sh'
+    
     chmod 7777 ./script-32-launch-react-03.sh
     ttab './script-32-launch-react-03.sh'
+
+    chmod 7777 ./script-32-launch-react-04.sh
+    ttab './script-32-launch-react-04.sh'
+    
     npx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npx -v")
     react_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "react -v")
     npx_installed=true
@@ -1419,8 +1446,17 @@ deallocate_vms=true
 if [ "$deallocate_vms" = true ] ; then
     printHeading "deallocate vms"
 
+    IFS=$'\n' resource_group_names=($(az group list --query [].name -o tsv))
+    resource_group_valid_name=invalid
+    for resource_group_index in "${!resource_group_names[@]}"
+    do
+        resource_group_name=${resource_group_names[$resource_group_index]}
+        if [[ $resource_group_name = 'ResourceGroup'* ]]; then
+            resource_group_valid_name=$resource_group_name
+        fi
+    done
+    resource_group_name=$resource_group_valid_name
     echo resource group name $resource_group_name
-
     az vm deallocate --name $ubuntu_vm_name --resource-group $resource_group_name 
     #az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
 fi
@@ -1438,8 +1474,6 @@ if [ "$delete_vms" = true ] ; then
 fi
 
 
-sleep 300
-delete_resource_groups=true
 delete_resource_groups=true
 if [ "$delete_resource_groups" = true ] ; then
     printHeading "delete resource groups"
