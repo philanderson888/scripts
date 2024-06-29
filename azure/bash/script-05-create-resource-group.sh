@@ -11,8 +11,6 @@ if [ "$creating_resource_group_and_servers" = true ] ; then
     echo resource group $resource_group_name was just created, so servers have to be created also
     resource_group_created=true
     create_vm_windows_server=true
-    create_vm_ubuntu_linux=true
-    create_vm_linux_flavours=true
     set_auto_shutdown=true
     echo
     echo

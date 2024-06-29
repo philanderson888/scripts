@@ -1,8 +1,8 @@
 #!/bin/zsh
 zsh
 echo find react server
-echo cd ~/scripts/sample-apps/bun/bun-react-01-58262
-cd ~/scripts/sample-apps/bun/bun-react-01-58262
+echo cd ~/scripts/sample-apps/bun/bun-react-58262
+cd ~/scripts/sample-apps/bun/bun-react-58262
 echo
 echo
 echo

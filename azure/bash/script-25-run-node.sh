@@ -12,10 +12,10 @@ echo
 echo
 echo
 echo now find node server
-echo cd ~/scripts/sample-apps/node/node-01-51279
-cd ~/scripts/sample-apps/node/node-01-51279
+echo cd ~/scripts/sample-apps/node/node-51279
+cd ~/scripts/sample-apps/node/node-51279
 echo
 echo
 echo
 echo now run node server
-node node-01-51279-server.js
+node node-51279-server.js

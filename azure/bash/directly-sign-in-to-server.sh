@@ -27,11 +27,11 @@ if [ "$azure" = true ] ; then
     echo "=============================================================="
     ssh_key=~/.ssh/azureCliUbuntuLogin.pem
     admin_username=azureuser
-    ubuntu_vm_name=ubuntuVm01
-    public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $ubuntu_vm_name --query publicIps -o tsv)
+    vm_name=vm01
+    public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
     echo sign in with ...
     echo resource group $resource_group_name
-    echo vm $ubuntu_vm_name
+    echo vm $vm_name
     echo user $admin_username
     echo ip $public_ip_address
     ssh -i $ssh_key $admin_username@$public_ip_address  

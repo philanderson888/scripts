@@ -45,10 +45,7 @@ else
     done
     environment_has_been_cleaned_before_start=false
     create_vm_windows_server=false
-    create_vm_ubuntu_linux=false
-    create_vm_linux_flavours=false
     set_auto_shutdown=false
-    query_vm_ubuntu=true
     query_vm_windows_server=true
     echo
     echo
