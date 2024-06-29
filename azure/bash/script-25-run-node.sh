@@ -18,4 +18,4 @@ echo
 echo
 echo
 echo now run node server
-node script-25-server.js
+node node-01-51279-server.js
