@@ -18,9 +18,7 @@ echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
 echo "====                      azure                           ===="
-echo "====                build windows server                  ===="
-echo "====                 build ubuntu server                  ===="
-echo "====               run web servers on both                ===="
+echo "====                  build linux server                  ===="
 echo "====        script starts at unix time $startTimeOnMasterScript"
 echo "====        script starts at " $startTimeOnMasterScript | perl -pe 's/(\d+)/localtime($1)/e'
 echo "=============================================================="
@@ -344,22 +342,15 @@ image=MicrosoftWindowsDesktop:office-365:20h2-evd-o365pp-g2:19042.2846.230411
 # linux
 vm_os_type_debian=debian
 vm_os_type_fedora=fedora
+vm_name=vm01
 
 # ubuntu
-ubuntu_os_name=ubuntu
-ubuntu_image_name=Ubuntu2204
-ubuntu_vm_name=ubuntuVm01
+vm_os_ubuntu=ubuntu
+vm_image_ubuntu=Ubuntu2204
 
 # debian
-os_debian=debian
-debian_image_name=Debian11
-debian_vm_name="debianVm01"
-
-# others
-red_hat_vm_name=redHatVm01
-centos_vm_name="centosVm01"
-suse_vm_name="openSuseVm01"
-flatCarVmName="flatCarVm01"
+vm_os_debian=debian
+vm_image_debian=Debian11
 
 # windows
 windows_server_vm_name=winServerVm01
@@ -371,16 +362,14 @@ windows_client_vm_name=winClientVm01
 printHeading "choose vm image"
 install_os_frequency=10
 install_os_counter=$(($run_counter % $install_os_frequency))
-if [ $install_os_counter -lt 9 ] ; then
-    vm_os=$ubuntu_os_name
-    vm_os_type=$os_type_debian
-    vm_image=$ubuntu_image_name
-    vm_name=$ubuntu_vm_name
+if [ $install_os_counter -lt -1 ] ; then
+    vm_os=$vm_os_ubuntu
+    vm_os_type=$vm_os_type_debian
+    vm_image=$vm_image_ubuntu
 else
-    vm_os=$os_debian
-    vm_os_type=$os_type_debian
-    vm_image=$debian_image_name
-    vm_name=$debian_vm_name
+    vm_os=$vm_os_debian
+    vm_os_type=$vm_os_type_debian
+    vm_image=$vm_image_debian
 fi
 
 
@@ -397,7 +386,6 @@ echo pass ...
 query_assets=true
 query_vms=true
 query_vm_windows_server=true
-query_vm_ubuntu=true
 
 # manage vms
 list_vms=true
@@ -479,7 +467,6 @@ remote_bash_version_obtained=true
 
 printHeading "query linux"
 ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-13-get-linux-version.sh
-ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-13-query-linux.sh
 linux_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep '^VERSION=' /etc/os-release")
 linux_details=$(ssh -i $ssh_key $admin_username@$public_ip_address "hostnamectl")
 linux_codename=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep 'VERSION_CODENAME' /etc/os-release")
@@ -1151,7 +1138,7 @@ if [ "$list_vms" = true ] ; then
     echo list vms output to output-azure-vms.txt
     az vm list >> output-azure-vms.txt
     echo vm info >> output-azure-vms.txt
-    az vm show --resource-group $resource_group_name --name $ubuntu_vm_name >> output-azure-vms.txt
+    az vm show --resource-group $resource_group_name --name $vm_name >> output-azure-vms.txt
     echo vm resource usage to >> output-azure-vms.txt
     az vm list-usage --location eastus >> output-azure-vms.txt
     echo list disks sent to >> output-azure-vms.txt
@@ -1160,7 +1147,7 @@ if [ "$list_vms" = true ] ; then
     echo storage profile sent to >> output-azure-vms.txt
     echo 
     echo storage profile >> output-azure-vms.txt
-    az vm show --resource-group $resource_group_name --name $ubuntu_vm_name --query "storageProfile" >> output-azure-vms.txt
+    az vm show --resource-group $resource_group_name --name $vm_name --query "storageProfile" >> output-azure-vms.txt
 fi
 
 
@@ -1249,7 +1236,7 @@ if [ "$set_auto_shutdown" = true ] ; then
     shutdown_by_name=false
     if [ "$shutdown_by_name" = true ] ; then
         az vm auto-shutdown -g $resource_group_name -n $windows_server_vm_name --time 1730 --email $email_address --webhook $webhook_address
-        az vm auto-shutdown -g $resource_group_name -n $ubuntu_vm_name         --time 1730 --email $email_address --webhook $webhook_address
+        az vm auto-shutdown -g $resource_group_name -n $vm_name         --time 1730 --email $email_address --webhook $webhook_address
     fi
 fi
 
@@ -1457,19 +1444,19 @@ if [ "$deallocate_vms" = true ] ; then
     done
     resource_group_name=$resource_group_valid_name
     echo resource group name $resource_group_name
-    az vm deallocate --name $ubuntu_vm_name --resource-group $resource_group_name 
+    az vm deallocate --name $vm_name --resource-group $resource_group_name 
     #az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
 fi
 
 
 if [ "$delete_vms" = true ] ; then
     printHeading "delete vms"
-    echo delete ubuntu vm by vm id $ubuntu_machine_id
-    az vm delete --ids $ubuntu_machine_id --yes
+    echo delete ubuntu vm by vm id $machine_id
+    az vm delete --ids $machine_id --yes
     #echo delete windows server vm by vm name $windows_server_vm_name
     #az vm delete --resource-group $resource_group_name --name $windows_server_vm_name --yes
-    #echo delete ubuntu vm by vm name $ubuntu_vm_name
-    #az vm delete --resource-group $resource_group_name --name $ubuntu_vm_name --yes
+    #echo delete ubuntu vm by vm name $vm_name
+    #az vm delete --resource-group $resource_group_name --name $vm_name --yes
     #az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
 fi
 
