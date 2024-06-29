@@ -1,8 +1,8 @@
 #!/bin/zsh
 zsh
 echo find vite server
-echo cd ~/scripts/sample-apps/bun/bun-astro-39872
-cd ~/scripts/sample-apps/bun/bun-astro-39872
+echo cd ~/scripts/sample-apps/astro/astro-39872
+cd ~/scripts/sample-apps/astro/astro-39872
 echo
 echo
 echo

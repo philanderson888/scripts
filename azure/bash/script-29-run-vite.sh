@@ -2,7 +2,7 @@
 zsh
 echo find vite server
 echo cd ~/scripts/sample-apps/bun/bun-vite-54892
-cd ~/scripts/sample-apps/bun/bun-react-01-54892
+cd ~/scripts/sample-apps/bun/bun-vite-54892
 echo
 echo
 echo
@@ -16,5 +16,5 @@ bun install
 echo
 echo
 echo
-echo bun dev
-bun dev
+echo bun run dev
+bun run dev
