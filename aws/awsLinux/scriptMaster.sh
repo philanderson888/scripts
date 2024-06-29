@@ -263,9 +263,8 @@ do
 
 
 
-    #open -a Terminal ./script-08-launch.sh
-    #echo not running create react app as it takes too long
-    # echo running script-09-install-and-run-create-react-app.sh
+
+
     # ssh -i $certificatePath $sshLoginUsername 'bash -s' < script-09-install-and-run-create-react-app.sh
 
 
