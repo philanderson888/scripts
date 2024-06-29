@@ -29,7 +29,7 @@ echo
 echo
 echo
 dt=$(date '+%H:%M:%S');
-echo tesing servers starting at time $dt 
+echo testing servers starting at time $dt 
 echo
 echo
 echo

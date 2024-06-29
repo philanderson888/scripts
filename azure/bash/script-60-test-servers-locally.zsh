@@ -7,30 +7,11 @@ echo
 echo
 echo
 dt=$(date '+%H:%M:%S');
-echo tesing servers starting at time $dt 
-echo
-echo
-echo ports
-web_port=80
-echo web $web_port
-node_port=3006
-echo node $node_port
-express_port=3000
-echo express $express_port
-bun_port=3007
-echo bun $bun_port
-which_port=3008
-echo which $which_port
-react_port_1=3009
-react_port_2=3010
-echo react $react_port_1 $react_port_2
-vue_port_1=3020
-vue_port_2=5173
-echo vue $vue_port_1 $vue_port_2
+echo testing servers starting at time $dt 
 echo
 echo
 echo
-for port in $web_port $node_port $express_port $bun_port $which_port $react_port_1 $react_port_2 $vue_port_1 $vue_port_2
+for port in 80 3000 3007 3008 3009 3010 3020 5173 57329 58262 54892 63892 51547 51279 
 do
     echo
     echo
