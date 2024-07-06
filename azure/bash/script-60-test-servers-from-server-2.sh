@@ -9,16 +9,16 @@ echo testing servers starting at time $dt
 echo
 echo
 echo
-for port in 80 3000 3007 3008 3009 3010 3020 5173 57329 58262 54892 63892 51547 51279 
+for port in 80 3000 3009 3010 5173 57329 58262 54892 63892 51547 51279 
 do
     echo
     echo
     echo
-    echo port $port
-    echo localhost
-    curl localhost:$port
-    curl 127.0.0.1:$port
     echo
-    echo local ip
-    curl $ip:$port -s
+    echo
+    echo
+    echo port $port
+    echo 10.0.0.4:$port
+    curl 10.0.0.4:$port
+    sleep 3
 done
