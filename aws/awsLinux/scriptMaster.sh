@@ -265,9 +265,6 @@ do
 
 
 
-    # ssh -i $certificatePath $sshLoginUsername 'bash -s' < script-09-install-and-run-create-react-app.sh
-
-
 
 
     echo "======================================================================="
