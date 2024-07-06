@@ -79,15 +79,15 @@ echo >> output-azure-vm-image-templates.txt
 echo >> output-azure-vm-image-templates.txt
 echo - images use a URN b image name c image id d VHD blob URI
 echo azure image templates to use are
-echo  - debian
-echo     - Ubuntu2204
-echo     - Debian11
-echo  - redhat
-echo     - CentOS85Gen2
-echo     - FlatcarLinuxFreeGen2
-echo     - OpenSuseLeap154Gen2
-echo     - RHELRaw8LVMGen2
-echo     - SuseSles15SP3
-echo  - windows
-echo     - Win2022Datacenter
-echo     - Win2022AzureEditionCore
+echo debian
+echo - Ubuntu2204
+echo - Debian11
+echo redhat
+echo - CentOS85Gen2
+echo - FlatcarLinuxFreeGen2
+echo - OpenSuseLeap154Gen2
+echo - RHELRaw8LVMGen2
+echo - SuseSles15SP3
+echo windows
+echo - Win2022Datacenter
+echo - Win2022AzureEditionCore

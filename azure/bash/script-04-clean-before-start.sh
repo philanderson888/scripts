@@ -73,14 +73,9 @@ if [ "$getting_existing_and_new_resource_group_names_before_deletion" = true ] ;
     echo "====                get next resource group               ===="
     echo "=============================================================="
     IFS=$'\n' resource_group_names=($(az group list --query [].name -o tsv))
-    echo
-    echo for each resource group in list of resource groups
-    echo
-    printf '%s\n' "${resource_group_names[@]}"
     for array_index in "${!resource_group_names[@]}"
     do
         resource_group_name=${resource_group_names[$array_index]}
-        echo $resource_group_name
         if [[ $resource_group_name = 'ResourceGroup'* ]]; then
             resource_group_index=$(echo $resource_group_name | tr -dc '0-9')
             echo resource group $resource_group_name exists with index $resource_group_index  

@@ -1,6 +1,3 @@
-echo "======================================================================="
-echo "====                       restart services                              ===="
-echo "======================================================================="
 sudo systemctl restart systemd-journald.service 
 sudo /etc/needrestart/restart.d/systemd-manager
 sudo systemctl restart systemd-networkd.service

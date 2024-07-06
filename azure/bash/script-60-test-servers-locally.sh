@@ -1,6 +1,4 @@
-#!/bin/zsh
-echo zsh
-zsh
+#!/bin/sh
 ip=$(hostname --ip-address)
 echo ip is $ip
 echo

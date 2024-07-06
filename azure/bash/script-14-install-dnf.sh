@@ -1,8 +1,4 @@
 #!/bin/bash
-#!/bin/bash
-echo "======================================================================="
-echo "====                          shell                                ===="
-echo "======================================================================="
 shell_version=$($SHELL --version)
 echo "shell in use on remote machine is $SHELL"
 echo "remote shell version ${shell_version:0:57}"
@@ -39,10 +35,9 @@ if [[  "$os" == "$os_ubuntu" ]]; then
     os_type=$os_type_debian
 fi
 echo "=================================================================="
-echo "====              update $os of type $os_type 2"
+echo "====              update $os of type $os_type 014-038"
 echo "=================================================================="
 if [[  "$os_type" == "$os_type_debian" ]]; then
-
     echo "=============================================================="
     echo "====               update various services                ===="
     echo "=============================================================="
