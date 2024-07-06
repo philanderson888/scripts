@@ -1,7 +1,5 @@
 if [[  "$os_type" == "$os_type_debian" ]]; then
-    echo "====================================================================="
-    echo "====                  apt-get install gcc                        ===="
-    echo "====================================================================="
+    echo apt-get install gcc
     echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
     sudo chmod 777 /var/cache/debconf/ 
     sudo chmod 777 /var/cache/debconf/passwords.dat

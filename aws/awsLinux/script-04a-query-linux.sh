@@ -421,9 +421,7 @@ if [[  "$id_like" == "debian" ]]; then
     sudo systemctl restart systemd-logind.service
     sudo systemctl restart unattended-upgrades.service
     sudo systemctl restart user@1000.service
-    echo "======================================================================="
-    echo "====          apt-get install gcc 04340                            ===="
-    echo "======================================================================="
+    echo "apt-get install gcc
     sudo apt-get -qq install gcc -y > /dev/null
     sleep 1
 elif [[  "$id_like" == "fedora" ]]; then
