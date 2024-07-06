@@ -29,12 +29,3 @@ curl localhost:3008 -s
 echo
 echo
 echo
-echo server 09 on react was too slow so not running it ...  
-echo
-echo
-echo
-echo server vue
-curl localhost:3010 -s
-echo
-echo
-echo
