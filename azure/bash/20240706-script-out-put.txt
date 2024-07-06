@@ -1,0 +1,3206 @@
+Last login: Sat Jul  6 22:00:24 on ttys012
+cd ~/github/scripts/azure/bash
+➜  ~ cd ~/github/scripts/azure/bash
+➜  bash git:(master) ✗ ./masterScript.sh 
+screen cleared
+
+
+
+shell running on mac
+/bin/zsh
+zsh 5.9 (x86_64-apple-darwin23.0)
+
+
+
+==============================================================
+==============================================================
+==============================================================
+====                      azure                           ====
+====                  build linux server                  ====
+====        script starts at unix time 1720300007
+====        script starts at  Sat Jul  6 22:06:47 2024
+==============================================================
+==============================================================
+==============================================================
+
+
+==============================================================
+====            initialise script functions               ====
+==============================================================
+
+
+there have been 220 runs of this script
+store new value for next time
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                choose vm image
+====                script elapsed time 0:07
+==============================================================
+==============================================================
+
+
+
+==============================================================
+====             waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian 
+====                script elapsed time 0:07
+==============================================================
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                set credentials
+====                script elapsed time 0:07
+==============================================================
+==============================================================
+
+
+
+==============================================================
+====             waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass .. 
+====                script elapsed time 0:07
+==============================================================
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                install libraries
+====                script elapsed time 0:07
+==============================================================
+==============================================================
+================================================================
+====    only doing installs every 30 runs of this program ====
+================================================================
+there have been 220 runs of this script
+
+
+
+==============================================================
+====             waypoint 3 at 7 s took 0 s - install libraries 
+====                script elapsed time 0:07
+==============================================================
+aws cli installed of version aws-cli/2.15.21
+powershell version PowerShell 7.4.2 installed
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                log in to cloud
+====                script elapsed time 0:07
+==============================================================
+==============================================================
+=======================================================================
+====             already logged in to azure portal        =============
+=======================================================================
+
+
+
+
+
+
+==============================================================
+====             waypoint 4 at 7 s took 0 s - log in to cloud 
+====                script elapsed time 0:07
+==============================================================
+aws cli installed of version aws-cli/2.15.21
+powershell version PowerShell 7.4.2 installed
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query cloud resources
+====                script elapsed time 0:07
+==============================================================
+==============================================================
+=============================================================
+====                  azure status                       ====
+=============================================================
+azure logged in account is ...
+philanderson888@hotmail.com
+
+
+
+=============================================================
+====                 azure account list                  ====
+=============================================================
+Name           CloudName    TenantId
+-------------  -----------  ------------------------------------
+Pay-As-You-Go  AzureCloud   84db59c8-e4f2-4a8b-9c4a-2f6be457ceba
+
+
+
+
+
+
+==============================================================
+====             waypoint 5 at 7 s took 1 s - query cloud resources 
+====                script elapsed time 0:08
+==============================================================
+aws cli installed of version aws-cli/2.15.21
+powershell version PowerShell 7.4.2 installed
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                delete existing environments
+====                script elapsed time 0:08
+==============================================================
+==============================================================
+==============================================================
+====        rebuilding from scratch every time            ====
+==============================================================
+tearing down and building up from scratch every time
+... remove any resource groups if they contain the name Resource Group
+... parse the number of the last known resource group
+... add one
+... create a fresh resource group with the new number incremented by one
+... create fresh servers from scratch each time
+==============================================================
+==============================================================
+====            list resource groups 004-070              ====
+==============================================================
+NetworkWatcherRG
+ResourceGroup03
+==============================================================
+====                get next resource group               ====
+==============================================================
+resource group ResourceGroup03 exists with index 03
+new resource group name will be ResourceGroup04
+=====================================================================
+====            deleting existing resource groups                ====
+=====================================================================
+NetworkWatcherRG
+ResourceGroup03
+... deleting resource group ... ResourceGroup03
+
+
+
+==============================================================
+====             waypoint 6 at 8 s took 3 s - clean environment 
+====                script elapsed time 0:11
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                create resource group
+====                script elapsed time 0:11
+==============================================================
+==============================================================
+creating resource group ResourceGroup04 in uk south region
+{
+  "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup04",
+  "location": "uksouth",
+  "managedBy": null,
+  "name": "ResourceGroup04",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+
+
+
+resource group ResourceGroup04 was just created, so servers have to be created also
+
+
+
+
+
+
+==============================================================
+====             waypoint 7 at 11 s took 0 s - create resource group 
+====                script elapsed time 0:11
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                list resource group
+====                script elapsed time 0:11
+==============================================================
+==============================================================
+Resource          Name
+----------------  --------------------------------------------------
+NetworkWatcherRG  NetworkWatcher_uksouth
+ResourceGroup03   vm01NSG
+ResourceGroup03   vm01PublicIP
+ResourceGroup03   vm01VNET
+ResourceGroup03   vm01VMNic
+ResourceGroup03   vm01
+RESOURCEGROUP03   vm01_disk1_bb692879d2b149f1af9b3f0df4419878
+ResourceGroup03   shutdown-computevm-vm01
+ResourceGroup03   vm02PublicIP
+ResourceGroup03   vm02NSG
+ResourceGroup03   vm02VMNic
+ResourceGroup03   vm02
+RESOURCEGROUP03   vm02_disk1_937b99bfa8b1408ba9d3b045ffd7c439
+ResourceGroup03   vmRedhatPublicIP
+ResourceGroup03   vmRedhatNSG
+ResourceGroup03   vmRedhatVMNic
+ResourceGroup03   vmRedhat
+RESOURCEGROUP03   vmRedhat_OsDisk_1_eb4d9f46be0d499a9ba30c06ae6a1cac
+=====================================================================
+====                   get resource group                        ====
+=====================================================================
+resource group names are ...
+NetworkWatcherRG
+ResourceGroup03
+ResourceGroup04
+resource group ResourceGroup04 will be used to build servers in
+
+
+
+az resource list
+
+
+
+
+
+
+
+==============================================================
+====             waypoint 8 at 11 s took 2 s - list resource groups 
+====                script elapsed time 0:13
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query vm templates
+====                script elapsed time 0:13
+==============================================================
+==============================================================
+=====================================================================
+====     vm templates >> output-azure-vm-image-templates.txt     ====
+=====================================================================
+find all Gen2 SKUs published by Microsoft Windows Desktop - output to output-azure-vm-image-templates.txt
+find all Gen2 SKUs published by Microsoft Windows Desktop - output to output-azure-vm-image-templates.txt
+find all Gen2 SKUs published by Canonical - output to output-azure-vm-image-templates.txt
+find all images - output to output-azure-vm-image-templates.txt
+- images use a URN b image name c image id d VHD blob URI
+azure image templates to use are
+debian
+- Ubuntu2204
+- Debian11
+redhat
+- CentOS85Gen2
+- FlatcarLinuxFreeGen2
+- OpenSuseLeap154Gen2
+- RHELRaw8LVMGen2
+- SuseSles15SP3
+windows
+- Win2022Datacenter
+- Win2022AzureEditionCore
+
+
+
+==============================================================
+====             waypoint 9 at 13 s took 0 s - query vm templates 
+====                script elapsed time 0:13
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                create vm vm01 using image Ubuntu2204 .. os ubuntu of type debian
+====                script elapsed time 0:13
+==============================================================
+==============================================================
+{
+  "fqdns": "",
+  "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup04/providers/Microsoft.Compute/virtualMachines/vm01",
+  "location": "uksouth",
+  "macAddress": "00-0D-3A-0B-24-BC",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.0.4",
+  "publicIpAddress": "172.166.186.18",
+  "resourceGroup": "ResourceGroup04",
+  "zones": ""
+}
+
+
+
+
+
+
+==============================================================
+====             waypoint 10 at 13 s took 39 s - vm created 
+====                script elapsed time 0:52
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                list vms
+====                script elapsed time 0:52
+==============================================================
+==============================================================
+Name    ResourceGroup    Location    Zones
+------  ---------------  ----------  -------
+vm01    RESOURCEGROUP04  uksouth
+
+
+
+==============================================================
+====             waypoint 11 at 52 s took 1 s - list vms 
+====                script elapsed time 0:53
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query vm
+====                script elapsed time 0:53
+==============================================================
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query vm vm01
+====                script elapsed time 0:53
+==============================================================
+==============================================================
+resource group name ResourceGroup04
+vm id is /subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/vm01
+machine id 9866985b-cf07-4f61-ad48-c7ba1a698690
+user name azureuser
+computer name vm01
+vm id hash ... 9866985b-cf07-4f61-ad48-c7ba1a698690
+vm size ... Standard_DS1_v2
+vm network id is /subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup04/providers/Microsoft.Network/networkInterfaces/vm01VMNic
+network card name vm01VMNic
+vm public ip is 172.166.186.18
+vm private ip is 10.0.0.4
+network card mac address 00-0D-3A-0B-24-BC
+resource group name ResourceGroup04
+resource group location uksouth
+resource group id 9b7bed5b-8431-4d53-8e68-5359b5da2925
+
+
+
+==============================================================
+====             waypoint 12 at 53 s took 11 s - query vm using cloud provider 
+====                script elapsed time 1:04
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query network security group
+====                script elapsed time 1:04
+==============================================================
+==============================================================
+=====================================================================
+====               query network security group                  ====
+====        output sent to ./output-network-security-group.txt   ====
+=====================================================================
+
+
+
+==============================================================
+====             waypoint 13 at 64 s took 0 s - query network security group performed 
+====                script elapsed time 1:04
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                who am i USER
+====                script elapsed time 1:04
+==============================================================
+==============================================================
+Warning: Permanently added '172.166.186.18' (ED25519) to the list of known hosts.
+username azureuser
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                get remote shell
+====                script elapsed time 1:06
+==============================================================
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query linux
+====                script elapsed time 1:07
+==============================================================
+==============================================================
+=======================================================================
+====                          shell 01310                          ====
+=======================================================================
+shell in use on remote machine is bash
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+
+
+
+=======================================================================
+====                     linux version 01320                       ====
+=======================================================================
+running a case statement on /etc/os-release against the option 'ID'
+This is Ubuntu Linux
+==================================================================
+====              update ubuntu of type debian 01330
+==================================================================
+==============================================================
+====                  update services 013-077             ====
+==============================================================
+
+
+
+==============================================================
+====             waypoint 14 at 64 s took 34 s - query linux 
+====                script elapsed time 1:38
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                dnf install
+====                script elapsed time 1:39
+==============================================================
+==============================================================
+shell in use on remote machine is /bin/bash
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+=======================================================================
+====                        linux version                          ====
+=======================================================================
+running a case statement on /etc/os-release against the option 'ID'
+This is Ubuntu Linux
+==================================================================
+====              update ubuntu of type debian 014-038
+==================================================================
+==============================================================
+====               update various services                ====
+==============================================================
+==============================================================
+====                   install dnf                        ====
+==============================================================
+do not install dnf on ubuntu
+
+
+
+==============================================================
+====             waypoint 15 at 98 s took 2 s - dnf install 
+====                script elapsed time 1:40
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                update os
+====                script elapsed time 1:40
+==============================================================
+==============================================================
+shell in use
+bash
+==============================================================
+====                    update vm                         ====
+==============================================================
+==============================================================
+====          which flavour of linux is this machine      ====
+==============================================================
+running a case statement on /etc/os-release against the option 'ID'
+This is Ubuntu Linux
+
+
+
+
+
+
+=====================================================================
+====              update ubuntu which is of type debian
+=====================================================================
+=====================================================================
+====                    apt-get update                           ====
+=====================================================================
+=====================================================================
+====                    apt-get upgrade                          ====
+=====================================================================
+=================================================================
+====                       python                            ====
+=================================================================
+python version
+Python 3.10.12
+
+
+
+python platform ... linux os on which python is built ....
+Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+===============================================================
+====          update and upgrade linux complete            ====
+===============================================================
+
+
+
+==============================================================
+====             waypoint 16 at 100 s took 8 s - os updated 
+====                script elapsed time 1:48
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                installing services
+====                script elapsed time 1:48
+==============================================================
+==============================================================
+
+run counter is
+220
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                install zsh
+====                script elapsed time 1:48
+==============================================================
+==============================================================
+=======================================================================
+====            apt-get install zsh 18020                          ====
+=======================================================================
+apt-get install dialog
+apt-get install apt-utils
+apt-get install zsh
+zsh
+
+
+
+touch ./.oh-my-zsh
+
+
+
+echo shell
+zsh
+
+
+
+zsh version
+zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+
+
+
+touch .zshrc
+
+cat .zshrc
+
+
+
+shell in use is zsh
+shell version is zsh --version
+which zsh
+/usr/bin/zsh
+whereis zsh
+zsh: /usr/bin/zsh /usr/lib/x86_64-linux-gnu/zsh /etc/zsh /usr/share/zsh /usr/share/man/man1/zsh.1.gz
+=====================================================================
+====                set zsh as default shell                     ====
+=====================================================================
+
+
+
+==============================================================
+====             waypoint 17 at 108 s took 10 s - zsh 
+====                script elapsed time 1:58
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+the following services will be installed ...
+    apache
+    services restarted
+    node
+    express
+    vue
+    bun
+    react
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                install oh my zsh
+====                script elapsed time 1:58
+==============================================================
+==============================================================
+shell in use is zsh
+shell version is zsh --version
+zsh
+
+
+
+shell in use
+zsh
+
+
+
+shell version
+zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+
+
+
+zsh version
+zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+=====================================================================
+====                      test oh-my-zsh                         ====
+=====================================================================
+
+
+
+==============================================================
+====             waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh 
+====                script elapsed time 1:59
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                fish friendly interactive shell
+====                script elapsed time 1:59
+==============================================================
+==============================================================
+=======================================================================
+====             apt-get install fish 04350                        ====
+=======================================================================
+fish, version 3.7.1
+
+
+
+==============================================================
+====             waypoint 19 at 119 s took 16 s - fish 
+====                script elapsed time 2:15
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                python
+====                script elapsed time 2:15
+==============================================================
+==============================================================
+script-19-pandas.py                                                           100%  141     7.6KB/s   00:00    
+script-19-numpy.py                                                            100%  469    21.7KB/s   00:00    
+python version
+Python 3.10.12
+
+
+
+python platform ... linux os on which python is built ....
+Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+
+
+
+sudo apt-get install python3
+
+
+
+python version
+Python 3.10.12
+
+
+
+python platform ... linux os on which python is built ....
+Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+
+
+
+numpy is the python scientific library ... numbers in python ... but has been extended to many other scientific uses
+https://numpy.org/
+
+sudo apt-get install python3-pip
+
+
+
+pip3 --version
+pip 22.0.2 from /usr/lib/python3/dist-packages/pip (python 3.10)
+
+pip3 install pandas
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pandas
+  Downloading pandas-2.2.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.0/13.0 MB 116.7 MB/s eta 0:00:00
+Collecting tzdata>=2022.7
+  Downloading tzdata-2024.1-py2.py3-none-any.whl (345 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 345.4/345.4 KB 38.6 MB/s eta 0:00:00
+Collecting python-dateutil>=2.8.2
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 KB 33.3 MB/s eta 0:00:00
+Collecting numpy>=1.22.4
+  Downloading numpy-2.0.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (19.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 19.3/19.3 MB 75.1 MB/s eta 0:00:00
+Requirement already satisfied: pytz>=2020.1 in /usr/lib/python3/dist-packages (from pandas) (2022.1)
+Requirement already satisfied: six>=1.5 in /usr/lib/python3/dist-packages (from python-dateutil>=2.8.2->pandas) (1.16.0)
+Installing collected packages: tzdata, python-dateutil, numpy, pandas
+  WARNING: The scripts f2py and numpy-config are installed in '/home/azureuser/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed numpy-2.0.0 pandas-2.2.2 python-dateutil-2.9.0.post0 tzdata-2024.1
+
+
+
+cd /home/azureuser
+mkdir python
+mv script-19-pandas.py python
+mv script-19-numpy.py python
+cd python
+
+
+
+python3 script-19-pandas.py
+    cars  passings
+0    BMW         3
+1  Volvo         7
+2   Ford         2
+
+
+
+python3 script-19-numpy.py
+[ 0.12339721 -0.3627305   2.60002651 ... -1.07696824  1.80004223
+ -0.68972255]
+[ 0.12339721 -0.3627305   2.60002651 ... -1.07696824  1.80004223
+ -0.68972255]
+
+
+
+==============================================================
+====             waypoint 20 at 135 s took 31 s - python 
+====                script elapsed time 2:46
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                git
+====                script elapsed time 2:46
+==============================================================
+==============================================================
+git version 2.34.1
+
+
+
+==============================================================
+====             waypoint 21 at 166 s took 2 s - git 
+====                script elapsed time 2:48
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+git version 2.34.1
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+waypoint 21 at 166 s took 2 s - git
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                apache
+====                script elapsed time 2:48
+==============================================================
+==============================================================
+
+
+
+==============================================================
+====             waypoint 22 at 168 s took 1 s - apache 
+====                script elapsed time 2:49
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+git version 2.34.1
+==============================
+====      fix these       ====
+==============================
+apache version cant get apache version ...
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+waypoint 21 at 166 s took 2 s - git
+waypoint 22 at 168 s took 1 s - apache
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                restart services
+====                script elapsed time 2:49
+==============================================================
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                install node npm yarn - and express
+====                script elapsed time 2:51
+==============================================================
+==============================================================
+cd /home/azureuser
+get node binaries via curl command then install node
+note - E means 'preserve environment'
+note - sudo - E will download the file then execute it with sudo commands
+install node 025-011
+===================================================================
+====                          gnupg                            ====
+===================================================================
+gnupg version
+gpg (GnuPG) 2.2.27
+libgcrypt 1.9.4
+Copyright (C) 2021 Free Software Foundation, Inc.
+License GNU GPL-3.0-or-later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Home: /home/azureuser/.gnupg
+Supported algorithms:
+Pubkey: RSA, ELG, DSA, ECDH, ECDSA, EDDSA
+Cipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,
+        CAMELLIA128, CAMELLIA192, CAMELLIA256
+Hash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
+Compression: Uncompressed, ZIP, ZLIB, BZIP2
+===================================================================
+====                          curl                             ====
+===================================================================
+curl version
+curl 7.81.0 (x86_64-pc-linux-gnu) libcurl/7.81.0 OpenSSL/3.0.2 zlib/1.2.11 brotli/1.0.9 zstd/1.4.8 libidn2/2.3.2 libpsl/0.21.0 (+libidn2/2.3.2) libssh/0.9.6/openssl/zlib nghttp2/1.43.0 librtmp/2.3 OpenLDAP/2.5.17
+Release-Date: 2022-01-05
+Protocols: dict file ftp ftps gopher gophers http https imap imaps ldap ldaps mqtt pop3 pop3s rtmp rtsp scp sftp smb smbs smtp smtps telnet tftp 
+Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerberos Largefile libz NTLM NTLM_WB PSL SPNEGO SSL TLS-SRP UnixSockets zstd
+
+node version
+v20.15.0
+
+npm version
+10.7.0
+
+
+
+adding bash commands to zsh
+=====================================================================
+====                  node run js command                        ====
+=====================================================================
+this is node js javascript
+node version v20.15.0
+=======================================================================
+====                  install node complete                        ====
+=======================================================================
+
+
+
+============================================================
+====          install corepack and yarn                 ====
+============================================================
+npm install yarn
+
+corepack enable
+npm notice
+npm notice New minor version of npm available! 10.7.0 -> 10.8.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.8.1
+npm notice To update run: npm install -g npm@10.8.1
+npm notice
+
+yarn set version stable
+111
+! Corepack is about to download https://registry.yarnpkg.com/yarn/-/yarn-1.22.22.tgz
+! Corepack is about to download https://repo.yarnpkg.com/4.3.1/packages/yarnpkg-cli/bin/yarn.js
+➤ YN0000: Done in 0s 3ms
+222
+➤ YN0000: Done in 0s 4ms
+
+
+
+yarn install
+
+
+
+yarn version
+4.3.1
+
+
+
+=======================================================================
+====             apt-get install zip 25180                         ====
+=======================================================================
+=======================================================================
+====                       install jq 025-230                      ====
+====                   move this to dedicated file                 ====
+====                   move this to dedicated file                 ====
+====                   move this to dedicated file                 ====
+====                   move this to dedicated file                 ====
+====                   move this to dedicated file                 ====
+=======================================================================
+
+
+
+==============================================================
+====             waypoint 23 at 169 s took 36 s - node 
+====                script elapsed time 3:25
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+git version 2.34.1
+node version v20.15.0
+npm version 10.7.0
+yarn version 4.3.1
+==============================
+====      fix these       ====
+==============================
+apache version cant get apache version ...
+express version   cant get express version
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+waypoint 21 at 166 s took 2 s - git
+waypoint 22 at 168 s took 1 s - apache
+waypoint 23 at 169 s took 36 s - node
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                express
+====                script elapsed time 3:25
+==============================================================
+==============================================================
+express 01 is generated
+express 02 is cloned from github
+
+
+
+==============================================================
+====             waypoint 24 at 205 s took 2 s - express 
+====                script elapsed time 3:27
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+git version 2.34.1
+node version v20.15.0
+npm version 10.7.0
+yarn version 4.3.1
+==============================
+====      fix these       ====
+==============================
+apache version cant get apache version ...
+express version   cant get express version
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+waypoint 21 at 166 s took 2 s - git
+waypoint 22 at 168 s took 1 s - apache
+waypoint 23 at 169 s took 36 s - node
+waypoint 24 at 205 s took 2 s - express
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                install and run vue
+====                script elapsed time 3:27
+==============================================================
+==============================================================
+
+
+
+==============================================================
+====             waypoint 25 at 207 s took 0 s - vue 
+====                script elapsed time 3:27
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+git version 2.34.1
+node version v20.15.0
+npm version 10.7.0
+yarn version 4.3.1
+==============================
+====      fix these       ====
+==============================
+apache version cant get apache version ...
+express version   cant get express version
+vue version cant get vue version ...
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+waypoint 21 at 166 s took 2 s - git
+waypoint 22 at 168 s took 1 s - apache
+waypoint 23 at 169 s took 36 s - node
+waypoint 24 at 205 s took 2 s - express
+waypoint 25 at 207 s took 0 s - vue
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                install and run vite
+====                script elapsed time 3:28
+==============================================================
+==============================================================
+
+
+
+==============================================================
+====             waypoint 26 at 207 s took 3 s - vite 
+====                script elapsed time 3:30
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+git version 2.34.1
+node version v20.15.0
+npm version 10.7.0
+yarn version 4.3.1
+==============================
+====      fix these       ====
+==============================
+apache version cant get apache version ...
+express version   cant get express version
+vue version cant get vue version ...
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+waypoint 21 at 166 s took 2 s - git
+waypoint 22 at 168 s took 1 s - apache
+waypoint 23 at 169 s took 36 s - node
+waypoint 24 at 205 s took 2 s - express
+waypoint 25 at 207 s took 0 s - vue
+waypoint 26 at 207 s took 3 s - vite
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                bun
+====                script elapsed time 3:30
+==============================================================
+==============================================================
+
+
+
+==============================================================
+====             waypoint 27 at 210 s took 0 s - bun 
+====                script elapsed time 3:30
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+git version 2.34.1
+node version v20.15.0
+npm version 10.7.0
+yarn version 4.3.1
+==============================
+====      fix these       ====
+==============================
+apache version cant get apache version ...
+express version   cant get express version
+vue version cant get vue version ...
+bun version cant get bun version ...
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+waypoint 21 at 166 s took 2 s - git
+waypoint 22 at 168 s took 1 s - apache
+waypoint 23 at 169 s took 36 s - node
+waypoint 24 at 205 s took 2 s - express
+waypoint 25 at 207 s took 0 s - vue
+waypoint 26 at 207 s took 3 s - vite
+waypoint 27 at 210 s took 0 s - bun
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                install and run react and npx
+====                script elapsed time 3:31
+==============================================================
+==============================================================
+
+
+
+==============================================================
+====             waypoint 28 at 210 s took 3 s - react 
+====                script elapsed time 3:34
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm01 ... image Ubuntu2204 .. os ubuntu type debian
+vm vm01 has ip 172.166.186.18
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+git version 2.34.1
+node version v20.15.0
+npm version 10.7.0
+yarn version 4.3.1
+npx version 10.7.0
+==============================
+====      fix these       ====
+==============================
+apache version cant get apache version ...
+express version   cant get express version
+vue version cant get vue version ...
+bun version cant get bun version ...
+react version cant get react version ...
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+waypoint 21 at 166 s took 2 s - git
+waypoint 22 at 168 s took 1 s - apache
+waypoint 23 at 169 s took 36 s - node
+waypoint 24 at 205 s took 2 s - express
+waypoint 25 at 207 s took 0 s - vue
+waypoint 26 at 207 s took 3 s - vite
+waypoint 27 at 210 s took 0 s - bun
+waypoint 28 at 210 s took 3 s - react
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                apache
+====                script elapsed time 3:34
+==============================================================
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                github actions
+====                script elapsed time 3:34
+==============================================================
+==============================================================
+github actions ... build test and deploy code
+github actions ... can add labels when issue is created, for example
+github actions run on linux windows or macos machines called runners
+github actions ... workflow is triggered ... on event ...
+... workflow contains jobs ... in sequence or in parallel
+... each job runs in own runner vm or container
+... each job has a number of steps ...
+... each step runs a script or an action which is a reusable extension
+event
+... triggers workflow ... defined in yaml ...
+... workflows in .github/workflows folder
+... event ... workflow ...
+... vm runner 1 runs job 1 ... steps ... either actions or scripts ...
+... jobs .. can have dependencies if desired ...
+
+run all my code on a commit, not just when i want to run it?
+
+
+
+github action links
+https://docs.github.com/en/actions/quickstart
+
+
+sample given
+... installs bash testing framework
+https://www.npmjs.com/package/bats
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                set auto shutdown
+====                script elapsed time 3:35
+==============================================================
+==============================================================
+setting auto shutdown at 18:00
+shut down object name
+"shutdown-computevm-vm01"
+"Enabled"
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query vm - windows server
+====                script elapsed time 3:37
+==============================================================
+==============================================================
+windows server vm id is /subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/winServerVm01
+ERROR: (ResourceNotFound) The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+windows server vm id hash ...
+ERROR: (ResourceNotFound) The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+windows server vm size ...
+ERROR: (ResourceNotFound) The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+ERROR: (ResourceNotFound) The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+windows server vm network id is
+ERROR: argument --ids: expected at least one argument
+
+Examples from AI knowledge base:
+az network nic show --ids {ids}
+Get the details of a network interface. (autogenerated)
+
+az network nic show --resource-group MyResourceGroup --name MyNic --query "dnsSettings.internalDomainNameSuffix"
+Get the internal domain name suffix of a NIC.
+
+https://docs.microsoft.com/en-US/cli/azure/network/nic#az_network_nic_show
+Read more about the command in reference docs
+network card name
+ERROR: (ResourceNotFound) The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+windows server vm public ip is
+ERROR: (ResourceNotFound) The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Compute/virtualMachines/winServerVm01' under resource group 'ResourceGroup04' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+windows server vm private ip is
+ERROR: argument --ids: expected at least one argument
+
+Examples from AI knowledge base:
+az network nic show --ids {ids}
+Get the details of a network interface. (autogenerated)
+
+az network nic show --resource-group MyResourceGroup --name MyNic --query "dnsSettings.internalDomainNameSuffix"
+Get the internal domain name suffix of a NIC.
+
+https://docs.microsoft.com/en-US/cli/azure/network/nic#az_network_nic_show
+Read more about the command in reference docs
+network card mac address
+ERROR: argument --ids: expected at least one argument
+
+Examples from AI knowledge base:
+az network nic show --ids {ids}
+Get the details of a network interface. (autogenerated)
+
+az network nic show --resource-group MyResourceGroup --name MyNic --query "dnsSettings.internalDomainNameSuffix"
+Get the internal domain name suffix of a NIC.
+
+https://docs.microsoft.com/en-US/cli/azure/network/nic#az_network_nic_show
+Read more about the command in reference docs
+ERROR: argument --ids: expected at least one argument
+
+Examples from AI knowledge base:
+az network nic show --ids {ids}
+Get the details of a network interface. (autogenerated)
+
+az network nic show --resource-group MyResourceGroup --name MyNic --query "dnsSettings.internalDomainNameSuffix"
+Get the internal domain name suffix of a NIC.
+
+https://docs.microsoft.com/en-US/cli/azure/network/nic#az_network_nic_show
+Read more about the command in reference docs
+ERROR: argument --ids: expected at least one argument
+
+Examples from AI knowledge base:
+az network nic show --ids {ids}
+Get the details of a network interface. (autogenerated)
+
+az network nic show --resource-group MyResourceGroup --name MyNic --query "dnsSettings.internalDomainNameSuffix"
+Get the internal domain name suffix of a NIC.
+
+https://docs.microsoft.com/en-US/cli/azure/network/nic#az_network_nic_show
+Read more about the command in reference docs
+resource group location ... name ... id
+querying network security group ... output sent to output.txt
+az network nsg list ...
+az network nsg show ...
+ERROR: argument --resource-group/-g: expected one argument
+
+Examples from AI knowledge base:
+az network nsg show --resource-group MyResourceGroup --name MyNsg
+Get basic information about an NSG.
+
+az network nsg show --resource-group MyResourceGroup --name MyNsg --query "defaultSecurityRules[]" --output table
+Get the default security rules of an NSG and format the output as a table.
+
+https://docs.microsoft.com/en-US/cli/azure/network/nsg#az_network_nsg_show
+Read more about the command in reference docs
+az network nsg rule list ...
+argument --resource-group/-g: expected one argument
+
+Examples from AI knowledge base:
+az network nsg rule list --resource-group MyResourceGroup --nsg-name MyNsg
+List all rules in a network security group.
+
+az network nsg rule list --include-default --nsg-name MyNsg --resource-group MyResourceGroup
+List all rules in a network security group. (autogenerated)
+
+https://docs.microsoft.com/en-US/cli/azure/network/nsg/rule#az_network_nsg_rule_list
+Read more about the command in reference docs
+==============================================================
+====        create windows client vm - skipped            ====
+====                script elapsed time 3:45
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                list files
+====                script elapsed time 3:45
+==============================================================
+==============================================================
+
+
+
+ls
+myExpressApp2
+package.json
+python
+react02
+react32010
+scripts
+yarn.lock
+
+
+
+ls -lah
+total 492K
+drwxr-x--- 12 azureuser azureuser 4.0K Jul  6 21:10 .
+drwxr-xr-x  3 root      root      4.0K Jul  6 21:07 ..
+-rw-r--r--  1 azureuser azureuser  220 Jan  6  2022 .bash_logout
+-rw-rw-r--  1 azureuser azureuser   41 Jul  6 21:10 .bash_profile
+-rw-r--r--  1 azureuser azureuser 3.7K Jan  6  2022 .bashrc
+drwx------  5 azureuser azureuser 4.0K Jul  6 21:09 .cache
+drwxrwxr-x  4 azureuser azureuser 4.0K Jul  6 21:09 .local
+drwxrwxr-x  4 azureuser azureuser 4.0K Jul  6 21:10 .npm
+-rw-rw-r--  1 azureuser azureuser    0 Jul  6 21:08 .oh-my-zsh
+-rwxr-xr-x  1 azureuser azureuser 416K Jul  6 21:09 .pnp.cjs
+-rw-r--r--  1 azureuser azureuser  807 Jan  6  2022 .profile
+drwx------  2 azureuser azureuser 4.0K Jul  6 21:07 .ssh
+-rw-r--r--  1 azureuser azureuser    0 Jul  6 21:07 .sudo_as_admin_successful
+drwxrwxr-x  3 azureuser azureuser 4.0K Jul  6 21:09 .yarn
+-rw-rw-r--  1 azureuser azureuser 3.8K Jul  6 21:10 .zshrc
+drwxr-xr-x  6 azureuser azureuser 4.0K Jul  6 21:10 myExpressApp2
+-rw-rw-r--  1 azureuser azureuser   37 Jul  6 21:09 package.json
+drwxrwxr-x  2 azureuser azureuser 4.0K Jul  6 21:09 python
+drwxrwxr-x  2 azureuser azureuser 4.0K Jul  6 21:10 react02
+drwxrwxr-x  2 azureuser azureuser 4.0K Jul  6 21:10 react32010
+drwxrwxr-x 13 azureuser azureuser 4.0K Jul  6 21:10 scripts
+-rw-rw-r--  1 azureuser azureuser  326 Jul  6 21:09 yarn.lock
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                confirm vm details
+====                script elapsed time 3:47
+==============================================================
+==============================================================
+NetworkWatcherRG
+ResourceGroup04
+
+sign in with ...
+resource group ResourceGroup04
+vm vm01
+user azureuser
+ip 172.166.186.18
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                list vms and storages
+====                script elapsed time 3:49
+==============================================================
+==============================================================
+
+
+
+vm name
+vm01
+
+
+
+resource group name
+ResourceGroup04
+
+
+
+az vm list
+Name    ResourceGroup    Location    Zones
+------  ---------------  ----------  -------
+vm01    RESOURCEGROUP04  uksouth
+
+
+az vm list-usage
+Name                                      CurrentValue    Limit
+----------------------------------------  --------------  -------
+Availability Sets                         0               2500
+Total Regional vCPUs                      0               10
+Virtual Machines                          0               25000
+Virtual Machine Scale Sets                0               2500
+Dedicated vCPUs                           0               3000
+Cloud Services                            0               2500
+Total Regional Low-priority vCPUs         0               3
+Basic A Family vCPUs                      0               10
+Standard A0-A7 Family vCPUs               0               10
+Standard A8-A11 Family vCPUs              0               10
+Standard D Family vCPUs                   0               10
+Standard Dv2 Family vCPUs                 0               10
+Standard DS Family vCPUs                  0               10
+Standard DSv2 Family vCPUs                0               10
+Standard G Family vCPUs                   0               10
+Standard GS Family vCPUs                  0               10
+Standard F Family vCPUs                   0               10
+Standard FS Family vCPUs                  0               10
+Standard NV Family vCPUs                  0               12
+Standard NC Family vCPUs                  0               12
+Standard H Family vCPUs                   0               8
+Standard Av2 Family vCPUs                 0               10
+Standard LS Family vCPUs                  0               10
+Standard Dv2 Promo Family vCPUs           0               10
+Standard DSv2 Promo Family vCPUs          0               10
+Standard MS Family vCPUs                  0               0
+Standard Dv3 Family vCPUs                 0               10
+Standard DSv3 Family vCPUs                0               10
+Standard Ev3 Family vCPUs                 0               10
+Standard ESv3 Family vCPUs                0               10
+Standard Dv4 Family vCPUs                 0               10
+Standard DDv4 Family vCPUs                0               10
+Standard DSv4 Family vCPUs                0               10
+Standard DDSv4 Family vCPUs               0               10
+Standard Ev4 Family vCPUs                 0               10
+Standard EDv4 Family vCPUs                0               0
+Standard ESv4 Family vCPUs                0               0
+Standard EDSv4 Family vCPUs               0               10
+Standard BS Family vCPUs                  0               10
+Standard FSv2 Family vCPUs                0               10
+Standard NDS Family vCPUs                 0               0
+Standard NCSv2 Family vCPUs               0               0
+Standard NCSv3 Family vCPUs               0               0
+Standard LSv2 Family vCPUs                0               10
+Standard PBS Family vCPUs                 0               6
+Standard EIv3 Family vCPUs                0               10
+Standard EISv3 Family vCPUs               0               10
+Standard DCS Family vCPUs                 0               8
+Standard NVSv2 Family vCPUs               0               0
+Standard MSv2 Family vCPUs                0               0
+Standard HBS Family vCPUs                 0               0
+Standard HCS Family vCPUs                 0               0
+Standard NVSv3 Family vCPUs               0               0
+Standard NV Promo Family vCPUs            0               12
+Standard NC Promo Family vCPUs            0               12
+Standard H Promo Family vCPUs             0               8
+Standard DAv4 Family vCPUs                0               0
+Standard DASv4 Family vCPUs               0               10
+Standard EAv4 Family vCPUs                0               0
+Standard EASv4 Family vCPUs               0               10
+Standard NDSv3 Family vCPUs               0               0
+Standard DCSv2 Family vCPUs               0               8
+Standard NVSv4 Family vCPUs               0               8
+Standard NDSv2 Family vCPUs               0               0
+Standard NPS Family vCPUs                 0               0
+Standard HBrsv2 Family vCPUs              0               0
+Standard NCASv3_T4 Family vCPUs           0               0
+Standard NDASv4_A100 Family vCPUs         0               0
+Standard EIDSv4 Family vCPUs              0               0
+Standard XEISv4 Family vCPUs              0               0
+Standard EIASv4 Family vCPUs              0               0
+Standard HBv3 Family vCPUs                0               0
+Standard MDSMediumMemoryv2 Family vCPUs   0               0
+Standard MIDSMediumMemoryv2 Family vCPUs  0               0
+Standard MSMediumMemoryv2 Family vCPUs    0               0
+Standard MISMediumMemoryv2 Family vCPUs   0               0
+Standard DASv5 Family vCPUs               0               0
+Standard EASv5 Family vCPUs               0               0
+Standard Ev5 Family vCPUs                 0               0
+Standard EIv5 Family vCPUs                0               0
+Standard EDv5 Family vCPUs                0               0
+Standard EIDv5 Family vCPUs               0               0
+Standard ESv5 Family vCPUs                0               0
+Standard EISv5 Family vCPUs               0               0
+Standard EDSv5 Family vCPUs               0               0
+Standard EIDSv5 Family vCPUs              0               0
+Standard Dv5 Family vCPUs                 0               0
+Standard DDv5 Family vCPUs                0               0
+Standard DSv5 Family vCPUs                0               0
+Standard DDSv5 Family vCPUs               0               0
+Standard DLSv5 Family vCPUs               0               0
+Standard DLDSv5 Family vCPUs              0               0
+Standard LSv3 Family vCPUs                0               0
+Standard LASv3 Family vCPUs               0               0
+Standard DCSv3 Family vCPUs               0               0
+Standard DDCSv3 Family vCPUs              0               0
+Standard DADSv5 Family vCPUs              0               0
+Standard EADSv5 Family vCPUs              0               0
+Standard FXMDVS Family vCPUs              0               0
+Standard DPLDSv5 Family vCPUs             0               0
+Standard DPLSv5 Family vCPUs              0               0
+Standard DPDSv5 Family vCPUs              0               0
+Standard DPSv5 Family vCPUs               0               0
+Standard EPDSv5 Family vCPUs              0               0
+Standard EPSv5 Family vCPUs               0               0
+Standard NDAMSv4_A100Family vCPUs         0               0
+Standard DCASv5 Family vCPUs              0               0
+Standard ECASv5 Family vCPUs              0               0
+Standard ECIASv5 Family vCPUs             0               0
+Standard DCADSv5 Family vCPUs             0               0
+Standard ECADSv5 Family vCPUs             0               0
+Standard ECIADSv5 Family vCPUs            0               0
+Standard NVADSA10v5 Family vCPUs          0               0
+Standard NCADS_A100_v4 Family vCPUs       0               0
+Standard EBDSv5 Family vCPUs              0               10
+Standard EBSv5 Family vCPUs               0               10
+Standard EIASv5 Family vCPUs              0               0
+Standard EIADSv5 Family vCPUs             0               0
+Standard NCADSA10v4 Family vCPUs          0               0
+standard DCACCV5 Family vCPUs             0               0
+standard DCADCCV5 Family vCPUs            0               0
+standard ECACCV5 Family vCPUs             0               0
+standard ECADCCV5 Family vCPUs            0               0
+Standard EIBDSv5 Family vCPUs             0               0
+Standard EIBSv5 Family vCPUs              0               0
+Standard DCEV5 Family vCPUs               0               0
+Standard DCEDV5 Family vCPUs              0               0
+Standard ECEV5 Family vCPUs               0               0
+Standard ECEDV5 Family vCPUs              0               0
+StandardMS Medium Memoryv3 Family vCPUs   0               0
+StandardMDS Medium Memoryv3 Family vCPUs  0               0
+Standard HBv4 Family vCPUs                0               0
+Standard HX Family vCPUs                  0               0
+Standard Bpsv2 Family vCPUs               0               0
+Standard Bsv2 Family vCPUs                0               0
+Standard Basv2 Family vCPUs               0               0
+Standard NDSH100v5 Family vCPUs           0               0
+Standard ECIEV5 Family vCPUs              0               0
+Standard ECIEDV5 Family vCPUs             0               0
+Standard NCadsH100v5 Family vCPUs         0               0
+StandardNDI Sv 5MI300X Family vCPUs       0               0
+Standard Storage Managed Disks            0               50000
+Premium Storage Managed Disks             0               50000
+StandardSSDStorageDisks                   0               50000
+StandardSSDZRSStorageDisks                0               50000
+PremiumZRSStorageDisks                    0               50000
+UltraSSDStorageDisks                      0               1000
+PremiumV2StorageDisks                     0               1000
+StandardStorageSnapshots                  0               75000
+StandardSSDStorageSnapshots               0               75000
+PremiumStorageSnapshots                   0               75000
+ZrsStorageSnapshots                       0               75000
+UltraSSDTotalSizeInGB                     0               102400
+PremiumV2TotalDiskSizeInGB                0               102400
+DiskEncryptionSets                        0               5000
+DiskAccesses                              0               1000
+AttachInProgressUltraSSDDisks             0               40
+AttachInProgressPremiumV2SSDDisks         0               40
+PremiumV2StorageSnapshots                 0               1000
+PremiumV2TotalSnapshotSizeInGB            0               102400
+Gallery                                   0               100
+Gallery Image                             0               1000
+Gallery Image Version                     0               10000
+Gallery Application Version               0               300
+
+
+
+az disk list
+Name                                         ResourceGroup    Location    Zones    Sku          OsType    SizeGb    ProvisioningState
+-------------------------------------------  ---------------  ----------  -------  -----------  --------  --------  -------------------
+vm01_disk1_8fd8268bca2a487bb03f9daea4a279bc  ResourceGroup04  uksouth              Premium_LRS  Linux     30        Succeeded
+
+
+
+az vm show
+Name    ResourceGroup    Location    Zones
+------  ---------------  ----------  -------
+vm01    ResourceGroup04  uksouth
+
+
+
+az vm show storage profile
+DiskControllerType
+--------------------
+SCSI
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query first machine
+====                script elapsed time 3:52
+==============================================================
+==============================================================
+resource group name is ResourceGroup04
+first machine id is /subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/RESOURCEGROUP04/providers/Microsoft.Compute/virtualMachines/vm01
+first machine ip is 172.166.186.18
+vm private ip is 10.0.0.4
+vm network id is /subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup04/providers/Microsoft.Network/networkInterfaces/vm01VMNic
+network card mac address 00-0D-3A-0B-24-BC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                create vm vm02 using image Debian11
+====                script elapsed time 3:56
+==============================================================
+==============================================================
+{
+  "fqdns": "",
+  "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup04/providers/Microsoft.Compute/virtualMachines/vm02",
+  "location": "uksouth",
+  "macAddress": "60-45-BD-D1-18-7F",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.0.5",
+  "publicIpAddress": "172.167.204.100",
+  "resourceGroup": "ResourceGroup04",
+  "zones": ""
+}
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query vm vm02
+====                script elapsed time 4:33
+==============================================================
+==============================================================
+vm id is /subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/vm02
+machine id 8397a62d-bdc4-4713-bb70-caa099ab300a
+user name azureuser
+computer name vm02
+vm id hash ... 8397a62d-bdc4-4713-bb70-caa099ab300a
+vm size ... Standard_DS1_v2
+vm network id is /subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup04/providers/Microsoft.Network/networkInterfaces/vm02VMNic
+network card name vm02VMNic
+vm public ip is 172.167.204.100
+vm private ip is 10.0.0.5
+network card mac address 60-45-BD-D1-18-7F
+resource group name ResourceGroup04
+resource group location uksouth
+resource group id de2a6df8-a352-4805-83c4-406b73c2d114
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                test web servers from localhost ... ip is 172.166.186.18
+====                script elapsed time 4:44
+==============================================================
+==============================================================
+ip is 10.0.0.4
+
+
+
+testing servers starting at time 21:11:32
+
+
+
+
+
+
+
+
+
+curl localhost:80
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 127.0.0.1 port 80 after 2 ms: Connection refused
+
+
+
+
+
+
+curl localhost:3000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html><html><head><title>Express</title><link rel="stylesheet" href="/stylesheets/style.css"></head><body><h1>Express</h1><p>Welcome to E100   170  100   170    0     0    436      0 --:--:-- --:--:-- --:--:--   438
+
+
+
+
+
+
+curl localhost:3009
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 127.0.0.1 port 3009 after 2 ms: Connection refused
+
+
+
+
+
+
+curl localhost:3010
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 127.0.0.1 port 3010 after 4 ms: Connection refused
+
+
+
+
+
+
+curl localhost:5173
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 127.0.0.1 port 5173 after 11 ms: Connection refused
+
+
+
+
+
+
+curl localhost:57329
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0hello world from a bun server on p100    53  100    53    0     0    321      0 --:--:-- --:--:-- --:--:--   321
+
+
+
+
+
+
+curl localhost:58262
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!doctype html>
+<html lang="en">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+100   621  100   621    0     0  20608      0 --:--:-- --:--:-- --:--:-- 22178
+
+
+
+
+
+
+curl localhost:54892
+  % Total    % R<!doctype html>
+<html lang="en">
+  <head>
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+eceived % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   413  100   413    0     0  11454      0 --:--:-- --:--:-- --:--:-- 12147
+
+
+
+
+
+
+curl localhost:63892
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Curr<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+ent
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   388  100   388    0     0   6403      0 --:--:-- --:--:-- --:--:--  6928
+
+
+
+
+
+
+curl localhost:51547
+  % Total    % Received % Xferd <!DOCTYPE html>
+<html>
+  <head>
+    <title>Express</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Express</h1>
+    <p>Welcome to Express running on port 51547 - happy days from phil</p>
+  </body>
+</html>
+ Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   252  100   252    0     0   8868      0 --:--:-- --:--:-- --:--:--  9692
+
+
+
+
+
+
+curl localhost:51279
+  % Total    % Received % Xferd  Average Speed   Time    Time     Timeresponse from node js web server ... running at http://127.0.0.1:51279/
+  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    72  100    72    0     0   7529      0 --:--:-- --:--:-- --:--:-- 10285
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                test web servers from machine on same local network ... ip is 172.167.204.100
+====                script elapsed time 5:19
+==============================================================
+==============================================================
+Warning: Permanently added '172.167.204.100' (ED25519) to the list of known hosts.
+ip is 10.0.0.5
+
+
+
+testing servers starting at time 21:12:07
+
+
+
+
+
+
+
+
+
+port 80
+10.0.0.4:80
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 10.0.0.4 port 80: Connection refused
+
+
+
+
+
+
+port 3000
+10.0.0.4:3000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html><html><head><title>Express</title><link rel="stylesheet" href="/stylesheets/style.css"></head><body><h1>Express</h1><p>Welcome to E100   170  100   170    0     0   4250      0 --:--:-- --:--:-- --:--:--  4250
+
+
+
+
+
+
+port 3009
+10.0.0.4:3009
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 10.0.0.4 port 3009: Connection refused
+
+
+
+
+
+
+port 3010
+10.0.0.4:3010
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 10.0.0.4 port 3010: Connection refused
+
+
+
+
+
+
+port 5173
+10.0.0.4:5173
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 10.0.0.4 port 5173: Connection refused
+
+
+
+
+
+
+port 57329
+10.0.0.4:57329
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+ hello world from a bun server on port 57329 from phil                                Dload  Upload   Total   Spent    Left  Speed
+100    53  100    53    0     0  13250      0 --:--:-- --:--:-- --:--:-- 13250
+
+
+
+
+
+
+port 58262
+10.0.0.4:58262
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time <!doctype html>
+<html lang="en">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+ Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   621  100   621    0     0  88714      0 --:--:-- --:--:-- --:--:-- 88714
+
+
+
+
+
+
+port 54892
+10.0.0.4:54892
+  % Total    % Receiv<!doctype html>
+<html lang="en">
+  <head>
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+ed % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   413  100   413    0     0  59000      0 --:--:-- --:--:-- --:--:-- 59000
+
+
+
+
+
+
+port 63892
+10.0.0.4:63892
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+100   388  100   388    0     0  29846      0 --:--:-- --:--:-- --:--:-- 29846
+
+
+
+
+
+
+port 51547
+10.0.0.4:51547
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Curr<!DOCTYPE html>
+<html>
+  <head>
+    <title>Express</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Express</h1>
+    <p>Welcome to Express running on port 51547 - happy days from phil</p>
+  </body>
+</html>
+ent
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   252  100   252    0     0  18000      0 --:--:-- --:--:-- --:--:-- 18000
+
+
+
+
+
+
+port 51279
+10.0.0.4:51279
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 10.0.0.4 port 51279: Connection refused
+
+
+
+==============================================================
+====             waypoint 29 at 213 s took 140 s - test 
+====                script elapsed time 5:53
+==============================================================
+aws cli installed of version aws-cli/2.15.21 
+powershell version PowerShell 7.4.2 installed
+environment cleaned
+resource group ResourceGroup04 created
+vm vm02 ... image Debian11 .. os ubuntu type debian
+vm vm02 has ip 172.167.204.100
+network security group queried
+remote shell version GNU bash, version 5.1.16(1)-release (x86_64-pc-linux-gnu)
+linux version VERSION="22.04.4 LTS (Jammy Jellyfish)"
+linux os details  Static hostname: vm01        Icon name: computer-vm          Chassis: vm       Machine ID: dd4f394af61a4fc281709d0157b9d792          Boot ID: 64017806261d4aa4b35f08d0115b040b   Virtualization: microsoft Operating System: Ubuntu 22.04.4 LTS           Kernel: Linux 6.5.0-1023-azure     Architecture: x86-64  Hardware Vendor: Microsoft Corporation   Hardware Model: Virtual Machine
+linux codename VERSION_CODENAME=jammy
+linux id_like ID_LIKE=debian
+python platform version Linux-6.5.0-1023-azure-x86_64-with-glibc2.35
+zsh version zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+fish, version 3.7.1
+git version 2.34.1
+node version v20.15.0
+npm version 10.7.0
+yarn version 4.3.1
+npx version 10.7.0
+==============================
+====      fix these       ====
+==============================
+apache version cant get apache version ...
+express version   cant get express version
+vue version cant get vue version ...
+bun version cant get bun version ...
+react version cant get react version ...
+waypoint 0 at 0 s - script start
+waypoint 1 at 0 s took 7 s - vm image chosen Ubuntu2204 .. os ubuntu of type debian
+waypoint 2 at 7 s took 0 s - credentials set - user azureuser .. pass ..
+waypoint 3 at 7 s took 0 s - install libraries
+waypoint 4 at 7 s took 0 s - log in to cloud
+waypoint 5 at 7 s took 1 s - query cloud resources
+waypoint 6 at 8 s took 3 s - clean environment
+waypoint 7 at 11 s took 0 s - create resource group
+waypoint 8 at 11 s took 2 s - list resource groups
+waypoint 9 at 13 s took 0 s - query vm templates
+waypoint 10 at 13 s took 39 s - vm created
+waypoint 11 at 52 s took 1 s - list vms
+waypoint 12 at 53 s took 11 s - query vm using cloud provider
+waypoint 13 at 64 s took 0 s - query network security group performed
+waypoint 14 at 64 s took 34 s - query linux
+waypoint 15 at 98 s took 2 s - dnf install
+waypoint 16 at 100 s took 8 s - os updated
+waypoint 17 at 108 s took 10 s - zsh
+waypoint 18 at 118 s took 1 s - install zsh oh-my-zsh
+waypoint 19 at 119 s took 16 s - fish
+waypoint 20 at 135 s took 31 s - python
+waypoint 21 at 166 s took 2 s - git
+waypoint 22 at 168 s took 1 s - apache
+waypoint 23 at 169 s took 36 s - node
+waypoint 24 at 205 s took 2 s - express
+waypoint 25 at 207 s took 0 s - vue
+waypoint 26 at 207 s took 3 s - vite
+waypoint 27 at 210 s took 0 s - bun
+waypoint 28 at 210 s took 3 s - react
+waypoint 29 at 213 s took 140 s - test
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                create vm vmRedhat using image RHELRaw8LVMGen2 of type redhat
+====                script elapsed time 5:54
+==============================================================
+==============================================================
+{
+  "fqdns": "",
+  "id": "/subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup04/providers/Microsoft.Compute/virtualMachines/vmRedhat",
+  "location": "uksouth",
+  "macAddress": "60-45-BD-11-2A-47",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.0.6",
+  "publicIpAddress": "172.167.120.131",
+  "resourceGroup": "ResourceGroup04",
+  "zones": ""
+}
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                query vm vmRedhat
+====                script elapsed time 6:59
+==============================================================
+==============================================================
+vm id is /subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/vmRedhat
+machine id dedb7350-036d-4d78-9933-dacdabdd0419
+user name azureuser
+computer name vmRedhat
+vm id hash ... dedb7350-036d-4d78-9933-dacdabdd0419
+vm size ... Standard_DS1_v2
+vm network id is /subscriptions/29a6dc31-f2c3-4caa-a935-2a7158618df5/resourceGroups/ResourceGroup04/providers/Microsoft.Network/networkInterfaces/vmRedhatVMNic
+network card name vmRedhatVMNic
+vm public ip is 172.167.120.131
+vm private ip is 10.0.0.6
+network card mac address 60-45-BD-11-2A-47
+resource group name ResourceGroup04
+resource group location uksouth
+resource group id 13ab5718-a13e-4f0b-80b0-6b8aff32a83d
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+====                create vm vmCentos using image CentOS85Gen2 of type centos
+====                script elapsed time 7:09
+==============================================================
+==============================================================
+ | Running ..
