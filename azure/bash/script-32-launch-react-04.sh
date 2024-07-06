@@ -1,5 +1,5 @@
 echo "=============================================================="
-echo "====               launch react 2                         ===="
+echo "====            launch react using bun                    ===="
 echo "=============================================================="
 IFS=$'\n' resource_group_names=($(az group list --query [].name -o tsv))
 resource_group_valid_name=invalid
