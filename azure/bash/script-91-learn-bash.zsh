@@ -25,6 +25,20 @@ echo "==================================================================="
 fruits_array=("apple" "banana" "cherry")
 echo "fruits array has length ${#fruits_array[@]}"
 echo "==================================================================="
+echo "====                    array printing                         ===="
+echo "==================================================================="
+fruits_array=("apple" "banana" "cherry")
+printf '%s\n' "${fruits_array[@]}"
+echo "==================================================================="
+echo "====                    array for each                         ===="
+echo "==================================================================="
+fruits_array=("apple" "banana" "cherry")
+for fruit in "${!fruits_array[@]}"
+do
+    fruit_name=${resource_group_names[$fruit]}
+    echo fruit is $fruit also known as $fruit_name
+done
+echo "==================================================================="
 echo "====                    df disk free                           ===="
 echo "==================================================================="
 echo df
@@ -101,6 +115,15 @@ echo "==================================================================="
 for w in word1 word2 word3
 do
   echo "for each loop prints every word ... $w"
+done
+echo "==================================================================="
+echo "====                 for each over array                       ===="
+echo "==================================================================="
+fruits_array=("apple" "banana" "cherry")
+for fruit in "${!fruits_array[@]}"
+do
+    fruit_name=${resource_group_names[$fruit]}
+    echo fruit is $fruit also known as $fruit_name
 done
 echo "==================================================================="
 echo "====                   json with bash                          ===="
