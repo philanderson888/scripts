@@ -163,8 +163,8 @@ display_progress () {
         echo resource group $resource_group_name already created
     fi
     if [ "$vm_created" = true ] ; then
-        echo vm $vm_name ... image $vm_image .. os $vm_os type $vm_os_type
-        echo vm $vm_name has ip $public_ip_address
+        echo vm $vm_01_name ... image $vm_image .. os $vm_os type $vm_os_type
+        echo vm $vm_01_name has ip $public_ip_address
     fi
     if [ "$query_network_security_group" = true ] ; then
         echo network security group queried
@@ -173,9 +173,9 @@ display_progress () {
         echo remote shell version $remote_bash_version
     fi
     if [ "$dnf_installed" = true ] ; then
-        echo dnf installed on vm $vm_name
+        echo dnf installed on vm $vm_01_name
     elif [ "$dnf_installed" = false ] ; then
-        echo dnf not installed on vm $vm_name as os is $vm_os
+        echo dnf not installed on vm $vm_01_name as os is $vm_os
     fi
     if [ "$os_updated" = true ] ; then
         echo os has been updated and upgraded
@@ -342,7 +342,8 @@ image=MicrosoftWindowsDesktop:office-365:20h2-evd-o365pp-g2:19042.2846.230411
 # linux
 vm_os_type_debian=debian
 vm_os_type_fedora=fedora
-vm_name=vm01
+vm_01_name=vm01
+vm_02_name=vm02
 
 # ubuntu
 vm_os_ubuntu=ubuntu
@@ -362,7 +363,7 @@ windows_client_vm_name=winClientVm01
 printHeading "choose vm image"
 install_os_frequency=10
 install_os_counter=$(($run_counter % $install_os_frequency))
-if [ $install_os_counter -lt -1 ] ; then
+if [ $install_os_counter -lt 9 ] ; then
     vm_os=$vm_os_ubuntu
     vm_os_type=$vm_os_type_debian
     vm_image=$vm_image_ubuntu
@@ -443,6 +444,10 @@ display_progress "set vm type to be $os"
 printHeading "create vm"
 source ./script-10-create-vm.sh
 display_progress "vm created"
+
+printHeading "list vms"
+az vm list -o table
+display_progress "list vms"
 
 printHeading "query vm"
 source ./script-11-query-vm.sh
@@ -581,7 +586,7 @@ if [ "$install_services" = true ] ; then
     create_vm_windows_client=false
     install_windows_frequency=8
     install_windows_counter=$(($run_counter % $install_windows_frequency))
-    if [ $install_windows_counter -eq 0 ] ; then
+    if [ $install_windows_counter -lt -1 ] ; then
         create_vm_windows_server=true
         create_vm_windows_client=true
     fi
@@ -902,12 +907,6 @@ fi
 
 
 
-if [ "$test_web_servers_via_curl" = true ] ; then
-    printHeading "test web servers"
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-60-test-servers-locally.zsh
-    display_progress test web servers
-fi
-
 
 
 
@@ -1132,28 +1131,6 @@ display_progress install node and npm and express
 
 
 
-list_vms=true
-if [ "$list_vms" = true ] ; then
-    printHeading "list vms and storages"
-    echo list vms output to output-azure-vms.txt
-    az vm list >> output-azure-vms.txt
-    echo vm info >> output-azure-vms.txt
-    az vm show --resource-group $resource_group_name --name $vm_name >> output-azure-vms.txt
-    echo vm resource usage to >> output-azure-vms.txt
-    az vm list-usage --location eastus >> output-azure-vms.txt
-    echo list disks sent to >> output-azure-vms.txt
-    echo list disks >> output-azure-vms.txt
-    echo list disks --resource-group $resource_group_name >> output-azure-vms.txt
-    echo storage profile sent to >> output-azure-vms.txt
-    echo 
-    echo storage profile >> output-azure-vms.txt
-    az vm show --resource-group $resource_group_name --name $vm_name --query "storageProfile" >> output-azure-vms.txt
-fi
-
-
-
-
-
 
 
 
@@ -1236,7 +1213,7 @@ if [ "$set_auto_shutdown" = true ] ; then
     shutdown_by_name=false
     if [ "$shutdown_by_name" = true ] ; then
         az vm auto-shutdown -g $resource_group_name -n $windows_server_vm_name --time 1730 --email $email_address --webhook $webhook_address
-        az vm auto-shutdown -g $resource_group_name -n $vm_name         --time 1730 --email $email_address --webhook $webhook_address
+        az vm auto-shutdown -g $resource_group_name -n $vm_01_name         --time 1730 --email $email_address --webhook $webhook_address
     fi
 fi
 
@@ -1414,15 +1391,194 @@ ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-95-list-f
 
 
 
-sleep 20
+
+
+
+
+
+
+
+
+
+
+
+
+
+printHeading "confirm vm variable details"
+
+echo "=============================================================="
+echo "====                 get resource group                   ===="
+echo "=============================================================="
+IFS=$'\n' resource_group_names=($(az group list --query [].name -o tsv))
+resource_group_valid_name=invalid
+for resource_group_index in "${!resource_group_names[@]}"
+do
+    resource_group_name=${resource_group_names[$resource_group_index]}
+    echo $resource_group_name
+    if [[ $resource_group_name = 'ResourceGroup'* ]]; then
+        echo found a resource group ... with name ... $resource_group_name
+        resource_group_valid_name=$resource_group_name
+    fi
+done
+resource_group_name=$resource_group_valid_name
+ssh_key=~/.ssh/azureCliUbuntuLogin.pem
+admin_username=azureuser
+vm_name=$vm_01_name
+public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
+echo sign in with ...
+echo resource group $resource_group_name
+echo vm $vm_name
+echo user $admin_username
+echo ip $public_ip_address
+
+
+
+
+
+list_vms=true
+if [ "$list_vms" = true ] ; then
+    printHeading "list vms and storages"
+    echo
+    echo
+    echo
+    echo vm name 
+    echo $vm_name
+    echo
+    echo
+    echo
+    echo resource group name
+    echo $resource_group_name
+    echo
+    echo
+    echo
+    echo az vm list
+    az vm list -o table
+    echo
+    echo
+    echo
+    echo az vm info 
+    az vm info --resource-group $resource_group_name --name $vm_name -o table
+    echo
+    echo
+    echo
+    echo list 
+    az vm list-usage --location eastus -o table
+    echo
+    echo
+    echo
+    echo list disks
+    az list disks --resource-group $resource_group_name -o table
+    echo
+    echo
+    echo
+    echo az vm show
+    az vm show --resource-group $resource_group_name --name $vm_name -o table
+    echo
+    echo
+    echo
+    echo az vm show storage profile
+    az vm show --resource-group $resource_group_name --name $vm_name --query "storageProfile" -o table
+fi
+
+
+
+
+printHeading "query first machine"
+echo resource group name is $resource_group_name
+first_machine_id=$(az vm list --query "[].id" -o tsv)
+echo first machine id is $first_machine_id
+first_machine_ip=$(az vm show -d --resource-group $resource_group_name --name $vm_01_name --query publicIps -o tsv)
+echo first machine ip is $first_machine_ip
+echo
+echo
+echo
+building_second_machine=true
+if [ "$building_second_machine" = true ] ; then  
+    vm_name=$vm_02_name
+    vm_image=$vm_image_debian
+    printHeading "        create vm $vm_name using image $vm_image"
+    az vm create --name $vm_name --resource-group $resource_group_name  --image $vm_image --admin-username $admin_username --admin-password $admin_password --ssh-key-value $ssh_key_public
+fi
+
+
+
+printHeading "query vm $vm_name"
+
+subscription=$(az account show --query "id" -o tsv)
+vm_id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$vm_name"
+echo vm id is $vm_id
+machine_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query vmId -o tsv)
+echo machine id $machine_id
+user_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.adminUsername -o tsv)
+echo user name $user_name
+computer_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.computerName -o tsv)
+echo computer name $computer_name
+vm_id_hash=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "vmId" -o tsv)    
+echo vm id hash ... $vm_id_hash
+vm_size=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "hardwareProfile.vmSize" -o tsv)
+echo vm size ... $vm_size
+vm_fqdn=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "fqdns" -o tsv)
+if [ ! -z "$vm_fqdn" ] 
+then
+    echo vm fqdn is $vm_fqdn
+fi
+network_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query 'networkProfile.networkInterfaces[].id' -o tsv)
+echo vm network id is $network_id
+network_card_name=$(az network nic show --ids $network_id --query "name" -o tsv)
+echo network card name $network_card_name
+public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
+echo vm public ip is $public_ip_address
+vm_private_ip=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query privateIps -o tsv)        
+echo vm private ip is $vm_private_ip
+network_card_mac_address=$(az network nic show --ids $network_id --query macAddress -o tsv)
+echo network card mac address $network_card_mac_address
+network_card_location=$(az network nic show --ids $network_id --query location -o tsv)
+resource_group_name=$(az network nic show --ids $network_id --query resourceGroup -o tsv)
+resource_group_id=$(az network nic show --ids $network_id --query resourceGuid -o tsv)
+echo resource group name $resource_group_name
+echo resource group location $network_card_location
+echo resource group id $resource_group_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if [ "$test_web_servers_via_curl" = true ] ; then
+    printHeading "test web servers"
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-60-test-servers-locally.sh
+    display_progress test web servers
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 echo
 echo
 echo
 delay_before_erase_all_servers=1
-#delay_before_erase_all_servers=120
-#delay_before_erase_all_servers=720
 delay_in_minutes_before_erase_all_servers=$(( $delay_before_erase_all_servers / 60 ))
 echo ... waiting $delay_in_minutes_before_erase_all_servers minutes then deleting all servers and all resource groups so we start from scratch every time ...
 sleep $delay_before_erase_all_servers
@@ -1444,7 +1600,7 @@ if [ "$deallocate_vms" = true ] ; then
     done
     resource_group_name=$resource_group_valid_name
     echo resource group name $resource_group_name
-    az vm deallocate --name $vm_name --resource-group $resource_group_name 
+    az vm deallocate --name $vm_01_name --resource-group $resource_group_name 
     #az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
 fi
 
@@ -1455,8 +1611,8 @@ if [ "$delete_vms" = true ] ; then
     az vm delete --ids $machine_id --yes
     #echo delete windows server vm by vm name $windows_server_vm_name
     #az vm delete --resource-group $resource_group_name --name $windows_server_vm_name --yes
-    #echo delete ubuntu vm by vm name $vm_name
-    #az vm delete --resource-group $resource_group_name --name $vm_name --yes
+    #echo delete ubuntu vm by vm name $vm_01_name
+    #az vm delete --resource-group $resource_group_name --name $vm_01_name --yes
     #az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
 fi
 
