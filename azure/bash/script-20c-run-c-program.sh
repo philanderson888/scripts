@@ -1,10 +1,5 @@
-echo "================================================================="
-echo "====                   create folder                        ====="
-echo "================================================================="
+echo create folder 'c' and move script-20a-hello-world.c into folder 'c'
 mkdir c
-echo "================================================================="
-echo "====                     move files                         ====="
-echo "================================================================="
 mv ./script-20a-hello-world.c c
 cd c
 echo list files in c folder
@@ -19,3 +14,5 @@ echo "================================================================="
 chmod 777 ./script-20a-hello-world-executable.c
 ./script-20a-hello-world-executable.c
 echo
+echo
+echo 

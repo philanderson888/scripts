@@ -119,6 +119,8 @@ if [ "$install_apache" = true ] && [ "$os_type" == "$os_type_fedora" ]; then
     # cd /etc/pki/tls/certs
     # echo not sure if this command works or not
     # sudo ./make-dummy-cert localhost.crt
+    echo configure apache on different port
+    echo https://hostadvice.com/how-to/web-hosting/ubuntu/how-to-configure-nginx-and-apache-together-in-ubuntu
     echo "=============================================================="
     echo "====               install apache complete                ===="
     echo "=============================================================="
