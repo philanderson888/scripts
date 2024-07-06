@@ -1,6 +1,3 @@
-echo "====================================================================="
-echo "====             list resource groups 006-002                    ===="
-echo "====================================================================="
 az resource list --query "[].{resource:resourceGroup,name:name}" --output table
 echo "====================================================================="
 echo "====                   get resource group                        ===="
@@ -18,7 +15,11 @@ do
 done
 resource_group_name=$resource_group_valid_name
 echo resource group $resource_group_name will be used to build servers in 
-az resource list -g $resource_group_name -o table >> output-resource-groups.txt
+echo
+echo
+echo
+echo az resource list
+az resource list -g $resource_group_name -o table 
 echo
 echo
 echo

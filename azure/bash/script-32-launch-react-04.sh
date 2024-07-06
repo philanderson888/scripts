@@ -13,6 +13,6 @@ done
 resource_group_name=$resource_group_valid_name
 ssh_key=~/.ssh/azureCliUbuntuLogin.pem
 admin_username=azureuser
-vm_01_name=vm01
-public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_01_name --query publicIps -o tsv)
+vm_name=vm01
+public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
 ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-32-run-react-04.sh

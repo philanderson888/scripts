@@ -163,8 +163,8 @@ display_progress () {
         echo resource group $resource_group_name already created
     fi
     if [ "$vm_created" = true ] ; then
-        echo vm $vm_01_name ... image $vm_image .. os $vm_os type $vm_os_type
-        echo vm $vm_01_name has ip $public_ip_address
+        echo vm $vm_name ... image $vm_image .. os $vm_os type $vm_os_type
+        echo vm $vm_name has ip $public_ip_address
     fi
     if [ "$query_network_security_group" = true ] ; then
         echo network security group queried
@@ -173,9 +173,9 @@ display_progress () {
         echo remote shell version $remote_bash_version
     fi
     if [ "$dnf_installed" = true ] ; then
-        echo dnf installed on vm $vm_01_name
+        echo dnf installed on vm $vm_name
     elif [ "$dnf_installed" = false ] ; then
-        echo dnf not installed on vm $vm_01_name as os is $vm_os
+        echo dnf not installed on vm $vm_name as os is $vm_os
     fi
     if [ "$os_updated" = true ] ; then
         echo os has been updated and upgraded
@@ -344,6 +344,7 @@ vm_os_type_debian=debian
 vm_os_type_fedora=fedora
 vm_01_name=vm01
 vm_02_name=vm02
+vm_name=$vm_01_name
 
 # ubuntu
 vm_os_ubuntu=ubuntu
@@ -439,9 +440,7 @@ printHeading "query vm templates"
 source ./script-07-query-vm-templates.sh
 display_progress "query vm templates"
 
-display_progress "set vm type to be $os"
-
-printHeading "create vm"
+printHeading "            create vm $vm_name using image $vm_image .. os $vm_os of type $vm_os_type"
 source ./script-10-create-vm.sh
 display_progress "vm created"
 
@@ -1214,6 +1213,7 @@ if [ "$set_auto_shutdown" = true ] ; then
     if [ "$shutdown_by_name" = true ] ; then
         az vm auto-shutdown -g $resource_group_name -n $windows_server_vm_name --time 1730 --email $email_address --webhook $webhook_address
         az vm auto-shutdown -g $resource_group_name -n $vm_01_name         --time 1730 --email $email_address --webhook $webhook_address
+        az vm auto-shutdown -g $resource_group_name -n $vm_02_name         --time 1730 --email $email_address --webhook $webhook_address
     fi
 fi
 
@@ -1423,7 +1423,6 @@ done
 resource_group_name=$resource_group_valid_name
 ssh_key=~/.ssh/azureCliUbuntuLogin.pem
 admin_username=azureuser
-vm_name=$vm_01_name
 public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
 echo sign in with ...
 echo resource group $resource_group_name
@@ -1601,6 +1600,7 @@ if [ "$deallocate_vms" = true ] ; then
     resource_group_name=$resource_group_valid_name
     echo resource group name $resource_group_name
     az vm deallocate --name $vm_01_name --resource-group $resource_group_name 
+    az vm deallocate --name $vm_02_name --resource-group $resource_group_name 
     #az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
 fi
 
