@@ -55,8 +55,3 @@ curl localhost -s
 echo server 06 node     
 curl localhost:3006 -s
 
-echo server 07 bun
-curl localhost:3007 -s
-
-echo server 08 express 08
-curl localhost:3008 -s
