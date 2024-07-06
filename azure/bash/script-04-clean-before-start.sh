@@ -72,7 +72,6 @@ if [ "$getting_existing_and_new_resource_group_names_before_deletion" = true ] ;
     echo "=============================================================="
     echo "====                get next resource group               ===="
     echo "=============================================================="
-    echo putting into an array
     IFS=$'\n' resource_group_names=($(az group list --query [].name -o tsv))
     echo
     echo for each resource group in list of resource groups
@@ -102,7 +101,6 @@ fi
 
 
 deleting_resource_group_and_servers=false
-echo resource group new name is $resource_group_new_name
 if [[ "$resource_group_new_name" != "invalid" ]] ; then
     deleting_resource_group_and_servers=true
 else
