@@ -1,5 +1,4 @@
 #!/bin/zsh
-slow_read=2
 echo zsh
 zsh
 echo cd ~
@@ -219,35 +218,35 @@ jq  '.' json-01-test-data.json
 echo "=============================================================="
 echo "====                   jq  array                          ===="
 echo "=============================================================="
-sleep $slow_read
+sleep 2
 echo create json from string literal
-sleep $slow_read
+sleep 2
 json01=$(jq -s '.' <<< '{ "a": 1 } { "b": 2 }')
 echo $json01 | jq
-sleep $slow_read
+sleep 2
 echo
 echo
 echo import json from a file
-sleep $slow_read
+sleep 2
 json02=$(jq '.' < tmp.json)
 echo $json02 | jq
-sleep $slow_read
+sleep 2
 echo
 echo
 echo create a json array from string literal
 jq -s '.' <<< '{ "a": "mighty man" } { "b": "sole player" }'
-sleep $slow_read
+sleep 2
 echo
 echo
 echo
 echo create json array from file
 jq '.' < tmp2.json
-sleep $slow_read
+sleep 2
 echo
 echo
 echo
 echo create json array with one object from variables
-sleep $slow_read
+sleep 2
 json03data="here is some data"
 json03=$(jq -s '.' <<< '
     { 
@@ -255,11 +254,11 @@ json03=$(jq -s '.' <<< '
     }'
 )
 echo $json03 | jq
-sleep $slow_read
+sleep 2
 echo
 echo
 echo add to json array
-sleep $slow_read
+sleep 2
 json01=$(echo $json01 | jq '. += 
     [
         { 
@@ -268,12 +267,12 @@ json01=$(echo $json01 | jq '. +=
     ]
 ')
 echo $json01 | jq
-sleep $slow_read
+sleep 2
 echo
 echo
 echo
 echo add to json array with spaces in strings
-sleep $slow_read
+sleep 2
 json02=$(
     echo $json02 | jq '. += 
     [
@@ -284,11 +283,11 @@ json02=$(
     ]'
 )
 echo $json02 | jq
-sleep $slow_read
+sleep 2
 echo
 echo
 echo add to json array with variables
-sleep $slow_read
+sleep 2
 json01data=15
 json01=$(echo $json01 | jq '. += 
     [
@@ -298,11 +297,11 @@ json01=$(echo $json01 | jq '. +=
     ]
 ')
 echo $json01 | jq
-sleep $slow_read
+sleep 2
 echo
 echo
 echo add to json array using variables with spaces
-sleep $slow_read
+sleep 2
 json02data_name="Rob Walsh"
 json02data_email="rob@walshconstruction.com"
 json02=$(
@@ -315,17 +314,17 @@ json02=$(
     ]'
 )
 echo $json02 | jq
-sleep $slow_read
+sleep 2
 echo
 echo
 echo now extract data from json
-sleep $slow_read
+sleep 2
 echo lets start with just one single json object, not an array
-sleep $slow_read
+sleep 2
 echo
 echo
 echo get all the names
-sleep $slow_read
+sleep 2
 echo $json02 | jq -r '.[].name'
 echo
 echo
@@ -354,13 +353,13 @@ echo
 echo
 echo
 echo ok i have created arrays of json objects
-sleep $fast_read
+sleep 1
 echo and i have pushed data to them also
-sleep $fast_read
+sleep 1
 echo using variable data and not just string literal fixed data
-sleep $fast_read
+sleep 1
 echo happy days
-sleep $fast_read
+sleep 1
 echo
 echo
 echo "==================================================================="
@@ -472,7 +471,7 @@ df -h | tee disk_usage.txt
 echo
 echo
 echo
-sleep $fast_read
+sleep 1
 echo loop over regular array
 echo
 echo

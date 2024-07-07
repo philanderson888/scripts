@@ -37,7 +37,7 @@ if [ $number_of_installs -eq 0 ] ; then
     echo "==================================================================="
     brew install powershell/tap/powershell-preview
     echo
-    sleep $slow_read
+    sleep 2
     echo the command pwsh-preview will change the shell to powershell
     brew upgrade powershell-preview
     sleep 1
