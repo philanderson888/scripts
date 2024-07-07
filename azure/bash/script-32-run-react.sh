@@ -1,3 +1,33 @@
+#!/bin/zsh
+zsh
+
+echo
+echo
+echo
+echo check is node npm npx installed
+echo node -v
+node -v
+echo npm -v
+npm -v
+echo npx -v
+npx -v
+echo
+echo
+echo
+echo upgrade react to latest
+echo npm install react-scripts@latest
+npm install react-scripts@latest -y
+echo 
+echo
+echo
+echo npx clear-npx-cache
+npx clear-npx-cache
+echo
+echo
+echo
+
+
+
 echo "============================================================"
 echo "====             install corepack 32030                 ===="
 echo "============================================================"
@@ -37,20 +67,24 @@ yarn -v
 echo
 echo
 echo
-echo ls
-ls
+
+
+
+echo find react server
+echo cd ~/scripts/sample-apps/bun/bun-react-58262
+cd ~/scripts/sample-apps/bun/bun-react-58262
 echo
 echo
 echo
-echo yarn create react app
-yarn create react-app react02
+echo npm install bun -y
+npm install bun -y
 echo
 echo
 echo
-echo cd react02
-cd react02
-port=3010
-echo about to set the port to $port
-sed -i 's/react-scripts start/PORT=3010 react-scripts start/g' package.json
-echo starting react app on port $port
-npm start
+echo bun install
+bun install
+echo
+echo
+echo
+echo bun run dev
+bun run dev
