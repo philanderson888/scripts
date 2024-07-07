@@ -59,10 +59,6 @@ if [ "$install_apache" = true ] && [ "$os_type" == "$os_type_fedora" ]; then
     sudo firewall-cmd --zone=public --add-port=3004/tcp
     sudo firewall-cmd --zone=public --add-port=3005/tcp
     sudo firewall-cmd --zone=public --add-port=3006/tcp
-    sudo firewall-cmd --zone=public --add-port=3007/tcp
-    sudo firewall-cmd --zone=public --add-port=3008/tcp
-    sudo firewall-cmd --zone=public --add-port=3009/tcp
-    sudo firewall-cmd --zone=public --add-port=3010/tcp
     sudo firewall-cmd --zone=public --add-port=39872/tcp
     sudo firewall-cmd --zone=public --add-port=57329/tcp
     sudo firewall-cmd --zone=public --add-port=58262/tcp
