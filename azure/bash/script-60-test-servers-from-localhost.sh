@@ -9,7 +9,7 @@ echo testing servers starting at time $dt
 echo
 echo
 echo
-for port in 80 3000 3009 3010 5173 57329 58262 54892 63892 51547 51279 
+for port in 80 3000 57329 58262 54892 63892 51547 51279 
 do
     echo
     echo
