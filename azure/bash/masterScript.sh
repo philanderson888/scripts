@@ -12,8 +12,6 @@ echo
 startTimeOnMasterScript=$(date +%s)
 custom_spaces='                '
 SECONDS=0
-slow_read=2
-fast_read=1
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
@@ -24,13 +22,13 @@ echo "====        script starts at " $startTimeOnMasterScript | perl -pe 's/(\d+
 echo "=============================================================="
 echo "=============================================================="
 echo "=============================================================="
-sleep $slow_read
+sleep 2
 echo
 echo
 echo "=============================================================="
 echo "====            initialise script functions               ===="
 echo "=============================================================="
-sleep $slow_read
+sleep 2
 echo
 echo
 getMinutesAndSeconds() {
@@ -61,6 +59,14 @@ printHeading () {
     echo "=============================================================="
     echo "=============================================================="
     echo "====${custom_spaces}${1}"
+    if [[ $# -gt 2 ]]; then
+        echo "Get arguments: $@"
+        echo "====${custom_spaces}${2}"
+        echo "====${custom_spaces}${3}"
+    elif [[ $# -gt 1 ]]; then
+        echo "Get arguments: $@"
+        echo "====${custom_spaces}${2}"
+    fi
     printTime
     echo "=============================================================="
     echo "=============================================================="
@@ -119,7 +125,7 @@ print_waypoints() {
 }
 
 initialise_first_waypoint(){
-    sleep $slow_read
+    sleep 2
     waypoint_time=$SECONDS
     waypoint_name="script start"
     waypoint_index=0
@@ -342,10 +348,10 @@ image=MicrosoftWindowsDesktop:office-365:20h2-evd-o365pp-g2:19042.2846.230411
 # linux
 vm_os_type_debian=debian
 vm_os_type_fedora=fedora
-vm_01_name=vm01
-vm_02_name=vm02
-vm_03_name=vm03
-vm_name=$vm_01_name
+vm_1_name=vm01
+vm_2_name=vm02
+vm_3_name=vm03
+vm_name=$vm_1_name
 
 # ubuntu
 vm_os_ubuntu=ubuntu
@@ -366,6 +372,15 @@ vm_centos_name=vmCentos
 vm_os_centos=centos
 vm_image_centos=CentOS85Gen2
 
+# opensuse
+vm_opensuse_name=vmOpenSuse
+vm_os_opensuse=opensuse
+vm_image_opensuse=OpenSuseLeap154Gen2
+
+# flatcar
+vm_flatcar_name=vmFlatCarLinux
+vm_os_flatcar=flatcar
+vm_image_flatcar=FlatcarLinuxFreeGen2
 
 
 # windows
@@ -406,9 +421,10 @@ query_vm_windows_server=true
 # manage vms
 list_vms=true
 
-# vm cleanup
-delete_vms=false
-delete_resource_group=false
+# cleanup
+deallocate_vms=true
+delete_vms=true
+delete_resource_groups=true
 
 # output
 touch output.txt
@@ -491,8 +507,6 @@ linux_codename=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep 'VERSI
 linux_id_like=$(ssh -i $ssh_key $admin_username@$public_ip_address "grep '^ID_LIKE' /etc/os-release")
 python_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 --version")
 python_platform_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "python3 -mplatform")
-#remote_shell=$(ssh -i $ssh_key $admin_username@$public_ip_address "$SHELL")
-#remote_shell_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "$SHELL --version")
 linux_details_obtained=true
 display_progress "query linux"
 
@@ -744,7 +758,7 @@ if [ "$install_node" = true ] ; then
     chmod 777 ./script-25-phil.sh
     ttab './script-25-phil.sh'
     
-    sleep $slow_read
+    sleep 2
     node_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "node -v")
     npm_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm -v")
     express_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
@@ -794,7 +808,6 @@ if [ "$install_vue" = true ] ; then
     cd $root_directory
     chmod 777 ./script-28-launch-vue.sh
     ttab './script-28-launch-vue.sh'
-    #vue_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vue -v")
     vue_version="cant get vue version ..."
     vue_installed=true
     display_progress vue
@@ -811,9 +824,8 @@ if [ "$install_vite" = true ] ; then
     cd $root_directory
     sleep 1
     chmod 777 ./script-29-launch-vite.sh
-    sleep 1
     ttab './script-29-launch-vite.sh'
-    #vite_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "vite -v")
+    vite_version="cant get vite version ..."
     vite_installed=true
     display_progress vite
 fi
@@ -830,7 +842,6 @@ if [ "$install_bun" = true ] ; then
     cd $root_directory
     chmod 7777 ./script-30-launch-bun.sh
     ttab './script-30-launch-bun.sh'
-    #bun_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "bun -v")
     bun_version="cant get bun version ..."
     bun_installed=true
     display_progress bun
@@ -843,18 +854,9 @@ fi
 if [ "$install_react" = true ] ; then
     printHeading "install and run react and npx"
     cd $root_directory
-    
-    chmod 777 ./script-32-launch-react-01.sh
-    ttab './script-32-launch-react-01.sh'
-    
-    chmod 7777 ./script-32-launch-react-02.sh
-    ttab './script-32-launch-react-02.sh'
-
-    chmod 7777 ./script-32-launch-react-04.sh
-    ttab './script-32-launch-react-04.sh'
-    
+    chmod 7777 ./script-32-launch-react.sh
+    ttab './script-32-launch-react.sh'
     npx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npx -v")
-    #react_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "react -v")
     react_version="cant get react version ..."
     npx_installed=true
     react_installed=true
@@ -1202,7 +1204,7 @@ fi
 
 
 if [ "$set_auto_shutdown" = true ] ; then
-    sleep $fast_read
+    sleep 1
     printHeading "set auto shutdown"
     SHUTDOWN_TIME="18:00"
     AUTO_SHUTDOWN="true"
@@ -1219,8 +1221,8 @@ if [ "$set_auto_shutdown" = true ] ; then
     shutdown_by_name=false
     if [ "$shutdown_by_name" = true ] ; then
         az vm auto-shutdown -g $resource_group_name -n $windows_server_vm_name --time 1730 --email $email_address --webhook $webhook_address
-        az vm auto-shutdown -g $resource_group_name -n $vm_01_name         --time 1730 --email $email_address --webhook $webhook_address
-        az vm auto-shutdown -g $resource_group_name -n $vm_02_name         --time 1730 --email $email_address --webhook $webhook_address
+        az vm auto-shutdown -g $resource_group_name -n $vm_1_name         --time 1730 --email $email_address --webhook $webhook_address
+        az vm auto-shutdown -g $resource_group_name -n $vm_2_name         --time 1730 --email $email_address --webhook $webhook_address
     fi
 fi
 
@@ -1371,16 +1373,16 @@ fi
 
 
 if [ "$learining_mode" = true ] ; then
-    sleep $fast_read
+    sleep 1
     printHeading "upload node teaching files"
     scp -i $ssh_key script-90-learn-node.js $admin_username@$public_ip_address:script-90-learn-node.js
     scp -i $ssh_key script-90-package.json $admin_username@$public_ip_address:script-90-package.json
     printHeading "install and run teaching node"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-learn-node-js.zsh
-    sleep $fast_read
+    sleep 1
     printHeading "bash scripting a to z"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-learn-bash.zsh
-    sleep $fast_read
+    sleep 1
     printHeading "python"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-93-learn-python.zsh
 fi
@@ -1479,90 +1481,92 @@ fi
 
 
 
-printHeading "query first machine"
-echo resource group name is $resource_group_name
-first_machine_id=$(az vm list --query "[].id" -o tsv)
-echo first machine id is $first_machine_id
-server_1_public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
-echo first machine ip is $server_1_public_ip_address
-vm_private_ip=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query privateIps -o tsv)        
-echo vm private ip is $vm_private_ip
-network_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query 'networkProfile.networkInterfaces[].id' -o tsv)
-echo vm network id is $network_id
-network_card_mac_address=$(az network nic show --ids $network_id --query macAddress -o tsv)
-echo network card mac address $network_card_mac_address
-echo
-echo
-echo
-building_second_machine=true
-if [ "$building_second_machine" = true ] ; then  
-    vm_name=$vm_02_name
-    vm_image=$vm_image_debian
-    printHeading "create vm $vm_name using image $vm_image"
-    az vm create --name $vm_name --resource-group $resource_group_name  --image $vm_image --admin-username $admin_username --admin-password $admin_password --ssh-key-value $ssh_key_public
-fi
+
+query_vm() {
+    subscription=$(az account show --query "id" -o tsv)
+    id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$vm_name"
+    machine_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query vmId -o tsv)
+    user_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.adminUsername -o tsv)
+    computer_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.computerName -o tsv)
+    id_hash=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "vmId" -o tsv)    
+    size=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "hardwareProfile.vmSize" -o tsv)
+    fqdn=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "fqdns" -o tsv)
+    network_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query 'networkProfile.networkInterfaces[].id' -o tsv)
+    network_card_name=$(az network nic show --ids $network_id --query "name" -o tsv)
+    public_ip=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
+    private_ip=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query privateIps -o tsv)        
+    mac_address=$(az network nic show --ids $network_id --query macAddress -o tsv)
+    network_card_location=$(az network nic show --ids $network_id --query location -o tsv)
+    resource_group_name=$(az network nic show --ids $network_id --query resourceGroup -o tsv)
+    resource_group_id=$(az network nic show --ids $network_id --query resourceGuid -o tsv)
+
+    echo resource group name $resource_group_name
+    echo resource group location $network_card_location
+    echo resource group id $resource_group_id
+    echo user name $user_name
+    echo computer name $computer_name
+    if [ ! -z "$fqdn" ] 
+    then
+        echo fqdn is $fqdn
+    fi
+    echo id $id
+    echo id hash $id_hash
+    echo machine id $machine_id
+    echo public ip $public_ip
+    echo private ip $private_ip
+    echo network id $network_id
+    echo network card name $network_card_name
+    echo mac address $mac_address
+    echo size $vm_size
+}
+
+
 
 
 
 printHeading "query vm $vm_name"
+query_vm
 
-subscription=$(az account show --query "id" -o tsv)
-vm_id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$vm_name"
-echo vm id is $vm_id
-machine_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query vmId -o tsv)
-echo machine id $machine_id
-user_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.adminUsername -o tsv)
-echo user name $user_name
-computer_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.computerName -o tsv)
-echo computer name $computer_name
-vm_id_hash=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "vmId" -o tsv)    
-echo vm id hash ... $vm_id_hash
-vm_size=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "hardwareProfile.vmSize" -o tsv)
-echo vm size ... $vm_size
-vm_fqdn=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "fqdns" -o tsv)
-if [ ! -z "$vm_fqdn" ] 
-then
-    echo vm fqdn is $vm_fqdn
+vm_1_name=$vm_name
+vm_1_id=$id
+vm_1_machine_id=$machine_id
+vm_1_public_ip=$public_ip
+vm_1_private_ip=$private_ip
+
+
+
+
+build_vm_2=true
+if [ "$build_vm_2" = true ] ; then  
+    vm_name=$vm_2_name
+    vm_image=$vm_image_debian
+    printHeading "create vm $vm_name using image $vm_image"
+    az vm create --name $vm_name --resource-group $resource_group_name  --image $vm_image --admin-username $admin_username --admin-password $admin_password --ssh-key-value $ssh_key_public
+    printHeading "query vm $vm_name"
+    query_vm
+    vm_2_id=$id
+    vm_2_machine_id=$machine_id
+    vm_2_public_ip=$public_ip
+    vm_2_private_ip=$private_ip
 fi
-network_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query 'networkProfile.networkInterfaces[].id' -o tsv)
-echo vm network id is $network_id
-network_card_name=$(az network nic show --ids $network_id --query "name" -o tsv)
-echo network card name $network_card_name
-public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
-echo vm public ip is $public_ip_address
-server_2_public_ip_address=$public_ip_address
-vm_private_ip=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query privateIps -o tsv)        
-echo vm private ip is $vm_private_ip
-network_card_mac_address=$(az network nic show --ids $network_id --query macAddress -o tsv)
-echo network card mac address $network_card_mac_address
-network_card_location=$(az network nic show --ids $network_id --query location -o tsv)
-resource_group_name=$(az network nic show --ids $network_id --query resourceGroup -o tsv)
-resource_group_id=$(az network nic show --ids $network_id --query resourceGuid -o tsv)
-echo resource group name $resource_group_name
-echo resource group location $network_card_location
-echo resource group id $resource_group_id
 
 
 
 
 
-
-
-
-
-
-
-
+printHeading "pause for 5 minutes to allow servers to build"
+sleep 300
 
 
 
 
 
 if [ "$test_web_servers_via_curl" = true ] ; then
-    printHeading "test web servers from localhost ... ip is $server_1_public_ip_address"
-    ssh -i $ssh_key $admin_username@$server_1_public_ip_address 'bash -s' < ./script-60-test-servers-from-localhost.sh
-    printHeading "test web servers from machine on same local network ... ip is $server_2_public_ip_address"
-    ssh -i $ssh_key $admin_username@$server_2_public_ip_address 'bash -s' < ./script-60-test-servers-from-server-2.sh
+
+    printHeading "test web servers from localhost ..." "ip is $vm_1_public_ip" "private ip is $vm_private_ip"
+    ssh -i $ssh_key $admin_username@$vm_1_public_ip 'bash -s' < ./script-60-test-servers-from-localhost.sh
+    printHeading "test web servers from machine on same local network ... ip is $vm_2_public_ip"
+    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-60-test-servers-from-server-2.sh
     display_progress test web servers
 fi
 
@@ -1576,58 +1580,20 @@ fi
 
 
 
-
-
-building_redhat_machine=false
-if [ "$building_redhat_machine" = true ] ; then  
+build_redhat=true
+if [ "$build_redhat" = true ] ; then  
     vm_name=$vm_redhat_name
     vm_image=$vm_image_redhat
     vm_os=$vm_os_redhat
     printHeading "create vm $vm_name using image $vm_image of type $vm_os"
     az vm create --name $vm_name --resource-group $resource_group_name  --image $vm_image --admin-username $admin_username --admin-password $admin_password --ssh-key-value $ssh_key_public
 
-
     printHeading "query vm $vm_name"
-
-    subscription=$(az account show --query "id" -o tsv)
-    vm_id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$vm_name"
-    echo vm id is $vm_id
-    machine_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query vmId -o tsv)
-    echo machine id $machine_id
-    user_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.adminUsername -o tsv)
-    echo user name $user_name
-    computer_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.computerName -o tsv)
-    echo computer name $computer_name
-    vm_id_hash=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "vmId" -o tsv)    
-    echo vm id hash ... $vm_id_hash
-    vm_size=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "hardwareProfile.vmSize" -o tsv)
-    echo vm size ... $vm_size
-    vm_fqdn=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "fqdns" -o tsv)
-    if [ ! -z "$vm_fqdn" ] 
-    then
-        echo vm fqdn is $vm_fqdn
-    fi
-    network_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query 'networkProfile.networkInterfaces[].id' -o tsv)
-    echo vm network id is $network_id
-    network_card_name=$(az network nic show --ids $network_id --query "name" -o tsv)
-    echo network card name $network_card_name
-    public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
-    echo vm public ip is $public_ip_address
-    server_2_public_ip_address=$public_ip_address
-    vm_private_ip=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query privateIps -o tsv)        
-    echo vm private ip is $vm_private_ip
-    network_card_mac_address=$(az network nic show --ids $network_id --query macAddress -o tsv)
-    echo network card mac address $network_card_mac_address
-    network_card_location=$(az network nic show --ids $network_id --query location -o tsv)
-    resource_group_name=$(az network nic show --ids $network_id --query resourceGroup -o tsv)
-    resource_group_id=$(az network nic show --ids $network_id --query resourceGuid -o tsv)
-    echo resource group name $resource_group_name
-    echo resource group location $network_card_location
-    echo resource group id $resource_group_id
-
-
-
-
+    query_vm
+    vm_redhat_id=$id
+    vm_redhat_machine_id=$machine_id
+    vm_redhat_public_ip=$public_ip
+    vm_redhat_private_ip=$private_ip
 fi
 
 
@@ -1637,59 +1603,47 @@ fi
 
 
 
-building_centos_machine=true
-if [ "$building_centos_machine" = true ] ; then  
-    vm_name=$vm_centos_name
-    vm_image=$vm_image_centos
-    vm_os=$vm_os_centos
+
+build_opensuse=false
+if [ "$build_opensuse" = true ] ; then  
+    vm_name=$vm_opensuse_name
+    vm_image=$vm_image_opensuse
+    vm_os=$vm_os_opensuse
+
     printHeading "create vm $vm_name using image $vm_image of type $vm_os"
     az vm create --name $vm_name --resource-group $resource_group_name  --image $vm_image --admin-username $admin_username --admin-password $admin_password --ssh-key-value $ssh_key_public
 
-
     printHeading "query vm $vm_name"
-
-    subscription=$(az account show --query "id" -o tsv)
-    vm_id="/subscriptions/$subscription/resourceGroups/VMResources/providers/Microsoft.Compute/virtualMachines/$vm_name"
-    echo vm id is $vm_id
-    machine_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query vmId -o tsv)
-    echo machine id $machine_id
-    user_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.adminUsername -o tsv)
-    echo user name $user_name
-    computer_name=$(az vm show --resource-group $resource_group_name --name $vm_name --query osProfile.computerName -o tsv)
-    echo computer name $computer_name
-    vm_id_hash=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "vmId" -o tsv)    
-    echo vm id hash ... $vm_id_hash
-    vm_size=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "hardwareProfile.vmSize" -o tsv)
-    echo vm size ... $vm_size
-    vm_fqdn=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query "fqdns" -o tsv)
-    if [ ! -z "$vm_fqdn" ] 
-    then
-        echo vm fqdn is $vm_fqdn
-    fi
-    network_id=$(az vm show --resource-group $resource_group_name --name $vm_name --query 'networkProfile.networkInterfaces[].id' -o tsv)
-    echo vm network id is $network_id
-    network_card_name=$(az network nic show --ids $network_id --query "name" -o tsv)
-    echo network card name $network_card_name
-    public_ip_address=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query publicIps -o tsv)
-    echo vm public ip is $public_ip_address
-    server_2_public_ip_address=$public_ip_address
-    vm_private_ip=$(az vm show -d --resource-group $resource_group_name --name $vm_name --query privateIps -o tsv)        
-    echo vm private ip is $vm_private_ip
-    network_card_mac_address=$(az network nic show --ids $network_id --query macAddress -o tsv)
-    echo network card mac address $network_card_mac_address
-    network_card_location=$(az network nic show --ids $network_id --query location -o tsv)
-    resource_group_name=$(az network nic show --ids $network_id --query resourceGroup -o tsv)
-    resource_group_id=$(az network nic show --ids $network_id --query resourceGuid -o tsv)
-    echo resource group name $resource_group_name
-    echo resource group location $network_card_location
-    echo resource group id $resource_group_id
-
-
-
+    query_vm
+    vm_opensuse_id=$id
+    vm_opensuse_machine_id=$machine_id
+    vm_opensuse_public_ip=$public_ip
+    vm_opensuse_private_ip=$private_ip
 
 fi
 
 
+
+
+
+
+build_flatcar=false
+if [ "$build_flatcar" = true ] ; then  
+    vm_name=$vm_flatcar_name
+    vm_os=$vm_os_flatcar
+    vm_image=$vm_image_flatcar
+
+    printHeading "create vm $vm_name using image $vm_image of type $vm_os"
+    az vm create --name $vm_name --resource-group $resource_group_name  --image $vm_image --admin-username $admin_username --admin-password $admin_password --ssh-key-value $ssh_key_public
+
+    printHeading "query vm $vm_name"
+
+    query_vm
+    vm_flatcar_id=$id
+    vm_flatcar_machine_id=$machine_id
+    vm_flatcar_public_ip=$public_ip
+    vm_flatcar_private_ip=$private_ip
+fi
 
 
 
@@ -1704,7 +1658,7 @@ sleep $delay_before_erase_all_servers
 
 
 
-deallocate_vms=true
+
 if [ "$deallocate_vms" = true ] ; then
     printHeading "deallocate vms"
 
@@ -1719,36 +1673,64 @@ if [ "$deallocate_vms" = true ] ; then
     done
     resource_group_name=$resource_group_valid_name
     echo resource group name $resource_group_name
-    az vm deallocate --name $vm_01_name --resource-group $resource_group_name 
-    az vm deallocate --name $vm_02_name --resource-group $resource_group_name 
-    #az vm deallocate --resource-group $resource_group_name --name $windows_server_vm_name
+    az vm deallocate --name $vm_1_name --resource-group $resource_group_name 
+    az vm deallocate --name $vm_2_name --resource-group $resource_group_name 
+    if [ "$build_redhat" = true ] ; then  
+        az vm deallocate --name $vm_redhat_name --resource-group $resource_group_name 
+    fi
+    if [ "$build_opensuse" = true ] ; then  
+        az vm deallocate --name $vm_opensuse_name --resource-group $resource_group_name 
+    fi
+    if [ "$build_flatcar" = true ] ; then
+        az vm deallocate --name $vm_flatcar_name --resource-group $resource_group_name 
+    fi
 fi
 
 
 if [ "$delete_vms" = true ] ; then
     printHeading "delete vms"
-    echo delete ubuntu vm by vm id $machine_id
-    az vm delete --ids $machine_id --yes
+    echo delete vm by id 
+
+    echo 
+    echo delete vm by id $vm_1_machine_id
+    az vm delete --ids $vm_1_machine_id --yes
+
+    echo
+    echo delete vm by id $vm_2_machine_id
+    az vm delete --ids $vm_2_machine_id --yes
+
+
+    if [ "$build_redhat" = true ] ; then 
+        echo delete vm by id $vm_redhat_machine_id 
+        az vm delete --ids $vm_redhat_machine_id --yes
+    fi
+    if [ "$build_opensuse" = true ] ; then  
+        echo delete vm by id $vm_opensuse_machine_id
+        az vm delete --ids $vm_opensuse_machine_id --yes
+    fi
+    if [ "$build_flatcar" = true ] ; then
+        echo delete vm by id $vm_flatcar_machine_id
+        az vm delete --ids $vm_flatcar_machine_id --yes
+    fi
     #echo delete windows server vm by vm name $windows_server_vm_name
     #az vm delete --resource-group $resource_group_name --name $windows_server_vm_name --yes
-    #echo delete ubuntu vm by vm name $vm_01_name
-    #az vm delete --resource-group $resource_group_name --name $vm_01_name --yes
+    #echo delete ubuntu vm by vm name $vm_1_name
+    #az vm delete --resource-group $resource_group_name --name $vm_1_name --yes
     #az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
 fi
 
 
-delete_resource_groups=true
+
+
 if [ "$delete_resource_groups" = true ] ; then
     printHeading "delete resource groups"
     IFS=$'\n' resource_group_names=($(az group list --query [].name -o tsv))
-    echo resource group names are ...
-    printf '%s\n' "${resource_group_names[@]}"
     for resource_group_index in "${!resource_group_names[@]}"
     do
         resource_group_name=${resource_group_names[$resource_group_index]}
         echo $resource_group_name
         if [[ $resource_group_name = 'ResourceGroup'* ]]; then
-            echo found a resource group ... with name ... $resource_group_name
+            echo deleting resource group $resource_group_name
             az group delete --name $resource_group_name --yes
         fi
     done
