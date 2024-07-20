@@ -2236,6 +2236,16 @@ if [ "$test_web_servers_via_curl" = true ] ; then
     printHeading "test web servers from localhost ..." "ip is $vm_1_public_ip" "private ip is $vm_private_ip"
     ssh -i $ssh_key $admin_username@$vm_1_public_ip 'bash -s' < ./script-60-test-servers-from-localhost.sh
     printHeading "test web servers from machine on same local network ... ip is $vm_2_public_ip"
+
+
+    touch ~/temp/vm_1_public_ip.txt
+    echo $vm_1_public_ip > ~/temp/vm_1_public_ip.txt
+    echo vm 1 public ip text file holds 
+    cat ~/temp/vm_1_public_ip.txt
+    echo
+    echo
+    echo
+    scp -i $ssh_key ~/temp/vm_1_public_ip.txt $admin_username@$vm_2_public_ip:vm_1_public_ip.txt
     ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-60-test-servers-from-server-2.sh
     display_progress test web servers
 fi
