@@ -462,9 +462,9 @@ printHeading "create resource group"
 source ./script-05-create-resource-group.sh
 display_progress "create resource group"
 
-printHeading "list resource group"
-source ./script-06-list-resource-group-names.sh
-display_progress "list resource groups"
+printHeading "resource group details"
+source ./script-06-resource-group-details.sh
+display_progress "resource group details"
 
 printHeading "query vm templates"
 source ./script-07-query-vm-templates.sh
@@ -1261,25 +1261,6 @@ if [ "$query_vm_windows_server" = true ] ; then
     resource_group_name=$(az network nic show --ids $windows_server_network_id --query resourceGroup -o tsv)
     resource_group_id=$(az network nic show --ids $windows_server_network_id --query resourceGuid -o tsv)
     echo resource group location $network_card_location ... name $resource_group_name ... id $resource_group_id    
-    echo querying network security group ... output sent to output.txt
-    echo "==============================================================" >> output.txt
-    echo "====          query network security group                ====" >> output.txt
-    echo "==============================================================" >> output.txt
-    echo az network nsg list ...
-    az network nsg list > outputNetworkSecurityGroupInformation.txt
-    echo >> output.txt
-    echo >> output.txt
-    echo >> output.txt
-    echo az network nsg show ...
-    az network nsg show -g $resource_group_name -n $network_security_group_name >> outputNetworkSecurityGroupInformation.txt
-    echo >> output.txt
-    echo >> output.txt
-    echo >> output.txt
-    echo az network nsg rule list ...
-    az network nsg rule list --nsg-name $network_security_group_name --resource-group $resource_group_name
-    echo >> output.txt
-    echo >> output.txt
-    echo >> output.txt
 fi
 
 
@@ -2253,6 +2234,18 @@ fi
 
 
 
+test_web_servers_in_browser=true
+if [ "$test_web_servers_in_browser" = true ] ; then
+    printHeading "test web servers in browser ... ip is $vm_1_public_ip"
+    for port in 80 3000 57329 58262 54892 63892 51547 51279 
+    do
+        echo open $vm_1_public_ip:$port
+        open http://$vm_1_public_ip:$port
+        sleep 3
+    done
+    display_progress test web servers in browser
+fi
+
 
 
 
@@ -2261,7 +2254,7 @@ fi
 echo
 echo
 echo
-delay_before_erase_all_servers=1
+delay_before_erase_all_servers=180
 delay_in_minutes_before_erase_all_servers=$(( $delay_before_erase_all_servers / 60 ))
 echo ... waiting $delay_in_minutes_before_erase_all_servers minutes then deleting all servers and all resource groups so we start from scratch every time ...
 sleep $delay_before_erase_all_servers
@@ -2328,6 +2321,11 @@ if [ "$delete_vms" = true ] ; then
     #az vm delete --resource-group $resource_group_name --name $vm_1_name --yes
     #az vm delete --ids $(az vm list -g $resource_group_name --query "[].id" -o tsv) --force-deletion yes
 fi
+
+
+
+
+
 
 
 
