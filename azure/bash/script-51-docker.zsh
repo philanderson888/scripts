@@ -16,7 +16,7 @@ echo
 echo
 echo
 echo move compose.yaml to docker folder
-mv ./script-51-docker-compose.yaml docker
+mv ./script-51-docker-compose.yaml docker/docker-compose.yaml
 echo
 echo
 echo
@@ -73,18 +73,12 @@ sudo usermod -aG docker ${USER}
 echo
 echo
 echo
-echo create .docker file 
-touch ~/.docker
+echo create .docker 
+mkdir ~/.docker
 echo
 echo
 echo
-echo if it gives errors then try this
-sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-echo
-echo
-echo ls
-ls -lah
-echo sudo chmod g+rwx " $ HOME / .docker" - R
+echo sudo chmod g+rwx ~ . docker - R
 sudo chmod g+rwx "$HOME/.docker" -R
 echo
 echo
@@ -95,6 +89,33 @@ echo
 echo
 echo
 echo finished block optional if errors arise
+echo
+echo
+echo
+echo create docker config
+docker config create my_config ./config.json
+echo
+echo
+echo
+echo print docker config
+docker config ls
+echo
+echo
+echo
+echo create docker config json
+touch ~/.docker/config.json
+echo
+echo
+echo
+echo ls ~
+ls ~
+echo ls ~/.docker
+ls ~/.docker
+echo
+echo
+echo
+echo print docker config json
+cat ~/.docker/config.json
 echo
 echo
 echo
@@ -115,7 +136,9 @@ echo
 echo
 echo
 touch myDockerFile.sh
+echo CMD ~ >> myDockerFile.sh
 echo echo hello from running docker file by phil anderson the mega scripter >> myDockerFile.sh
+echo RUN echo hello from running docker file by phil anderson the mega scripter >> myDockerFile.sh
 echo
 echo
 echo
@@ -131,11 +154,6 @@ echo
 echo
 echo docker exec - run docker interactive shell - commented out for now as we dont want this
 # docker exec -it ubuntu /bin/bash
-echo
-echo
-echo
-echo docker images
-docker ps
 echo
 echo
 echo
@@ -178,14 +196,14 @@ echo
 echo
 echo
 echo
-echo docker-compose up
-docker-compose up
+echo docker-compose up ... is causing the script to hang ... not sure why ... so comment out the line ...
+# docker-compose up
 echo
 echo
 echo
-echo curl localhost
-curl localhost
-# Output:
+echo curl localhost ... not done for now
+# curl localhost
+# output:
 # <!DOCTYPE html>
 # <html>
 # <head>

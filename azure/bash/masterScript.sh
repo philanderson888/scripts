@@ -228,6 +228,9 @@ display_progress () {
         if [ "$install_vue" = true ] ; then
             echo "    vue"
         fi
+        if [ "$install_vite" = true ] ; then
+            echo "    vite"
+        fi
         if [ "$install_bun" = true ] ; then
             echo "    bun"
         fi
@@ -551,10 +554,12 @@ if [ "$install_services" = true ] ; then
 
     install_node=true
     install_express=true
-    install_vue=true
-    install_bun=true
-    install_react=true
-    test_web_servers_via_curl=true
+    install_vue=false
+    install_vite=false
+    install_bun=false
+    install_react=false
+    test_web_servers_via_curl=false
+    test_web_servers_in_browser=false
 
     install_c=false
     install_cpp=false
@@ -565,10 +570,11 @@ if [ "$install_services" = true ] ; then
     install_java=false
     install_go=false
 
-    install_docker=false
-    install_terraform=false
-    install_ansible=false
+    install_docker=true
+    install_terraform=true
+    install_ansible=true
     list_kubernetes_clusters=false
+    github_actions=true
 
     install_nginx_frequency=3
     install_nginx_counter=$(($run_counter % $install_nginx_frequency))
@@ -578,6 +584,7 @@ if [ "$install_services" = true ] ; then
 
     install_frequency=30
     install_counter=$(($run_counter % $install_frequency))
+    install_counter=-1
 
     if [ $install_counter -eq 1 ] ; then
         install_c=true
@@ -608,6 +615,7 @@ if [ "$install_services" = true ] ; then
     if [ $install_learning_counter -eq 0 ] ; then
         learning_mode=true
     fi
+    learning_mode=true
 
     create_vm_windows_server=false
     create_vm_windows_client=false
@@ -818,7 +826,7 @@ fi
 
 
 
-install_vite=true
+
 if [ "$install_vite" = true ] ; then
     printHeading "install and run vite"
     cd $root_directory
@@ -1135,6 +1143,8 @@ if [ "$github_actions" = true ] ; then
     scp -i $ssh_key script-63-dockerfile $admin_username@$public_ip_address:script-63-dockerfile
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-63-create-docker.zsh
 
+    printHeading "script 64 - deploy simple node web app on docker"
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-64-docker.zsh
 fi
 
 
@@ -1353,7 +1363,7 @@ fi
 
 
 
-if [ "$learining_mode" = true ] ; then
+if [ "$learning_mode" = true ] ; then
     sleep 1
     printHeading "upload node teaching files"
     scp -i $ssh_key script-90-learn-node.js $admin_username@$public_ip_address:script-90-learn-node.js
@@ -1517,7 +1527,7 @@ vm_1_private_ip=$private_ip
 
 
 
-build_vm_2=true
+build_vm_2=false
 if [ "$build_vm_2" = true ] ; then  
     vm_name=$vm_2_name
     vm_image=$vm_image_debian
@@ -1547,7 +1557,7 @@ fi
 
 
 
-build_redhat=true
+build_redhat=false
 if [ "$build_redhat" = true ] ; then  
     vm_name=$vm_redhat_name
     vm_image=$vm_image_redhat
@@ -1641,543 +1651,545 @@ fi
 
 
 
+if [ "$build_vm_2" = true ] ; then  
+
+
+    vm_name=$vm_2_name
+    vm_image=$vm_image_debian
+    id=$vm_2_id
+    machine_id=$vm_2_machine_id
+    public_ip=$vm_2_public_ip
+    private_ip=$vm_2_private_ip
 
 
 
-vm_name=$vm_2_name
-vm_image=$vm_image_debian
-id=$vm_2_id
-machine_id=$vm_2_machine_id
-public_ip=$vm_2_public_ip
-private_ip=$vm_2_private_ip
+    printHeading "who am i USER for vm 2 debian"
+    remote_user=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "whoami")
+    echo username $remote_user
 
 
-
-printHeading "who am i USER for vm 2 debian"
-remote_user=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "whoami")
-echo username $remote_user
-
-
-printHeading "get remote shell vm 2 debian"
-remote_bash_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "bash --version")
-remote_bash_version=${remote_bash_version:0:57}
-remote_bash_version_obtained=true
+    printHeading "get remote shell vm 2 debian"
+    remote_bash_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "bash --version")
+    remote_bash_version=${remote_bash_version:0:57}
+    remote_bash_version_obtained=true
 
 
-printHeading "query linux vm 2 debian"
-ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-13-get-linux-version.sh
-linux_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "grep '^VERSION=' /etc/os-release")
-linux_details=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "hostnamectl")
-linux_codename=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "grep 'VERSION_CODENAME' /etc/os-release")
-linux_id_like=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "grep '^ID_LIKE' /etc/os-release")
-python_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "python3 --version")
-python_platform_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "python3 -mplatform")
-linux_details_obtained=true
-display_progress "query linux vm 2 debian"
-
-
-
-
-
-printHeading "dnf install vm 2 debian"
-ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-14-install-dnf.sh
-display_progress "dnf install vm 2 debian"
-
-
-printHeading "update os vm 2 debian"
-ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-16-update-server-to-latest-versions.sh
-python_platform_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "python3 -mplatform")
-display_progress "os updated vm 2 debian"
-
-
-printHeading "installing services vm 2 debian"
-install_services=true
-
-if [ "$install_services" = true ] ; then
-
-    echo
-    echo run counter is
-    echo $run_counter
-
-    install_zsh=true
-    install_fish=false
-    install_fish_frequency=10
-    install_fish_counter=$(($run_counter % $install_fish_frequency))
-    if [ $install_fish_counter -eq 0 ] ; then
-        install_fish=true
-    fi
-    
-    install_python=true
-    install_git=true
-
-    restart_services=true
-    
-    install_apache=true
-    install_nginx=false
-
-    install_node=true
-    install_express=true
-    install_vue=true
-    install_bun=true
-    install_react=true
-    test_web_servers_via_curl=true
-
-    install_c=false
-    install_cpp=false
-    install_mongo_db=false
-    install_mongo_shell=false
-    install_dot_net=false
-    install_maria_db=false
-    install_java=false
-    install_go=false
-
-    install_docker=false
-    install_terraform=false
-    install_ansible=false
-    list_kubernetes_clusters=false
-
-    install_nginx_frequency=3
-    install_nginx_counter=$(($run_counter % $install_nginx_frequency))
-    if [ $install_nginx_counter -eq 0 ] ; then
-        install_nginx=true
-    fi
-
-    install_frequency=30
-    install_counter=$(($run_counter % $install_frequency))
-
-    if [ $install_counter -eq 1 ] ; then
-        install_c=true
-    elif [ $install_counter -eq 2 ] ; then
-        install_cpp=true
-    elif [ $install_counter -eq 4 ] ; then
-        install_mongo_db=true
-        install_mongo_shell=true
-    elif [ $install_counter -eq 5 ] ; then
-        install_dot_net=true
-    elif [ $install_counter -eq 6 ] ; then
-        install_maria_db=true
-    elif [ $install_counter -eq 7 ] ; then
-        install_java=true
-    elif [ $install_counter -eq 8 ] ; then
-        install_go=true
-    elif [ $install_counter -eq 9 ] ; then
-        install_docker=true
-        install_terraform=true
-        install_ansible=true
-        github_actions=true
-        list_kubernetes_clusters=true
-    fi
-
-    learning_mode=false
-    install_learning_frequency=5
-    install_learning_counter=$(($run_counter % $install_learning_frequency))
-    if [ $install_learning_counter -eq 0 ] ; then
-        learning_mode=true
-    fi
-
-    create_vm_windows_server=false
-    create_vm_windows_client=false
-    install_windows_frequency=8
-    install_windows_counter=$(($run_counter % $install_windows_frequency))
-    if [ $install_windows_counter -lt -1 ] ; then
-        create_vm_windows_server=true
-        create_vm_windows_client=true
-    fi
-
-fi
-
-
-
-
-
-
-
-if [ "$install_zsh" = true ] ; then
-    printHeading "install zsh vm 2 debian"
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-18-install-zsh.sh
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-18-test-zsh.zsh
-    zsh_remote_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "zsh --version")    
-    zsh_installed=true
-    display_progress zsh vm 2 debian
-fi
-
-
-
-
-
-install_oh_my_zsh=true
-if [ "$install_oh_my_zsh" = true ] ; then
-    printHeading "install oh my zsh vm 2 debian"
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-18-install-oh-my-zsh.zsh
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-18-test-oh-my-zsh.zsh
-    display_progress "install zsh oh-my-zsh vm 2 debian"
-fi
-
-
-
-
-
-if [ "$install_fish" = true ] ; then
-    printHeading "fish friendly interactive shell vm 2 debian"
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-18-fish.zsh
-    fish_installed=true
-    fish_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "fish --version")
-    display_progress fish vm 2 debian
-fi
-
-
-
-
-
-if [ "$install_python" = true ] ; then
-    printHeading "python vm 2 debian"
-    scp -i $ssh_key script-19-pandas.py $admin_username@$vm_2_public_ip:script-19-pandas.py
-    scp -i $ssh_key script-19-numpy.py $admin_username@$vm_2_public_ip:script-19-numpy.py
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-19-python.zsh
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-19-python-pip.zsh
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-19-pandas.zsh
+    printHeading "query linux vm 2 debian"
+    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-13-get-linux-version.sh
+    linux_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "grep '^VERSION=' /etc/os-release")
+    linux_details=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "hostnamectl")
+    linux_codename=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "grep 'VERSION_CODENAME' /etc/os-release")
+    linux_id_like=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "grep '^ID_LIKE' /etc/os-release")
     python_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "python3 --version")
-    python_3_installed=true
-    display_progress python vm 2 debian
+    python_platform_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "python3 -mplatform")
+    linux_details_obtained=true
+    display_progress "query linux vm 2 debian"
+
+
+
+
+
+    printHeading "dnf install vm 2 debian"
+    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-14-install-dnf.sh
+    display_progress "dnf install vm 2 debian"
+
+
+    printHeading "update os vm 2 debian"
+    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-16-update-server-to-latest-versions.sh
+    python_platform_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "python3 -mplatform")
+    display_progress "os updated vm 2 debian"
+
+
+    printHeading "installing services vm 2 debian"
+    install_services=true
+
+    if [ "$install_services" = true ] ; then
+
+        echo
+        echo run counter is
+        echo $run_counter
+
+        install_zsh=true
+        install_fish=false
+        install_fish_frequency=10
+        install_fish_counter=$(($run_counter % $install_fish_frequency))
+        if [ $install_fish_counter -eq 0 ] ; then
+            install_fish=true
+        fi
+        
+        install_python=true
+        install_git=true
+
+        restart_services=true
+        
+        install_apache=true
+        install_nginx=false
+
+        install_node=true
+        install_express=true
+        install_vue=true
+        install_vite=true
+        install_bun=true
+        install_react=true
+        test_web_servers_via_curl=false
+        test_web_servers_in_browser=false
+
+        install_c=false
+        install_cpp=false
+        install_mongo_db=false
+        install_mongo_shell=false
+        install_dot_net=false
+        install_maria_db=false
+        install_java=false
+        install_go=false
+
+        install_docker=false
+        install_terraform=false
+        install_ansible=false
+        list_kubernetes_clusters=false
+
+        install_nginx_frequency=3
+        install_nginx_counter=$(($run_counter % $install_nginx_frequency))
+        if [ $install_nginx_counter -eq 0 ] ; then
+            install_nginx=true
+        fi
+
+        install_frequency=30
+        install_counter=$(($run_counter % $install_frequency))
+
+        if [ $install_counter -eq 1 ] ; then
+            install_c=true
+        elif [ $install_counter -eq 2 ] ; then
+            install_cpp=true
+        elif [ $install_counter -eq 4 ] ; then
+            install_mongo_db=true
+            install_mongo_shell=true
+        elif [ $install_counter -eq 5 ] ; then
+            install_dot_net=true
+        elif [ $install_counter -eq 6 ] ; then
+            install_maria_db=true
+        elif [ $install_counter -eq 7 ] ; then
+            install_java=true
+        elif [ $install_counter -eq 8 ] ; then
+            install_go=true
+        elif [ $install_counter -eq 9 ] ; then
+            install_docker=true
+            install_terraform=true
+            install_ansible=true
+            github_actions=true
+            list_kubernetes_clusters=true
+        fi
+
+        learning_mode=false
+        install_learning_frequency=5
+        install_learning_counter=$(($run_counter % $install_learning_frequency))
+        if [ $install_learning_counter -eq 0 ] ; then
+            learning_mode=true
+        fi
+
+        create_vm_windows_server=false
+        create_vm_windows_client=false
+        install_windows_frequency=8
+        install_windows_counter=$(($run_counter % $install_windows_frequency))
+        if [ $install_windows_counter -lt -1 ] ; then
+            create_vm_windows_server=true
+            create_vm_windows_client=true
+        fi
+
+    fi
+
+
+
+
+
+
+
+    if [ "$install_zsh" = true ] ; then
+        printHeading "install zsh vm 2 debian"
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-18-install-zsh.sh
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-18-test-zsh.zsh
+        zsh_remote_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "zsh --version")    
+        zsh_installed=true
+        display_progress zsh vm 2 debian
+    fi
+
+
+
+
+
+    install_oh_my_zsh=true
+    if [ "$install_oh_my_zsh" = true ] ; then
+        printHeading "install oh my zsh vm 2 debian"
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-18-install-oh-my-zsh.zsh
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-18-test-oh-my-zsh.zsh
+        display_progress "install zsh oh-my-zsh vm 2 debian"
+    fi
+
+
+
+
+
+    if [ "$install_fish" = true ] ; then
+        printHeading "fish friendly interactive shell vm 2 debian"
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-18-fish.zsh
+        fish_installed=true
+        fish_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "fish --version")
+        display_progress fish vm 2 debian
+    fi
+
+
+
+
+
+    if [ "$install_python" = true ] ; then
+        printHeading "python vm 2 debian"
+        scp -i $ssh_key script-19-pandas.py $admin_username@$vm_2_public_ip:script-19-pandas.py
+        scp -i $ssh_key script-19-numpy.py $admin_username@$vm_2_public_ip:script-19-numpy.py
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-19-python.zsh
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-19-python-pip.zsh
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-19-pandas.zsh
+        python_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "python3 --version")
+        python_3_installed=true
+        display_progress python vm 2 debian
+    fi
+
+
+
+
+    if [ "$install_git" = true ] ; then
+        printHeading "git vm 2 debian"
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-21-install-git.sh
+        git_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "git --version")
+        git_installed=true
+        display_progress git vm 2 debian
+    fi
+
+
+
+    if [ "$install_c" = true ] ; then
+        printHeading "c vm 2 debian"
+        scp -i $ssh_key script-20a-hello-world.c $admin_username@$vm_2_public_ip:script-20a-hello-world.c 
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-20b-install-c-compiler.sh
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-20c-run-c-program.sh
+        c_installed=true
+        c_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "gcc --version")
+        display_progress "c vm 2 debian"
+    fi
+
+
+
+    if [ "$install_cpp" = true ] ; then
+        printHeading "c++ vm 2 debian"
+        scp -i $ssh_key script-20d-hello-world.cpp $admin_username@$vm_2_public_ip:script-20d-hello-world.cpp
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-20e-install-cpp-compiler.sh
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-20f-run-cpp-program.sh
+        cpp_installed=true
+        cpp_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "g++ --version")
+        display_progress "c++ vm 2 debian"
+    fi
+
+
+
+
+
+
+
+    if [ "$install_apache" = true ] ; then
+        printHeading "apache vm 2 debian"
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-22-install-apache.sh
+        apache_installed=true
+        #apache_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "apache2 -v")
+        apache_version="cant get apache version ... vm 2 debian"
+        display_progress apache vm 2 debian
+    fi
+
+
+
+
+
+
+    if [ "$install_nginx" = true ] ; then
+        printHeading "nginx vm 2 debian"
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-23-install-nginx.sh
+        nginx_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "nginx -v")
+        nginx_version="cant get nginx version ... vm 2 debian"
+        nginx_installed=true
+        display_progress nginx vm 2 debian
+    fi
+
+
+
+
+    if [ "$restart_services" = true ] ; then
+        printHeading "restart services vm 2 debian"
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-24-update-services.sh
+    fi
+
+
+
+
+
+    if [ "$install_node" = true ] ; then
+        printHeading "install node npm yarn - and express vm 2 debian"
+        ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-25-install-node.sh
+
+        chmod 777 ./script-25-phil.sh
+        ttab './script-25-phil.sh'
+        
+        sleep 2
+        node_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "node -v")
+        npm_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npm -v")
+        express_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npm list express")
+        express_version="cant get express version vm 2 debian"
+        yarn_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "yarn -v")
+        node_installed=true
+        npm_installed=true
+        express_installed=true
+        yarn_installed=true
+        display_progress node npm yarn vm 2 debian
+    fi
+
+
+
+
+
+
+
+
+
+
+
+
+    if [ "$install_express" = true ] ; then
+        printHeading "express vm 2 debian"
+
+        echo express 01 is generated vm 2 debian
+        chmod 777 ./script-26-launch-express-01.sh
+        ttab './script-26-launch-express-01.sh'
+
+        express_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npm list express")
+        express_version="cant get express version vm 2 debian"
+        express_installed=true
+
+        echo express 02 is cloned from github vm 2 debian
+        chmod 777 ./script-26-launch-express-02.sh
+        ttab './script-26-launch-express-02.sh'
+
+        display_progress express vm 2 debian
+    fi
+
+
+
+
+    if [ "$install_vue" = true ] ; then
+        printHeading "install and run vue vm 2 debian"
+        cd $root_directory
+        chmod 777 ./script-28-launch-vue.sh
+        ttab './script-28-launch-vue.sh'
+        vue_version="cant get vue version ... vm 2 debian"
+        vue_installed=true
+        display_progress vue vm 2 debian
+    fi
+
+
+
+
+
+
+
+    if [ "$install_vite" = true ] ; then
+        printHeading "install and run vite vm 2 debian"
+        cd $root_directory
+        sleep 1
+        chmod 777 ./script-29-launch-vite.sh
+        ttab './script-29-launch-vite.sh'
+        vite_version="cant get vite version ... vm 2 debian"
+        vite_installed=true
+        display_progress vite vm 2 debian
+    fi
+
+
+
+
+
+
+
+
+    if [ "$install_bun" = true ] ; then
+        printHeading "bun vm 2 debian"
+        cd $root_directory
+        chmod 7777 ./script-30-launch-bun.sh
+        ttab './script-30-launch-bun.sh'
+        bun_version="cant get bun version ... vm 2 debian"
+        bun_installed=true
+        display_progress bun vm 2 debian
+    fi
+
+
+
+
+
+    if [ "$install_react" = true ] ; then
+        printHeading "install and run react and npx vm 2 debian"
+        cd $root_directory
+        chmod 7777 ./script-32-launch-react.sh
+        ttab './script-32-launch-react.sh'
+        npx_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npx -v")
+        react_version="cant get react version ... vm 2 debian"
+        npx_installed=true
+        react_installed=true
+        display_progress react vm 2 debian
+    fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if [ "$apache_installed" = true ] ; then
+        printHeading "apache vm 2 debian"
+        open -a Terminal ./script-40-run-apache-web-server.sh
+    fi
+
+
+
+
+
+
+    if [ "$nginx_installed" = true ] ; then
+        printHeading "nginx vm 2 debian"
+        echo nginx install works ... nothing to test at present
+    fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if [ "$install_go" = true ] ; then
+        printHeading "install go is failing vm 2 debian"
+        cd $root_directory
+        scp -i $ssh_key script-34.go $admin_username@$vm_2_public_ip:script-34.go
+        ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-34-go.zsh
+    fi
+
+
+
+
+    if [ "$install_java" = true ] ; then
+        printHeading "install java vm 2 debian"
+        scp -i $ssh_key script-38-java.java $admin_username@$vm_2_public_ip:script-38-java.java
+        ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-38-install-java.zsh
+        java_c_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "javac -version")
+        java_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "java -version")
+        display_progress "java installed vm 2 debian"
+    fi
+
+
+
+    if [ "$install_maria_db" = true ] ; then
+        printHeading "maria db vm 2 debian"
+        ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-43-maria-db.zsh
+        maria_db_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "mariadb -V")
+        maria_db_version_mysqladmin=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "sudo mysqladmin version")
+        maria_db_version_mysqladmin=${maria_db_version_mysqladmin:0:80}
+        maria_db_installed=true
+        display_progress "maria db vm 2 debian"
+    fi
+
+
+
+
+
+
+    if [ "$install_mongo_db" = true ] ; then
+        printHeading "mongo db vm 2 debian"
+        ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-44-mongo-db.zsh
+        mongo_db_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "mongod --version")
+        mongo_db_installed=true
+        display_progress "mongo db vm 2 debian"
+    fi
+
+
+
+
+
+
+    if [ "$install_mongo_shell" = true ] ; then
+        printHeading "mongo shell vm 2 debian"
+        ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-45-mongo-shell.zsh
+        mongo_shell_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "mongosh --version")
+        mongo_shell_installed=true
+        display_progress "mongo shell vm 2 debian"
+    fi
+
+
+
+
+
+    if [ "$install_dot_net" = true ] ; then
+        printHeading ".net core vm 2 debian"
+        ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-50-dot-net.zsh
+        dot_net_installed=true
+        dot_net_sdks=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "dotnet --list-sdks")
+        echo dot net sdks
+        echo $dot_net_sdks
+        dot_net_runtimes=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "dotnet --list-runtimes")
+        echo dot net runtimes
+        echo $dot_net_runtimes
+        display_progress "dot net installed vm 2 debian"
+    fi
+
 fi
-
-
-
-
-if [ "$install_git" = true ] ; then
-    printHeading "git vm 2 debian"
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-21-install-git.sh
-    git_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "git --version")
-    git_installed=true
-    display_progress git vm 2 debian
-fi
-
-
-
-if [ "$install_c" = true ] ; then
-    printHeading "c vm 2 debian"
-    scp -i $ssh_key script-20a-hello-world.c $admin_username@$vm_2_public_ip:script-20a-hello-world.c 
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-20b-install-c-compiler.sh
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-20c-run-c-program.sh
-    c_installed=true
-    c_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "gcc --version")
-    display_progress "c vm 2 debian"
-fi
-
-
-
-if [ "$install_cpp" = true ] ; then
-    printHeading "c++ vm 2 debian"
-    scp -i $ssh_key script-20d-hello-world.cpp $admin_username@$vm_2_public_ip:script-20d-hello-world.cpp
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-20e-install-cpp-compiler.sh
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-20f-run-cpp-program.sh
-    cpp_installed=true
-    cpp_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "g++ --version")
-    display_progress "c++ vm 2 debian"
-fi
-
-
-
-
-
-
-
-if [ "$install_apache" = true ] ; then
-    printHeading "apache vm 2 debian"
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-22-install-apache.sh
-    apache_installed=true
-    #apache_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "apache2 -v")
-    apache_version="cant get apache version ... vm 2 debian"
-    display_progress apache vm 2 debian
-fi
-
-
-
-
-
-
-if [ "$install_nginx" = true ] ; then
-    printHeading "nginx vm 2 debian"
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-23-install-nginx.sh
-    nginx_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "nginx -v")
-    nginx_version="cant get nginx version ... vm 2 debian"
-    nginx_installed=true
-    display_progress nginx vm 2 debian
-fi
-
-
-
-
-if [ "$restart_services" = true ] ; then
-    printHeading "restart services vm 2 debian"
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-24-update-services.sh
-fi
-
-
-
-
-
-if [ "$install_node" = true ] ; then
-    printHeading "install node npm yarn - and express vm 2 debian"
-    ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-25-install-node.sh
-
-    chmod 777 ./script-25-phil.sh
-    ttab './script-25-phil.sh'
-    
-    sleep 2
-    node_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "node -v")
-    npm_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npm -v")
-    express_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npm list express")
-    express_version="cant get express version vm 2 debian"
-    yarn_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "yarn -v")
-    node_installed=true
-    npm_installed=true
-    express_installed=true
-    yarn_installed=true
-    display_progress node npm yarn vm 2 debian
-fi
-
-
-
-
-
-
-
-
-
-
-
-
-if [ "$install_express" = true ] ; then
-    printHeading "express vm 2 debian"
-
-    echo express 01 is generated vm 2 debian
-    chmod 777 ./script-26-launch-express-01.sh
-    ttab './script-26-launch-express-01.sh'
-
-    express_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npm list express")
-    express_version="cant get express version vm 2 debian"
-    express_installed=true
-
-    echo express 02 is cloned from github vm 2 debian
-    chmod 777 ./script-26-launch-express-02.sh
-    ttab './script-26-launch-express-02.sh'
-
-    display_progress express vm 2 debian
-fi
-
-
-
-
-if [ "$install_vue" = true ] ; then
-    printHeading "install and run vue vm 2 debian"
-    cd $root_directory
-    chmod 777 ./script-28-launch-vue.sh
-    ttab './script-28-launch-vue.sh'
-    vue_version="cant get vue version ... vm 2 debian"
-    vue_installed=true
-    display_progress vue vm 2 debian
-fi
-
-
-
-
-
-
-install_vite=true
-if [ "$install_vite" = true ] ; then
-    printHeading "install and run vite vm 2 debian"
-    cd $root_directory
-    sleep 1
-    chmod 777 ./script-29-launch-vite.sh
-    ttab './script-29-launch-vite.sh'
-    vite_version="cant get vite version ... vm 2 debian"
-    vite_installed=true
-    display_progress vite vm 2 debian
-fi
-
-
-
-
-
-
-
-
-if [ "$install_bun" = true ] ; then
-    printHeading "bun vm 2 debian"
-    cd $root_directory
-    chmod 7777 ./script-30-launch-bun.sh
-    ttab './script-30-launch-bun.sh'
-    bun_version="cant get bun version ... vm 2 debian"
-    bun_installed=true
-    display_progress bun vm 2 debian
-fi
-
-
-
-
-
-if [ "$install_react" = true ] ; then
-    printHeading "install and run react and npx vm 2 debian"
-    cd $root_directory
-    chmod 7777 ./script-32-launch-react.sh
-    ttab './script-32-launch-react.sh'
-    npx_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npx -v")
-    react_version="cant get react version ... vm 2 debian"
-    npx_installed=true
-    react_installed=true
-    display_progress react vm 2 debian
-fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if [ "$apache_installed" = true ] ; then
-    printHeading "apache vm 2 debian"
-    open -a Terminal ./script-40-run-apache-web-server.sh
-fi
-
-
-
-
-
-
-if [ "$nginx_installed" = true ] ; then
-    printHeading "nginx vm 2 debian"
-    echo nginx install works ... nothing to test at present
-fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if [ "$install_go" = true ] ; then
-    printHeading "install go is failing vm 2 debian"
-    cd $root_directory
-    scp -i $ssh_key script-34.go $admin_username@$vm_2_public_ip:script-34.go
-    ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-34-go.zsh
-fi
-
-
-
-
-if [ "$install_java" = true ] ; then
-    printHeading "install java vm 2 debian"
-    scp -i $ssh_key script-38-java.java $admin_username@$vm_2_public_ip:script-38-java.java
-    ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-38-install-java.zsh
-    java_c_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "javac -version")
-    java_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "java -version")
-    display_progress "java installed vm 2 debian"
-fi
-
-
-
-if [ "$install_maria_db" = true ] ; then
-    printHeading "maria db vm 2 debian"
-    ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-43-maria-db.zsh
-    maria_db_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "mariadb -V")
-    maria_db_version_mysqladmin=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "sudo mysqladmin version")
-    maria_db_version_mysqladmin=${maria_db_version_mysqladmin:0:80}
-    maria_db_installed=true
-    display_progress "maria db vm 2 debian"
-fi
-
-
-
-
-
-
-if [ "$install_mongo_db" = true ] ; then
-    printHeading "mongo db vm 2 debian"
-    ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-44-mongo-db.zsh
-    mongo_db_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "mongod --version")
-    mongo_db_installed=true
-    display_progress "mongo db vm 2 debian"
-fi
-
-
-
-
-
-
-if [ "$install_mongo_shell" = true ] ; then
-    printHeading "mongo shell vm 2 debian"
-    ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-45-mongo-shell.zsh
-    mongo_shell_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "mongosh --version")
-    mongo_shell_installed=true
-    display_progress "mongo shell vm 2 debian"
-fi
-
-
-
-
-
-if [ "$install_dot_net" = true ] ; then
-    printHeading ".net core vm 2 debian"
-    ssh -T -i $ssh_key $admin_username@$vm_2_public_ip 'zsh -s' < ./script-50-dot-net.zsh
-    dot_net_installed=true
-    dot_net_sdks=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "dotnet --list-sdks")
-    echo dot net sdks
-    echo $dot_net_sdks
-    dot_net_runtimes=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "dotnet --list-runtimes")
-    echo dot net runtimes
-    echo $dot_net_runtimes
-    display_progress "dot net installed vm 2 debian"
-fi
-
-
 
 
 
@@ -2234,7 +2246,11 @@ fi
 
 
 
-test_web_servers_in_browser=true
+
+
+
+
+
 if [ "$test_web_servers_in_browser" = true ] ; then
     printHeading "test web servers in browser ... ip is $vm_1_public_ip"
     for port in 80 3000 57329 58262 54892 63892 51547 51279 
