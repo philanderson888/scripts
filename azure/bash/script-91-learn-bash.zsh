@@ -44,6 +44,19 @@ echo df
 echo pipe output to tee disk_usage.txt
 df -h | tee disk_usage.txt
 echo "==================================================================="
+echo "====                    du disk usage                          ===="
+echo "==================================================================="
+echo du
+echo gives statistics on disk usage eg space used by a folder
+echo -h flag gives human readable output
+echo -d flag gives depth of folder to show
+echo -c flag gives total at the end
+du 
+du -h -c ~
+du -h -c ~ | grep total
+du -h -c / | grep total
+du -d 1 -h -c / | grep total
+echo "==================================================================="
 echo "====                      export                               ===="
 echo "==================================================================="
 echo export command will add a variable to the list of environment variables
