@@ -84,7 +84,7 @@ echo "             List Files"
 echo "========================================"
 
 echo "Get-ChildItem -recurse | Format-Table ... also can use aliases of ls and dir"
-Get-ChildItem -recurse | Format-Table
+Get-ChildItem *github* -recurse | Format-Table
 
 echo " "
 echo "========================================"
