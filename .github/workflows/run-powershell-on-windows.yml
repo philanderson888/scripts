@@ -22,4 +22,4 @@ jobs:
         run: powershell/hello-world-01.ps1
       - name: Run a PowerShell command
         shell: pwsh
-        run: Get-Process | Format-Table -AutoSize
+        run: Get-Process *pwsh* | Format-Table -AutoSize
