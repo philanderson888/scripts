@@ -20,11 +20,6 @@ echo " "
 echo "pwsh -command 'echo hello from powershell'"
 pwsh -command 'echo "hello from powershell"'
 
-
-echo " "
-echo "pwsh -command 'echo hello from powershell'"
-powershell -command 'echo "hello from powershell"'
-
 echo " "
 echo "pwsh -command Get-Command"
 pwsn -command Get-Command *Get-Command*
@@ -57,17 +52,21 @@ echo ls
 ls
 
 echo " "
-/hello-world.ps1
+echo "cat hello-world.ps1"
+cat hello-world.ps1
+
+echo " "
+echo 0
+echo "hello-world.ps1"
+hello-world.ps1
 
 echo " "
 echo 1
-pwsh -command ./hello-world.ps1
+pwsh -command hello-world.ps1
+
 echo " "
 echo 2
-pwsh ./hello-world.ps1
-echo " "
-echo 3
-powershell ./powershell/hello-world.ps1
+pwsh hello-world.ps1
 
 echo " "
 echo "... is it working???"
