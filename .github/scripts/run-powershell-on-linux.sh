@@ -18,7 +18,7 @@ pwsh
 
 echo " "
 echo "pwsh -command 'echo hello from powershell'"
-pwsh -command 'echo hello from powershell'
+pwsh -command 'echo "hello from powershell"'
 
 echo " "
 echo "pwsh -command Get-Command"
