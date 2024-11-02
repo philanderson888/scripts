@@ -15,8 +15,6 @@ jobs:
       - run: echo '${{ github.actor }} is learning how to run PowerShell on Windows'
       - run: echo '${{ github.actor }} is running PowerShell on Windows'
       - name: Run a PowerShell script
-        run: powershell/hello-world-01.ps1
-      - name: Run a PowerShell script
         shell: pwsh
         run: powershell/hello-world-01.ps1
       - name: Run a PowerShell command
