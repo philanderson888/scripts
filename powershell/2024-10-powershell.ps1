@@ -101,6 +101,7 @@ Get-Item *2024-11-powershell.ps1* | Format-List
 
 echo " "
 echo "Get-Content *2024-11-powershell.ps1* prints out the content of the file"
+ls
 Get-Content *2024-11-powershell.ps1*
 
 echo " "
