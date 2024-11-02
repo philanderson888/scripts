@@ -2,7 +2,19 @@ name: run-powershell-on-linux
 run-name: ${{ github.actor }} is learning how to run PowerShell on Linux
 on: [push]
 jobs:
-  check-bats-version:
+  run-powershell-script-on-ubuntu-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: echo hello from the amazing world of scripting by phil anderson
+      - run: echo ${{ github.actor }} is learning how to run PowerShell on Linux
+      - run: echo ${{ github.actor }} is running PowerShell on Linux
+      - run: echo lets see if this works
+      - run: bash .github/scripts/run-powershell-on-linux.sh
+  test-job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
