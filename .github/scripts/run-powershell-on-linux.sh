@@ -22,15 +22,15 @@ pwsh -command 'echo hello from powershell'
 
 echo " "
 echo "pwsh -command Get-Command"
-pwsn -command Get-Command
+pwsn -command Get-Command *Get-Command*
 
 echo " "
 echo "pwsh -command Get-Process"
-pwsh -command Get-Process
+pwsh -command Get-Process *cron*
 
-echo " "
-echo "pwsh -command Get-Service"
-pwsh -command Get-Service
+#echo " "
+#echo "pwsh -command Get-Service"
+#pwsh -command Get-Service
 
 echo " "
 echo "pwsh -command Get-Date"
