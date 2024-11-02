@@ -49,12 +49,8 @@ echo "cat hello-world-01.ps1"
 cat hello-world-01.ps1
 
 echo " "
-echo 0
-echo "hello-world.ps1"
-hello-world-01.ps1
-
-echo " "
 echo 1
+chmod +x hello-world-01.ps1
 echo "./hello-world.ps1"
 ./hello-world-01.ps1
 
