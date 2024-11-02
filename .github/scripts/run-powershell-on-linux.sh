@@ -49,25 +49,30 @@ echo "cat hello-world-01.ps1"
 cat hello-world-01.ps1
 
 echo " "
-echo "cat ../hello-world.ps1"
-cat ../hello-world.ps1
-echo "cat ../../hello-world.ps1"
-cat ../../hello-world.ps1
-echo "cat ../../powershell/hello-world.ps1"
-cat ../../powershell/hello-world.ps1
-
-echo " "
 echo 0
 echo "hello-world.ps1"
-hello-world.ps1
+hello-world-01.ps1
 
 echo " "
 echo 1
-pwsh -command hello-world.ps1
+echo "./hello-world.ps1"
+./hello-world-01.ps1
 
 echo " "
 echo 2
-pwsh hello-world.ps1
+pwsh -command hello-world-01.ps1
+
+echo " "
+echo 3
+pwsh -command ./hello-world-01.ps1
+
+echo " "
+echo 4
+pwsh hello-world-01.ps1
+
+echo " "
+echo 5
+pwsh ./hello-world-01.ps1
 
 echo " "
 echo "... is it working???"
