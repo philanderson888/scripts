@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: echo hello from the amazing world of scripting by phil anderson
-      - run: echo ${{ github.actor }} is learning how to run PowerShell on Windows
-      - run: echo ${{ github.actor }} is running PowerShell on Windows
-      
+      - run: echo 'hello from the amazing world of scripting by phil anderson'
+      - run: echo '${{ github.actor }} is learning how to run PowerShell on Windows'
+      - run: echo '${{ github.actor }} is running PowerShell on Windows'
+
