@@ -21,10 +21,6 @@ echo "pwsh -command 'echo hello from powershell'"
 pwsh -command 'echo "hello from powershell"'
 
 echo " "
-echo "pwsh -command Get-Command"
-pwsn -command Get-Command *Get-Command*
-
-echo " "
 echo "pwsh -command Get-Process"
 pwsh -command Get-Process *cron*
 
@@ -41,19 +37,20 @@ echo "now lets try running a powershell script file"
 echo " "
 echo pwd
 pwd
-echo " "
-echo ls
-ls
 
 echo " "
 echo "cd powershell"
 cd powershell
-echo ls
-ls
+echo ls *hello*
+ls *hello*
 
 echo " "
-echo "cat hello-world.ps1"
-cat hello-world.ps1
+echo "cat ../hello-world.ps1"
+cat ../hello-world.ps1
+echo "cat ../../hello-world.ps1"
+cat ../../hello-world.ps1
+echo "cat ../../powershell/hello-world.ps1"
+cat ../../powershell/hello-world.ps1
 
 echo " "
 echo 0
