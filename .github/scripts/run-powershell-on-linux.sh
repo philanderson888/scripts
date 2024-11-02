@@ -35,18 +35,23 @@ echo "happy days"
 echo "using powershell on linux"
 echo "checking it is all working ... running Get-Command"
 Get-Command -Name Get-Command
+pwsh -Command {Get-Command -Name Get-Command}
 echo " "
 echo "Get-Process"
-Get-Process
+pwsh -Command {Get-Process}
 echo " "
 echo "Get-Service"
-Get-Service
+pwsh -Command {Get-Service}
 echo " "
 echo "Get-Date"
-Get-Date
+pwsh -Command {Get-Date}
 echo " "
 echo "Get-Location"
-Get-Location
+pwsh -Command {Get-Location}
+echo " "
+echo " "
+echo "now lets try running a powershell script file"
+/powershell/hello-world.ps1
 echo " "
 echo "... all working ... happy days ... exiting powershell"
 exit
