@@ -1,9 +1,9 @@
 name: run-powershell-on-windows
-run-name: ${{ github.actor }} is learning how to run github workflows on Windows
+run-name: github workflow on Windows
 on: [push]
 jobs:
   run-powershell-on-windows:
-    name: ${{ github.actor }} is learning how to run PowerShell on Windows
+    name: ${{ github.actor }} running github workflow to run powershell on Windows
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,7 +14,6 @@ jobs:
       - run: echo 'hello from the amazing world of scripting by phil anderson'
       - run: echo '${{ github.actor }} is learning how to run PowerShell on Windows'
       - run: echo '${{ github.actor }} is running PowerShell on Windows'
-      - run: bash .github/scripts/run-powershell-on-linux.sh
       - name: Run a PowerShell script
         run: powershell/hello-world-01.ps1
       - name: Run a PowerShell script
