@@ -100,9 +100,15 @@ echo "Get-Item *2024-11-powershell.ps1* | Format-List"
 Get-Item *2024-11-powershell.ps1* | Format-List
 
 echo " "
-echo "Get-Content *2024-11-powershell.ps1* prints out the content of the file"
-ls
-Get-Content *2024-11-powershell.ps1*
+echo "Get-Content README.md prints out the content of the file"
+
+echo "... head ..."
+Get-Content -Path $scriptPath -Head 3
+echo "... tail ..."
+Get-Content -Path $scriptPath -Tail 3
+
+Get-Content README.md -Head 3
+Get-Content README.md -Tail 3
 
 echo " "
 echo "New-Item -Path <file> -ItemType File"
@@ -121,14 +127,6 @@ echo "Get-Content -Path <file> -Tail <number> ... gives last number of lines of 
 echo " "
 $scriptPath = $MyInvocation.MyCommand.Path
 echo "Get-Content -Path $scriptPath ... gives content of file ... can use alias cat ... tail and head can also be used"
-
-echo " "
-echo "... head ..."
-Get-Content -Path $scriptPath -Head 3
-
-echo " "
-echo "... tail ..."
-Get-Content -Path $scriptPath -Tail 3
 
 echo "Set-Content -Path <file> -Value <content>"
 echo "Add-Content -Path <file> -Value <content>"
