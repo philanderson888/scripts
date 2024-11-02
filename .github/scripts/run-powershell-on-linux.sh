@@ -28,10 +28,6 @@ echo " "
 echo "pwsh -command Get-Process"
 pwsh -command Get-Process *cron*
 
-#echo " "
-#echo "pwsh -command Get-Service"
-#pwsh -command Get-Service
-
 echo " "
 echo "pwsh -command Get-Date"
 pwsh -command Get-Date
@@ -40,13 +36,18 @@ echo " "
 echo "pwsh -command Get-Location"
 pwsh -command Get-Location
 
-
 echo " "
 echo "now lets try running a powershell script file"
 echo " "
 echo pwd
 pwd
 echo " "
+echo ls
+ls
+
+echo " "
+echo "cd powershell"
+cd powershell
 echo ls
 ls
 
