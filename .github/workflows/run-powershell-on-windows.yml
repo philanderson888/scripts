@@ -14,9 +14,12 @@ jobs:
       - run: echo 'hello from the amazing world of scripting by phil anderson'
       - run: echo '${{ github.actor }} is learning how to run PowerShell on Windows'
       - run: echo '${{ github.actor }} is running PowerShell on Windows'
-      - name: Run a PowerShell script
+      - name: Run a Hello World PowerShell script
         shell: pwsh
         run: powershell/hello-world-01.ps1
       - name: Run a PowerShell command
         shell: pwsh
         run: Get-Process *pwsh* | Format-Table -AutoSize
+      - name: Run a detailed powershell script
+        shell: pwsh
+        run: powershell/2024-10-powershell.ps1
