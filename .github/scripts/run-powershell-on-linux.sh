@@ -45,6 +45,10 @@ echo ls *hello*
 ls *hello*
 
 echo " "
+echo "cat hello-world.ps1"
+cat hello-world.ps1
+
+echo " "
 echo "cat ../hello-world.ps1"
 cat ../hello-world.ps1
 echo "cat ../../hello-world.ps1"
