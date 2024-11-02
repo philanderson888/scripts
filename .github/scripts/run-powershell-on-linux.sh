@@ -20,6 +20,11 @@ echo " "
 echo "pwsh -command 'echo hello from powershell'"
 pwsh -command 'echo "hello from powershell"'
 
+
+echo " "
+echo "pwsh -command 'echo hello from powershell'"
+powershell -command 'echo "hello from powershell"'
+
 echo " "
 echo "pwsh -command Get-Command"
 pwsn -command Get-Command *Get-Command*
@@ -52,21 +57,17 @@ echo ls
 ls
 
 echo " "
-echo "cd /github/workspace"
-cd /github/workspace
-echo ls
-ls
+/hello-world.ps1
 
 echo " "
-echo "cd /"
-cd / 
-echo ls
-ls
-
+echo 1
+pwsh -command ./hello-world.ps1
 echo " "
-/powershell/hello-world.ps1
-pwsh /powershell/hello-world.ps1
-powershell /powershell/hello-world.ps1
+echo 2
+pwsh ./hello-world.ps1
+echo " "
+echo 3
+powershell ./powershell/hello-world.ps1
 
 echo " "
 echo "... is it working???"
