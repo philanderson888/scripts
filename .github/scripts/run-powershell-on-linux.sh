@@ -49,11 +49,21 @@ echo " "
 echo "Get-Location"
 pwsh -Command {Get-Location}
 echo " "
+pwsh echo hello from powershell
 echo " "
 echo "now lets try running a powershell script file"
+pwd
+ls
+cd /github/workspace
+ls
+cd / 
+ls
 /powershell/hello-world.ps1
+pwsh /powershell/hello-world.ps1
+powershell /powershell/hello-world.ps1
+
 echo " "
-echo "... all working ... happy days ... exiting powershell"
+echo "... is it working???"
 exit
 
 # End of script
