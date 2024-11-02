@@ -16,26 +16,31 @@ echo " "
 echo "run powershell executable"
 pwsh
 
-pwsh -Command {Get-Command -Name Get-Command}
 echo " "
-echo "Get-Process"
-pwsh -Command {Get-Process}
+echo "pwsh -command 'echo hello from powershell'"
+pwsh -command 'echo hello from powershell'
+
 echo " "
-echo "Get-Service"
-pwsh -Command {Get-Service}
-echo " "
-echo "Get-Date"
-pwsh -Command {Get-Date}
-echo " "
-echo "Get-Location"
-pwsh -Command {Get-Location}
-echo " "
+echo "pwsh -command Get-Command"
 pwsn -command Get-Command
+
+echo " "
+echo "pwsh -command Get-Process"
 pwsh -command Get-Process
+
+echo " "
+echo "pwsh -command Get-Service"
 pwsh -command Get-Service
+
+echo " "
+echo "pwsh -command Get-Date"
 pwsh -command Get-Date
+
+echo " "
+echo "pwsh -command Get-Location"
 pwsh -command Get-Location
-pwsh echo hello from powershell
+
+
 echo " "
 echo "now lets try running a powershell script file"
 echo " "
