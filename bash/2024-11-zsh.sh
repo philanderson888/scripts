@@ -153,7 +153,7 @@ ls -a ~ | grep oh-my-zsh
 
 echo " "
 echo "what is in zshrc?"
-cat ~/.zshrc -Head 10
+head -10 ~/.zshrc
 
 echo " "
 echo "use oh-my-zsh to change the theme"
