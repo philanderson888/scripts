@@ -194,7 +194,6 @@ echo $scriptPath
 
 
 
-
 Start-Sleep -Seconds 1
 echo " "
 Write-Host -NoNewLine '... continue ...';
@@ -211,9 +210,33 @@ $a=1; if ($a -is "Int32") { write-host "a is a number" }
 
 
 
+
+
 echo " "
 echo "========================================"
-echo "              Download"
+echo "          Download And Run EXE"
+echo "========================================"
+
+echo " "
+echo "Invoke-WebRequest -Uri <url> -OutFile <file> ... downloads file from url"
+echo "Start-Process -FilePath <file> ... runs file"
+echo "Remove-Item -Path <file> ... removes file"
+
+echo " "
+echo "Invoke-WebRequest -Uri http://84.205.192.65:7777/exe/DOSPrinter_x64.exe -OutFile .\DOSPrinter_x64.exe"
+#Invoke-WebRequest -Uri http://84.205.192.65:7777/exe/DOSPrinter_x64.exe -OutFile .\DOSPrinter_x64.exe
+echo " "
+echo "Start-Process -FilePath .\DOSPrinter_x64.exe"
+#.\DOSPrinter_x64.exe
+echo " "
+echo "Remove-Item -Path .\DOSPrinter_x64.exe"
+#rm .\DOSPrinter_x64.exe
+
+
+
+echo " "
+echo "========================================"
+echo "          Download And Run MSI"
 echo "========================================"
 
 echo " "
@@ -225,6 +248,8 @@ echo "Invoke-WebRequest -Uri <url> ... downloads file from url ... can use alias
 #Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'
 # remove
 # rm .\AzureCLI.msi
+
+
 
 
 echo " "
