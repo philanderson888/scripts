@@ -77,6 +77,25 @@ echo "to simplify matters create a c:\scripts directory and add it to the path"
 
 
 
+echo " "
+echo "========================================"
+echo "             Variables"
+echo "========================================"
+
+echo " "
+echo "variables"
+echo "variable names start with $"
+echo "variable names are case insensitive"
+echo "variable names can contain letters, numbers, and underscores"
+echo "variable names cannot contain spaces"
+echo "variable names cannot start with a number"
+echo "variable names cannot be reserved words"
+
+$filePath = "README.md"
+echo "... head ..."
+Get-Content -Path $filePath -Head 3
+echo "... tail ..."
+Get-Content -Path $filePath -Tail 3
 
 echo " "
 echo "========================================"
@@ -102,11 +121,11 @@ Get-Item *2024-11-powershell.ps1* | Format-List
 echo " "
 echo "Get-Content README.md prints out the content of the file"
 
-$scriptPath = "README.md"
+$filePath = "README.md"
 echo "... head ..."
-Get-Content -Path $scriptPath -Head 3
+Get-Content -Path $filePath -Head 3
 echo "... tail ..."
-Get-Content -Path $scriptPath -Tail 3
+Get-Content -Path $filePath -Tail 3
 
 Get-Content README.md -Head 3
 Get-Content README.md -Tail 3
@@ -173,6 +192,13 @@ $scriptPath = $MyInvocation.MyCommand.Path
 echo $scriptPath
 
 
+
+
+
+Start-Sleep -Seconds 1
+echo " "
+Write-Host -NoNewLine '... continue ...';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
 
 
 
