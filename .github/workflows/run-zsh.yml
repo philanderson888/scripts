@@ -11,4 +11,4 @@ jobs:
           node-version: '20'
       - name: install and run zsh script
         shell: bash
-        run: pwd && ls && cd bash && pwd && ls && chmod +x ./2024-11-zsh.sh && ./zsh/2024-11-zsh.sh
+        run: pwd && cd bash && pwd && ls && chmod +x ./2024-11-zsh.sh && ./2024-11-zsh.sh
