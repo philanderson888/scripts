@@ -1,8 +1,8 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: run-bash-scripts
+run-name: run-bash-scripts
 on: [push]
 jobs:
-  check-bats-version:
+  run-bash-scripts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -11,8 +11,5 @@ jobs:
           node-version: '20'
       - run: whoami
       - run: pwd
-      - run: npm install -g bats
-      - run: bats -v
-      - run: echo hello from the amazing world of scripting by phil anderson
-      - run: bash .github/scripts/github-script-001.sh
+      - run: running bash script
       - run: bash bash/2024-11-bash.sh
