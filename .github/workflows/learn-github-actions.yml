@@ -12,6 +12,7 @@ jobs:
       - run: whoami
       - run: pwd
       - run: running bash script
+      - run: ls
       - name: Run a detailed powershell script
         shell: bash
-        run: ls && bash/2024-11-bash.sh
+        run: bash/2024-11-bash.sh
