@@ -102,7 +102,7 @@ Get-Item *2024-11-powershell.ps1* | Format-List
 echo " "
 echo "Get-Content README.md prints out the content of the file"
 
-$scriptPath = README.md
+$scriptPath = "README.md"
 echo "... head ..."
 Get-Content -Path $scriptPath -Head 3
 echo "... tail ..."
