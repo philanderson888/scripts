@@ -192,10 +192,16 @@ omz update
 
 
 
+echo " "
+echo "========================================"
+echo "              Run a command"
+echo "========================================"
 
+echo " "
+echo "run a command in oh-my-zsh"
+echo "omz run echo 'Hello, World!'"
+omz run echo 'Hello, World!'
 
-
-
+echo " "
+echo "run a command in oh-my-zsh"
 zsh_stats
-
-
