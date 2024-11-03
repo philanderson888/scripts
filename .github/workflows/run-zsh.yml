@@ -9,7 +9,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: installing and running zsh - use script 
       - name: install and run zsh script
         shell: bash
         run: bash/2024-11-zsh.sh
