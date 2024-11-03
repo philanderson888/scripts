@@ -94,15 +94,17 @@ echo $SHELL
 echo " "
 echo "is zsh a valid login shell?"
 echo "cat /etc/shells | grep zsh"
+cat /etc/shells | grep zsh
 
 echo " "
 echo "is zsh the default shell?"
 echo "cat /etc/passwd | grep $USER"
+cat /etc/passwd | grep $USER
 
 echo " "
 echo "what is in bashrc?"
 cat ~/.bashrc 
 
 echo " "
-echo "what is in zshrc?"
-cat ~/.zshrc
+touch ~/.zshrc
+
