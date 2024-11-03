@@ -161,6 +161,8 @@ echo "nano ~/.zshrc"
 echo "ZSH_THEME="robbyrussell" to ZSH_THEME="agnoster""
 # nano ~/.zshrc
 
+
+
 echo " "
 echo "========================================"
 echo "              Reload"
