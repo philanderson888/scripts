@@ -15,4 +15,4 @@ jobs:
         run: ls
       - name: run a bash script
         shell: bash
-        run: bash/2024-11-bash.sh
+        run: cd bash && chmod +x 2024-11-bash.sh && 2024-11-bash.sh
