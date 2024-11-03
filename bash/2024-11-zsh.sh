@@ -50,10 +50,14 @@ echo "sudo apt-get install zsh -y"
 sudo apt-get install zsh -y
 
 echo " "
+echo 'is zsh installed?'
+echo "dpkg -l zsh"
+dpkg -l zsh
+
+echo " "
 echo "check the version"
 echo "zsh --version"
 zsh --version
-
 
 
 echo "========================================"
@@ -100,11 +104,98 @@ echo " "
 echo "is zsh the default shell?"
 echo "cat /etc/passwd | grep $USER"
 cat /etc/passwd | grep $USER
+echo "cat /etc/passwd | grep zsh"
+cat /etc/passwd | grep zsh
+
+echo " "
+echo "tip: can log out and log back in to see the changes"
+echo "tip2: can also use the command `exec zsh` to switch to zsh"
+echo "tip3: can also replace the shell in the /etc/passwd file"
 
 echo " "
 echo "what is in bashrc?"
-cat ~/.bashrc 
+cat ~/.bashrc | grep zsh 
 
 echo " "
+echo "create a zshrc file"
 touch ~/.zshrc
+
+
+
+echo " "
+echo "========================================"
+echo "========================================"
+echo "        Section 2 - Customization"
+echo "========================================"
+echo "========================================"
+
+echo " "
+echo "========================================"
+echo "              Oh My Zsh"
+echo "========================================"
+
+echo " "
+echo "Oh My Zsh is an open-source, community-driven framework for managing your zsh configuration. "
+echo "It comes bundled with a ton of helpful functions, helpers, plugins, themes, and a few things that make you shout... 'Oh My ZSH!'"
+
+echo " "
+echo "Oh My Zsh will not make you a 10x developer...but you may feel like one."
+
+echo " "
+echo "Oh My Zsh is installed by running the following command in your terminal."
+echo "sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)""
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo " "
+echo "is Oh My Zsh installed?"
+echo "ls -a ~ | grep oh-my-zsh"
+ls -a ~ | grep oh-my-zsh
+
+echo " "
+echo "what is in zshrc?"
+cat ~/.zshrc
+
+echo " "
+echo "use the command `source ~/.zshrc` to reload the zshrc file"
+source ~/.zshrc
+
+echo " "
+echo "use oh-my-zsh to change the theme"
+echo "nano ~/.zshrc"
+echo "ZSH_THEME="robbyrussell" to ZSH_THEME="agnoster""
+nano ~/.zshrc
+
+
+echo " "
+echo "========================================"
+echo "              Reload"
+echo "========================================"
+
+echo " "
+echo "reload the zshrc file to view changes"
+echo "omz reload"
+omz reload
+
+
+
+echo " "
+echo "========================================"
+echo "              Update"
+echo "========================================"
+
+echo " "
+echo "update Oh My Zsh"
+omz update
+
+
+
+
+
+
+
+
+
+
+zsh_stats
+
 
