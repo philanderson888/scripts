@@ -81,8 +81,28 @@ echo "we switch between bash and zsh using the command chsh -s /bin/zsh"
 echo "echo $SHELL"
 echo $SHELL
 echo "chsh -s /bin/zsh"
+chsh -s /bin/zsh
+echo "echo $SHELL"
+echo $SHELL
+echo "chsh -s $(which zsh)"
+chsh -s $(which zsh)
 sudo chsh -s /bin/zsh
+sudo chsh -s $(which zsh)
 echo "echo $SHELL"
 echo $SHELL
 
+echo " "
+echo "is zsh a valid login shell?"
+echo "cat /etc/shells | grep zsh"
 
+echo " "
+echo "is zsh the default shell?"
+echo "cat /etc/passwd | grep $USER"
+
+echo " "
+echo "what is in bashrc?"
+cat ~/.bashrc 
+
+echo " "
+echo "what is in zshrc?"
+cat ~/.zshrc
