@@ -15,3 +15,4 @@ jobs:
       - run: bats -v
       - run: echo hello from the amazing world of scripting by phil anderson
       - run: bash .github/scripts/github-script-001.sh
+      - run: bash bash/2024-11-bash.sh
