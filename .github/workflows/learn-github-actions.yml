@@ -12,7 +12,5 @@ jobs:
       - run: whoami
       - run: pwd
       - name: run bash script
-        run: ls
-      - name: run a bash script
         shell: bash
         run: cd bash && chmod +x 2024-11-bash.sh && ./2024-11-bash.sh
