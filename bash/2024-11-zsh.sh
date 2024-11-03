@@ -153,18 +153,13 @@ ls -a ~ | grep oh-my-zsh
 
 echo " "
 echo "what is in zshrc?"
-cat ~/.zshrc
-
-echo " "
-echo "use the command `source ~/.zshrc` to reload the zshrc file"
-source ~/.zshrc
+cat ~/.zshrc -Head 10
 
 echo " "
 echo "use oh-my-zsh to change the theme"
 echo "nano ~/.zshrc"
 echo "ZSH_THEME="robbyrussell" to ZSH_THEME="agnoster""
-nano ~/.zshrc
-
+# nano ~/.zshrc
 
 echo " "
 echo "========================================"
@@ -174,7 +169,7 @@ echo "========================================"
 echo " "
 echo "reload the zshrc file to view changes"
 echo "omz reload"
-omz reload
+# omz reload
 
 
 
@@ -185,7 +180,7 @@ echo "========================================"
 
 echo " "
 echo "update Oh My Zsh"
-omz update
+# omz update
 
 
 
@@ -200,7 +195,7 @@ echo "========================================"
 echo " "
 echo "run a command in oh-my-zsh"
 echo "omz run echo 'Hello, World!'"
-omz run echo 'Hello, World!'
+# omz run echo 'Hello, World!'
 
 echo " "
 echo "run a command in oh-my-zsh"
