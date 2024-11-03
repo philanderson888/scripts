@@ -1,0 +1,15 @@
+name: install-and-run-zsh
+run-name: install-and-run-zsh
+on: [push]
+jobs:
+  install-and-run-zsh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: installing and running zsh - use script 
+      - name: install and run zsh script
+        shell: bash
+        run: bash/2024-11-zsh.sh
