@@ -81,7 +81,7 @@ echo "we switch between bash and zsh using the command chsh -s /bin/zsh"
 echo "echo $SHELL"
 echo $SHELL
 echo "chsh -s /bin/zsh"
-chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
 echo "echo $SHELL"
 echo $SHELL
 
