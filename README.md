@@ -13,7 +13,6 @@ Repo for scripts that I use
 
 ### update node npm yarn pnpm to latest versions
 
-[update node npm yarn pnpm](bash/2024-11-updating-node-npm.sh)
+[update node npm yarn pnpm](bash/2024-11-update-node-npm-yarn-pnpm-to-latest.sh)
 
-see output on github via github workflows at .github/workflows/install-node-npm-yarn-pnpm-latest.yml
-
+see output on github via github workflows at .github/workflows/2024-11-update-node-npm-yarn-pnpm-to-latest.yml
