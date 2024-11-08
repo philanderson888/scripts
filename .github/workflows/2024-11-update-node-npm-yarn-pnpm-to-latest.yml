@@ -9,6 +9,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: install node npm yarn pnpm lates1t
-        shell: bash
-        run: pwd && cd bash && pwd && ls && chmod +x bash/2024-11-update-node-npm-yarn-pnpm-to-latest.sh && bash/2024-11-update-node-npm-yarn-pnpm-to-latest.sh
+      - run: echo ${{ github.actor }} 
+      - run: echo update node npm yarn pnpm to latest
+      - run: bash pwd 
+      - run: bash ls
+      - run: bash cd bash
+      - run: bash pwd
+      - run: bash ls
+      - run: bash chmod +x ./2024-11-update-node-npm-yarn-pnpm-to-latest.sh
+      - run: bash ./2024-11-update-node-npm-yarn-pnpm-to-latest.sh
