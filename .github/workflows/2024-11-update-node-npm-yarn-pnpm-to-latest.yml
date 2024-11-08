@@ -11,10 +11,10 @@ jobs:
           node-version: '20'
       - run: echo ${{ github.actor }} 
       - run: echo update node npm yarn pnpm to latest
-      - run: bash pwd 
-      - run: bash ls
-      - run: bash cd bash
-      - run: bash pwd
-      - run: bash ls
-      - run: bash chmod +x ./2024-11-update-node-npm-yarn-pnpm-to-latest.sh
-      - run: bash ./2024-11-update-node-npm-yarn-pnpm-to-latest.sh
+      - run: pwd 
+      - run: ls
+      - run: cd bash
+      - run: pwd
+      - run: ls
+      - run: chmod +x ./2024-11-update-node-npm-yarn-pnpm-to-latest.sh
+      - run: ./2024-11-update-node-npm-yarn-pnpm-to-latest.sh
