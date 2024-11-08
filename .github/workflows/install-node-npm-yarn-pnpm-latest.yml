@@ -11,4 +11,5 @@ jobs:
           node-version: '20'
       - name: install node npm yarn pnpm latest
         shell: bash
-        run: pwd && cd bash && pwd && ls && chmod +x ./2024-11-node-npm-yarn-pnpm-latest.sh && ./2024-11-node-npm-yarn-pnpm-latest.sh
+        run: pwd && cd bash && pwd && ls && chmod +x bash/2024-11-node-npm-yarn-pnpm-latest.sh && bash/2024-11-node-npm-yarn-pnpm-latest.sh
+
