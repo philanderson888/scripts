@@ -188,7 +188,7 @@ echo "sudo apt-get install wget on linux"
 sudo apt-get install wget -y
 
 echo " "
-echo "wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -"
+echo "wget -qO- https://get.pnpm.io/install.sh | ENV=`$HOME/.bashrc` SHELL=`$(which bash)` bash -"
 wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
 
 pnpm -v
