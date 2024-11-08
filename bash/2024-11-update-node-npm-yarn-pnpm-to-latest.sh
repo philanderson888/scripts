@@ -187,14 +187,8 @@ echo "brew install wget on a mac"
 echo "sudo apt-get install wget on linux"
 sudo apt-get install wget -y
 
-
-pwd
-ls 
-
-
-
 echo " "
-echo "wget -qO- https://get.pnpm.io/install.sh | sh -"
-wget -qO- https://get.pnpm.io/install.sh | sh -
+echo "wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -"
+wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
 
 pnpm -v
