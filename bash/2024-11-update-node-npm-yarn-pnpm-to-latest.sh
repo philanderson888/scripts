@@ -113,8 +113,13 @@ echo "brew -v"
 brew -v
 
 echo " "
+echo "brew install node"
+brew install node
 echo "brew upgrade node"
 brew upgrade node
+
+echo " "
+echo "npm install -g npm"
 npm install -g npm
 
 echo " "
