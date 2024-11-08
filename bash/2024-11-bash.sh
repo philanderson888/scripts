@@ -43,3 +43,87 @@ echo " "
 echo "to print the last few lines of a file use tail"
 tail -10 ~/.bashrc
 
+
+
+
+
+
+
+
+
+
+echo " "
+echo "========================================"
+echo "========================================"
+echo "    Section 2 - Installing Libraries"
+echo "========================================"
+echo "========================================"
+echo " "
+
+
+
+echo " "
+echo "========================================"
+echo "            Installing Homebrew"
+echo "========================================"
+
+echo " "
+echo "to install homebrew on linux run the following command"
+echo " "
+echo "/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)""
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo " "
+echo "brew -v"
+brew -v
+echo "brew update"
+brew update 
+echo "brew upgrade"
+brew upgrade
+echo "brew cleanup"
+brew cleanup
+echo "brew doctor"
+brew doctor
+echo "brew -v"
+brew -v
+
+
+
+
+
+
+echo " "
+echo "========================================"
+echo "            Installing Pnpm"
+echo "========================================"
+
+echo " "
+echo "pnpm -v"
+pnpm -v
+echo "curl -fsSL https://get.pnpm.io/install.sh | sh -"
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+echo "pnpm -v"
+pnpm -v
+
+
+
+
+
+
+
+echo " "
+echo "========================================"
+echo "            Installing Yarn"
+echo "========================================"
+
+echo " "
+echo "yarn -v"
+yarn -v
+echo "npm install -g yarn"
+npm install -g corepack
+echo "corepack enable"
+corepack enable
+echo "yarn set version stable"
+yarn set version stable
+echo "yarn -v"
+yarn -v

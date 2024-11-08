@@ -22,21 +22,34 @@ echo "========================================"
 echo "            Updating Node and NPM"
 echo "========================================"
 
+echo " "
+echo "node -v"
 node -v
+echo "npm -v"
 npm -v
+echo "npm install -g npm@latest"
 npm install -g npm@latest
-npm -v
+echo "node -v"
 node -v
+echo "npm -v"
+npm -v
+
 
 echo " "
 echo "========================================"
 echo "            Updating Yarn"
 echo "========================================"
 
+echo " "
+echo "yarn -v"
 yarn -v
+echo "npm install -g yarn"
 npm install -g corepack
+echo "corepack enable"
 corepack enable
+echo "yarn set version stable"
 yarn set version stable
+echo "yarn -v"
 yarn -v
 
 echo " "
@@ -44,10 +57,13 @@ echo "========================================"
 echo "            Updating Pnpm"
 echo "========================================"
 
+echo " "
+echo "pnpm -v"
 pnpm -v
+echo "curl -fsSL https://get.pnpm.io/install.sh | sh -"
 curl -fsSL https://get.pnpm.io/install.sh | sh -
+echo "pnpm -v"
 pnpm -v
-
 
 
 echo " "
@@ -70,11 +86,22 @@ echo "========================================"
 echo " "
 echo "to install homebrew on linux run the following command"
 echo " "
+echo "/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)""
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 echo " "
-echo "update homebrew"
+echo "brew -v"
+brew -v
+echo "brew update"
 brew update 
+echo "brew upgrade"
+brew upgrade
+echo "brew cleanup"
+brew cleanup
+echo "brew doctor"
+brew doctor
+echo "brew -v"
+brew -v
 
 echo " "
 echo "brew upgrade node"
