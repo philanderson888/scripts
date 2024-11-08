@@ -162,6 +162,14 @@ echo "ls"
 ls 
 
 echo " "
+echo "cat package.json"
+cat package.json
+
+echo " "
+echo "rm package.json ... have to remove this or pnpm will not install"
+rm package.json
+
+echo " "
 echo "pnpm -v"
 pnpm -v
 echo "sudo apt-get install curl -y"
