@@ -1,0 +1,14 @@
+name: 2024-11-update-node-npm-yarn-pnpm-to-latest
+run-name: 2024-11-update-node-npm-yarn-pnpm-to-latest.sh
+on: [push]
+jobs:
+  update-node-npm-yarn-pnpm-to-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: install node npm yarn pnpm lates1t
+        shell: bash
+        run: pwd && cd bash && pwd && ls && chmod +x bash/2024-11-update-node-npm-yarn-pnpm-to-latest.sh && bash/2024-11-update-node-npm-yarn-pnpm-to-latest.sh
