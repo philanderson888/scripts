@@ -140,7 +140,14 @@ echo "            Updating Pnpm"
 echo "========================================"
 
 echo " "
+echo "pnpm -v"
 pnpm -v
+echo "sudo apt-get install curl -y"
+sudo apt-get install curl -y
+echo "curl -v"
+curl -v
+
+echo "curl -fsSL https://get.pnpm.io/install.sh | sh -"
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 echo " " 
