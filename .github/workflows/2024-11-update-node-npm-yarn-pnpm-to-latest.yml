@@ -13,8 +13,5 @@ jobs:
       - run: echo update node npm yarn pnpm to latest
       - run: pwd 
       - run: ls
-      - run: cd bash
-      - run: pwd
-      - run: ls
-      - run: chmod +x ./2024-11-update-node-npm-yarn-pnpm-to-latest.sh
-      - run: ./2024-11-update-node-npm-yarn-pnpm-to-latest.sh
+      - run: chmod +x bash/2024-11-update-node-npm-yarn-pnpm-to-latest.sh
+      - run: bash/2024-11-update-node-npm-yarn-pnpm-to-latest.sh
