@@ -154,6 +154,14 @@ echo "            Updating Pnpm"
 echo "========================================"
 
 echo " "
+echo "pwd"
+pwd
+
+echo " "
+echo "ls"
+ls 
+
+echo " "
 echo "pnpm -v"
 pnpm -v
 echo "sudo apt-get install curl -y"
