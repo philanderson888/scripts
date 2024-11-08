@@ -168,8 +168,14 @@ echo " "
 echo "or can use wget (if curl is not installed)"
 echo " "
 echo "brew install wget on a mac"
-echo "sudo apt install wget on linux"
-sudo apt install wget
+echo "sudo apt-get install wget on linux"
+sudo apt-get install wget -y
+
+
+pwd
+ls 
+
+
 
 echo " "
 echo "wget -qO- https://get.pnpm.io/install.sh | sh -"
