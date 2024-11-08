@@ -130,7 +130,7 @@ echo " "
 echo "also another newer way using n"
 echo " "
 
-sudo brew install n
+brew install n
 n latest
 
 echo " "
