@@ -527,7 +527,7 @@ echo "New-Object System.Net.Sockets.TcpClient('a2k4.com', 2300).GetStream() ... 
 
 
 
-Start-Sleep -Seconds 1
-echo " "
-Write-Host -NoNewLine '... continue ...';
-$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+# Start-Sleep -Seconds 1
+# echo " "
+# Write-Host -NoNewLine '... continue ...';
+# $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
