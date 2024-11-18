@@ -127,3 +127,31 @@ echo "yarn set version stable"
 yarn set version stable
 echo "yarn -v"
 yarn -v
+
+
+
+
+
+echo " "
+echo "========================================"
+echo "========================================"
+echo "        Section 3 - a to z"
+echo "========================================"
+echo "========================================"
+echo " "
+
+
+echo " "
+echo "========================================"
+echo "                 kill"
+echo "========================================"
+
+
+echo " "
+echo "to kill a process running on port 3000"
+echo " "
+echo "lsof -i tcp:3000"
+lsof -i tcp:3000
+# will display process id
+echo "kill -9 #processid"
+# kill -9 #processid
