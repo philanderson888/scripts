@@ -16,6 +16,21 @@ echo "========================================"
 echo "========================================"
 echo " "
 
+echo " "
+echo "========================================"
+echo "    Check which shell you are using     "
+echo "========================================"
+
+echo " "
+if [[ $OSTYPE == 'darwin'* ]]; then
+    echo 'macOS'
+    echo $OSTYPE # darwin18.7.0
+    uname # Darwin
+else
+    echo 'Linux'
+    echo $OSTYPE # linux-gnu
+    uname # Linux
+fi
 
 echo " "
 echo "========================================"
@@ -44,7 +59,7 @@ echo " "
 echo "yarn -v"
 yarn -v
 echo "npm install -g yarn"
-npm install -g corepack
+npm install -g corepack -y
 echo "corepack enable"
 corepack enable
 echo "yarn set version stable"
@@ -52,11 +67,22 @@ yarn set version stable
 echo "yarn -v"
 yarn -v
 
+
 echo " "
 echo "========================================"
 echo "            Updating Pnpm"
 echo "========================================"
 
+echo " "
+echo "before starting be aware pnpm does not work with package-lock.json or `yarn`"
+echo "... so can remove `package.json` and `package-lock.json` if you wish before you begin"
+echo " "
+echo "rm package.json"
+rm package.json
+echo "rm package-lock.json"
+rm package-lock.json
+echo "rm yarn.lock"
+rm yarn.lock
 echo " "
 echo "pnpm -v"
 pnpm -v
@@ -72,9 +98,7 @@ echo "       Updating Node using Homebrew"
 echo "========================================"
 
 echo " "
-echo "on a mac you can use homebrew to update node and npm"
-echo " "
-
+echo "you can use homebrew to update node and npm"
 echo " "
 echo "on a linux machine we have to install homebrew first to see how this is done"
 
@@ -84,19 +108,34 @@ echo "            Installing Homebrew"
 echo "========================================"
 
 echo " "
-echo "to install homebrew on linux run the following command"
+echo "to install homebrew run the following command"
 echo " "
 echo "/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)""
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 
 echo " "
-echo "add homebrew to your path"
-echo >> /home/runner/.bashrc
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/runner/.bashrc
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "========================================"
+echo "    Check which shell you are using     "
+echo "========================================"
 
-source /home/runner/.bashrc
+echo " "
+if [[ $OSTYPE == 'darwin'* ]]; then
+    echo 'macOS'
+    echo $OSTYPE # darwin18.7.0
+    echo "refresh the shell using source /home/runner/.zshrc"
+    source /home/runner/.zshrc
+else
+    echo 'Linux'
+    echo $OSTYPE # linux-gnu
+    echo " "
+    echo "add homebrew to your path"
+    echo >> /home/runner/.bashrc
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/runner/.bashrc
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "refresh the shell using source /home/runner/.bashrc"
+    source /home/runner/.bashrc
+fi
 
 echo " "
 echo "brew -v"
