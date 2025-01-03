@@ -1,6 +1,3 @@
-#!/bin/zsh
-echo zsh
-zsh
 echo cd ~
 cd ~
 echo "==================================================================="
@@ -34,7 +31,7 @@ echo "==================================================================="
 fruits_array=("apple" "banana" "cherry")
 for fruit in "${!fruits_array[@]}"
 do
-    fruit_name=${resource_group_names[$fruit]}
+    fruit_name=${fruits_array[$fruit]}
     echo fruit is $fruit also known as $fruit_name
 done
 echo "==================================================================="
@@ -51,11 +48,13 @@ echo gives statistics on disk usage eg space used by a folder
 echo -h flag gives human readable output
 echo -d flag gives depth of folder to show
 echo -c flag gives total at the end
-du 
-du -h -c ~
-du -h -c ~ | grep total
-du -h -c / | grep total
-du -d 1 -h -c / | grep total
+mkdir ~/.temp
+echo "hello" > ~/.temp/hello.txt
+du ~/.temp 
+du -h -c ~/.temp
+du -h -c ~/.temp | grep total
+du -h -c ~/.temp | grep total
+du -d 1 -h -c ~/.temp | grep total
 echo "==================================================================="
 echo "====                      export                               ===="
 echo "==================================================================="
@@ -80,9 +79,9 @@ echo
 echo
 echo
 echo bash
-bash
+#bash
 echo phil_variable
-phil_variable
+echo $phil_variable
 echo
 echo
 echo
@@ -91,10 +90,10 @@ echo export phil_variable
 export phil_variable
 echo
 echo bash
-bash
+#bash
 echo 
 echo phil_variable
-phil_variable
+echo $phil_variable
 echo
 echo
 echo
@@ -108,12 +107,14 @@ echo
 echo
 echo
 echo invoke bash shell
-bash
+# bash
 echo
 echo
 echo
 echo now call the phil_function
 phil_function
+echo now exit the shell
+#exit
 echo "==================================================================="
 echo "====                       for loop                            ===="
 echo "==================================================================="
@@ -137,6 +138,19 @@ do
     fruit_name=${resource_group_names[$fruit]}
     echo fruit is $fruit also known as $fruit_name
 done
+echo "==================================================================="
+echo "====              getent - get entries from database           ===="
+echo "==================================================================="
+
+echo getent passwd 0
+getent passwd 0
+
+echo getent group root - look up root users
+getent group root
+
+echo getent passwd phil - look up user phil
+getent passwd phil
+
 echo "==================================================================="
 echo "====                   json with bash                          ===="
 echo "==================================================================="
@@ -240,6 +254,7 @@ sleep 2
 echo
 echo
 echo import json from a file
+touch tmp.json
 sleep 2
 json02=$(jq '.' < tmp.json)
 echo $json02 | jq
@@ -253,6 +268,7 @@ echo
 echo
 echo
 echo create json array from file
+touch tmp2.json
 jq '.' < tmp2.json
 sleep 2
 echo
@@ -515,3 +531,10 @@ echo $json02 | jq -c '.[]' | while read i; do
         echo $j
     done
 done
+
+
+echo "==================================================================="
+echo "==================================================================="
+echo "====              end of learn bash commands                   ===="
+echo "==================================================================="
+echo "==================================================================="

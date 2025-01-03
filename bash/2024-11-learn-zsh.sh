@@ -47,12 +47,12 @@ echo " "
 
 echo " "
 echo "sudo apt-get install zsh -y"
-sudo apt-get install zsh -y
+#sudo apt-get install zsh -y
 
 echo " "
 echo 'is zsh installed?'
 echo "dpkg -l zsh"
-dpkg -l zsh
+#dpkg -l zsh
 
 echo " "
 echo "check the version"
@@ -64,18 +64,17 @@ echo "========================================"
 echo "               Use"
 echo "========================================"
 echo " "
-
-
-echo " "
-echo "we can switch between bash and zsh using `bash` and `zsh` commands"
+echo hi
+echo there
+echo "we can switch between bash and zsh using bash and zsh commands"
 echo "echo $SHELL"
 echo $SHELL
 echo "zsh"
-zsh
+#zsh
 echo "echo $SHELL"
 echo $SHELL
 echo "bash"
-bash
+#bash
 echo "echo $SHELL"
 echo $SHELL
 
@@ -85,13 +84,13 @@ echo "we switch between bash and zsh using the command chsh -s /bin/zsh"
 echo "echo $SHELL"
 echo $SHELL
 echo "chsh -s /bin/zsh"
-chsh -s /bin/zsh
+#chsh -s /bin/zsh
 echo "echo $SHELL"
 echo $SHELL
 echo "chsh -s $(which zsh)"
-chsh -s $(which zsh)
-sudo chsh -s /bin/zsh
-sudo chsh -s $(which zsh)
+#chsh -s $(which zsh)
+#sudo chsh -s /bin/zsh
+#sudo chsh -s $(which zsh)
 echo "echo $SHELL"
 echo $SHELL
 
@@ -109,7 +108,7 @@ cat /etc/passwd | grep zsh
 
 echo " "
 echo "tip: can log out and log back in to see the changes"
-echo "tip2: can also use the command `exec zsh` to switch to zsh"
+#echo "tip2: can also use the command `exec zsh` to switch to zsh"
 echo "tip3: can also replace the shell in the /etc/passwd file"
 
 echo " "
@@ -200,3 +199,4 @@ echo "omz run echo 'Hello, World!'"
 # omz run echo 'Hello, World!'
 
 
+zsh
