@@ -1372,7 +1372,7 @@ if [ "$learning_mode" = true ] ; then
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-90-learn-node-js.zsh
     sleep 1
     printHeading "bash scripting a to z"
-    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-91-learn-bash.zsh
+    ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ~/github/scripts/bash/2025-01-learn-bash.sh
     sleep 1
     printHeading "python"
     ssh -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-93-learn-python.zsh
