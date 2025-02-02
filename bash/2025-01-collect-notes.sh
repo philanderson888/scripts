@@ -70,74 +70,73 @@ echo " "
 echo "========================================"
 echo "====               Rust             ===="
 echo "========================================"
-echo copy $root_path/rust/README.md
-echo copy $root_path/rust/notes/01-getting-started.md
-echo copy $root_path/rust/notes/02-first-project.md
-echo copy $root_path/rust/projects/02-guessing-game/guessing-game-05/src/main.rs
-echo copy $root_path/rust/projects/03-variables-operators-functions/src/main.rs
-echo copy $root_path/rust/projects/04-ownership/src/main.rs
-echo copy $root_path/rust/projects/05-structs-and-enums/src/main.rs
-echo copy $root_path/rust/projects/07-collections/src/main.rs
-echo copy $root_path/rust/projects/08-error-handling/src/main.rs
-echo copy $root_path/rust/projects/10-generics/src/main.rs
-echo copy $root_path/rust/projects/11-testing/testing-02/src/lib.rs
-echo copy $root_path/rust/projects/12-grep/grep-11/src/main.rs
-echo copy $root_path/rust/projects/13-functional-programming/src/main.rs
-echo copy $root_path/rust/projects/16-threads/src/main.rs
-echo copy $root_path/rust/projects/17-oop/src/main.rs
-echo copy $root_path/rust/projects/18-environment-variables/src/main.rs
-echo copy $root_path/rust/projects/19-file-handling/src/main.rs
-echo copy $root_path/rust/projects/20-gui-hello-world/src/main.rs
-echo copy $root_path/rust/projects/21-gui-app/gui-07/src/main.rs
-echo copy $root_path/rust/projects/22-gui-listbox/src/main.rs
 echo "\n\n\n\n\n\n\n\n\n\n" >> $delete_me
 echo "========================================" >> $delete_me
 echo "========================================" >> $delete_me
-echo "====               Rust             ====" >> $delete_me
+echo "====               Rust 1           ====" >> $delete_me
 echo "========================================" >> $delete_me
 echo "========================================" >> $delete_me
-echo copy $root_path/rust/README.md >> $delete_me
-echo copy $root_path/rust/notes/01-getting-started.md >> $delete_me
-echo copy $root_path/rust/notes/02-first-project.md >> $delete_me
-echo copy $root_path/rust/projects/02-guessing-game/guessing-game-05/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/03-variables-operators-functions/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/04-ownership/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/05-structs-and-enums/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/07-collections/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/08-error-handling/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/10-generics/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/11-testing/testing-02/src/lib.rs >> $delete_me
-echo copy $root_path/rust/projects/12-grep/grep-11/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/13-functional-programming/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/16-threads/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/17-oop/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/18-environment-variables/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/19-file-handling/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/20-gui-hello-world/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/21-gui-app/gui-07/src/main.rs >> $delete_me
-echo copy $root_path/rust/projects/22-gui-listbox/src/main.rs >> $delete_me
-echo "\n\n\n\n\n\n\n\n\n\n" >> $delete_me
-cat $root_path/rust/README.md >> $delete_me
-cat $root_path/rust/notes/01-getting-started.md >> $delete_me
-cat $root_path/rust/notes/02-first-project.md >> $delete_me
-cat $root_path/rust/projects/02-guessing-game/guessing-game-05/src/main.rs >> $delete_me
-cat $root_path/rust/projects/03-variables-operators-functions/src/main.rs >> $delete_me
-cat $root_path/rust/projects/04-ownership/src/main.rs >> $delete_me
-cat $root_path/rust/projects/05-structs-and-enums/src/main.rs >> $delete_me
-cat $root_path/rust/projects/07-collections/src/main.rs >> $delete_me
-cat $root_path/rust/projects/08-error-handling/src/main.rs >> $delete_me
-cat $root_path/rust/projects/10-generics/src/main.rs >> $delete_me
-cat $root_path/rust/projects/11-testing/testing-02/src/lib.rs >> $delete_me
-cat $root_path/rust/projects/12-grep/grep-11/src/main.rs >> $delete_me
-cat $root_path/rust/projects/13-functional-programming/src/main.rs >> $delete_me
-cat $root_path/rust/projects/16-threads/src/main.rs >> $delete_me
-cat $root_path/rust/projects/17-oop/src/main.rs >> $delete_me
-cat $root_path/rust/projects/18-environment-variables/src/main.rs >> $delete_me
-cat $root_path/rust/projects/19-file-handling/src/main.rs >> $delete_me
-cat $root_path/rust/projects/20-gui-hello-world/src/main.rs >> $delete_me
-cat $root_path/rust/projects/21-gui-app/gui-07/src/main.rs >> $delete_me
-cat $root_path/rust/projects/22-gui-listbox/src/main.rs >> $delete_me
 
+# print file names
+for FILENAME in $root_path/rust/notes/*.md; do
+    echo $FILENAME
+    echo $FILENAME >> $delete_me
+done
+
+for FILENAME in $root_path/rust/projects/*/src/main.rs; do
+    echo $FILENAME
+    echo $FILENAME >> $delete_me
+done
+
+for FILENAME in $root_path/rust/projects/*/*/src/main.rs; do
+    echo $FILENAME
+    echo $FILENAME >> $delete_me
+done
+
+for FILENAME in $root_path/rust/projects/06-crates/*/*/*.rs; do
+    echo $FILENAME
+    echo $FILENAME >> $delete_me
+done
+
+for FILENAME in $root_path/rust/projects/06-crates/*/*/*/*.rs; do
+    echo $FILENAME
+    echo $FILENAME >> $delete_me
+done
+
+# print file contents
+
+for FILENAME in $root_path/rust/notes/*.md; do
+    echo $FILENAME >> $delete_me
+    echo "" >> $delete_me
+    cat $FILENAME >> $delete_me
+done
+
+for FILENAME in $root_path/rust/projects/*/src/main.rs; do
+    echo $FILENAME >> $delete_me
+    echo "" >> $delete_me
+    cat $FILENAME >> $delete_me
+done
+
+for FILENAME in $root_path/rust/projects/*/*/src/main.rs; do
+    echo $FILENAME >> $delete_me
+    echo "" >> $delete_me
+    cat $FILENAME >> $delete_me
+done
+
+for FILENAME in $root_path/rust/projects/06-crates/*/*/*.rs; do
+    echo $FILENAME >> $delete_me
+    echo "" >> $delete_me
+    cat $FILENAME >> $delete_me
+done
+
+
+for FILENAME in $root_path/rust/projects/06-crates/*/*/*/*.rs; do
+    echo $FILENAME >> $delete_me
+    echo "" >> $delete_me
+    cat $FILENAME >> $delete_me
+done
+
+echo " "            
 echo " "
 echo " "
 echo " "
