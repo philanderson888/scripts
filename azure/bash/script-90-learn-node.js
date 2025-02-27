@@ -14,7 +14,7 @@ console.log('hello world from the amazing world of js');
 console.log('==================================================')
 console.log('====          array for each                  ====')
 console.log('==================================================')
-const myArray = [ 1, 2, 3];
+const myArray = [1, 2, 3];
 myArray.forEach( (item) => {
     console.log(item);
 });
