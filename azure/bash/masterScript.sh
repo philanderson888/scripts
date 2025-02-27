@@ -385,10 +385,12 @@ vm_flatcar_name=vmFlatCarLinux
 vm_os_flatcar=flatcar
 vm_image_flatcar=FlatcarLinuxFreeGen2
 
+# network security group
+network_security_group_name=vm01NSG
 
 # windows
 windows_server_vm_name=winServerVm01
-network_security_group_name=winServerVm01NSG
+windows_network_security_group_name=winServerVm01NSG
 windows_server_vm_ip_name=winServerVm01PublicIP    
 windows_client_vm_name=winClientVm01
 
@@ -1201,7 +1203,7 @@ if [ "$create_vm_windows_server" = true ] ; then
     echo install ssh - not running
     # az vm extension set --resource-group $resource_group_name --vm-name $windows_server_vm_name --name WindowsOpenSSH --publisher Microsoft.Azure.OpenSSH --version 3.0
     echo opening firewall port 22 ssh 
-    az network nsg rule create -g $resource_group_name --nsg-name $network_security_group_name -n allow-SSH --priority 1010 --source-address-prefixes Internet --destination-port-ranges 22 --protocol TCP
+    az network nsg rule create -g $resource_group_name --nsg-name $windows_network_security_group_name -n allow-SSH --priority 1010 --source-address-prefixes Internet --destination-port-ranges 22 --protocol TCP
     query_vm_windows_server=true
     log_in_to_windows_server=true
 fi
@@ -2270,7 +2272,7 @@ fi
 echo
 echo
 echo
-delay_before_erase_all_servers=180
+delay_before_erase_all_servers=300
 delay_in_minutes_before_erase_all_servers=$(( $delay_before_erase_all_servers / 60 ))
 echo ... waiting $delay_in_minutes_before_erase_all_servers minutes then deleting all servers and all resource groups so we start from scratch every time ...
 sleep $delay_before_erase_all_servers
