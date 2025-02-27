@@ -1,5 +1,5 @@
-name: 2024-11-update-node-npm-yarn-pnpm-to-latest
-run-name: 2024-11-update-node-npm-yarn-pnpm-to-latest.sh
+name: update-node-npm-yarn-pnpm-to-latest
+run-name: update-node-npm-yarn-pnpm-to-latest.sh
 on: [push]
 jobs:
   update-node-npm-yarn-pnpm-to-latest:
@@ -13,5 +13,5 @@ jobs:
       - run: echo update node npm yarn pnpm to latest
       - run: pwd 
       - run: ls
-      - run: chmod +x bash/2024-11-update-node-npm-yarn-pnpm-to-latest.sh
-      - run: bash/2024-11-update-node-npm-yarn-pnpm-to-latest.sh
+      - run: chmod +x bash/update-node-npm-yarn-pnpm-to-latest.sh
+      - run: bash/update-node-npm-yarn-pnpm-to-latest.sh
