@@ -1,0 +1,16 @@
+name: run-bash-scripts
+run-name: run-bash-scripts
+on: [push]
+jobs:
+  run-bash-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: whoami
+      - run: pwd
+      - name: run bash script
+        shell: bash
+        run: cd bash && chmod +x 2024-11-bash.sh && ./2024-11-bash.sh
