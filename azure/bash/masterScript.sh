@@ -3,6 +3,14 @@ echo screen cleared
 echo
 echo
 echo
+echo script 61 step 4 fails - file does not exist
+echo script 62 failing docker
+echo script 63 failing docker
+echo script 64 failing docker
+echo one of the scripts is running npm install on the root of the ubuntu machine - should not be this way!
+echo
+echo
+echo
 echo shell running on mac
 echo $SHELL 
 $SHELL --version
@@ -110,6 +118,9 @@ add_waypoint_to_waypoints() {
 
 
 print_waypoints() {
+    echo "=============================="
+    echo "====      waypoints      ===="
+    echo "=============================="
     waypoint_index=-1
     echo $waypoints | jq -c '.[]' | while read i; do
         waypoint_index=$(( waypoint_index + 1 ))
@@ -305,13 +316,19 @@ display_progress () {
     if [ "$react_installed" = true ] ; then
         echo "react version $react_version"
     fi
-      if [ "$mongo_db_installed" = true ] ; then
+    if [ "$mongo_db_installed" = true ] ; then
         echo "mongo db version $mongo_db_version"
+    fi
+    if [ "$github_actions_done" = true ] ; then
+        echo "github actions completed"
     fi
     if [ "$end_of_script" = true ] ; then
         echo list files and hidden files
         echo $list_files_and_hidden_files
     fi
+    echo " "
+    echo " "
+    echo " "
     print_waypoints
 }
 initialise_first_waypoint
@@ -417,11 +434,18 @@ admin_password=$(cat $admin_password_file)
 ssh_key_public=~/.ssh/azureCliUbuntuLogin.pub
 ssh_key=~/.ssh/azureCliUbuntuLogin.pem
 display_progress "credentials set - user $admin_username .. pass .."
+github_credentials_file=.env
+github_token=$(cat $github_credentials_file)
+github_username=philanderson888
+github_email=philanderson888@hotmail.com
+echo github token $github_token
+echo github username $github_username
+echo github email $github_email
 
 # resource groups and vms
 query_assets=true
 query_vms=true
-query_vm_windows_server=true
+query_vm_windows_server=false
 
 # manage vms
 list_vms=true
@@ -766,6 +790,7 @@ if [ "$install_node" = true ] ; then
     ssh -i $ssh_key $admin_username@$public_ip_address 'bash -s' < ./script-25-install-node.sh
 
     chmod 777 ./script-25-phil.sh
+    echo note ttab command must only be run from mac terminal not vscode shell
     ttab './script-25-phil.sh'
     
     sleep 2
@@ -797,6 +822,8 @@ if [ "$install_express" = true ] ; then
 
     echo express 01 is generated
     chmod 777 ./script-26-launch-express-01.sh
+    echo note ttab command must only be run from mac terminal not vscode shell
+    echo ttab script 26 launch express 01
     ttab './script-26-launch-express-01.sh'
 
     express_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npm list express")
@@ -805,6 +832,7 @@ if [ "$install_express" = true ] ; then
 
     echo express 02 is cloned from github
     chmod 777 ./script-26-launch-express-02.sh
+    echo ttab script 26 launch express 02
     ttab './script-26-launch-express-02.sh'
 
     display_progress express
@@ -817,6 +845,8 @@ if [ "$install_vue" = true ] ; then
     printHeading "install and run vue"
     cd $root_directory
     chmod 777 ./script-28-launch-vue.sh
+    echo note ttab command must only be run from mac terminal not vscode shell
+    echo ttab script 28 launch vue
     ttab './script-28-launch-vue.sh'
     vue_version="cant get vue version ..."
     vue_installed=true
@@ -851,6 +881,8 @@ if [ "$install_bun" = true ] ; then
     printHeading "bun"
     cd $root_directory
     chmod 7777 ./script-30-launch-bun.sh
+    echo note ttab command must only be run from mac terminal not vscode shell
+    echo ttab script 30 launch bun
     ttab './script-30-launch-bun.sh'
     bun_version="cant get bun version ..."
     bun_installed=true
@@ -865,6 +897,8 @@ if [ "$install_react" = true ] ; then
     printHeading "install and run react and npx"
     cd $root_directory
     chmod 7777 ./script-32-launch-react.sh
+    echo note ttab command must only be run from mac terminal not vscode shell
+    echo ttab script 32 launch react
     ttab './script-32-launch-react.sh'
     npx_version=$(ssh -i $ssh_key $admin_username@$public_ip_address "npx -v")
     react_version="cant get react version ..."
@@ -1109,6 +1143,8 @@ if [ "$github_actions" = true ] ; then
     printHeading "github actions - deploy web app"
     echo firstly install and run web app on new tab
     chmod 777 ./script-54-github-actions-create-app.zsh
+    echo note ttab command must only be run from mac terminal not vscode shell
+    echo ttab script 54 create web app
     ttab './script-54-github-actions-create-app.zsh'
     sleep 10
     echo secondly test web app after waiting 10 seconds
@@ -1147,6 +1183,29 @@ if [ "$github_actions" = true ] ; then
 
     printHeading "script 64 - deploy simple node web app on docker"
     ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-64-docker.zsh
+
+    printHeading "script 65 - deploy medical app back end on docker"
+
+    touch ./script-65-github-token.txt
+    echo $github_token > ./script-65-github-token.txt
+    scp -i $ssh_key ./script-65-github-token.txt $admin_username@$public_ip_address:script-65-github-token.txt
+
+    touch ./script-65-github-username.txt
+    echo $github_username > ./script-65-github-username.txt
+    scp -i $ssh_key ./script-65-github-username.txt $admin_username@$public_ip_address:script-65-github-username.txt
+
+    touch ./script-65-github-email.txt
+    echo $github_email > ./script-65-github-email.txt
+    scp -i $ssh_key ./script-65-github-email.txt $admin_username@$public_ip_address:script-65-github-email.txt
+
+    ssh -T -i $ssh_key $admin_username@$public_ip_address 'zsh -s' < ./script-65-build-medical-app-backend.sh
+
+    rm ./script-65-github-token.txt
+    rm ./script-65-github-username.txt
+    rm ./script-65-github-email.txt
+
+    github_actions_done=true
+    display_progress "github actions"
 fi
 
 
@@ -1936,6 +1995,8 @@ if [ "$build_vm_2" = true ] ; then
         ssh -i $ssh_key $admin_username@$vm_2_public_ip 'bash -s' < ./script-25-install-node.sh
 
         chmod 777 ./script-25-phil.sh
+        echo note ttab command must only be run from mac terminal not vscode shell
+        echo ttab script 25 phil.sh
         ttab './script-25-phil.sh'
         
         sleep 2
@@ -1967,6 +2028,8 @@ if [ "$build_vm_2" = true ] ; then
 
         echo express 01 is generated vm 2 debian
         chmod 777 ./script-26-launch-express-01.sh
+        echo note ttab command must only be run from mac terminal not vscode shell
+        echo ttab script 26 launch express 01.sh
         ttab './script-26-launch-express-01.sh'
 
         express_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npm list express")
@@ -1975,6 +2038,8 @@ if [ "$build_vm_2" = true ] ; then
 
         echo express 02 is cloned from github vm 2 debian
         chmod 777 ./script-26-launch-express-02.sh
+        echo note ttab command must only be run from mac terminal not vscode shell
+        echo ttab script 26 launch express 02.sh
         ttab './script-26-launch-express-02.sh'
 
         display_progress express vm 2 debian
@@ -1987,6 +2052,8 @@ if [ "$build_vm_2" = true ] ; then
         printHeading "install and run vue vm 2 debian"
         cd $root_directory
         chmod 777 ./script-28-launch-vue.sh
+        echo note ttab command must only be run from mac terminal not vscode shell
+        echo ttab script 28 launch vue.sh
         ttab './script-28-launch-vue.sh'
         vue_version="cant get vue version ... vm 2 debian"
         vue_installed=true
@@ -2004,6 +2071,8 @@ if [ "$build_vm_2" = true ] ; then
         cd $root_directory
         sleep 1
         chmod 777 ./script-29-launch-vite.sh
+        echo note ttab command must only be run from mac terminal not vscode shell
+        echo ttab script 29 launch vite.sh
         ttab './script-29-launch-vite.sh'
         vite_version="cant get vite version ... vm 2 debian"
         vite_installed=true
@@ -2021,6 +2090,8 @@ if [ "$build_vm_2" = true ] ; then
         printHeading "bun vm 2 debian"
         cd $root_directory
         chmod 7777 ./script-30-launch-bun.sh
+        echo note ttab command must only be run from mac terminal not vscode shell
+        echo ttab script 30 launch bun.sh
         ttab './script-30-launch-bun.sh'
         bun_version="cant get bun version ... vm 2 debian"
         bun_installed=true
@@ -2035,6 +2106,8 @@ if [ "$build_vm_2" = true ] ; then
         printHeading "install and run react and npx vm 2 debian"
         cd $root_directory
         chmod 7777 ./script-32-launch-react.sh
+        echo note ttab command must only be run from mac terminal not vscode shell
+        echo ttab script 32 launch react.sh
         ttab './script-32-launch-react.sh'
         npx_version=$(ssh -i $ssh_key $admin_username@$vm_2_public_ip "npx -v")
         react_version="cant get react version ... vm 2 debian"
@@ -2272,7 +2345,7 @@ fi
 echo
 echo
 echo
-delay_before_erase_all_servers=300
+delay_before_erase_all_servers=900
 delay_in_minutes_before_erase_all_servers=$(( $delay_before_erase_all_servers / 60 ))
 echo ... waiting $delay_in_minutes_before_erase_all_servers minutes then deleting all servers and all resource groups so we start from scratch every time ...
 sleep $delay_before_erase_all_servers
