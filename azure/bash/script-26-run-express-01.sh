@@ -61,8 +61,6 @@ echo
 echo "======================================================================="
 echo "====      npm start - express - running on port 3000               ===="
 echo "======================================================================="
+echo ok this works but it hangs the whole script - find a way to run this in a fresh terminal so as to not hang the script
 echo npm start
-npm start
-
-
-
+# npm start
