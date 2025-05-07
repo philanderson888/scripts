@@ -1,5 +1,7 @@
 - name: phil anderson first ansible script running on list of hosts specified in the inventory 
   hosts: myhosts
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.10
   connection: local
   tasks:
    - name: Print message
