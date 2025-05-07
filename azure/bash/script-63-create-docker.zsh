@@ -13,7 +13,7 @@ echo
 echo
 echo
 echo mv script-63-dockerfile script-63-docker
-mv script-63-dockerfile script-6-docker
+mv script-63-dockerfile script-63-docker
 echo
 echo
 echo

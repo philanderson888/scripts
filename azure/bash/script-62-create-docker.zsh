@@ -4,6 +4,13 @@ echo
 echo
 echo cd ~
 cd ~
+echo ls - were the package.json, package-lock.json and yarn.lock files created before this point? not sure ...
+ls 
+echo removing the files if they exist
+#rm package.json
+#rm package-lock.json
+#rm yarn.lock
+echo ... keep moving this back until we get to the source of the error ...
 echo
 echo
 echo
@@ -71,7 +78,7 @@ export DOCKER_BUILDKIT=0
 echo
 echo
 echo
-echo now build dodker image
+echo now build docker image
 echo
 echo
 echo

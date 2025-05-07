@@ -6,6 +6,6 @@ RUN ls /home/script-63
 RUN cd /home/script-63 && ls
 RUN apt-get update
 RUN apt-get install nodejs -y > /dev/null
-RUN apt-get install npm -y /dev/null
-RUN cd /home/script-63 && npm install
+RUN apt-get install npm -y > /dev/null
+RUN cd /home/script-63 && echo "run node server.js to run this web server"
 CMD ["echo", "this is a docker container built by phil anderson"]
