@@ -100,13 +100,7 @@ echo corepack enable
 sudo corepack enable > /dev/null
 echo
 echo yarn set version stable
-echo 111
 yarn set version stable -y
-echo 222
-yarn set version stable
-
-echo
-echo
 echo
 echo yarn install
 yarn install > /dev/null
