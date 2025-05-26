@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  input-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.input
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - OUTPUT_SERVICE_URL=http://output-service:3001
+    networks:
+      - app-network
+
+  output-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.output
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
