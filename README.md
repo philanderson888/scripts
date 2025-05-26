@@ -9,6 +9,7 @@ Repo for scripts that I use
   - [bash](#bash)
     - [update node npm yarn pnpm to latest versions](#update-node-npm-yarn-pnpm-to-latest-versions)
   - [docker](#docker)
+  - [docker compose](#docker-compose)
 
 ## bash
 
@@ -21,3 +22,11 @@ see output on github via github workflows at .github/workflows/2024-11-update-no
 ## docker
 
 [docker](/docker/)
+
+## docker compose
+
+```bash
+docker compose up --build
+```
+
+to force a container rebuild
