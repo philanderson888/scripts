@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      # This maps port 3000 from inside the container to port 3000 on your host machine
+      # Format: "HOST_PORT:CONTAINER_PORT"
+      - "3000:3000"
+    environment:
+      - PORT=3000
