@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports:
+      - "9003:5000" # Expose port 5000 on the container to port 9000 on the host (flash runs on port 5000 by default)
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /code
+  redis:
+    image: "redis:alpine"
