@@ -27,6 +27,7 @@ Repo for scripts that I use
     - [view single node](#view-single-node)
     - [minikube dashboard](#minikube-dashboard)
     - [minikube samples](#minikube-samples)
+  - [digital ocean](#digital-ocean)
 
 ## bash
 
@@ -247,5 +248,15 @@ kubectl expose deployment hello-minikube --type=NodePort --port=8080
 #deployment.apps/hello-minikube created
 #service/hello-minikube exposed
 minikube service hello-minikube
+```
+
+
+
+## digital ocean 
+
+we can connect to a digital ocean cluster using `doctl`
+
+```bash
+brew install doctl
 ```
 
