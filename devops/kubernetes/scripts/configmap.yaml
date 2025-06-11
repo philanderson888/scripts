@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mychart-configmap
+data:
+  myvalue: "Hello World"
+  mylist: |
+    - item1
+    - item2
+    - item3
+  mydict: |
+    key1: value1
+    key2: value2
+  mymultiline: |
+    This is a multiline string.
+    It can span multiple lines.
+  myjson: |
+    {
+      "key1": "value1",
+      "key2": "value2"
+    }
+  myyaml: |
+    key1: value1
+    key2: value2
+  myboolean: "true"
+  mynumber: "42"
+  mynull: ""
+  myempty: ""
+  mydate: "2023-10-01T12:00:00Z"
+  mytime: "12:00:00Z"
+  mydatetime: "2023-10-01T12:00:00Z"
+  mybinary: "SGVsbG8gV29ybGQ="  # Base64 encoded "Hello World
+  mysecret: "c2VjcmV0LXZhbHVl"  # Base64 encoded
+  myurl: "https://example.com"
+  mypath: "/path/to/resource"
+  myemail: "a@b.com"
+  myphone: "+1234567890"
+  myip: "1.2.3.4"
+  mycolor: "#FFFFFF"  # Hex color code
+  myenum: "option1"  # Example of an enum value
+  myregex: "^[a-zA-Z0-9]+$"  # Example of a regex pattern
+  phil2: 122

@@ -19,6 +19,9 @@ echo - if node is not specified, will run on any node
 echo - if node dies, pod is rescheduled on another node
 echo - pod is standalone or managed via deployment
 
+echo
+echo to delete a pod scale it down to zero or delete it outright if it is an unmanaged pod
+
 
 echo "==================================="
 echo "==================================="
@@ -31,29 +34,46 @@ echo
 echo
 
 echo "==================================="
-echo "====         deployment        ===="
-echo "==================================="
-echo 
-echo 
-echo a deployment is a higher-level abstraction that manages pods
-echo it ensures that the desired number of pods are always running
-echo it can also handle rolling updates and rollbacks
-echo
-echo a deployment manages how pods are created, updated, and deleted within a cluster
-echo
-echo
-echo
-
-
-echo "==================================="
 echo "====           Contexts        ===="
 echo "==================================="
 echo
 echo
-echo note that the term 'context' is only valid on the client and does not exist in kubernetes itself
-echo once we configure a context, we can use it to switch between different clusters and users
+echo context is only valid on the client
+echo context switching between clusters, users and namespaces
 echo 
 echo 
+echo "==================================="
+echo "====         manifest          ===="
+echo "==================================="
+echo
+echo kubernetes manifest is a yaml file that describes the desired state of a kubernetes resource
+echo
+echo for example
+cat ./kubernetes-manifest.yaml
+echo
+echo we can create a cluster then apply this manifest to create a pod
+echo
+echo kind create cluster
+kind create cluster --name kind2
+echo
+echo kubectl apply -f ./kubernetes-manifest.yaml
+kubectl apply -f ./kubernetes-manifest.yaml --context kind2
+echo
+  
+echo "==================================="
+echo "====         deployment        ===="
+echo "==================================="
+echo 
+echo 
+echo deployment manages pods in a cluster
+echo eg minimum and maximum numbers of pods running
+echo also can delete pods
+echo also can update pods
+echo also manages graceful transition from actual to desired state
+echo
+echo
+echo
+
 
 
 echo "==================================="
@@ -62,12 +82,10 @@ echo "==================================="
 
 echo 
 echo 
-echo namespaces allow you to split your large cluster into smaller virtual clusters
-echo ... so in theory one can have two different projects in the same cluster 
-echo "create a namespace"
-kubectl create namespace my-namespace
-
-
+echo namespaces is a subdivision of a cluster
+echo namespaces allow managing groups of resources separately within one cluster
+echo 
+echo 
 
 echo "==================================="
 echo "====       Injecting Data      ===="
@@ -96,19 +114,15 @@ echo "==================================="
 echo 
 echo
 echo services manage internal ip addresses and ports and networking between pods
-echo "create a service"
-kubectl expose deployment my-deployment --type=NodePort --name=my-service --port=80 --target-port=80
-echo 
-echo kubectl get services
-kubectl get services
-echo 
-echo 
-echo kubectl get service my-service
-kubectl get service my-service
-echo 
-echo 
-kubectl get service mongodb -o yaml
 echo
+echo typically a deployment manages pods and their lifetimes 
+echo and a service manages the networking between those pods
+echo 
+echo service types include:
+echo - ClusterIP default - internal access only
+echo - NodePort - external access on a specific port on each node
+echo - LoadBalancer - external access via a load balancer
+echo - ExternalName - maps to an external DNS name
 echo 
 echo "==================================="
 echo "====            Ingress        ===="
@@ -159,95 +173,352 @@ kubectl create service loadbalancer my-loadbalancer --tcp=80:80 --external-ip=1.
 echo
 echo
 echo 
+echo "==================================="
+echo "==================================="
+echo "====           Kind            ===="
+echo "==================================="
+echo "==================================="
+echo
+echo
+echo kind create cluster
+kind create cluster
+# kind create cluster --name my-cluster --image kindest/node:v1.23.0 --wait 5m 
+kind create cluster --name my-cluster-01 --image kindest/node:v1.23.0 --wait 5m --config ./kind-config-01.yaml
+# multiple control nodes
+kind create cluster --name my-cluster-02 --image kindest/node:v1.23.0 --wait 5m --config ./kind-config-02.yaml
+# map ports
+kind create cluster --name my-cluster-03 --image kindest/node:v1.23.0 --wait 5m --config ./kind-config-03.yaml
+echo
+echo kind get clusters
+kind get clusters
+echo
+echo kubectl cluster-info
+kubectl cluster-info
+echo
+echo kind get nodes
+kind get nodes
+echo 
+echo kind get kubeconfig
+kind get kubeconfig
+echo 
+echo kind delete cluster
+kind delete cluster
+echo
+echo load image into kind cluster
+kind load docker-image nginx:latest # --name my-cluster
+# docker build -t nginx:latest .
+# kind load docker-image nginx:latest # --name my-cluster
+# kubectl apply -f nginx-deployment.yaml
+echo 
+echo list images on a cluster
+docker exec -it kind-kind crictl images
+echo
+echo kind build node-image --name my-cluster --image nginx:latest
+echo
+echo enable feature gates can turn features on or off
+echo
+echo kind export logs
+kind export logs
+echo
+echo "==================================="
+echo "==================================="
+echo "====           Helm            ===="
+echo "==================================="
+echo "==================================="
+echo
+echo
+echo "==================================="
+echo "=====       Introduction       ===="
+echo "==================================="
+echo
+echo helm is a package manager for kubernetes
+echo helm uses charts to manage applications
+echo charts are a collection of files that describe a kubernetes application
+echo a chart contains instructions to install, upgrade, and delete an application in a cluster
+echo a repository is a collection of charts
+echo a release is an instance of a chart running in a cluster ... each release has a name
+echo
+echo "==================================="
+echo "====           Charts          ===="
+echo "==================================="
+echo
+echo charts can be created locally or downloaded from a repository
+echo eg
+echo - https://artifacthub.io/
+echo - https://kubernetes-charts.storage.googleapis.com/
+echo - https://charts.bitnami.com/bitnami
+echo - https://charts.helm.sh/stable
+echo - https://kubernetes.io/docs/tasks/tools/install-helm/
+echo
+echo also can search for charts using helm search hub
+echo
+echo helm repo list
+helm repo list
+echo 
+echo helm reo add repo-name repo-url
+echo
+echo helm repo update
+echo
+echo helm search repo repo-name
+echo
+echo helm repo remove repo-name
+echo
+helm search hub kubernetes --list-repo-url
+echo
+echo you can add helm charts using helm repo add
+echo
+echo helm create chart-name
+echo 
+echo helm lint chart-name
+echo 
+echo helm package chart-name
+echo 
+echo "==================================="
+echo "====            Install        ===="
+echo "==================================="
+echo
+echo we install or modify a chart using helm install
+echo 
+echo helm install release-name chart-name --namespace namespace --dry-run --debug
+echo helm install release-name package-name
+echo 
+echo helm install -f chart.yaml --namespace namespace --generate-name
+echo helm install --values values.yaml --namespace namespace --generate-name
+echo helm install --set key=value,key2=value2,outer.inner=value3 --namespace namespace --generate-name
+echo 
+echo upgrade will only modify what has changed
+echo
+echo helm upgrade release-name chart-name --namespace namespace
+echo
+echo helm rollback release-name revision eg helm rollback release-name 1
+echo
+echo helm uninstall release-name
+echo
+echo "==================================="
+echo "====            Query          ===="
+echo "==================================="
+echo
+echo helm env
+helm env
+echo
+echo helm list
+helm list
+echo
+echo helm status release-name
+helm status release-name
+echo
+echo helm get values release-name
+helm get values 
+echo 
+echo get manifest which is all the yaml files applied to the cluster
+helm get manifest release-name
+echo
+echo helm show all chart-name
+echo 
+echo show values chart-name
+echo
+echo 
+echo "==================================="
+echo "====          Templates        ===="
+echo "==================================="
+echo
+echo templates are used to create dynamic kubernetes resources
+echo templates are written in yaml and can include variables
+echo templates can be used to create resources like deployments, services, and configmaps
+echo
+echo template files are stored in the charts/templates directory
+echo templates use values.yaml to define variables defined in the template
+echo
+echo template data can pull in from values files eg {{ .Values.key }}
+
+echo
+echo "==================================="
+echo "====           Values          ===="
+echo "==================================="
+echo
+echo apply values using helm install --values values.yaml /chart-name
+echo
+echo "==================================="
+echo "====         Deployment        ===="
+echo "==================================="
+echo
+echo deployment is a kubernetes resource that manages the lifecycle of pods
+echo
+echo "==================================="
+echo "====           Service         ===="
+echo "==================================="
+echo
+echo service is a kubernetes resource that manages networking between pods
+echo
+echo "==================================="
+echo "====         Config Map        ===="
+echo "==================================="
+echo
+echo configmap is a kubernetes resource that manages configuration data for pods
+echo data is stored in key-value pairs in a file eg configmap.yaml or as environment variables
+echo config maps allow you to inject configuration data into pods`
+echo
+echo with config map yaml the data is stored in data: field as key:value pairs
+echo
+cat configmap.yaml
+echo
+echo example : create cluster 
+kind create cluster
+kind get clusters
+kubectl config get-contexts
+kubectl config use-context kind-kind
+kubectl cluster-info 
+kubectl get nodes
+helm install pink ../../../delete-me
+
+echo
+echo "==================================="
+echo "====         Directives        ===="
+echo "==================================="
+echo
+echo we can use directives to control the flow of the template
+echo
+echo directives include:
+echo - if: to conditionally include or exclude parts of the template
+echo - range: to iterate over a list of items
+echo - with: to set a context for the template
+echo - include: to include another template file
+echo - template: to include a template file
+echo - define: to define a template file
+echo - end: to end a directive
+echo
+echo 
+echo "==================================="
+echo "====    Template Directives    ===="
+echo "==================================="
+echo
+echo use {{  }} to include a variable in the template
+echo use {{-  }} to trim whitespace before the variable
+echo use {{-  }} to trim whitespace after the variable
+echo eg name: {{- .Release.Name -}}
+echo
+echo helm install release-name /delete-me
+echo 
+echo { } eg Release.Name/Namespace/Service/Values/Chart/Chart.Name/Chart.Version/Files/Capabilities/Template
 while true 
 do
 
-    sleep 5
-    echo 
-    echo "==================================="
-    echo "====  view different outputs   ===="
-    echo "==================================="
-    echo 
-    echo CLEAN
-    echo 
-
-    echo "10. docker info"
-    echo "20. docker clean up"
-    echo "25. kill all"
-
-    echo  
-    echo OVERVIEW
-    echo 
-
-    echo "30. quick overview"
-
-    echo  
-    echo CONTAINERS
-    echo 
-
-    echo "50. get containers"
-
-    echo  
-    echo PODS
-    echo 
-
-    echo "60. get pods"
-    echo "65. get pods extra"
-
-    echo "70. run a pod with busybox"
-    echo "80. run a pod with nginx and forward the service to port 8081"
-
-    echo 90. delete a named pod
-    echo "95. delete standalone pods"
-
-    echo  
-    echo CLUSTERS
-    echo 
-
-    echo "100. view clusters"
-    echo "110. create cluster"
-    echo "120. modify cluster"
-    echo "130. delete cluster"
-
-    echo  
-    echo DEPLOYMENTS
-    echo 
-
-    echo "150. view deployments"
-    echo "160. create deployment"
-    echo "178. modify deployment"
-    echo "179. scale deployment to zero"
-    echo "180. delete deployment"
-
-    echo  
-    echo CCONTEXTS
-    echo 
-
-    echo "200. view contexts"
-    echo "210. create context"
-    echo "220. modify context"
-    echo "230. switch context"
-    echo "240. delete context"
-
-    echo  
-    echo NAMESPACES
-    echo 
-
-
-    echo "250. view namespaces"
-    echo "260. create namespace"
-    echo "270. modify namespace"
-    echo "280. delete namespace"
-
-
+    echo "1. Menu, 25 kill all, 30 overview, 40 images, 50 containers, 60 pods, 100 clusters, 150 deployments, 200 contexts, 250 namespaces"
     echo "999. Exit"
-
     read -p "Enter your choice: " choice
+    
     echo 
     echo 
     echo 
 
-    if [ "$choice" -eq 10 ]; then
+
+    if [ "$choice" -eq 1 ]; then
+
+        echo 
+        echo "==================================="
+        echo "====  view different outputs   ===="
+        echo "==================================="
+        echo 
+        echo CLEAN
+        echo 
+
+        echo "10. docker info"
+        echo "20. docker clean up"
+        echo "25. kill all"
+
+        echo  
+        echo OVERVIEW
+        echo 
+
+        echo "30. quick overview"
+
+        echo  
+        echo IMAGES
+        echo 
+
+        echo "40. get images"
+        
+
+        echo  
+        echo CONTAINERS
+        echo 
+
+        echo "50. get containers"
+
+        echo  
+        echo PODS
+        echo 
+
+        echo "60. get pods"
+        echo "65. get pods extra"
+
+        echo "70. run a pod with busybox"
+        echo "80. run a pod with nginx and forward the service to port 8081"
+
+        echo 90. delete a named pod
+        echo "95. delete standalone pods"
+
+        echo  
+        echo CLUSTERS
+        echo 
+
+        echo "100. view clusters"
+        echo "110. create cluster"
+        echo "120. modify cluster"
+        echo "130. delete cluster"
+
+        echo  
+        echo DEPLOYMENTS
+        echo 
+
+        echo "150. view deployments"
+        echo "155. describe deployments ih detail and list in wide format"
+        echo "160. create deployment"
+        echo "178. modify deployment"
+        echo "179. scale deployment to zero"
+        echo "180. delete deployment"
+
+        echo  
+        echo CONTEXTS
+        echo 
+
+        echo "200. view contexts"
+        echo "210. create context"
+        echo "220. modify context"
+        echo "230. switch context"
+        echo "240. delete context"
+
+        echo 
+        echo SERVICES
+        echo
+
+        echo "300. view services"
+        echo "305. get one named service"
+        echo "310. create service"
+        echo "320. modify service"
+        echo "330. delete service"
+        echo "340. expose service"
+
+
+        echo  
+        echo NAMESPACES
+        echo 
+
+
+        echo "350. view namespaces"
+        echo "360. create namespace"
+        echo "370. modify namespace"
+        echo "380. delete namespace"
+
+
+        echo "999. Exit"
+
+
+
+
+
+
+    elif [ "$choice" -eq 10 ]; then
         echo "==================================="
         echo "====         Docker Info       ===="
         echo "==================================="
@@ -442,6 +713,20 @@ do
         echo
         echo "Kubernetes Config Current Context:"
         kubectl config current-context
+        echo
+        echo
+
+
+    elif [ "$choice" -eq 40 ]; then
+
+        echo "==================================="
+        echo "====         Get Images        ===="
+        echo "==================================="
+        echo
+        echo
+        echo get all images and sort by size descending
+        echo
+        docker images --format '{{.Repository}}:{{.Tag}} {{.Size}}' | sort -k2 -hr
         echo
         echo
 
@@ -709,10 +994,47 @@ do
         echo
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #===================================
+    # deployments
+    #===================================
+
+
     elif [ "$choice" -eq 150 ]; then
 
         echo "==================================="
         echo "====         View Deployments   ===="
+        echo "==================================="
+        echo
+        echo
+        echo "Viewing all deployments in current namespace:"
+        kubectl get deployments
+        echo
+        echo
+        echo "Viewing all deployments in all namespaces:"
+        kubectl get deployments --all-namespaces
+        echo
+        echo
+
+
+    
+
+    elif [ "$choice" -eq 155 ]; then
+
+        echo "==================================="
+        echo "====     Describe Deployments   ===="
         echo "==================================="
         echo
         echo
@@ -724,6 +1046,22 @@ do
         kubectl get deployments --all-namespaces -o wide
         echo
         echo
+        echo "Describing all deployments in current namespace:"
+        kubectl describe deployments
+        echo
+        echo
+        echo "Describing a specific deployment:"
+        read -p "Enter the name of the deployment to describe: " deployment_name
+        if [ -n "$deployment_name" ]; then
+            kubectl describe deployment "$deployment_name"
+            echo "Described deployment '$deployment_name'."
+        else
+            echo "No deployment name provided. Skipping description."
+        fi
+        echo
+        echo
+
+
 
 
     elif [ "$choice" -eq 160 ]; then
@@ -896,6 +1234,179 @@ do
         kubectl config get-contexts
         echo 
 
+
+    elif [ "$choice" -eq 300 ]; then
+
+        echo "==================================="
+        echo "====         View Services     ===="
+        echo "==================================="
+        echo
+        echo
+        echo "Viewing all services in current namespace:"
+        kubectl get services -o wide
+        echo
+        echo
+        echo "Viewing all services in all namespaces:"
+        kubectl get services --all-namespaces -o wide
+        echo
+        echo
+
+
+
+    elif [ "$choice" -eq 305 ]; then
+
+        echo "==================================="
+        echo "====         Get One Service   ===="
+        echo "==================================="
+        echo
+        echo
+        echo "Viewing a specific service by name:"
+        read -p "Enter the name of the service to view: " service_name
+        if [ -n "$service_name" ]; then
+            kubectl get service "$service_name" -o wide
+            echo "Service '$service_name' details displayed."
+        else
+            echo "No service name provided. Skipping view."
+        fi
+        echo
+        echo
+
+
+                
+
+
+    elif [ "$choice" -eq 310 ]; then
+
+        echo "==================================="
+        echo "====         Create Service    ===="
+        echo "==================================="
+        echo
+        echo
+        echo "Creating a service for the nginx pod on port 80:"
+        kubectl expose pod nginx-pod-01 --type=NodePort --name=nginx-service-01 --port=80 --target-port=80
+        echo
+        echo
+        echo "Viewing all services after creation:"
+        kubectl get services -o wide
+        echo
+        echo
+
+    elif [ "$choice" -eq 320 ]; then
+
+        echo "==================================="
+        echo "====         Modify Service    ===="
+        echo "==================================="
+        echo
+        echo
+        echo "Modifying the nginx service to change the target port to 8080:"
+        kubectl patch service nginx-service-01 -p '{"spec":{"ports":[{"port":80,"targetPort":8080}]}}'
+        echo
+        echo
+        echo "Viewing all services after modification:"
+        kubectl get services -o wide
+        echo
+        echo
+
+    elif [ "$choice" -eq 330 ]; then
+
+        echo "==================================="
+        echo "====         Delete Service    ===="
+        echo "==================================="
+        echo
+        read -p "Enter the name of the service to delete: " service_name
+        if [ -n "$service_name" ]; then
+            kubectl delete service "$service_name"
+            echo "Service '$service_name' deleted."
+        else
+            echo "No service name provided. Skipping deletion."
+        fi
+
+        echo
+
+    elif [ "$choice" -eq 340 ]; then
+
+        echo "==================================="
+        echo "====         Expose Service    ===="
+        echo "==================================="
+        echo
+        echo
+        echo "Exposing the nginx service on port 8081:"
+        kubectl expose service nginx-service-01 --type=NodePort --name=nginx-service-01-exposed --port=80 --target-port=80 --external-ip=
+
+
+        echo
+
+        echo create a service and expose port 80 to the other pods in the cluster
+        kubectl expose deployment my-deployment --type=NodePort --name=my-service --port=80 --target-port=80
+
+
+
+    elif [ "$choice" -eq 350 ]; then
+
+        echo "==================================="
+        echo "====         View Namespaces   ===="
+        echo "==================================="
+        echo
+        echo
+        echo "Viewing all namespaces in the cluster:"
+        kubectl get namespaces
+        echo
+        echo
+        echo "Current namespace:"
+        kubectl config view --minify | grep namespace:
+        echo
+        echo
+
+
+    elif [ "$choice" -eq 360 ]; then
+
+        echo "==================================="
+        echo "====         Create Namespace  ===="
+        echo "==================================="
+        echo
+        echo
+        echo "Creating a new namespace named my-namespace:"
+        kubectl create namespace my-namespace
+        echo
+        echo
+        echo "Viewing all namespaces after creation:"
+        kubectl get namespaces
+        echo
+        echo
+
+    elif [ "$choice" -eq 370 ]; then
+
+        echo "==================================="
+        echo "====         Modify Namespace  ===="
+        echo "==================================="
+        echo
+        echo
+        echo "Modifying the namespace to add a label:"
+        kubectl label namespace my-namespace my-label=my-value
+        echo
+        echo
+        echo "Viewing all namespaces after modification:"
+        kubectl get namespaces --show-labels
+        echo
+        echo
+
+    elif [ "$choice" -eq 380 ]; then
+
+        echo "==================================="
+        echo "====         Delete Namespace  ===="
+        echo "==================================="
+        echo
+        read -p "Enter the name of the namespace to delete: " namespace_name
+        if [ -n "$namespace_name" ]; then
+            kubectl delete namespace "$namespace_name"
+            echo "Namespace '$namespace_name' deleted."
+        else
+            echo "No namespace name provided. Skipping deletion."
+        fi
+        echo
+
+
+    
 
 
 

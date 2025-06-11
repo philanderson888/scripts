@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx-deployment
+spec:
+  replicas: 7
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: gcr.io/my-images/nginx # possible artifact
+          name: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /opt/config
+              name: my-config-map
+      volumes:
+        - configMap:
+            name: configmap             # possible artifact
+          name: my-config-map
