@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Config
+metadata:
+  name: hello-world-cluster
+spec:
+  cluster:
+    name: hello-world-cluster
+    region: nyc1
+    size: s-2vcpu-2gb
+    count: 3
+    version: latest

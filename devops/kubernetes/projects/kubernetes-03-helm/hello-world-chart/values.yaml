@@ -1,0 +1,24 @@
+# Default values for hello-world-chart.
+replicaCount: 2
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "stable"
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30080
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+# Custom app configuration
+appConfig:
+  message: "Hello, Kubernetes and Helm!"
