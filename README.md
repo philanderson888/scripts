@@ -18,6 +18,7 @@ Repo for scripts that I use
     - [kubernetes deployments](#kubernetes-deployments)
     - [kubernetes pods](#kubernetes-pods)
     - [kubernetes contexts](#kubernetes-contexts)
+    - [kubernetes single commands](#kubernetes-single-commands)
   - [minikube](#minikube)
     - [install](#install)
     - [cheat sheet](#cheat-sheet)
@@ -141,6 +142,127 @@ kubectl config delete-context context-name
 kubectl config view
 ```
 
+
+### kubernetes single commands
+
+```bash
+
+docker ps
+docker ps -a
+docker kill $(docker ps -q)
+docker rm $(docker ps -a -q)
+
+docker volume ls
+docker volume prune 
+docker volume rm $(docker volume ls -q) 
+
+docker images 
+docker images -q
+docker rmi $(docker images -q)
+
+docker stop 123
+docker rm 123
+
+# force stop a container using an image
+docker rm -f 9e5f6c3a0987
+# force remove the image now that the container is no longer using it
+docker rmi -f busybox
+
+
+kubectl get pods
+kubectl delete pods --all --ignore-not-found
+docker system prune --all --volumes --force
+
+
+
+kubectl config view
+
+kubectl config get-contexts
+kubectl config delete-context x
+
+kubectl config get-clusters
+
+kubectl cluster-info 
+
+
+kubectl get namespaces
+kubectl get nodes
+kubectl get pods
+kubectl get deployments
+kubectl get services
+
+kubectl get ingress
+kubectl get egress
+
+kubectl create namespace namespace01
+kubectl create namespace namespace02
+kubectl create namespace namespace03
+
+kubectl delete namespace namespace01
+kubectl delete namespace namespace02
+kubectl delete namespace namespace03
+
+
+kubectl apply -f deployment.yaml
+kubectl wait --for=condition=available 
+
+kubectl attach my-pod -i
+kubectl exec my-pod -- ls /
+
+# run cluster
+kubectl run busy-box-pod-01 --image=busybox --restart=Never --command -- sleep 3600
+
+# run cluster and log in
+kubect run busybox --image=busybox -it -- /bin/sh && echo "hi from shell"
+kubectl attach busybox -i
+
+
+
+# kind
+
+kind create cluster
+kind get clusters
+kind get nodes
+
+# list images in a cluster
+docker exec -it kind-kind crictl images
+
+kind load docker-image nginx:latest 
+
+# helm
+kind create cluster
+kind get clusters
+kubectl config get-contexts
+kubectl config use-context kind-kind
+kubectl cluster-info 
+kubectl get nodes
+helm install pink ../../../delete-me
+
+
+
+# digital ocean
+doctl kubernetes cluster create $CLUSTER_NAME \
+      --region $REGION \
+      --size $NODE_SIZE \
+      --count $NODE_COUNT \
+      --wait
+
+doctl compute droplet list
+doctl kubernetes cluster list
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
 ## minikube
 
 minikube runs a single-node kubernetes cluster
@@ -259,4 +381,6 @@ we can connect to a digital ocean cluster using `doctl`
 ```bash
 brew install doctl
 ```
+
+
 
